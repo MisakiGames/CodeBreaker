@@ -1,0 +1,88 @@
+<map id="tson::IJson::getDouble" name="tson::IJson::getDouble">
+<area shape="rect" id="Node000001" title=" " alt="" coords="791,541,944,568"/>
+<area shape="rect" id="Node000002" href="$classtson_1_1_i_json.html#a3029b11f4e3666c32257f5a637b2e71b" title=" " alt="" coords="433,5,545,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="856,526,827,434,803,372,772,304,735,233,691,165,640,101,581,46,564,36,547,29,545,24,566,31,584,42,644,97,696,162,740,231,777,301,808,370,832,432,861,527"/>
+<area shape="rect" id="Node000003" href="$classtson_1_1_i_json.html#a33e0e84aa8ce0636b2045a8c0e8ece66" title=" " alt="" coords="630,579,743,605"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="783,573,744,583,742,578,787,570"/>
+<area shape="poly" id="edge5_Node000003_Node000002" title=" " alt="" coords="677,563,623,264,580,45,564,34,547,26,545,21,567,29,585,43,628,263,683,563"/>
+<area shape="poly" id="edge6_Node000003_Node000003" title=" " alt="" coords="716,564,707,560,686,557,668,559,658,564,655,569,660,578,655,578,650,570,654,560,666,554,687,552,708,555,721,563"/>
+<area shape="rect" id="Node000004" href="$classtson_1_1_json11.html#a23ee0375ff43012b77e49ae65af801b0" title=" " alt="" coords="432,56,546,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="677,563,628,297,599,161,588,116,580,96,565,85,548,77,546,72,567,80,584,93,593,115,605,160,633,296,683,564"/>
+<area shape="rect" id="Node000005" href="$classtson_1_1_enum_definition.html#ab21dc23acce40721a7b51617e7eb7dd8" title=" " alt="" coords="418,107,561,149"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="677,563,633,341,604,225,591,185,580,163,562,148,561,143,584,160,596,183,609,224,638,339,683,564"/>
+<area shape="rect" id="Node000006" href="$classtson_1_1_json11.html#af7e70d976c54c33782985d2c38a6fece" title=" " alt="" coords="410,173,568,200"/>
+<area shape="poly" id="edge7_Node000003_Node000006" title=" " alt="" coords="678,562,665,482,644,377,615,278,598,240,580,214,567,203,566,198,584,210,603,237,620,276,649,376,670,481,684,564"/>
+<area shape="rect" id="Node000007" href="$classtson_1_1_chunk.html#ab23d9f5d366553ff658a28e77c37b155" title=" " alt="" coords="423,224,555,251"/>
+<area shape="poly" id="edge8_Node000003_Node000007" title=" " alt="" coords="682,562,677,501,662,421,649,378,632,337,609,298,581,265,556,249,555,244,584,261,613,295,637,334,654,376,668,419,683,500,687,564"/>
+<area shape="rect" id="Node000010" href="$classtson_1_1_frame.html#af6a61eaee779eefb9aea32356a6e56a3" title=" " alt="" coords="424,275,555,301"/>
+<area shape="poly" id="edge12_Node000003_Node000010" title=" " alt="" coords="680,563,673,511,656,444,643,409,626,375,606,343,581,315,556,300,555,295,584,311,610,340,631,372,648,406,661,442,678,510,686,564"/>
+<area shape="rect" id="Node000012" href="$classtson_1_1_grid.html#a07ed782351604add041be6d659d7a9f4" title=" " alt="" coords="430,325,548,352"/>
+<area shape="poly" id="edge14_Node000003_Node000012" title=" " alt="" coords="678,563,667,520,649,467,620,412,602,388,581,366,565,356,550,349,548,344,568,351,584,362,606,384,625,409,653,464,672,519,683,564"/>
+<area shape="rect" id="Node000014" href="$classtson_1_1_i_json.html#ae18f297977ff220ede60cf03a766bb3b" title=" " alt="" coords="426,376,552,403"/>
+<area shape="poly" id="edge16_Node000003_Node000014" title=" " alt="" coords="674,563,661,530,641,490,614,450,581,417,554,402,552,397,584,413,618,447,645,488,665,528,679,564"/>
+<area shape="rect" id="Node000015" href="$classtson_1_1_layer.html#a333e6e81daffaa8a1632771261152806" title=" " alt="" coords="426,427,552,453"/>
+<area shape="poly" id="edge17_Node000003_Node000015" title=" " alt="" coords="668,565,632,516,608,490,581,468,553,454,552,449,584,463,612,486,637,512,673,565"/>
+<area shape="rect" id="Node000017" href="$classtson_1_1_map.html#aa8df83fa57ed4d985fceb2f9254b5a9b" title=" " alt="" coords="430,477,549,504"/>
+<area shape="poly" id="edge19_Node000003_Node000017" title=" " alt="" coords="657,569,622,543,581,518,550,506,549,501,584,514,626,539,662,568"/>
+<area shape="rect" id="Node000019" href="$classtson_1_1_object.html#a8d1afaeb2878eb4dcd5c519a4b6d9db3" title=" " alt="" coords="423,528,555,555"/>
+<area shape="poly" id="edge21_Node000003_Node000019" title=" " alt="" coords="614,575,545,558,543,553,619,573"/>
+<area shape="rect" id="Node000021" href="$classtson_1_1_terrain.html#a1470aecca4c5eb342b7ea49669804ec1" title=" " alt="" coords="422,579,556,605"/>
+<area shape="poly" id="edge23_Node000003_Node000021" title=" " alt="" coords="613,593,557,594,555,590,617,591"/>
+<area shape="rect" id="Node000023" href="$classtson_1_1_tile.html#aa281c4ce0c0947e7b93e2161e9c27514" title=" " alt="" coords="195,655,310,681"/>
+<area shape="poly" id="edge25_Node000003_Node000023" title=" " alt="" coords="616,611,583,620,436,646,312,663,309,658,435,640,582,615,620,608"/>
+<area shape="rect" id="Node000025" href="$classtson_1_1_tileset.html#a802aac1405b38db6e61a1b4fdc2ea080" title=" " alt="" coords="422,731,556,757"/>
+<area shape="poly" id="edge27_Node000003_Node000025" title=" " alt="" coords="672,617,637,672,612,698,584,721,558,733,555,729,581,716,608,694,632,668,669,621"/>
+<area shape="rect" id="Node000027" href="$classtson_1_1_transformations.html#a2ecc8e0154a8953fbefa16efaa281eeb" title=" " alt="" coords="415,781,563,824"/>
+<area shape="poly" id="edge29_Node000003_Node000027" title=" " alt="" coords="678,618,665,655,644,695,618,736,584,771,565,784,562,779,581,767,613,733,640,692,660,653,674,622"/>
+<area shape="rect" id="Node000029" href="$classtson_1_1_wang_color.html#a3c3daea6a96baba0a847df2ebbd92237" title=" " alt="" coords="410,848,568,875"/>
+<area shape="poly" id="edge31_Node000003_Node000029" title=" " alt="" coords="683,618,674,668,656,727,627,786,607,814,584,838,566,850,563,845,581,834,603,811,622,784,651,725,669,667,680,623"/>
+<area shape="rect" id="Node000031" href="$classtson_1_1_wang_set.html#a98e9822321f4899d29c0fda958ae7565" title=" " alt="" coords="416,899,563,925"/>
+<area shape="poly" id="edge33_Node000003_Node000031" title=" " alt="" coords="685,618,679,677,663,749,650,787,633,824,611,858,584,889,565,902,562,897,581,885,607,855,628,821,645,785,658,748,674,676,682,623"/>
+<area shape="rect" id="Node000033" href="$classtson_1_1_wang_tile.html#adaa29301f974c813a60d9d9e63614570" title=" " alt="" coords="415,949,563,976"/>
+<area shape="poly" id="edge35_Node000003_Node000033" title=" " alt="" coords="687,619,684,686,670,772,657,817,638,861,615,903,584,939,565,952,563,948,581,935,610,900,634,859,652,815,664,771,679,686,684,624"/>
+<area shape="rect" id="Node000035" href="$classtson_1_1_world_map_data.html#a17a2c93baf8e913f2376f277212fc9d6" title=" " alt="" coords="419,1000,559,1043"/>
+<area shape="poly" id="edge37_Node000003_Node000035" title=" " alt="" coords="687,619,687,694,674,792,661,844,642,897,617,946,584,990,561,1007,558,1002,580,986,613,943,637,894,656,843,669,791,682,693,685,623"/>
+<area shape="rect" id="Node000037" href="$classtson_1_1_tile.html#a7fd4b973e7fa84b27a4eb01ffb637bf4" title=" " alt="" coords="426,680,552,707"/>
+<area shape="poly" id="edge39_Node000003_Node000037" title=" " alt="" coords="654,616,623,641,584,664,539,682,536,677,581,659,620,636,658,613"/>
+<area shape="rect" id="Node000038" href="$classtson_1_1_property.html#a33b06fb85a588624b3755f51e2709e45" title=" " alt="" coords="173,1096,333,1123"/>
+<area shape="poly" id="edge41_Node000003_Node000038" title=" " alt="" coords="684,618,676,719,656,850,643,916,626,975,607,1024,584,1057,566,1069,542,1078,477,1093,404,1103,334,1109,333,1103,403,1098,476,1088,540,1073,564,1064,580,1053,602,1021,621,973,638,914,651,849,670,718,682,623"/>
+<area shape="rect" id="Node000039" href="$classtson_1_1_property.html#abe7fb87228cccdc1dd3218a961859fff" title=" " alt="" coords="408,1117,570,1160"/>
+<area shape="poly" id="edge42_Node000003_Node000039" title=" " alt="" coords="684,618,675,725,655,867,641,940,625,1006,606,1062,584,1100,562,1119,559,1115,580,1097,601,1059,620,1005,636,939,650,867,670,724,681,623"/>
+<area shape="rect" id="Node000040" href="$classtson_1_1_text.html#a313491b90219157f57db01f922ca8743" title=" " alt="" coords="433,1184,545,1211"/>
+<area shape="poly" id="edge44_Node000003_Node000040" title=" " alt="" coords="685,618,679,740,662,905,649,989,632,1067,611,1130,598,1155,584,1174,567,1187,546,1195,545,1190,564,1182,580,1170,594,1152,606,1128,627,1065,644,988,657,904,674,739,683,623"/>
+<area shape="rect" id="Node000041" href="$classtson_1_1_tiled_class.html#ac693db899f0979fd94b860cda741624b" title=" " alt="" coords="396,1235,582,1261"/>
+<area shape="poly" id="edge45_Node000003_Node000041" title=" " alt="" coords="686,619,681,749,665,930,652,1022,635,1107,612,1176,599,1204,584,1224,569,1237,567,1232,580,1221,595,1201,607,1174,630,1105,647,1021,660,929,676,749,683,623"/>
+<area shape="rect" id="Node000008" href="$classtson_1_1_chunk.html#a1d0213c68a6c7b404204148ab4a2aee5" title=" " alt="" coords="184,173,322,200"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="406,222,320,203,317,198,411,219"/>
+<area shape="rect" id="Node000009" href="$classtson_1_1_chunk.html#a4f5df72a4edc37a6a9da3ed26728c453" title=" " alt="" coords="184,224,322,251"/>
+<area shape="poly" id="edge11_Node000007_Node000009" title=" " alt="" coords="406,239,324,240,321,235,410,236"/>
+<area shape="poly" id="edge10_Node000008_Node000008" title=" " alt="" coords="285,159,275,154,253,152,232,154,221,159,219,164,224,172,219,173,214,165,218,155,231,149,253,147,276,149,290,157"/>
+<area shape="rect" id="Node000011" href="$classtson_1_1_frame.html#a87cf6f486a74e6c05a606068b6420e00" title=" " alt="" coords="185,275,321,301"/>
+<area shape="poly" id="edge13_Node000010_Node000011" title=" " alt="" coords="406,290,323,290,320,286,410,286"/>
+<area shape="rect" id="Node000013" href="$classtson_1_1_grid.html#a208866afc1b3313dbf6dfb45050d31fa" title=" " alt="" coords="198,325,308,352"/>
+<area shape="poly" id="edge15_Node000012_Node000013" title=" " alt="" coords="412,340,310,341,307,336,416,337"/>
+<area shape="rect" id="Node000016" href="$classtson_1_1_layer.html#aa0278ab14f6ed1f74534767efbd624cf" title=" " alt="" coords="190,427,316,453"/>
+<area shape="poly" id="edge18_Node000015_Node000016" title=" " alt="" coords="409,442,318,442,315,438,413,438"/>
+<area shape="rect" id="Node000018" href="$classtson_1_1_map.html#a5009cdcc28cb0800e66f09687dcf2022" title=" " alt="" coords="197,477,309,504"/>
+<area shape="poly" id="edge20_Node000017_Node000018" title=" " alt="" coords="412,492,311,493,308,488,416,489"/>
+<area shape="rect" id="Node000020" href="$classtson_1_1_object.html#ad1fde9d6453d6540e059464c602a9fa3" title=" " alt="" coords="184,528,322,555"/>
+<area shape="poly" id="edge22_Node000019_Node000020" title=" " alt="" coords="406,543,324,544,321,539,410,540"/>
+<area shape="rect" id="Node000022" href="$classtson_1_1_terrain.html#ae04a916bd601e1ffc63b525f1314ae61" title=" " alt="" coords="183,579,323,605"/>
+<area shape="poly" id="edge24_Node000021_Node000022" title=" " alt="" coords="405,594,325,594,322,590,409,590"/>
+<area shape="rect" id="Node000024" href="$classtson_1_1_tile.html#a29799e387659617b07fc589939496ec8" title=" " alt="" coords="5,655,110,681"/>
+<area shape="poly" id="edge26_Node000023_Node000024" title=" " alt="" coords="178,670,111,670,108,666,182,666"/>
+<area shape="rect" id="Node000026" href="$classtson_1_1_tileset.html#a13caf865ea17b6f355dfe49854540eee" title=" " alt="" coords="183,731,323,757"/>
+<area shape="poly" id="edge28_Node000025_Node000026" title=" " alt="" coords="405,745,325,746,322,742,409,743"/>
+<area shape="rect" id="Node000028" href="$classtson_1_1_transformations.html#a1299abd552c13b72787599632b6ecb90" title=" " alt="" coords="179,781,327,824"/>
+<area shape="poly" id="edge30_Node000027_Node000028" title=" " alt="" coords="397,804,329,805,327,800,402,801"/>
+<area shape="rect" id="Node000030" href="$classtson_1_1_wang_color.html#a7c95cc86e1b99520ede903c46bb744ee" title=" " alt="" coords="158,848,348,875"/>
+<area shape="poly" id="edge32_Node000029_Node000030" title=" " alt="" coords="392,863,350,864,348,859,396,860"/>
+<area shape="rect" id="Node000032" href="$classtson_1_1_wang_set.html#a4cc62c8732a4e7f724e88d4ddec7f8c0" title=" " alt="" coords="169,899,337,925"/>
+<area shape="poly" id="edge34_Node000031_Node000032" title=" " alt="" coords="398,913,338,915,337,909,403,911"/>
+<area shape="rect" id="Node000034" href="$classtson_1_1_wang_tile.html#ac55b51e3733e5e05628b69d1e358cadf" title=" " alt="" coords="168,949,338,976"/>
+<area shape="poly" id="edge36_Node000033_Node000034" title=" " alt="" coords="397,964,339,965,338,960,402,962"/>
+<area shape="rect" id="Node000036" href="$classtson_1_1_world_map_data.html#a9bc04b6490a8895169f5a23e28b284f1" title=" " alt="" coords="183,1000,323,1043"/>
+<area shape="poly" id="edge38_Node000035_Node000036" title=" " alt="" coords="401,1022,324,1024,323,1019,406,1020"/>
+<area shape="poly" id="edge40_Node000037_Node000023" title=" " alt="" coords="408,686,312,677,310,672,413,684"/>
+<area shape="poly" id="edge43_Node000039_Node000038" title=" " alt="" coords="391,1127,334,1122,333,1117,396,1126"/>
+</map>

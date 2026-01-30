@@ -1,0 +1,10 @@
+<map id="tson::Layer::getSize" name="tson::Layer::getSize">
+<area shape="rect" id="Node000001" title=" " alt="" coords="632,43,771,69"/>
+<area shape="rect" id="Node000002" href="$classmmt__gd_1_1_tile_map_loader.html#ae484335384f35ee7643f418a15798148" title=" " alt="" coords="423,5,584,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="614,43,585,41,585,36,620,44"/>
+<area shape="rect" id="Node000003" href="$classmmt__gd_1_1_tile_map_loader.html#a8a9eb41cd783e29f86c2dfce50a8e74c" title=" " alt="" coords="214,35,375,77"/>
+<area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="614,59,584,63,423,63,375,62,375,56,423,57,584,57,620,59"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="410,40,376,47,375,42,405,40"/>
+<area shape="rect" id="Node000004" href="$classmmt__gd_1_1_main_state.html#a52a5850c34f4985211a79839c8d2e587" title=" " alt="" coords="5,43,166,69"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="196,56,166,59,166,53,201,56"/>
+</map>

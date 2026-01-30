@@ -1,0 +1,5 @@
+<map id="mmt_gd::DebugDraw" name="mmt_gd::DebugDraw">
+<area shape="rect" id="Node000001" title="Simple debug draw functionality. Use the relevant draw* method to render debug stuff in the current f..." alt="" coords="5,80,151,107"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="45,5,111,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,46,81,80,75,79,76,50"/>
+</map>

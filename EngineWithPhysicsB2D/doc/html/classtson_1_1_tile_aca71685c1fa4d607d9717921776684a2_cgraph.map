@@ -1,0 +1,6 @@
+<map id="tson::Tile::Tile" name="tson::Tile::Tile">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,29,110,56"/>
+<area shape="rect" id="Node000002" href="$classtson_1_1_tile.html#a834e4e869446be644f61b4b456604f31" title=" " alt="" coords="158,29,273,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,40,145,42,140,43,110,45"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="188,28,183,21,186,11,198,5,215,3,234,5,246,15,241,14,233,10,215,8,199,10,191,15,188,20,193,30"/>
+</map>

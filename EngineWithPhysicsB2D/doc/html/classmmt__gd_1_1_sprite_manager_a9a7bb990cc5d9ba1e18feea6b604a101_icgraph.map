@@ -1,0 +1,5 @@
+<map id="mmt_gd::SpriteManager::addCompToLayer" name="mmt_gd::SpriteManager::addCompToLayer">
+<area shape="rect" id="Node000001" title="Add component to the named layer. If the component is already in a layer it is removed from this laye..." alt="" coords="214,5,374,48"/>
+<area shape="rect" id="Node000002" href="$classmmt__gd_1_1_sprite_manager.html#a956a8d8c908977cc6e6b524c1d724d01" title=" " alt="" coords="5,5,166,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,27,166,29,166,24,201,26"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="mmt_gd::DebugDraw::drawPolygonShape" name="mmt_gd::DebugDraw::drawPolygonShape">
+<area shape="rect" id="Node000001" title=" " alt="" coords="257,29,410,72"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="368,13,356,10,333,8,312,10,299,15,294,21,295,30,291,27,289,19,296,10,311,5,333,3,358,5,374,14"/>
+<area shape="rect" id="Node000002" href="$classmmt__gd_1_1_rigid_body_component.html#afc851c78d645f65ea6d13a7ecfbf4ff6" title=" " alt="" coords="5,29,209,72"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="238,51,209,53,209,48,244,51"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="mmt_gd::GameObjectManager::init" name="mmt_gd::GameObjectManager::init">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,64,205,107"/>
+<area shape="rect" id="Node000002" href="$classmmt__gd_1_1_game_object_manager.html#afb4a0d7bed052fd6339a1cbe6f7b76af" title=" " alt="" coords="258,5,457,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="199,61,250,51,245,53,200,66"/>
+<area shape="rect" id="Node000003" href="$classmmt__gd_1_1_event_bus.html#a92f09869ea30cefecf86955b30c7e1e4" title="´Add/remove event listeners Be careful: Due to the usage of std::function, multiple additions of the ..." alt="" coords="253,72,462,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="205,83,240,85,235,86,205,88"/>
+<area shape="rect" id="Node000004" href="$classmmt__gd_1_1_event_bus.html#ab7f4ea3d3a894bb83c4bfdf76d501811" title=" " alt="" coords="253,123,462,149"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="205,103,275,119,270,119,205,108"/>
+</map>

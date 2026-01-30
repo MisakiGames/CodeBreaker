@@ -1,0 +1,5 @@
+<map id="tson::WorldMapData" name="tson::WorldMapData">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,125,146,152"/>
+<area shape="rect" id="Node000002" href="$classtson_1_1_vector2.html" title=" " alt="" coords="7,5,144,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="78,47,78,125,73,124,73,49"/>
+</map>

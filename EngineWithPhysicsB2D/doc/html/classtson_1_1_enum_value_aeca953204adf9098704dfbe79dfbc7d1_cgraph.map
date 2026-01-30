@@ -1,0 +1,29 @@
+<map id="tson::EnumValue::EnumValue" name="tson::EnumValue::EnumValue">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,232,200,259"/>
+<area shape="rect" id="Node000002" href="$classtson_1_1_enum_value.html#aced64181aef248ac730a20583c04c50c" title=" " alt="" coords="248,232,442,259"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="199,243,235,244,230,247,201,248"/>
+<area shape="poly" id="edge3_Node000002_Node000002" title=" " alt="" coords="304,231,297,223,302,213,318,207,345,205,374,208,391,217,385,217,373,213,345,211,319,213,305,217,302,223,309,232"/>
+<area shape="rect" id="Node000003" href="$classtson_1_1_enum_value.html#a47a2cf27a28b12571504a3126621dcb5" title=" " alt="" coords="508,5,685,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="351,230,370,195,401,149,440,100,488,58,499,54,495,57,492,62,444,104,405,152,375,198,355,233"/>
+<area shape="rect" id="Node000004" href="$classtson_1_1_enum_value.html#acb7009d5ec9b4cb3fdc94e4dc5186609" title=" " alt="" coords="496,72,697,99"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="355,229,408,171,446,137,489,108,505,103,500,106,491,113,449,141,411,174,359,233"/>
+<area shape="rect" id="Node000005" href="$classtson_1_1_enum_value.html#ac62ec8567e7d6c1aeeab49720261c4d6" title=" " alt="" coords="508,123,686,149"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="364,229,419,194,489,159,513,153,508,155,491,164,422,199,367,234"/>
+<area shape="rect" id="Node000006" href="$classtson_1_1_enum_value.html#af7b960e175c7fb05953d8c7a3ddca3c0" title=" " alt="" coords="490,173,703,200"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="404,229,524,203,519,205,406,234"/>
+<area shape="rect" id="Node000008" href="$classtson_1_1_enum_value.html#a105534bb9e7d5214eb4a391973caed4e" title=" " alt="" coords="508,224,686,267"/>
+<area shape="poly" id="edge9_Node000002_Node000008" title=" " alt="" coords="442,243,495,245,490,246,443,248"/>
+<area shape="rect" id="Node000009" href="$classtson_1_1_enum_value.html#aa99dee42ec33c9eccd10e9cf6af214b1" title=" " alt="" coords="498,291,695,317"/>
+<area shape="poly" id="edge10_Node000002_Node000009" title=" " alt="" coords="405,257,524,286,519,287,405,262"/>
+<area shape="rect" id="Node000010" href="$classtson_1_1_enum_value.html#a37acff8cbd06994ee757688ae70944c5" title=" " alt="" coords="751,300,949,343"/>
+<area shape="poly" id="edge12_Node000002_Node000010" title=" " alt="" coords="363,257,418,294,454,313,491,327,553,339,616,343,679,342,739,340,733,340,679,347,616,348,552,344,489,332,451,318,416,299,363,262"/>
+<area shape="rect" id="Node000011" href="$classtson_1_1_enum_value.html#a766093ae435470cf8c1dbf3ec6056edf" title=" " alt="" coords="510,392,684,419"/>
+<area shape="poly" id="edge13_Node000002_Node000011" title=" " alt="" coords="359,256,413,312,450,344,491,371,522,387,516,386,489,376,447,348,410,316,357,262"/>
+<area shape="rect" id="Node000012" href="$classtson_1_1_enum_value.html#a0e8939e31f4e4ac32d971c8812dca6da" title=" " alt="" coords="763,409,937,452"/>
+<area shape="poly" id="edge15_Node000002_Node000012" title=" " alt="" coords="353,257,371,295,400,343,440,391,465,412,491,428,522,441,554,450,621,459,687,458,745,454,750,453,687,463,620,464,553,455,520,446,489,433,461,416,437,395,396,346,367,297,351,261"/>
+<area shape="rect" id="Node000007" href="$classtson_1_1_enum_definition.html#a7ecb9685b77ac509fb77fc751f195db6" title=" " alt="" coords="778,165,922,208"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="704,184,766,186,760,187,704,189"/>
+<area shape="poly" id="edge8_Node000007_Node000007" title=" " alt="" coords="802,163,800,155,808,146,825,141,850,139,877,141,895,150,890,150,876,146,850,144,826,146,811,151,805,157,807,166"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="696,308,739,313,733,314,696,313"/>
+<area shape="poly" id="edge14_Node000011_Node000012" title=" " alt="" coords="684,411,750,420,745,420,684,417"/>
+</map>

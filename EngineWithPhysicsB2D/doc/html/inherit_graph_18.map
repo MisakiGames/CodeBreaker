@@ -1,0 +1,31 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classmmt__gd_1_1_i_component.html" title=" " alt="" coords="5,233,153,260"/>
+<area shape="rect" id="Node000001" href="$classmmt__gd_1_1_collider_component.html" title=" " alt="" coords="214,5,402,32"/>
+<area shape="poly" id="edge20_Node000000_Node000001" title=" " alt="" coords="87,218,102,178,125,130,158,82,199,42,223,31,219,35,202,46,162,86,130,133,107,180,92,219"/>
+<area shape="rect" id="Node000002" href="$classmmt__gd_1_1_damage_component.html" title=" " alt="" coords="212,56,404,83"/>
+<area shape="poly" id="edge21_Node000000_Node000002" title=" " alt="" coords="92,218,134,154,164,121,199,92,226,81,222,85,202,97,168,125,138,158,97,221"/>
+<area shape="rect" id="Node000003" href="$classmmt__gd_1_1_destruction_component.html" title=" " alt="" coords="203,107,413,133"/>
+<area shape="poly" id="edge22_Node000000_Node000003" title=" " alt="" coords="101,220,144,180,171,160,199,143,232,132,228,136,202,148,174,164,148,184,105,223"/>
+<area shape="rect" id="Node000004" href="$classmmt__gd_1_1_enemy_a_i_component.html" title=" " alt="" coords="209,157,406,184"/>
+<area shape="poly" id="edge23_Node000000_Node000004" title=" " alt="" coords="122,224,200,193,243,183,239,186,202,199,125,229"/>
+<area shape="rect" id="Node000005" href="$classmmt__gd_1_1_health_component.html" title=" " alt="" coords="217,208,398,235"/>
+<area shape="poly" id="edge24_Node000000_Node000005" title=" " alt="" coords="167,234,219,230,215,233,169,239"/>
+<area shape="rect" id="Node000006" href="$classmmt__gd_1_1_i_animation_component.html" title=" " alt="" coords="205,259,410,285"/>
+<area shape="poly" id="edge25_Node000000_Node000006" title=" " alt="" coords="167,254,207,259,202,262,169,259"/>
+<area shape="rect" id="Node000008" href="$classmmt__gd_1_1_i_render_component.html" title=" " alt="" coords="213,309,402,336"/>
+<area shape="poly" id="edge27_Node000000_Node000008" title=" " alt="" coords="123,264,202,295,244,308,239,310,200,300,124,270"/>
+<area shape="rect" id="Node000012" href="$classmmt__gd_1_1_player_move_component.html" title=" " alt="" coords="202,360,414,387"/>
+<area shape="poly" id="edge31_Node000000_Node000012" title=" " alt="" coords="103,269,148,309,174,329,202,346,232,359,227,360,199,350,171,333,144,313,103,274"/>
+<area shape="rect" id="Node000013" href="$classmmt__gd_1_1_player_shoot_component.html" title=" " alt="" coords="201,411,415,437"/>
+<area shape="poly" id="edge32_Node000000_Node000013" title=" " alt="" coords="95,271,138,336,168,369,202,396,227,410,221,410,199,401,164,373,134,339,94,276"/>
+<area shape="rect" id="Node000014" href="$classmmt__gd_1_1_rigid_body_component.html" title=" " alt="" coords="206,461,410,488"/>
+<area shape="poly" id="edge33_Node000000_Node000014" title=" " alt="" coords="90,272,107,313,130,361,162,408,202,447,224,461,218,460,199,451,158,411,125,363,102,316,89,278"/>
+<area shape="rect" id="Node000007" href="$classmmt__gd_1_1_transform_animation_component.html" title="The component controlling transform animations. The specific animation pattern can be handed in via a..." alt="" coords="486,217,679,260"/>
+<area shape="poly" id="edge26_Node000006_Node000007" title=" " alt="" coords="425,255,488,250,483,251,427,260"/>
+<area shape="rect" id="Node000009" href="$classmmt__gd_1_1_camera_render_component.html" title="Updates the camera/view of the render window. This new camera will be used until another CameraRender..." alt="" coords="466,284,698,311"/>
+<area shape="poly" id="edge28_Node000008_Node000009" title=" " alt="" coords="417,310,468,307,463,309,419,315"/>
+<area shape="rect" id="Node000010" href="$classmmt__gd_1_1_sprite_render_component.html" title=" " alt="" coords="472,335,692,361"/>
+<area shape="poly" id="edge29_Node000008_Node000010" title=" " alt="" coords="418,330,475,337,469,338,418,335"/>
+<area shape="rect" id="Node000011" href="$classmmt__gd_1_1_tile_layer_render_component.html" title=" " alt="" coords="463,385,701,412"/>
+<area shape="poly" id="edge30_Node000008_Node000011" title=" " alt="" coords="393,338,416,346,440,358,464,371,504,385,499,385,462,376,438,363,414,350,393,343"/>
+</map>

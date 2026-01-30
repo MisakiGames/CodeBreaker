@@ -1,0 +1,10 @@
+<map id="mmt_gd::DebugDraw::drawArrow" name="mmt_gd::DebugDraw::drawArrow">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,29,159,72"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="47,28,46,19,51,10,64,5,82,3,102,5,115,13,110,14,100,10,82,8,65,10,55,14,51,21,52,29"/>
+<area shape="rect" id="Node000002" href="$group___vectors.html#gac64b6398e74001b7f1089cfe21d1745b" title="Returns the length of the 2D vector." alt="" coords="207,37,320,64"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="159,48,194,50,188,51,159,53"/>
+<area shape="rect" id="Node000003" href="$group___vectors.html#ga4684eab3debf72da3f8a4936b21f71f6" title="Returns the square of vector&#39;s length." alt="" coords="368,37,531,64"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="320,48,355,51,350,51,320,53"/>
+<area shape="rect" id="Node000004" href="$group___vectors.html#gaf03beaae17966de61c46d85ba400c60c" title="Computes the dot product of two 2D vectors." alt="" coords="579,37,721,64"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="532,48,566,51,561,51,532,53"/>
+</map>

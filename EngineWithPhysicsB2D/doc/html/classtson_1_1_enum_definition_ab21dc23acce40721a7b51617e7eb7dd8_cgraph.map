@@ -1,0 +1,28 @@
+<map id="tson::EnumDefinition::EnumDefinition" name="tson::EnumDefinition::EnumDefinition">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,137,149,180"/>
+<area shape="rect" id="Node000002" href="$classtson_1_1_i_json.html#ae972ee03fb75c020586ae4c27cd33115" title=" " alt="" coords="203,57,326,84"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,135,196,94,212,88,208,92,198,98,118,139"/>
+<area shape="rect" id="Node000003" href="$classtson_1_1_i_json.html#ad742cdf1ffd8577e147c42836a1bb9bb" title=" " alt="" coords="201,108,328,135"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="148,142,188,135,184,138,151,147"/>
+<area shape="rect" id="Node000004" href="$classtson_1_1_i_json.html#a33e0e84aa8ce0636b2045a8c0e8ece66" title=" " alt="" coords="208,183,320,209"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="149,170,195,181,190,183,150,176"/>
+<area shape="rect" id="Node000013" href="$classtson_1_1_i_json.html#a50556d6382b1ee0115bcbf809ab8b24b" title=" " alt="" coords="197,233,332,260"/>
+<area shape="poly" id="edge13_Node000001_Node000013" title=" " alt="" coords="117,178,198,219,213,227,208,228,196,224,117,183"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="232,182,227,174,231,164,243,158,264,156,287,159,300,167,295,168,285,164,264,161,245,163,234,168,232,173,237,183"/>
+<area shape="rect" id="Node000005" href="$classtson_1_1_i_json.html#a1f36d17f8ec86be7b119aee0f6269a1b" title=" " alt="" coords="388,5,526,32"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="289,180,310,164,330,145,345,118,351,93,359,67,378,42,387,39,383,42,382,46,364,70,356,94,350,120,334,148,314,168,292,184"/>
+<area shape="rect" id="Node000006" href="$classtson_1_1_i_json.html#a7e46b7f349591ebe81509b5e6fa93ff8" title=" " alt="" coords="380,56,533,83"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="285,180,330,145,353,118,363,105,378,92,391,88,387,91,382,97,367,109,357,121,334,149,288,184"/>
+<area shape="rect" id="Node000007" href="$classtson_1_1_i_json.html#a16da5e6fe1497776edb634992ddb4bdb" title=" " alt="" coords="386,107,527,133"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="294,180,379,143,400,138,395,140,381,148,296,184"/>
+<area shape="rect" id="Node000008" href="$classtson_1_1_i_json.html#af6a4d5ea0dfe4aff998747f9ca5e3a0d" title=" " alt="" coords="386,157,527,184"/>
+<area shape="poly" id="edge8_Node000004_Node000008" title=" " alt="" coords="320,186,373,181,368,183,322,191"/>
+<area shape="rect" id="Node000009" href="$classtson_1_1_i_json.html#a7bf701e587bbe631bf0d17216c597f5c" title=" " alt="" coords="386,208,527,235"/>
+<area shape="poly" id="edge9_Node000004_Node000009" title=" " alt="" coords="321,201,373,209,368,211,321,206"/>
+<area shape="rect" id="Node000010" href="$classtson_1_1_i_json.html#a0c311d1dadeaf1c86f7623aa90fa685e" title=" " alt="" coords="384,259,530,285"/>
+<area shape="poly" id="edge10_Node000004_Node000010" title=" " alt="" coords="305,207,333,219,381,244,398,253,393,253,379,249,331,224,305,213"/>
+<area shape="rect" id="Node000011" href="$classtson_1_1_i_json.html#a7ff10b8b57cc0edaef60050377406aa4" title=" " alt="" coords="381,309,532,336"/>
+<area shape="poly" id="edge11_Node000004_Node000011" title=" " alt="" coords="314,207,334,219,350,239,358,259,366,277,382,295,389,302,384,301,378,299,361,280,353,261,346,242,330,223,313,213"/>
+<area shape="rect" id="Node000012" href="$classtson_1_1_i_json.html#aad6fb42a91817e75effa3b94f9217dea" title=" " alt="" coords="381,360,532,387"/>
+<area shape="poly" id="edge12_Node000004_Node000012" title=" " alt="" coords="317,207,334,219,347,236,354,253,358,285,363,316,370,331,382,346,386,352,381,350,378,350,365,334,358,317,353,285,349,254,342,239,330,223,316,213"/>
+</map>

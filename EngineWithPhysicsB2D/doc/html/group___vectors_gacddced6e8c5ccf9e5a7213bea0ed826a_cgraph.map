@@ -1,0 +1,9 @@
+<map id="MathUtil::unitVector" name="MathUtil::unitVector">
+<area shape="rect" id="Node000001" title="Returns a vector with same direction as the argument, but with length 1." alt="" coords="5,5,142,32"/>
+<area shape="rect" id="Node000002" href="$group___vectors.html#gac64b6398e74001b7f1089cfe21d1745b" title="Returns the length of the 2D vector." alt="" coords="190,5,303,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="142,16,177,18,171,19,142,21"/>
+<area shape="rect" id="Node000003" href="$group___vectors.html#ga4684eab3debf72da3f8a4936b21f71f6" title="Returns the square of vector&#39;s length." alt="" coords="351,5,514,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="303,16,338,19,333,19,303,21"/>
+<area shape="rect" id="Node000004" href="$group___vectors.html#gaf03beaae17966de61c46d85ba400c60c" title="Computes the dot product of two 2D vectors." alt="" coords="562,5,704,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="515,16,549,19,544,19,515,21"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="mmt_gd::PhysicsManager::init" name="mmt_gd::PhysicsManager::init">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,23,179,65"/>
+<area shape="rect" id="Node000002" href="$classmmt__gd_1_1_event_bus.html#a92f09869ea30cefecf86955b30c7e1e4" title="´Add/remove event listeners Be careful: Due to the usage of std::function, multiple additions of the ..." alt="" coords="227,5,436,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,32,214,31,209,32,180,37"/>
+<area shape="rect" id="Node000003" href="$classmmt__gd_1_1_event_bus.html#ab7f4ea3d3a894bb83c4bfdf76d501811" title=" " alt="" coords="227,56,436,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="179,51,214,56,208,57,179,56"/>
+</map>

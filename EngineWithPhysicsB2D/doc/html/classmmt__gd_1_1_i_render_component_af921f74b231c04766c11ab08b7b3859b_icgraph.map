@@ -1,0 +1,9 @@
+<map id="mmt_gd::IRenderComponent::IRenderComponent" name="mmt_gd::IRenderComponent::IRenderComponent">
+<area shape="rect" id="Node000001" title=" " alt="" coords="292,72,481,115"/>
+<area shape="rect" id="Node000002" href="$classmmt__gd_1_1_camera_render_component.html#a2d14d4ff0d96657292c5d7bf5610f05e" title=" " alt="" coords="9,5,240,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="283,68,211,51,211,46,288,67"/>
+<area shape="rect" id="Node000003" href="$classmmt__gd_1_1_sprite_render_component.html#aa4773584b6596497af342df272cdfc32" title=" " alt="" coords="15,72,234,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="273,94,235,96,234,91,278,93"/>
+<area shape="rect" id="Node000004" href="$classmmt__gd_1_1_tile_layer_render_component.html#a0b6342c7b5edf941327b528b60bc439f" title=" " alt="" coords="5,139,244,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="288,118,212,141,210,135,283,120"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="tson::Animation::getCurrentTileId" name="tson::Animation::getCurrentTileId">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,35,187,77"/>
+<area shape="rect" id="Node000002" href="$classtson_1_1_animation.html#a9be3b871ddd4ce200d0c8519e3d66d55" title=" " alt="" coords="235,5,416,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="186,42,222,40,217,41,187,47"/>
+<area shape="rect" id="Node000003" href="$classtson_1_1_frame.html#aed6247c47a0228cdf7dec839c3ee8fee" title=" " alt="" coords="251,72,400,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="187,65,238,74,232,74,187,70"/>
+</map>

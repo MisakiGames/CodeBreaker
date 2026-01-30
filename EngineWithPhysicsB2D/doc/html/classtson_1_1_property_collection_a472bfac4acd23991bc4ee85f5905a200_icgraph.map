@@ -1,0 +1,13 @@
+<map id="tson::PropertyCollection::getValue" name="tson::PropertyCollection::getValue">
+<area shape="rect" id="Node000001" title=" " alt="" coords="642,48,804,91"/>
+<area shape="rect" id="Node000002" href="$classtson_1_1_terrain.html#a70d2af588b1989c221e26e8c7b85913f" title=" " alt="" coords="462,5,582,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="625,45,578,35,578,30,630,45"/>
+<area shape="rect" id="Node000003" href="$classtson_1_1_tiled_class.html#ad0448f99b3ea877bf6a5117355207bae" title=" " alt="" coords="451,56,593,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="624,69,594,72,593,67,630,69"/>
+<area shape="rect" id="Node000004" href="$classtson_1_1_wang_color.html#a37c14ca94f6d2dc9cf465b0f4a014dcd" title=" " alt="" coords="450,107,594,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="630,93,578,109,578,103,625,94"/>
+<area shape="rect" id="Node000005" href="$classtson_1_1_wang_color.html#a3c3daea6a96baba0a847df2ebbd92237" title=" " alt="" coords="244,107,402,133"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="432,120,402,123,402,117,437,120"/>
+<area shape="rect" id="Node000006" href="$classtson_1_1_wang_color.html#a7c95cc86e1b99520ede903c46bb744ee" title=" " alt="" coords="5,107,196,133"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="225,120,196,123,196,117,231,120"/>
+</map>

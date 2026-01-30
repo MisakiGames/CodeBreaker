@@ -1,0 +1,5 @@
+<map id="MathUtil::rotatedVector" name="MathUtil::rotatedVector">
+<area shape="rect" id="Node000001" title="Returns a copy of the vector, rotated by angle degrees." alt="" coords="5,5,161,32"/>
+<area shape="rect" id="Node000002" href="$group___vectors.html#ga0db56a3352442dfd751950b7f47e54fa" title="Rotates the vector by the given angle (in degrees)." alt="" coords="209,5,320,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="161,16,196,19,191,19,161,21"/>
+</map>

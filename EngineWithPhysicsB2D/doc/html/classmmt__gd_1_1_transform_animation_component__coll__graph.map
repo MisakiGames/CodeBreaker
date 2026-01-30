@@ -1,0 +1,11 @@
+<map id="mmt_gd::TransformAnimationComponent" name="mmt_gd::TransformAnimationComponent">
+<area shape="rect" id="Node000001" title="The component controlling transform animations. The specific animation pattern can be handed in via a..." alt="" coords="11,332,205,375"/>
+<area shape="rect" id="Node000002" href="$classmmt__gd_1_1_i_animation_component.html" title=" " alt="" coords="5,256,211,283"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,296,110,333,106,331,106,300"/>
+<area shape="rect" id="Node000003" href="$classmmt__gd_1_1_i_component.html" title=" " alt="" coords="34,180,182,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="109,219,111,256,105,255,107,224"/>
+<area shape="rect" id="Node000004" href="$classmmt__gd_1_1_game_object.html" title=" " alt="" coords="33,81,183,108"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="109,121,111,180,105,179,107,126"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="46,5,170,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="108,44,111,81,105,81,108,50"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="mmt_gd::HealthComponent" name="mmt_gd::HealthComponent">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,256,187,283"/>
+<area shape="rect" id="Node000002" href="$classmmt__gd_1_1_i_component.html" title=" " alt="" coords="22,180,170,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,220,98,257,94,255,94,224"/>
+<area shape="rect" id="Node000003" href="$classmmt__gd_1_1_game_object.html" title=" " alt="" coords="21,81,171,108"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="97,121,99,180,93,179,95,126"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="34,5,158,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="97,44,99,81,93,81,95,50"/>
+</map>

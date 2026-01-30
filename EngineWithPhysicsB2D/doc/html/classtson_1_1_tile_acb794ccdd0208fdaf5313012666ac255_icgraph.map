@@ -1,0 +1,7 @@
+<map id="tson::Tile::getPositionInTileUnits" name="tson::Tile::getPositionInTileUnits">
+<area shape="rect" id="Node000001" title=" " alt="" coords="450,5,609,48"/>
+<area shape="rect" id="Node000002" href="$classtson_1_1_tile_object.html#adeaeefb6ddd5c4551404b2311695edd6" title=" " alt="" coords="234,13,402,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="432,27,403,29,403,24,438,27"/>
+<area shape="rect" id="Node000003" href="$classtson_1_1_tile_object.html#ae5678b4a11f6268a82cc9a1d7fd60269" title=" " alt="" coords="5,13,186,40"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="216,27,186,29,186,24,221,26"/>
+</map>

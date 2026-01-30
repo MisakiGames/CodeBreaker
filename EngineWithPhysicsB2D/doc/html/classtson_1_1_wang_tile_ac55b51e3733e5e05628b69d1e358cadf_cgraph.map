@@ -1,0 +1,30 @@
+<map id="tson::WangTile::WangTile" name="tson::WangTile::WangTile">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,145,176,172"/>
+<area shape="rect" id="Node000002" href="$classtson_1_1_wang_tile.html#adaa29301f974c813a60d9d9e63614570" title=" " alt="" coords="224,145,372,172"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="175,156,210,157,206,160,177,161"/>
+<area shape="rect" id="Node000003" href="$classtson_1_1_i_json.html#ae972ee03fb75c020586ae4c27cd33115" title=" " alt="" coords="426,57,549,84"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="322,143,419,94,436,89,431,91,421,98,325,147"/>
+<area shape="rect" id="Node000004" href="$classtson_1_1_i_json.html#ad742cdf1ffd8577e147c42836a1bb9bb" title=" " alt="" coords="424,108,551,135"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="368,142,412,136,407,138,370,147"/>
+<area shape="rect" id="Node000005" href="$classtson_1_1_i_json.html#a33e0e84aa8ce0636b2045a8c0e8ece66" title=" " alt="" coords="432,183,544,209"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="369,170,419,182,414,183,369,175"/>
+<area shape="rect" id="Node000014" href="$classtson_1_1_i_json.html#a50556d6382b1ee0115bcbf809ab8b24b" title=" " alt="" coords="420,233,555,260"/>
+<area shape="poly" id="edge14_Node000002_Node000014" title=" " alt="" coords="324,170,421,219,436,227,431,227,419,224,323,175"/>
+<area shape="poly" id="edge5_Node000005_Node000005" title=" " alt="" coords="455,181,449,174,453,164,467,158,488,156,510,159,524,167,519,167,509,164,488,161,468,163,457,168,455,173,460,183"/>
+<area shape="rect" id="Node000006" href="$classtson_1_1_i_json.html#a1f36d17f8ec86be7b119aee0f6269a1b" title=" " alt="" coords="611,5,749,32"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="512,180,533,164,553,145,569,118,575,93,582,67,601,42,606,42,610,39,605,46,587,70,580,94,573,120,557,148,537,168,515,184"/>
+<area shape="rect" id="Node000007" href="$classtson_1_1_i_json.html#a7e46b7f349591ebe81509b5e6fa93ff8" title=" " alt="" coords="603,56,757,83"/>
+<area shape="poly" id="edge7_Node000005_Node000007" title=" " alt="" coords="508,180,553,145,576,118,586,105,602,92,610,91,615,88,605,97,590,109,580,121,557,149,511,185"/>
+<area shape="rect" id="Node000008" href="$classtson_1_1_i_json.html#a16da5e6fe1497776edb634992ddb4bdb" title=" " alt="" coords="609,107,751,133"/>
+<area shape="poly" id="edge8_Node000005_Node000008" title=" " alt="" coords="517,180,602,143,623,138,618,140,604,148,519,185"/>
+<area shape="rect" id="Node000009" href="$classtson_1_1_i_json.html#af6a4d5ea0dfe4aff998747f9ca5e3a0d" title=" " alt="" coords="609,157,751,184"/>
+<area shape="poly" id="edge9_Node000005_Node000009" title=" " alt="" coords="544,186,596,181,591,183,545,191"/>
+<area shape="rect" id="Node000010" href="$classtson_1_1_i_json.html#a7bf701e587bbe631bf0d17216c597f5c" title=" " alt="" coords="609,208,751,235"/>
+<area shape="poly" id="edge10_Node000005_Node000010" title=" " alt="" coords="544,201,596,210,591,210,545,206"/>
+<area shape="rect" id="Node000011" href="$classtson_1_1_i_json.html#a0c311d1dadeaf1c86f7623aa90fa685e" title=" " alt="" coords="607,259,753,285"/>
+<area shape="poly" id="edge11_Node000005_Node000011" title=" " alt="" coords="528,207,556,219,604,244,622,253,616,253,602,249,554,224,528,213"/>
+<area shape="rect" id="Node000012" href="$classtson_1_1_i_json.html#a7ff10b8b57cc0edaef60050377406aa4" title=" " alt="" coords="604,309,756,336"/>
+<area shape="poly" id="edge12_Node000005_Node000012" title=" " alt="" coords="537,207,557,219,574,239,582,259,589,277,605,295,612,302,607,301,602,299,585,280,577,261,569,242,554,223,536,213"/>
+<area shape="rect" id="Node000013" href="$classtson_1_1_i_json.html#aad6fb42a91817e75effa3b94f9217dea" title=" " alt="" coords="604,360,756,387"/>
+<area shape="poly" id="edge13_Node000005_Node000013" title=" " alt="" coords="540,207,557,219,570,236,577,253,582,285,586,316,593,331,605,346,610,352,605,350,601,350,588,334,581,317,576,285,572,254,566,239,553,223,539,213"/>
+</map>

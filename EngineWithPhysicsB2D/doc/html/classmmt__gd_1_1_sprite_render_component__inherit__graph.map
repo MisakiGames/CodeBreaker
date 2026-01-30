@@ -1,0 +1,7 @@
+<map id="mmt_gd::SpriteRenderComponent" name="mmt_gd::SpriteRenderComponent">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,155,225,181"/>
+<area shape="rect" id="Node000002" href="$classmmt__gd_1_1_i_render_component.html" title=" " alt="" coords="20,80,210,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,121,117,155,113,153,113,124"/>
+<area shape="rect" id="Node000003" href="$classmmt__gd_1_1_i_component.html" title=" " alt="" coords="41,5,189,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="116,45,118,80,112,79,114,50"/>
+</map>

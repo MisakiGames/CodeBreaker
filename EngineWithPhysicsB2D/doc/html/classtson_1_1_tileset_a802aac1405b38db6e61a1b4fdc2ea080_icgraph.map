@@ -1,0 +1,5 @@
+<map id="tson::Tileset::parse" name="tson::Tileset::parse">
+<area shape="rect" id="Node000001" title=" " alt="" coords="194,5,327,32"/>
+<area shape="rect" id="Node000002" href="$classtson_1_1_tileset.html#a13caf865ea17b6f355dfe49854540eee" title=" " alt="" coords="5,5,146,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="175,19,146,21,146,16,181,19"/>
+</map>

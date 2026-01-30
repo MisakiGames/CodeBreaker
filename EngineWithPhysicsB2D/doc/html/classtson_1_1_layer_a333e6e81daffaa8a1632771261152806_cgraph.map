@@ -1,0 +1,30 @@
+<map id="tson::Layer::parse" name="tson::Layer::parse">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,183,132,209"/>
+<area shape="rect" id="Node000002" href="$classtson_1_1_i_json.html#ae972ee03fb75c020586ae4c27cd33115" title=" " alt="" coords="186,57,309,84"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,181,121,139,178,94,191,89,187,93,181,98,124,143,84,184"/>
+<area shape="rect" id="Node000003" href="$classtson_1_1_i_json.html#ad742cdf1ffd8577e147c42836a1bb9bb" title=" " alt="" coords="184,108,310,135"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="98,180,179,144,196,139,192,142,181,149,101,184"/>
+<area shape="rect" id="Node000004" href="$classtson_1_1_i_json.html#a33e0e84aa8ce0636b2045a8c0e8ece66" title=" " alt="" coords="191,183,304,209"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="131,194,178,195,173,197,133,198"/>
+<area shape="rect" id="Node000013" href="$classtson_1_1_layer.html#a4d629dd00219fa52ac138107a72c0631" title=" " alt="" coords="191,233,304,260"/>
+<area shape="poly" id="edge13_Node000001_Node000013" title=" " alt="" coords="118,207,186,227,181,230,119,213"/>
+<area shape="rect" id="Node000014" href="$classtson_1_1_i_json.html#a50556d6382b1ee0115bcbf809ab8b24b" title=" " alt="" coords="180,284,315,311"/>
+<area shape="poly" id="edge14_Node000001_Node000014" title=" " alt="" coords="87,207,130,238,181,270,194,277,188,278,178,274,127,242,87,212"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="216,182,211,174,215,164,227,158,247,156,269,159,282,167,276,168,267,164,247,161,229,163,219,168,217,173,222,182"/>
+<area shape="rect" id="Node000005" href="$classtson_1_1_i_json.html#a1f36d17f8ec86be7b119aee0f6269a1b" title=" " alt="" coords="370,5,509,32"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="272,180,293,164,313,145,328,118,334,93,342,67,361,42,370,39,366,42,365,46,347,70,339,94,333,120,317,148,297,168,275,184"/>
+<area shape="rect" id="Node000006" href="$classtson_1_1_i_json.html#a7e46b7f349591ebe81509b5e6fa93ff8" title=" " alt="" coords="363,56,516,83"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="268,180,313,145,336,118,346,105,361,92,374,88,370,91,365,97,350,109,340,121,317,149,271,184"/>
+<area shape="rect" id="Node000007" href="$classtson_1_1_i_json.html#a16da5e6fe1497776edb634992ddb4bdb" title=" " alt="" coords="369,107,510,133"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="277,180,362,143,383,138,378,140,364,148,279,184"/>
+<area shape="rect" id="Node000008" href="$classtson_1_1_i_json.html#af6a4d5ea0dfe4aff998747f9ca5e3a0d" title=" " alt="" coords="369,157,510,184"/>
+<area shape="poly" id="edge8_Node000004_Node000008" title=" " alt="" coords="303,186,356,181,351,183,305,191"/>
+<area shape="rect" id="Node000009" href="$classtson_1_1_i_json.html#a7bf701e587bbe631bf0d17216c597f5c" title=" " alt="" coords="369,208,510,235"/>
+<area shape="poly" id="edge9_Node000004_Node000009" title=" " alt="" coords="304,201,356,209,351,211,304,206"/>
+<area shape="rect" id="Node000010" href="$classtson_1_1_i_json.html#a0c311d1dadeaf1c86f7623aa90fa685e" title=" " alt="" coords="366,259,513,285"/>
+<area shape="poly" id="edge10_Node000004_Node000010" title=" " alt="" coords="288,207,316,219,364,244,381,253,376,253,362,249,314,224,288,213"/>
+<area shape="rect" id="Node000011" href="$classtson_1_1_i_json.html#a7ff10b8b57cc0edaef60050377406aa4" title=" " alt="" coords="364,309,515,336"/>
+<area shape="poly" id="edge11_Node000004_Node000011" title=" " alt="" coords="297,207,317,219,333,239,341,259,349,277,365,295,372,302,367,301,361,299,344,280,336,261,329,242,313,223,296,213"/>
+<area shape="rect" id="Node000012" href="$classtson_1_1_i_json.html#aad6fb42a91817e75effa3b94f9217dea" title=" " alt="" coords="364,360,515,387"/>
+<area shape="poly" id="edge12_Node000004_Node000012" title=" " alt="" coords="300,207,317,219,330,236,337,253,341,285,346,316,353,331,365,346,369,352,364,350,361,350,348,334,341,317,336,285,332,254,325,239,313,223,299,213"/>
+</map>

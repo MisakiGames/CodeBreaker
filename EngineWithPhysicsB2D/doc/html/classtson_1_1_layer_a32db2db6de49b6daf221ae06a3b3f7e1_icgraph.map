@@ -1,0 +1,12 @@
+<map id="tson::Layer::getName" name="tson::Layer::getName">
+<area shape="rect" id="Node000001" title=" " alt="" coords="629,47,777,73"/>
+<area shape="rect" id="Node000002" href="$classmmt__gd_1_1_tile_map_loader.html#a8a9eb41cd783e29f86c2dfce50a8e74c" title=" " alt="" coords="214,5,375,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="611,54,376,36,376,31,617,52"/>
+<area shape="rect" id="Node000004" href="$classmmt__gd_1_1_object_factory.html#a3f19e553e3fd7c47bc240703343ee446" title=" " alt="" coords="423,68,581,111"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="617,73,582,80,582,75,611,73"/>
+<area shape="rect" id="Node000003" href="$classmmt__gd_1_1_main_state.html#a52a5850c34f4985211a79839c8d2e587" title=" " alt="" coords="5,47,166,73"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="196,43,167,50,166,45,201,41"/>
+<area shape="rect" id="Node000005" href="$classmmt__gd_1_1_tile_map_loader.html#a6d1bbd6dce31c5b3160ed82926d9427f" title=" " alt="" coords="214,72,375,115"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="405,91,376,94,376,89,410,91"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="196,78,166,76,166,70,201,78"/>
+</map>

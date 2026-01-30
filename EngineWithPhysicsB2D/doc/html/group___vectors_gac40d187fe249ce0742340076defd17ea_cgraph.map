@@ -1,0 +1,7 @@
+<map id="MathUtil::length" name="MathUtil::length">
+<area shape="rect" id="Node000001" title="Returns the length of the 3D vector." alt="" coords="5,5,119,32"/>
+<area shape="rect" id="Node000002" href="$group___vectors.html#ga4684eab3debf72da3f8a4936b21f71f6" title="Returns the square of vector&#39;s length." alt="" coords="167,5,330,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,16,154,18,148,19,119,21"/>
+<area shape="rect" id="Node000003" href="$group___vectors.html#gaf03beaae17966de61c46d85ba400c60c" title="Computes the dot product of two 2D vectors." alt="" coords="378,5,519,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="331,16,365,19,360,19,331,21"/>
+</map>

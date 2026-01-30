@@ -1,0 +1,9 @@
+<map id="mmt_gd::RigidBodyComponent::getB2Body" name="mmt_gd::RigidBodyComponent::getB2Body">
+<area shape="rect" id="Node000001" title=" " alt="" coords="530,39,733,81"/>
+<area shape="rect" id="Node000002" href="$classmmt__gd_1_1_rigid_body_component.html#afc851c78d645f65ea6d13a7ecfbf4ff6" title=" " alt="" coords="273,5,476,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="512,45,477,43,477,37,517,45"/>
+<area shape="rect" id="Node000003" href="$classmmt__gd_1_1_player_shoot_component.html#acf3b1af4cde1ac8f21fe7ef7d6f723bb" title=" " alt="" coords="268,72,482,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="517,75,483,82,482,77,512,75"/>
+<area shape="rect" id="Node000004" href="$classmmt__gd_1_1_player_shoot_component.html#a628995a1872f28c33ab7570711f89e86" title=" " alt="" coords="5,72,220,115"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="249,93,220,96,220,91,255,93"/>
+</map>

@@ -1,0 +1,32 @@
+<map id="tson::Object::Object" name="tson::Object::Object">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,183,144,209"/>
+<area shape="rect" id="Node000002" href="$classtson_1_1_object.html#a8d1afaeb2878eb4dcd5c519a4b6d9db3" title=" " alt="" coords="192,183,324,209"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="143,194,178,195,173,197,145,198"/>
+<area shape="rect" id="Node000003" href="$classtson_1_1_i_json.html#ae972ee03fb75c020586ae4c27cd33115" title=" " alt="" coords="378,57,501,84"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="270,180,312,139,371,94,384,89,379,92,373,98,315,143,273,184"/>
+<area shape="rect" id="Node000004" href="$classtson_1_1_i_json.html#ad742cdf1ffd8577e147c42836a1bb9bb" title=" " alt="" coords="376,108,503,135"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="288,180,371,144,389,139,385,142,373,149,291,185"/>
+<area shape="rect" id="Node000005" href="$classtson_1_1_i_json.html#a33e0e84aa8ce0636b2045a8c0e8ece66" title=" " alt="" coords="384,183,496,209"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="324,193,370,195,365,197,325,199"/>
+<area shape="rect" id="Node000014" href="$classtson_1_1_object.html#a24082e07c3b08bed0ca4c23321a895f1" title=" " alt="" coords="380,233,499,260"/>
+<area shape="poly" id="edge14_Node000002_Node000014" title=" " alt="" coords="309,207,377,228,372,229,309,213"/>
+<area shape="rect" id="Node000015" href="$classtson_1_1_i_json.html#a50556d6382b1ee0115bcbf809ab8b24b" title=" " alt="" coords="372,284,507,311"/>
+<area shape="poly" id="edge15_Node000002_Node000015" title=" " alt="" coords="278,207,321,238,373,270,386,278,381,277,371,274,318,242,277,213"/>
+<area shape="poly" id="edge5_Node000005_Node000005" title=" " alt="" coords="408,182,403,174,407,164,419,158,440,156,461,159,474,167,469,167,460,164,440,161,421,163,411,168,408,173,413,183"/>
+<area shape="rect" id="Node000006" href="$classtson_1_1_i_json.html#a1f36d17f8ec86be7b119aee0f6269a1b" title=" " alt="" coords="563,5,701,32"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="464,180,485,164,505,145,521,118,527,93,534,67,553,42,558,42,562,39,557,46,539,70,532,94,525,120,509,148,489,168,467,184"/>
+<area shape="rect" id="Node000007" href="$classtson_1_1_i_json.html#a7e46b7f349591ebe81509b5e6fa93ff8" title=" " alt="" coords="555,56,709,83"/>
+<area shape="poly" id="edge7_Node000005_Node000007" title=" " alt="" coords="460,180,505,145,528,118,538,105,554,92,562,91,567,88,557,97,542,109,532,121,509,149,463,185"/>
+<area shape="rect" id="Node000008" href="$classtson_1_1_i_json.html#a16da5e6fe1497776edb634992ddb4bdb" title=" " alt="" coords="561,107,703,133"/>
+<area shape="poly" id="edge8_Node000005_Node000008" title=" " alt="" coords="469,180,554,143,575,138,570,140,556,148,471,185"/>
+<area shape="rect" id="Node000009" href="$classtson_1_1_i_json.html#af6a4d5ea0dfe4aff998747f9ca5e3a0d" title=" " alt="" coords="561,157,703,184"/>
+<area shape="poly" id="edge9_Node000005_Node000009" title=" " alt="" coords="496,186,548,181,543,183,497,191"/>
+<area shape="rect" id="Node000010" href="$classtson_1_1_i_json.html#a7bf701e587bbe631bf0d17216c597f5c" title=" " alt="" coords="561,208,703,235"/>
+<area shape="poly" id="edge10_Node000005_Node000010" title=" " alt="" coords="496,201,548,210,543,210,497,206"/>
+<area shape="rect" id="Node000011" href="$classtson_1_1_i_json.html#a0c311d1dadeaf1c86f7623aa90fa685e" title=" " alt="" coords="559,259,705,285"/>
+<area shape="poly" id="edge11_Node000005_Node000011" title=" " alt="" coords="480,207,508,219,556,244,574,253,568,253,554,249,506,224,480,213"/>
+<area shape="rect" id="Node000012" href="$classtson_1_1_i_json.html#a7ff10b8b57cc0edaef60050377406aa4" title=" " alt="" coords="556,309,708,336"/>
+<area shape="poly" id="edge12_Node000005_Node000012" title=" " alt="" coords="489,207,509,219,526,239,534,259,541,277,557,295,564,302,559,301,554,299,537,280,529,261,521,242,506,223,488,213"/>
+<area shape="rect" id="Node000013" href="$classtson_1_1_i_json.html#aad6fb42a91817e75effa3b94f9217dea" title=" " alt="" coords="556,360,708,387"/>
+<area shape="poly" id="edge13_Node000005_Node000013" title=" " alt="" coords="492,207,509,219,522,236,529,253,534,285,538,316,545,331,557,346,562,352,557,350,553,350,540,334,533,317,528,285,524,254,518,239,505,223,491,213"/>
+</map>
