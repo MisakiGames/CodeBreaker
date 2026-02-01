@@ -66,8 +66,6 @@ private:
 
     std::vector<RigidBodyComponent*> m_rbodies;
     
-    float accumulator = 0;
-    const float step        = 0.02;
 
 
 };

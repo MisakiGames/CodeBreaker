@@ -1,12 +1,14 @@
 #include "stdafx.h"
+
+#include "PhysicsManager.hpp"
+
 #include "ColliderComponent.hpp"
 #include "GameObjectManager.hpp"
 #include "PhysicsComponentEvents.hpp"
 #include "RigidBodyComponent.hpp"
 #include "SpriteRenderComponent.hpp"
-#include <Box2D/box2d.h>
 
-#include "PhysicsManager.hpp"
+#include <Box2D/box2d.h>
 
 namespace mmt_gd
 {
@@ -75,7 +77,6 @@ void PhysicsManager::init()
                                          });
         m_listeners.push_back(id);
     }
-    m_world->SetAutoClearForces(false);
 }
 
 void PhysicsManager::shutdown()
@@ -91,24 +92,17 @@ void PhysicsManager::shutdown()
 
 void PhysicsManager::update(const float deltaTime)
 {
-    accumulator += deltaTime;
-    while (accumulator >= step)
+    m_world->Step(deltaTime, 8, 3);
+
+    for (auto i = 0; i < m_rbodies.size(); ++i)
     {
-
-        m_world->Step(step, 8, 3);
-
-        for (auto i = 0; i < m_rbodies.size(); ++i)
+        if (m_rbodies.at(i)->getB2Body() == nullptr)
         {
-            if (m_rbodies.at(i)->getB2Body() == nullptr)
-            {
-                m_rbodies.erase(m_rbodies.begin() + i--);
-                continue;
-            }
-            m_rbodies.at(i)->physicsUpdate(step);
+            m_rbodies.erase(m_rbodies.begin() + i--);
+            continue;
         }
-        accumulator -= step;
+        m_rbodies.at(i)->physicsUpdate(deltaTime);
     }
-    m_world->ClearForces();
 }
 
 std::shared_ptr<b2World> PhysicsManager::get_b2_world()
