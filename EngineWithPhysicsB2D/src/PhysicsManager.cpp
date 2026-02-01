@@ -75,6 +75,7 @@ void PhysicsManager::init()
                                          });
         m_listeners.push_back(id);
     }
+    m_world->SetAutoClearForces(false);
 }
 
 void PhysicsManager::shutdown()
@@ -90,17 +91,24 @@ void PhysicsManager::shutdown()
 
 void PhysicsManager::update(const float deltaTime)
 {
-    m_world->Step(deltaTime, 8, 3);
-
-    for (auto i = 0; i < m_rbodies.size(); ++i)
+    accumulator += deltaTime;
+    while (accumulator >= step)
     {
-        if (m_rbodies.at(i)->getB2Body() == nullptr)
+
+        m_world->Step(step, 8, 3);
+
+        for (auto i = 0; i < m_rbodies.size(); ++i)
         {
-            m_rbodies.erase(m_rbodies.begin() + i--);
-            continue;
+            if (m_rbodies.at(i)->getB2Body() == nullptr)
+            {
+                m_rbodies.erase(m_rbodies.begin() + i--);
+                continue;
+            }
+            m_rbodies.at(i)->physicsUpdate(step);
         }
-        m_rbodies.at(i)->physicsUpdate(deltaTime);
+        accumulator -= step;
     }
+    m_world->ClearForces();
 }
 
 std::shared_ptr<b2World> PhysicsManager::get_b2_world()

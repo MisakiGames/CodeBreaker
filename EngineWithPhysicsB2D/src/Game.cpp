@@ -82,7 +82,7 @@ bool Game::init()
     initInputManager();
 
     m_debugDraw = &DebugDraw::getInstance();
-
+    m_window.setFramerateLimit(120);
     //
     m_gameStateManager.registerState("MenuState", make_shared<MenuState>(&m_gameStateManager, this));
     m_gameStateManager.registerState("MainState", make_shared<MainState>(&m_gameStateManager, this));

@@ -65,5 +65,10 @@ private:
     static std::shared_ptr<b2World> m_world;
 
     std::vector<RigidBodyComponent*> m_rbodies;
+    
+    float accumulator = 0;
+    const float step        = 0.02;
+
+
 };
 } // namespace mmt_gd
