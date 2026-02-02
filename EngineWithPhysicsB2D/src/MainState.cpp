@@ -76,24 +76,28 @@ void MainState::init()
     InputManager::getInstance().bind("down", sf::Keyboard::S, 0);
     InputManager::getInstance().bind("right", sf::Keyboard::D, 0);
     InputManager::getInstance().bind("fire", sf::Keyboard::Space, 0);
+    InputManager::getInstance().bind("dash", sf::Keyboard::Enter, 0);
 
     InputManager::getInstance().bind("up", sf::Keyboard::W, 1);
     InputManager::getInstance().bind("left", sf::Keyboard::A, 1);
     InputManager::getInstance().bind("down", sf::Keyboard::S, 1);
     InputManager::getInstance().bind("right", sf::Keyboard::D, 1);
     InputManager::getInstance().bind("fire", sf::Keyboard::Space, 1);
+    InputManager::getInstance().bind("dash", sf::Keyboard::Enter, 1);
 
     InputManager::getInstance().bind("up", sf::Keyboard::W, 2);
     InputManager::getInstance().bind("left", sf::Keyboard::A, 2);
     InputManager::getInstance().bind("down", sf::Keyboard::S, 2);
     InputManager::getInstance().bind("right", sf::Keyboard::D, 2);
     InputManager::getInstance().bind("fire", sf::Keyboard::Space, 2);
+    InputManager::getInstance().bind("dash", sf::Keyboard::Enter, 2);
 
     InputManager::getInstance().bind("up", sf::Keyboard::W, 3);
     InputManager::getInstance().bind("left", sf::Keyboard::A, 3);
     InputManager::getInstance().bind("down", sf::Keyboard::S, 3);
     InputManager::getInstance().bind("right", sf::Keyboard::D, 3);
     InputManager::getInstance().bind("fire", sf::Keyboard::Space, 3);
+    InputManager::getInstance().bind("dash", sf::Keyboard::Enter, 3);
     m_spriteManager.setLayerOrder({"Ground", "GameObjects"});
 }
 
