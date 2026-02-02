@@ -16,6 +16,8 @@ public:
 
     void addVelocity(const sf::Vector2f& velocity) const;
 
+    void setVelocity(const sf::Vector2f& velocity) const;
+
     bool init() override
     {
         return true;

@@ -44,6 +44,8 @@ void MenuState::init()
     {
         btn->onClick([&manager = m_gameStateManager] { manager->setState("MainState"); });
     }
+
+    InputManager::getInstance().bind("Select", sf::Keyboard::Space);
 }
 
 void MenuState::update(float delta)
