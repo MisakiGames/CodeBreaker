@@ -38,6 +38,8 @@ void PlayerMoveComponent::update(const float deltaTime)
         m_rigidBody.setVelocity(m_lastMoveDirection * dashSpeedFactor);
         m_isDashing = true;
         m_dashDuration += deltaTime;
+        for (auto sub : m_onDash)
+            sub();
         return;
     }
 
@@ -87,5 +89,10 @@ void PlayerMoveComponent::update(const float deltaTime)
         m_rigidBody.setVelocity(sf::Vector2f(0.f, 0.f));
         m_lastMoveDirection = sf::Vector2f(0.f, 0.f);
     }
+}
+void PlayerMoveComponent::OnCollision()
+{
+    if (m_isDashing)
+        m_canDash = false;
 }
 } // namespace mmt_gd

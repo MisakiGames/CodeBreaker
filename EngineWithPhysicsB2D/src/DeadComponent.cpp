@@ -24,9 +24,11 @@ bool DeadComponent::init()
 }
 void DeadComponent::update(float deltaTime)
 {
-    if (m_healthComponent.isAlive() && !m_dead)
+    if (m_healthComponent.isAlive() && !m_dead && !InputManager::getInstance().isKeyDown("right", 0))
         return;
     m_dead = true;
+    for (auto sub : m_onDeath)
+        sub();
     m_time += deltaTime;
     if (m_time >= m_maxTime)
     {

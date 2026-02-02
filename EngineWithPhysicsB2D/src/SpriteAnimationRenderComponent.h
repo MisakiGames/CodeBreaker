@@ -2,10 +2,9 @@
 
 #include "IRenderComponent.hpp"
 
-
 #include <SFML/Graphics.hpp>
-#include <string>
 #include <map>
+#include <string>
 namespace mmt_gd
 {
 enum class AnimationState
@@ -33,20 +32,20 @@ public:
 
     void update(float deltaTime) override;
 
-    bool loadAndMapTexture(std::string texturePath, enum AnimationState state);
+    bool loadAndMapTexture(std::string texturePath, enum AnimationState state, bool loop = true);
 
     void setState(enum AnimationState state)
     {
-        setStateSecret(state);
+        if (m_state != state)
+            m_time = 0;
+        m_state             = state;
         m_stateSetThisFrame = true;
-        m_gameTime          = 0;
     }
-
 
 
     void draw() override;
 
-        sf::Sprite& getSprite()
+    sf::Sprite& getSprite()
     {
         return m_sprite;
     }
@@ -72,19 +71,19 @@ private:
     };
 
 private:
-    std::string        m_textureFile;
-    std::unordered_map<AnimationState,sf::Texture>       m_textures;
-    sf::Sprite         m_sprite;
-    std::string        m_layerName;
-    sf::IntRect        m_textureRect;
-    bool               m_hasTextureRect = false;
-    float              m_gameTime = 0;
-    sf::Vector2f       m_frameCount{}, m_lastFramePos;
-    AnimationDirection m_direction;
-    AnimationState m_state = AnimationState::Idle;
-    bool                                                 m_stateSetThisFrame = false;
+    std::string                                     m_textureFile;
+    std::unordered_map<AnimationState, sf::Texture> m_textures;
+    std::unordered_map<AnimationState, bool> m_texturesLoops;
+    sf::Sprite                                      m_sprite;
+    std::string                                     m_layerName;
+    sf::IntRect                                     m_textureRect;
+    bool                                            m_hasTextureRect = false;
+    float                                           m_time       = 0;
+    sf::Vector2f                                    m_frameCount{}, m_lastFramePos;
+    AnimationDirection                              m_direction;
+    AnimationState                                  m_state             = AnimationState::Idle;
+    bool                                            m_stateSetThisFrame = false;
 };
 
 
 } // namespace mmt_gd
-

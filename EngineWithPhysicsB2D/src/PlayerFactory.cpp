@@ -52,20 +52,21 @@ GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow&  window,
     auto player     = GameObject::create("Player");
     player->setPosition(spawnPoint);
 
-    auto spriteComp = player->addComponent<SpriteAnimationRenderComponent>(*player,
-                                                                           window,
-                                                                           "GameObjects",
-                                                                           sf::IntRect(18, 20, 12, 24),
-                                                                           sf::Vector2f(8, 6));
+    auto spriteComp = player->addComponent<
+        SpriteAnimationRenderComponent>(*player, window, "GameObjects", sf::IntRect(18, 20, 12, 24), sf::Vector2f(8, 6));
 
     spriteComp->loadAndMapTexture("../assets/Character/Red/Walk.png", AnimationState::Walk);
     spriteComp->loadAndMapTexture("../assets/Character/Red/Idle.png", AnimationState::Idle);
+    spriteComp->loadAndMapTexture("../assets/Character/Red/Dash.png", AnimationState::Dash, false);
+    spriteComp->loadAndMapTexture("../assets/Character/Red/Death.png", AnimationState::Dead, false);
     auto health     = player->addComponent<HealthComponent>(*player, 100, true);
     auto rigidBody  = player->addComponent<RigidBodyComponent>(*player, b2_dynamicBody);
     auto damageComp = player->addComponent<DamageComponent>(*player, 10, player->getId());
     damageComp->setActive(false);
     auto respawn  = player->addComponent<RespawnComponent>(*player);
     auto deadComp = player->addComponent<DeadComponent>(*player, *health, *respawn, 2);
+    deadComp->subscribeToDeath([spriteComp = spriteComp]() { spriteComp->setState(AnimationState::Dead); });
+
 
     rigidBody->getB2Body()->SetFixedRotation(true);
 
@@ -76,7 +77,10 @@ GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow&  window,
     b2FixtureDef fixtureDef;
     fixtureDef.shape   = &shape;
     fixtureDef.density = 1.0f;
-    player->addComponent<PlayerMoveComponent>(*player, *rigidBody, *deadComp, plrIndex);
+    auto move          = player->addComponent<PlayerMoveComponent>(*player, *rigidBody, *deadComp, plrIndex);
+    move->subscribeToOnDash([spriteComp = spriteComp]() { spriteComp->setState(AnimationState::Dash); });
+
+
     auto collider = player->addComponent<ColliderComponent>(*player, *rigidBody, fixtureDef);
     collider->registerOnCollisionFunction(
         [](ColliderComponent& self, ColliderComponent& other)
@@ -91,6 +95,16 @@ GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow&  window,
                     healthComp->takeDamage(damageComp->getDamage());
                     healthComp->setInvincible(true);
                 }
+            }
+        });
+    collider->registerOnCollisionFunction(
+        [](ColliderComponent& self, ColliderComponent& other)
+        {
+            auto moveComp = self.getGameObject().getComponent<PlayerMoveComponent>();
+
+            if (moveComp)
+            {
+                moveComp->OnCollision();
             }
         });
 

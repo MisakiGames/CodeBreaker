@@ -3,6 +3,11 @@
 #include "DeadComponent.h"
 #include "IComponent.hpp"
 #include "RigidBodyComponent.hpp"
+#include "ColliderComponent.hpp"
+
+
+#include <vector>
+#include <functional>
 
 namespace mmt_gd
 {
@@ -21,6 +26,12 @@ public:
     bool init() override;
     void update(float deltaTime) override;
 
+    void OnCollision();
+    void subscribeToOnDash(std::function<void()> subscriber)
+    {
+        m_onDash.push_back(subscriber);
+    }
+
 private:
     int                 m_playerIndex;
     DeadComponent&      m_deadComponent;
@@ -30,5 +41,6 @@ private:
     bool                m_canDash      = true;
     float               m_dashCooldown = 0.f;
     float               m_dashDuration = 0.f;
+    std::vector<std::function<void()>> m_onDash;
 };
 } // namespace mmt_gd
