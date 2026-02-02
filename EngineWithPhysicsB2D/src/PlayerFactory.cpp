@@ -53,8 +53,8 @@ GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow& window, enum Playe
                                                                            "GameObjects",
                                                                            sf::IntRect(18, 20, 12, 24),
                                                                            sf::Vector2f(8, 6));
-
-    auto rigidBody = player->addComponent<RigidBodyComponent>(*player, b2_dynamicBody);
+    auto healthComp = player->addComponent<HealthComponent>(*player, 3, false);
+    auto rigidBody  = player->addComponent<RigidBodyComponent>(*player, b2_dynamicBody);
     rigidBody->getB2Body()->SetFixedRotation(true);
 
     b2PolygonShape shape;
