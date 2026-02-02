@@ -145,6 +145,7 @@
     <ClInclude Include="..\src\GameState.hpp" />
     <ClInclude Include="..\src\HealthComponent.hpp" />
     <ClInclude Include="..\src\ObservableProperty.hpp" />
+    <ClInclude Include="..\src\PlayerFactory.h" />
     <ClInclude Include="..\src\ShipFactory.hpp" />
     <ClInclude Include="..\src\ITransformAnimation.hpp" />
     <ClInclude Include="..\src\MainState.hpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="..\src\PlayerShootComponent.hpp" />
     <ClInclude Include="..\src\RenderComponentEvents.hpp" />
     <ClInclude Include="..\src\RigidBodyComponent.hpp" />
+    <ClInclude Include="..\src\SpriteAnimationRenderComponent.h" />
     <ClInclude Include="..\src\TransformAnimationSmoothFollow.hpp" />
     <ClInclude Include="..\src\SpriteManager.hpp" />
     <ClInclude Include="..\src\TileMapLoader.hpp" />
@@ -199,6 +201,7 @@
     <ClCompile Include="..\src\DestructionComponent.cpp" />
     <ClCompile Include="..\src\EnemyAIComponent.cpp" />
     <ClCompile Include="..\src\HealthComponent.cpp" />
+    <ClCompile Include="..\src\PlayerFactory.cpp" />
     <ClCompile Include="..\src\ShipFactory.cpp" />
     <ClCompile Include="..\src\EventBus.cpp" />
     <ClCompile Include="..\src\GameObjectEvents.cpp" />
@@ -211,6 +214,7 @@
     <ClCompile Include="..\src\PlayerShootComponent.cpp" />
     <ClCompile Include="..\src\RenderComponentEvents.cpp" />
     <ClCompile Include="..\src\RigidBodyComponent.cpp" />
+    <ClCompile Include="..\src\SpriteAnimationRenderComponent.cpp" />
     <ClCompile Include="..\src\TransformAnimationSmoothFollow.cpp" />
     <ClCompile Include="..\src\SpriteManager.cpp" />
     <ClCompile Include="..\src\SpriteRenderComponent.cpp" />

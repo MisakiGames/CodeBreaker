@@ -1,4 +1,7 @@
 #include "stdafx.h"
+
+#include "ObjectFactory.hpp"
+
 #include "ColliderComponent.hpp"
 #include "GameObjectEvents.hpp"
 #include "PhysicsManager.hpp"
@@ -6,10 +9,8 @@
 #include "PlayerShootComponent.hpp"
 #include "SpriteRenderComponent.hpp"
 #include "Tileson.hpp"
+
 #include <iostream>
-
-#include "ObjectFactory.hpp"
-
 
 namespace mmt_gd
 {
@@ -92,9 +93,7 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
     fixtureDef.shape   = &polygonShape;
     fixtureDef.density = 1; //TOdo load from tiled
 
-
     gameObject->addComponent<ColliderComponent>(*gameObject, *rigidComp, fixtureDef);
-
 
     if (input)
     {
@@ -148,18 +147,34 @@ static GameObject::Ptr loadTrigger(const tson::Object& object, const std::string
     const auto     size = PhysicsManager::t2b(object.getSize());
     polygonShape.SetAsBox(size.x / 2, size.y / 2, b2Vec2{size.x / 2, size.y / 2}, 0);
 
-
     b2FixtureDef fixtureDef{};
     fixtureDef.shape    = &polygonShape;
     fixtureDef.isSensor = true;
 
     auto collider = gameObject->addComponent<ColliderComponent>(*gameObject, *rb, fixtureDef);
-    
+
     // Add callback to output when something enters the trigger
-    collider->registerOnCollisionFunction([](ColliderComponent& self, ColliderComponent& other) {
-        std::cout << "Entered trigger zone: " << self.getGameObject().getId() 
-                  << " (collided with " << other.getGameObject().getId() << ")\n";
-    });
+    collider->registerOnCollisionFunction(
+        [](ColliderComponent& self, ColliderComponent& other)
+        {
+            std::cout << "Entered trigger zone: " << self.getGameObject().getId() << " (collided with "
+                      << other.getGameObject().getId() << ")\n";
+        });
+
+    if (!gameObject->init())
+    {
+        sf::err() << "Could not initialize go " << gameObject->getId() << " in TileMap\n";
+    }
+
+    EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(gameObject));
+
+    return gameObject;
+}
+
+static GameObject::Ptr loadSpawn(const tson::Object& object, const std::string& layer)
+{
+    auto gameObject = GameObject::create(object.getName());
+    gameObject->setPosition(static_cast<float>(object.getPosition().x), static_cast<float>(object.getPosition().y));
 
     if (!gameObject->init())
     {
@@ -188,6 +203,10 @@ GameObject::Ptr ObjectFactory::processTsonObject(tson::Object&        object,
     if (object.getType() == "Trigger")
     {
         auto trigger = loadTrigger(object, layer.getName());
+    }
+    if (object.getType() == "Spawn")
+    {
+        auto spawn = loadSpawn(object, layer.getName());
     }
 
     return {};

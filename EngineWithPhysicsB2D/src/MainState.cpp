@@ -6,6 +6,7 @@
 #include "ColliderComponent.hpp"
 #include "Game.hpp"
 #include "InputManager.hpp"
+#include "PlayerFactory.h"
 #include "ShipFactory.hpp"
 #include "TileMapLoader.hpp"
 #include "Tileson.hpp"
@@ -45,7 +46,7 @@ void MainState::init()
     }
 
     // Create player ship (added to GameObjectManager via GameObjectCreateEvent)
-    auto player = ShipFactory::createPlayerShip(m_game->getWindow());
+    auto player = PlayerFactory::createPlayer(m_game->getWindow(), PlayerSpawn::TopLeft, m_gameObjectManager);
 
     // Create enemy ship (added to GameObjectManager via GameObjectCreateEvent)
     auto enemy = ShipFactory::createEnemyShip(m_game->getWindow(), player.get());

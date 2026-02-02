@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="left-up" width="60" height="34" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="7">
- <tileset firstgid="1" source="CreedyCrownTileset.tsx"/>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="left-up" width="60" height="34" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="13">
+ <editorsettings>
+  <export target="../EngineWithPhysicsB2D/assets/MainGame.tmj" format="json"/>
+ </editorsettings>
+ <tileset firstgid="1" name="CreedyCrownTileset" tilewidth="16" tileheight="16" tilecount="3312" columns="24">
+  <image source="Map/All_Spritesheet.png" width="384" height="2208"/>
+ </tileset>
  <layer id="1" name="Ground" width="60" height="34">
   <data encoding="csv">
 1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,
@@ -39,23 +44,14 @@
 49,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,51
 </data>
  </layer>
- <objectgroup id="4" name="Object">
-  <object id="2" x="0" y="0" width="960" height="8"/>
-  <object id="5" x="0" y="536" width="960" height="8"/>
-  <object id="3" x="953" y="0" width="7" height="544"/>
-  <object id="4" x="0" y="0" width="7" height="544"/>
-  <object id="6" name="Player0" type="Sprite" x="52.5" y="64" width="23" height="23">
-   <properties>
-    <property name="Border" type="bool" value="true"/>
-    <property name="BorderSize" type="int" value="20"/>
-    <property name="BulletTexture" value="ShipGun2.bmp"/>
-    <property name="Input" type="bool" value="true"/>
-    <property name="InputPlayerIdx" type="int" value="0"/>
-    <property name="Mass" type="float" value="0.1"/>
-    <property name="Texture" value="Hunter1.bmp"/>
-    <property name="TextureRectLeft" type="int" value="49"/>
-    <property name="TextureRectTop" type="int" value="25"/>
-   </properties>
-  </object>
+ <objectgroup id="4" name="GameObjects">
+  <object id="2" name="TopWallCollider" type="Collider" x="0" y="0" width="960" height="8"/>
+  <object id="5" name="BottomWallCollider" type="Collider" x="0" y="536" width="960" height="8"/>
+  <object id="3" name="RightWallCollider" type="Collider" x="953" y="0" width="7" height="544"/>
+  <object id="4" name="LeftWallCollider" type="Collider" x="0" y="0" width="7" height="544"/>
+  <object id="6" name="TopLeftSpawn" type="Spawn" x="52.5" y="64" width="23" height="23"/>
+  <object id="10" name="BottomLeftSpawn" type="Spawn" x="59.5" y="458" width="23" height="23"/>
+  <object id="11" name="BottomRightSpawn" type="Spawn" x="860.5" y="466" width="23" height="23"/>
+  <object id="12" name="TopRightSpawn" type="Spawn" x="867.5" y="67" width="23" height="23"/>
  </objectgroup>
 </map>
