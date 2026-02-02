@@ -58,14 +58,6 @@ void Game::initInputManager()
     m_inputManager = &InputManager::getInstance();
 
     m_inputManager->bind("Exit", sf::Keyboard::Escape);
-    m_inputManager->bind("Select", sf::Keyboard::Space);
-
-    // May move to view later on
-    m_inputManager->bind("up", sf::Keyboard::W, 0);
-    m_inputManager->bind("left", sf::Keyboard::A, 0);
-    m_inputManager->bind("down", sf::Keyboard::S, 0);
-    m_inputManager->bind("right", sf::Keyboard::D, 0);
-    m_inputManager->bind("fire", sf::Keyboard::Space, 0);
 
     //m_inputManager->bind("up", sf::Keyboard::Up, 0);
     //m_inputManager->bind("left", sf::Keyboard::Left, 0);

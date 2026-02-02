@@ -15,34 +15,36 @@ m_rigidBody(rigidBody)
 
 bool PlayerMoveComponent::init()
 {
+    m_rigidBody.getB2Body()->SetLinearDamping(2.F);
+
     return true;
 }
 
 void PlayerMoveComponent::update(const float deltaTime)
 {
-    const auto   speed = 1'000.0F; // pixels/second
-    sf::Vector2f translation{};
     if (InputManager::getInstance().isKeyDown("right", m_playerIndex))
     {
-        translation.x += speed * deltaTime;
+        //translation.x = speed * deltaTime;
+        m_rigidBody.setVelocity(sf::Vector2f(300.f, 0.f));
     }
-    if (InputManager::getInstance().isKeyDown("left", m_playerIndex))
+    else if (InputManager::getInstance().isKeyDown("left", m_playerIndex))
     {
-        translation.x -= speed * deltaTime;
+        //translation.x = -speed * deltaTime;
+        m_rigidBody.setVelocity(sf::Vector2f(-300.f, 0.f));
     }
-    if (InputManager::getInstance().isKeyDown("up", m_playerIndex))
+    else if (InputManager::getInstance().isKeyDown("up", m_playerIndex))
     {
-        translation.y -= speed * deltaTime;
+        //translation.y = -speed * deltaTime;
+        m_rigidBody.setVelocity(sf::Vector2f(0.f, -300.f));
     }
-    if (InputManager::getInstance().isKeyDown("down", m_playerIndex))
+    else if (InputManager::getInstance().isKeyDown("down", m_playerIndex))
     {
-        translation.y += speed * deltaTime;
+        //translation.y = speed * deltaTime;
+        m_rigidBody.setVelocity(sf::Vector2f(0.f, 300.f));
     }
-
-#if 1 // physics movement
-    m_rigidBody.addVelocity(translation);
-#else // no physics movement
-    m_gameObject.GetTransform().translate(translation);
-#endif
+    else
+    {
+        m_rigidBody.setVelocity(sf::Vector2f(0.f, 0.f));
+    }
 }
 } // namespace mmt_gd
