@@ -54,10 +54,12 @@ GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow&  window,
 
     auto spriteComp = player->addComponent<SpriteAnimationRenderComponent>(*player,
                                                                            window,
-                                                                           "../assets/Character/Red/Walk.png",
                                                                            "GameObjects",
                                                                            sf::IntRect(18, 20, 12, 24),
                                                                            sf::Vector2f(8, 6));
+
+    spriteComp->loadAndMapTexture("../assets/Character/Red/Walk.png", AnimationState::Walk);
+    spriteComp->loadAndMapTexture("../assets/Character/Red/Idle.png", AnimationState::Idle);
     auto health     = player->addComponent<HealthComponent>(*player, 100, true);
     auto rigidBody  = player->addComponent<RigidBodyComponent>(*player, b2_dynamicBody);
     auto damageComp = player->addComponent<DamageComponent>(*player, 10, player->getId());

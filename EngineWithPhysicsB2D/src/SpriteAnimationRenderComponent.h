@@ -8,6 +8,14 @@
 #include <map>
 namespace mmt_gd
 {
+enum class AnimationState
+{
+    Idle,
+    Walk,
+    Dead,
+    Dash
+};
+
 class SpriteAnimationRenderComponent : public IRenderComponent
 {
 public:
@@ -15,7 +23,6 @@ public:
 
     SpriteAnimationRenderComponent(GameObject&       gameObject,
                                    sf::RenderWindow& renderWindow,
-                                   std::string       textureFile,
                                    std::string       layerName,
                                    sf::IntRect       textureRect = sf::IntRect(),
                                    sf::Vector2f      frameCount  = sf::Vector2f(1, 1));
@@ -25,6 +32,17 @@ public:
     bool init() override;
 
     void update(float deltaTime) override;
+
+    bool loadAndMapTexture(std::string texturePath, enum AnimationState state);
+
+    void setState(enum AnimationState state)
+    {
+        setStateSecret(state);
+        m_stateSetThisFrame = true;
+        m_gameTime          = 0;
+    }
+
+
 
     void draw() override;
 
@@ -40,6 +58,11 @@ public:
     }
 
 private:
+    void setStateSecret(enum AnimationState state)
+    {
+        m_state = state;
+    }
+
     enum AnimationDirection
     {
         Down  = 0,
@@ -50,7 +73,7 @@ private:
 
 private:
     std::string        m_textureFile;
-    sf::Texture        m_texture;
+    std::unordered_map<AnimationState,sf::Texture>       m_textures;
     sf::Sprite         m_sprite;
     std::string        m_layerName;
     sf::IntRect        m_textureRect;
@@ -58,13 +81,10 @@ private:
     float              m_gameTime = 0;
     sf::Vector2f       m_frameCount{}, m_lastFramePos;
     AnimationDirection m_direction;
+    AnimationState m_state = AnimationState::Idle;
+    bool                                                 m_stateSetThisFrame = false;
 };
+
+
 } // namespace mmt_gd
 
-enum AnimationState
-{
-    Idle,
-    Walk,
-    Dead,
-    Dash
-};

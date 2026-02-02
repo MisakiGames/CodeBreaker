@@ -11,13 +11,16 @@ namespace mmt_gd
 SpriteAnimationRenderComponent::SpriteAnimationRenderComponent(
     GameObject&       gameObject,
     sf::RenderWindow& renderWindow,
-    std::string       textureFile,
     std::string       layerName,
     sf::IntRect       textureRect,
     sf::Vector2f      frameCount) :
-SpriteRenderComponent(gameObject, renderWindow, textureFile, layerName, textureRect),
-m_frameCount(frameCount)
+IRenderComponent(gameObject, renderWindow),
+m_frameCount(frameCount),
+m_layerName(std::move(layerName)),
+m_textureRect(textureRect),
+m_hasTextureRect(textureRect.width > 0 && textureRect.height > 0)
 {
+    EventBus::getInstance().fireEvent(std::make_shared<RenderableCreateEvent>(m_layerName, *this));
 }
 
 SpriteAnimationRenderComponent::~SpriteAnimationRenderComponent()
@@ -27,15 +30,7 @@ SpriteAnimationRenderComponent::~SpriteAnimationRenderComponent()
 
 bool SpriteAnimationRenderComponent::init()
 {
-    sf::Image image;
-    if (!image.loadFromFile(m_textureFile))
-    {
-        sf::err() << "Could not load texture from " << m_textureFile << '\n';
-        return false;
-    }
-    image.createMaskFromColor(sf::Color::Black);
-    m_texture.loadFromImage(image);
-    m_sprite.setTexture(m_texture);
+    m_sprite.setTexture(m_textures[m_state]);
 
     // Apply texture rect AFTER setTexture (which resets to full texture)
     if (m_hasTextureRect)
@@ -50,38 +45,66 @@ bool SpriteAnimationRenderComponent::init()
 void SpriteAnimationRenderComponent::update(float deltaTime)
 {
     m_gameTime += deltaTime;
+    if (!m_stateSetThisFrame)
+        setStateSecret(AnimationState::Idle);
     if (m_lastFramePos != m_gameObject.getPosition())
     {
         auto dif = m_gameObject.getPosition() - m_lastFramePos;
         if (dif.y > 0.01)
         {
             m_direction = Down;
+            if (!m_stateSetThisFrame)
+                setStateSecret(AnimationState::Walk);
         }
         if (dif.y < -0.01)
         {
             m_direction = Up;
+            if (!m_stateSetThisFrame)
+                setStateSecret(AnimationState::Walk);
         }
         if (dif.x > 0.01)
         {
             m_direction = Right;
+            if (!m_stateSetThisFrame)
+                setStateSecret(AnimationState::Walk);
         }
         if (dif.x < -0.01)
         {
             m_direction = Left;
+            if (!m_stateSetThisFrame)
+                setStateSecret(AnimationState::Walk);
         }
         m_lastFramePos = m_gameObject.getPosition();
     }
-    auto        textureRect    = m_texture.getSize();
+
+    m_sprite.setTexture(m_textures[m_state]);
+    auto        textureRect    = m_textures[m_state].getSize();
     int         animationFrame = static_cast<int>(m_gameTime) % static_cast<int>(m_frameCount.x);
     sf::IntRect newRect((textureRect.x / m_frameCount.x) * animationFrame + m_textureRect.left,
                         (textureRect.y / m_frameCount.y) * static_cast<int>(m_direction) + m_textureRect.top,
                         m_textureRect.width,
                         m_textureRect.height);
     m_sprite.setTextureRect(newRect);
+    m_stateSetThisFrame = false;
+}
+
+bool SpriteAnimationRenderComponent::loadAndMapTexture(std::string texturePath, enum AnimationState state)
+{
+    sf::Image image;
+    if (!image.loadFromFile(texturePath))
+    {
+        sf::err() << "Could not load texture from " << texturePath << '\n';
+        return false;
+    }
+    image.createMaskFromColor(sf::Color::Black);
+    sf::Texture m_texture;
+    m_texture.loadFromImage(image);
+    m_textures[state] = m_texture;
+    return true;
 }
 
 void SpriteAnimationRenderComponent::draw()
 {
-    SpriteRenderComponent::draw();
+    m_renderWindow.draw(m_sprite, m_gameObject.getTransform());
 }
 } // namespace mmt_gd
