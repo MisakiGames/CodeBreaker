@@ -33,7 +33,7 @@ void MainState::init()
 
     // Load tile map
     tson::Tileson tileson;
-    const auto    map = tileson.parse(fs::path("../assets/game.tmj"));
+    const auto    map = tileson.parse(fs::path("../assets/MainGame.tmj"));
     if (map->getStatus() == tson::ParseStatus::OK)
     {
         TileMapLoader::loadTileLayers(map, "../assets", m_spriteManager);
@@ -60,7 +60,6 @@ void MainState::init()
         camera->addComponent<TransformAnimationComponent>(*camera,
                                                           std::make_shared<mmt::TransformAnimationSmoothFollow>(player, 10.F));
 
-
         if (!camera->init())
             FF_ERROR_MSG("Could not initialize camera");
 
@@ -69,7 +68,7 @@ void MainState::init()
     }
 
     // Define layer order manually here. Could come from custom file settings.
-    m_spriteManager.setLayerOrder({"Floor", "Background", "Objects", "GameObjects", "Top"});
+    m_spriteManager.setLayerOrder({"Ground", "GameObjects"});
 }
 
 void MainState::update(const float deltaTime)
