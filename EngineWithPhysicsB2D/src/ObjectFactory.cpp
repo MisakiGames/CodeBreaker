@@ -97,7 +97,7 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
 
     if (input)
     {
-        gameObject->addComponent<PlayerMoveComponent>(*gameObject, *rigidComp, playerIdx);
+        //gameObject->addComponent<PlayerMoveComponent>(*gameObject, *rigidComp, playerIdx);
     }
 
     if (!gameObject->init())

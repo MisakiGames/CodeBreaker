@@ -11,7 +11,7 @@ class PlayerMoveComponent : public IComponent
 public:
     using ptr = std::shared_ptr<PlayerMoveComponent>;
 
-    PlayerMoveComponent(GameObject& gameObject, RigidBodyComponent& rigidBody, DeadComponent& deadComponent, int playerIndex);
+    PlayerMoveComponent(GameObject& gameObject, RigidBodyComponent& rigidBody, DeadComponent& deadComponent, int playerIndex = 0);
 
     float getDashDuration() const
     {

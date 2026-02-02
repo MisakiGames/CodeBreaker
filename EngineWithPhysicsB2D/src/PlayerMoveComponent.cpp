@@ -2,22 +2,16 @@
 
 #include "PlayerMoveComponent.hpp"
 
-#include "DeadComponent.h"
 #include "GameObject.hpp"
-#include "IComponent.hpp"
 #include "InputManager.hpp"
-#include "RigidBodyComponent.hpp"
 
 namespace mmt_gd
 {
-PlayerMoveComponent::PlayerMoveComponent(GameObject&         gameObject,
-                                         RigidBodyComponent& rigidBody,
-                                         DeadComponent&      deadComponent,
-                                         int                 playerIndex) :
+PlayerMoveComponent::PlayerMoveComponent(GameObject& gameObject, RigidBodyComponent& rigidBody, DeadComponent& deadComponent, int playerIndex) :
 IComponent(gameObject),
-m_playerIndex(playerIndex),
 m_rigidBody(rigidBody),
-m_deadComponent(deadComponent)
+m_deadComponent(deadComponent),
+m_playerIndex(playerIndex)
 {
 }
 
