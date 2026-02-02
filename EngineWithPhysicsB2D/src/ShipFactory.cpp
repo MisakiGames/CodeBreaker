@@ -57,7 +57,7 @@ GameObject::Ptr ShipFactory::createPlayerShip(sf::RenderWindow& window)
             }
         });
 
-    player->addComponent<PlayerMoveComponent>(*player, *rigidBody, 0);
+    //player->addComponent<PlayerMoveComponent>(*player, *rigidBody, 0);
 
     player->addComponent<PlayerShootComponent>(*player,
                                                20,

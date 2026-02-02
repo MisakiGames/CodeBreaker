@@ -53,22 +53,23 @@ void SpriteAnimationRenderComponent::update(float deltaTime)
     if (m_lastFramePos != m_gameObject.getPosition())
     {
         auto dif = m_gameObject.getPosition() - m_lastFramePos;
-        if (dif.y > 0)
+        if (dif.y > 0.01)
         {
             m_direction = Down;
         }
-        if (dif.y < 0)
+        if (dif.y < -0.01)
         {
             m_direction = Up;
         }
-        if (dif.x > 0)
+        if (dif.x > 0.01)
         {
             m_direction = Right;
         }
-        if (dif.x < 0)
+        if (dif.x < -0.01)
         {
             m_direction = Left;
         }
+        m_lastFramePos = m_gameObject.getPosition();
     }
     auto        textureRect    = m_texture.getSize();
     int         animationFrame = static_cast<int>(m_gameTime) % static_cast<int>(m_frameCount.x);

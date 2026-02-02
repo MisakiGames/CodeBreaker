@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "DestructionComponent.hpp"
 #include "GameObject.hpp"
+#include "DeadComponent.h"
 
 namespace mmt_gd
 {
@@ -23,6 +24,8 @@ void DestructionComponent::update(float deltaTime)
         triggerDestruction();
     }
 }
+
+
 
 void DestructionComponent::triggerDestruction()
 {

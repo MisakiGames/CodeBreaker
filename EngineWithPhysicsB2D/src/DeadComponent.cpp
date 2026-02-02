@@ -1,0 +1,38 @@
+#include "stdafx.h"
+
+#include "DeadComponent.h"
+
+#include "InputManager.hpp"
+
+namespace mmt_gd
+{
+DeadComponent::DeadComponent(GameObject&       gameObject,
+                             HealthComponent&  healthComponent,
+                             RespawnComponent& respawnComponent,
+                             float             maxTime) :
+IComponent(gameObject),
+m_healthComponent(healthComponent),
+m_respawnComponent(respawnComponent),
+m_maxTime(maxTime),
+m_time(0),
+m_dead(false)
+{
+}
+bool DeadComponent::init()
+{
+    return true;
+}
+void DeadComponent::update(float deltaTime)
+{
+    if (m_healthComponent.isAlive() && !InputManager::getInstance().isKeyDown("left", 0) && !m_dead)
+        return;
+    m_dead = true;
+    m_time += deltaTime;
+    if (m_time >= m_maxTime)
+    {
+        m_respawnComponent.startRespawn();
+        m_dead = false;
+        m_time = 0;
+    }
+}
+} // namespace mmt_gd

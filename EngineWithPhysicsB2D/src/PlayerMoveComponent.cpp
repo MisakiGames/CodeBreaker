@@ -1,15 +1,23 @@
 #include "stdafx.h"
-#include "GameObject.hpp"
-#include "InputManager.hpp"
 
 #include "PlayerMoveComponent.hpp"
 
+#include "DeadComponent.h"
+#include "GameObject.hpp"
+#include "IComponent.hpp"
+#include "InputManager.hpp"
+#include "RigidBodyComponent.hpp"
+
 namespace mmt_gd
 {
-PlayerMoveComponent::PlayerMoveComponent(GameObject& gameObject, RigidBodyComponent& rigidBody, const int playerIndex) :
+PlayerMoveComponent::PlayerMoveComponent(GameObject&         gameObject,
+                                         RigidBodyComponent& rigidBody,
+                                         DeadComponent&      deadComponent,
+                                         int                 playerIndex) :
 IComponent(gameObject),
 m_playerIndex(playerIndex),
-m_rigidBody(rigidBody)
+m_rigidBody(rigidBody),
+m_deadComponent(deadComponent)
 {
 }
 
@@ -22,6 +30,9 @@ bool PlayerMoveComponent::init()
 
 void PlayerMoveComponent::update(const float deltaTime)
 {
+    if (m_deadComponent.isDead())
+        return;
+
     if (InputManager::getInstance().isKeyDown("right", m_playerIndex))
     {
         //translation.x = speed * deltaTime;

@@ -5,6 +5,7 @@
 #include "CameraRenderComponent.hpp"
 #include "ColliderComponent.hpp"
 #include "DamageComponent.hpp"
+#include "DeadComponent.h"
 #include "DestructionComponent.hpp"
 #include "EnemyAIComponent.hpp"
 #include "EventBus.hpp"
@@ -14,6 +15,7 @@
 #include "PhysicsManager.hpp"
 #include "PlayerMoveComponent.hpp"
 #include "PlayerShootComponent.hpp"
+#include "RespawnComponent.h"
 #include "RigidBodyComponent.hpp"
 #include "SpriteAnimationRenderComponent.h"
 #include "SpriteRenderComponent.hpp"
@@ -22,7 +24,10 @@
 
 namespace mmt_gd
 {
-GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow& window, enum PlayerSpawn spawnName, GameObjectManager& goManager)
+GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow&  window,
+                                            enum PlayerSpawn   spawnName,
+                                            GameObjectManager& goManager,
+                                            int                plrIndex)
 {
     std::string spawn = "";
     switch (spawnName)
@@ -53,20 +58,39 @@ GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow& window, enum Playe
                                                                            "GameObjects",
                                                                            sf::IntRect(18, 20, 12, 24),
                                                                            sf::Vector2f(8, 6));
-    auto healthComp = player->addComponent<HealthComponent>(*player, 3, false);
+    auto health     = player->addComponent<HealthComponent>(*player, 100, true);
     auto rigidBody  = player->addComponent<RigidBodyComponent>(*player, b2_dynamicBody);
+    auto damageComp = player->addComponent<DamageComponent>(*player, 10, player->getId());
+    damageComp->setActive(false);
+    auto respawn  = player->addComponent<RespawnComponent>(*player);
+    auto deadComp = player->addComponent<DeadComponent>(*player, *health, *respawn, 2);
+
     rigidBody->getB2Body()->SetFixedRotation(true);
 
     b2PolygonShape shape;
-    const auto     size = PhysicsManager::s2b(sf::Vector2f(32.0f, 32.0f));
+    const auto     size = PhysicsManager::s2b(sf::Vector2f(12.0f, 24.0f));
     shape.SetAsBox(size.x / 2, size.y / 2, b2Vec2{size.x / 2, size.y / 2}, 0);
 
     b2FixtureDef fixtureDef;
     fixtureDef.shape   = &shape;
     fixtureDef.density = 1.0f;
-    player->addComponent<PlayerMoveComponent>(*player, *rigidBody, 0);
+    player->addComponent<PlayerMoveComponent>(*player, *rigidBody, *deadComp, plrIndex);
     auto collider = player->addComponent<ColliderComponent>(*player, *rigidBody, fixtureDef);
-    auto health   = player->addComponent<HealthComponent>(*player, 100, true);
+    collider->registerOnCollisionFunction(
+        [](ColliderComponent& self, ColliderComponent& other)
+        {
+            auto damageComp = other.getGameObject().getComponent<DamageComponent>();
+            auto healthComp = self.getGameObject().getComponent<HealthComponent>();
+
+            if (damageComp && healthComp)
+            {
+                if (damageComp->getOwnerId() != self.getGameObject().getId())
+                {
+                    healthComp->takeDamage(damageComp->getDamage());
+                    healthComp->setInvincible(true);
+                }
+            }
+        });
 
     if (!player->init())
     {
