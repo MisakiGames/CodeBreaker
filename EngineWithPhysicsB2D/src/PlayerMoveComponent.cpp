@@ -22,29 +22,65 @@ bool PlayerMoveComponent::init()
 
 void PlayerMoveComponent::update(const float deltaTime)
 {
+    auto speed = 500.f;
+    auto dashSpeedFactor = 5.f;
+    auto dashCooldownTime = 2.f;
+
+    // Dash logic
+
+    if (InputManager::getInstance().isKeyDown("dash", m_playerIndex) && m_canDash)
+    {
+        m_rigidBody.setVelocity(m_lastMoveDirection * dashSpeedFactor);
+        m_isDashing = true;
+        m_dashDuration += deltaTime;
+        return;
+    }
+
+    if (!m_canDash)
+    {
+        m_dashCooldown += deltaTime;
+        if (m_dashCooldown >= dashCooldownTime)
+        {
+            m_canDash = true;
+            m_dashCooldown = 0.f;
+            std::cout << "Dash Duration: " << m_dashDuration << "\n";
+            m_dashDuration = 0.f;
+        }
+    }
+
+    if (InputManager::getInstance().isKeyReleased("dash", m_playerIndex) && m_isDashing)
+    {
+        m_isDashing = false;
+        m_canDash   = false;
+        return;
+    }
+
+    // Normal movement
+
     if (InputManager::getInstance().isKeyDown("right", m_playerIndex))
     {
-        //translation.x = speed * deltaTime;
-        m_rigidBody.setVelocity(sf::Vector2f(300.f, 0.f));
+        m_lastMoveDirection = sf::Vector2f(speed, 0.f);
+        m_rigidBody.setVelocity(m_lastMoveDirection);
     }
     else if (InputManager::getInstance().isKeyDown("left", m_playerIndex))
     {
-        //translation.x = -speed * deltaTime;
-        m_rigidBody.setVelocity(sf::Vector2f(-300.f, 0.f));
+        m_lastMoveDirection = sf::Vector2f(-speed, 0.f);
+        m_rigidBody.setVelocity(m_lastMoveDirection);
     }
     else if (InputManager::getInstance().isKeyDown("up", m_playerIndex))
     {
-        //translation.y = -speed * deltaTime;
-        m_rigidBody.setVelocity(sf::Vector2f(0.f, -300.f));
+        m_lastMoveDirection = sf::Vector2f(0.f, -speed);
+        m_rigidBody.setVelocity(m_lastMoveDirection);
     }
     else if (InputManager::getInstance().isKeyDown("down", m_playerIndex))
     {
-        //translation.y = speed * deltaTime;
-        m_rigidBody.setVelocity(sf::Vector2f(0.f, 300.f));
+        m_lastMoveDirection = sf::Vector2f(0.f, speed);
+        m_rigidBody.setVelocity(m_lastMoveDirection);
     }
     else
     {
         m_rigidBody.setVelocity(sf::Vector2f(0.f, 0.f));
+        m_lastMoveDirection = sf::Vector2f(0.f, 0.f);
     }
 }
 } // namespace mmt_gd

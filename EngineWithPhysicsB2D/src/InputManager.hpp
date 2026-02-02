@@ -106,6 +106,8 @@ public:
         m_renderWindow = window;
     }
 
+    void shutdown();
+
 private:
     InputManager()  = default;
     ~InputManager() = default;

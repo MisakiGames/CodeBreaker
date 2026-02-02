@@ -79,9 +79,17 @@ bool InputManager::isKeyReleased(const std::string& action, const int playerIdx)
     return isKeyReleased(getKeyForAction(action, playerIdx));
 }
 
+void InputManager::shutdown()
+{
+    for (int i = 0; i < PlayerCount; ++i)
+    {
+        m_actionBinding[i].clear();
+    }
+}
+
 sf::Vector2f InputManager::getMousePosition() const
 {
-    ffAssertMsg(m_renderWindow != nullptr, "RenderWindow not set for getMousePosition.")
+    ffAssertMsg(m_renderWindow != nullptr, "RenderWindow not set for getMousePosition.");
 
         const auto p = sf::Mouse::getPosition(*m_renderWindow);
     return {static_cast<float>(p.x), static_cast<float>(p.y)};
