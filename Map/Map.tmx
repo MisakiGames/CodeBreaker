@@ -86,22 +86,22 @@
 </data>
  </layer>
  <objectgroup id="4" name="GameObjects">
-  <object id="2" name="TopWallCollider" type="Collider" x="0.363636" y="-7.81818" width="960" height="8">
+  <object id="2" name="TopWallCollider" type="Trigger" x="0.363636" y="-7.81818" width="960" height="8">
    <properties>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="5" name="BottomWallCollider" type="Collider" x="2" y="544" width="960" height="8">
+  <object id="5" name="BottomWallCollider" type="Trigger" x="2" y="544" width="960" height="8">
    <properties>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="3" name="RightWallCollider" type="Collider" x="960.091" y="-0.181818" width="7" height="544">
+  <object id="3" name="RightWallCollider" type="Trigger" x="960.091" y="-0.181818" width="7" height="544">
    <properties>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="4" name="LeftWallCollider" type="Collider" x="-7.09091" y="0.181818" width="7" height="544">
+  <object id="4" name="LeftWallCollider" type="Trigger" x="-7.09091" y="0.181818" width="7" height="544">
    <properties>
     <property name="Dead" type="bool" value="true"/>
    </properties>

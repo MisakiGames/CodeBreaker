@@ -146,11 +146,16 @@ static GameObject::Ptr loadCollider(tson::Object& object, const std::string& lay
     return gameObject;
 }
 
-static GameObject::Ptr loadTrigger(const tson::Object& object, const std::string& layer)
+static GameObject::Ptr loadTrigger(tson::Object& object, const std::string& layer)
 {
     auto gameObject = GameObject::create(object.getName());
     gameObject->setPosition(static_cast<float>(object.getPosition().x), static_cast<float>(object.getPosition().y));
-
+    bool damage = false;
+    for (const auto* property : object.getProperties().get())
+    {
+        if (property->getName() == "Dead")
+            damage = true;
+    }
     const auto rb = gameObject->addComponent<RigidBodyComponent>(*gameObject, b2_staticBody);
 
     b2PolygonShape polygonShape{};
@@ -160,6 +165,9 @@ static GameObject::Ptr loadTrigger(const tson::Object& object, const std::string
     b2FixtureDef fixtureDef{};
     fixtureDef.shape    = &polygonShape;
     fixtureDef.isSensor = true;
+
+    if (damage)
+        gameObject->addComponent<DamageComponent>(*gameObject, 9999, gameObject->getId());
 
     auto collider = gameObject->addComponent<ColliderComponent>(*gameObject, *rb, fixtureDef);
 
