@@ -48,6 +48,7 @@ void MainState::init()
 
     // Create player ship (added to GameObjectManager via GameObjectCreateEvent)
     auto player = PlayerFactory::createPlayer(m_game->getWindow(), PlayerSpawn::TopLeft, m_gameObjectManager, 0);
+    auto player2 = PlayerFactory::createPlayer(m_game->getWindow(), PlayerSpawn::BottomLeft, m_gameObjectManager, 1);
     auto crown  = ItemFactory::createItem(m_game->getWindow(), ItemType::Crown, m_gameObjectManager, 1);
     // Create enemy ship (added to GameObjectManager via GameObjectCreateEvent)
     //auto enemy = ShipFactory::createEnemyShip(m_game->getWindow(), player.get());
@@ -79,10 +80,10 @@ void MainState::init()
     InputManager::getInstance().bind("fire", sf::Keyboard::Space, 0);
     InputManager::getInstance().bind("dash", sf::Keyboard::Enter, 0);
 
-    InputManager::getInstance().bind("up", sf::Keyboard::W, 1);
-    InputManager::getInstance().bind("left", sf::Keyboard::A, 1);
-    InputManager::getInstance().bind("down", sf::Keyboard::S, 1);
-    InputManager::getInstance().bind("right", sf::Keyboard::D, 1);
+    InputManager::getInstance().bind("up", 3, 1);
+    InputManager::getInstance().bind("left", 2, 1);
+    InputManager::getInstance().bind("down", 0, 1);
+    InputManager::getInstance().bind("right", 1, 1);
     InputManager::getInstance().bind("fire", sf::Keyboard::Space, 1);
     InputManager::getInstance().bind("dash", sf::Keyboard::Enter, 1);
 
