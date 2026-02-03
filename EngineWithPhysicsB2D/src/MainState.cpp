@@ -6,6 +6,7 @@
 #include "ColliderComponent.hpp"
 #include "Game.hpp"
 #include "InputManager.hpp"
+#include "ItemFactory.h"
 #include "PlayerFactory.h"
 #include "ShipFactory.hpp"
 #include "TileMapLoader.hpp"
@@ -47,7 +48,7 @@ void MainState::init()
 
     // Create player ship (added to GameObjectManager via GameObjectCreateEvent)
     auto player = PlayerFactory::createPlayer(m_game->getWindow(), PlayerSpawn::TopLeft, m_gameObjectManager, 0);
-
+    auto crown  = ItemFactory::createItem(m_game->getWindow(), ItemType::Crown, m_gameObjectManager, 1);
     // Create enemy ship (added to GameObjectManager via GameObjectCreateEvent)
     //auto enemy = ShipFactory::createEnemyShip(m_game->getWindow(), player.get());
     // Moving camera

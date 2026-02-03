@@ -13,6 +13,7 @@
 #include "GameObjectManager.hpp"
 #include "HealthComponent.hpp"
 #include "PhysicsManager.hpp"
+#include "PickupComponent.h"
 #include "PlayerMoveComponent.hpp"
 #include "PlayerShootComponent.hpp"
 #include "RespawnComponent.h"
@@ -84,6 +85,8 @@ GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow&  window,
     move->subscribeToOnDash([damageComp = damageComp]() { damageComp->setActive(true); });
     move->subscribeToOnDashEnd([damageComp = damageComp]() { damageComp->setActive(false); });
 
+    auto pickup = player->addComponent<PickupComponent>(*player);
+
     auto collider = player->addComponent<ColliderComponent>(*player, *rigidBody, fixtureDef);
     collider->registerOnCollisionFunction(
         [](ColliderComponent& self, ColliderComponent& other)
@@ -110,6 +113,16 @@ GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow&  window,
             if (moveComp)
             {
                 moveComp->OnCollision();
+            }
+        });
+    collider->registerOnCollisionFunction(
+        [](ColliderComponent& self, ColliderComponent& other)
+        {
+            auto itemComp   = other.getGameObject().getComponent<ItemComponent>();
+            auto pickupComp = self.getGameObject().getComponent<PickupComponent>();
+            if (itemComp && pickupComp)
+            {
+                pickupComp->pickup(*itemComp);
             }
         });
 

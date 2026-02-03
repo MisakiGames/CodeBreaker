@@ -145,7 +145,10 @@
     <ClInclude Include="..\src\EnemyAIComponent.hpp" />
     <ClInclude Include="..\src\GameState.hpp" />
     <ClInclude Include="..\src\HealthComponent.hpp" />
+    <ClInclude Include="..\src\ItemComponent.h" />
+    <ClInclude Include="..\src\ItemFactory.h" />
     <ClInclude Include="..\src\ObservableProperty.hpp" />
+    <ClInclude Include="..\src\PickupComponent.h" />
     <ClInclude Include="..\src\PlayerFactory.h" />
     <ClInclude Include="..\src\RespawnComponent.h" />
     <ClInclude Include="..\src\ShipFactory.hpp" />
@@ -204,6 +207,9 @@
     <ClCompile Include="..\src\DestructionComponent.cpp" />
     <ClCompile Include="..\src\EnemyAIComponent.cpp" />
     <ClCompile Include="..\src\HealthComponent.cpp" />
+    <ClCompile Include="..\src\ItemComponent.cpp" />
+    <ClCompile Include="..\src\ItemFactory.cpp" />
+    <ClCompile Include="..\src\PickupComponent.cpp" />
     <ClCompile Include="..\src\PlayerFactory.cpp" />
     <ClCompile Include="..\src\RespawnComponent.cpp" />
     <ClCompile Include="..\src\ShipFactory.cpp" />
