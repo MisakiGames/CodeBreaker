@@ -12,7 +12,7 @@ class ItemFactory
 public:
     static std::vector<GameObject::Ptr> createItem(sf::RenderWindow&  window,
                                                      enum ItemType      type,
-                                                     GameObjectManager& goManager,
+                                                     
                                                      int                count);
 
     private:

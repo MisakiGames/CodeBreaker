@@ -21,7 +21,7 @@ public:
 
 private:
     void                  HandleCrown(ItemComponent& crownItem);
-    ItemComponent*        holdingItem = nullptr;
+    ItemType        holdingItem = ItemType::None;
     ItemComponent*        m_crown     = nullptr;
     PlayerScoreComponent& m_scoreComp;
 };

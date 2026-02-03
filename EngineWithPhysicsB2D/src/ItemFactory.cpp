@@ -27,7 +27,7 @@
 #include <string>
 namespace mmt_gd
 {
-std::vector<GameObject::Ptr> ItemFactory::createItem(sf::RenderWindow& window, ItemType type, GameObjectManager& goManager, int count)
+std::vector<GameObject::Ptr> ItemFactory::createItem(sf::RenderWindow& window, ItemType type, int count)
 {
     std::vector<GameObject::Ptr> itemGroup;
     for (int i = 0; i < count; i++)

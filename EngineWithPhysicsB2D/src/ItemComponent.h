@@ -30,9 +30,9 @@ public:
         return m_type;
     };
     void setPosition(sf::Vector2f setPos);
-    void noPickup()
+    void setPickup(bool set)
     {
-        m_canBePickedUp = false;
+        m_canBePickedUp = set;
     }
     bool canBePickedUp()
     {

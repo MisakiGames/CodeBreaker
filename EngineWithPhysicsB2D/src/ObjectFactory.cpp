@@ -11,6 +11,8 @@
 #include "PlayerShootComponent.hpp"
 #include "SpriteRenderComponent.hpp"
 #include "Tileson.hpp"
+#include "ItemSpawnerComponent.h"
+#include <vector>
 
 #include <iostream>
 
@@ -32,6 +34,8 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
     fs::path spriteTexture;
     bool     destroyable = false;
     float    health      = 0;
+    bool     spawner     = false;
+    std::vector<ItemType> itemType;
 
     for (const auto* property : object.getProperties().get())
     {
@@ -59,6 +63,14 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
         {
             health = std::any_cast<float>(property->getValue());
         }
+        else if (name == "Spawner")
+        {
+            spawner = std::any_cast<bool>(property->getValue());
+        }
+        else if (name == "ItemType")
+        {
+            itemType.push_back(static_cast<ItemType>(std::any_cast<int>(property->getValue())));
+        }
     }
 
     if (spriteTexture.string().length() > 0)
@@ -72,37 +84,50 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
     }
 
     const auto rigidComp = gameObject->addComponent<RigidBodyComponent>(*gameObject, b2_staticBody);
+
     if (destroyable)
     {
         auto health = gameObject->addComponent<HealthComponent>(*gameObject, 1, false);
         gameObject->addComponent<DestructionComponent>(*gameObject, *health);
+
+        b2PolygonShape polygonShape;
+        const auto     size = PhysicsManager::t2b(object.getSize(), true);
+        polygonShape.SetAsBox(size.x / 2, size.y / 2, b2Vec2{size.x / 2, size.y / 2}, 0);
+        b2FixtureDef fixtureDef{};
+        fixtureDef.shape   = &polygonShape;
+        fixtureDef.density = 1; //TOdo load from tiled
+
+        auto collider = gameObject->addComponent<ColliderComponent>(*gameObject, *rigidComp, fixtureDef);
+        collider->registerOnCollisionFunction(
+            [](ColliderComponent& self, ColliderComponent& other)
+            {
+                auto damageComp = other.getGameObject().getComponent<DamageComponent>();
+                auto healthComp = self.getGameObject().getComponent<HealthComponent>();
+
+                if (damageComp && healthComp)
+                {
+                    std::cout << !damageComp->isActive() << std::endl;
+                    if (!damageComp->isActive())
+                        return;
+                    if (damageComp->getOwnerId() != self.getGameObject().getId())
+                    {
+                        healthComp->takeDamage(damageComp->getDamage());
+                    }
+                }
+            });
+
     }
 
-    b2PolygonShape polygonShape;
-    const auto     size = PhysicsManager::t2b(object.getSize(), true);
-    polygonShape.SetAsBox(size.x / 2, size.y / 2, b2Vec2{size.x / 2, size.y / 2}, 0);
-    b2FixtureDef fixtureDef{};
-    fixtureDef.shape   = &polygonShape;
-    fixtureDef.density = 1; //TOdo load from tiled
-
-    auto collider = gameObject->addComponent<ColliderComponent>(*gameObject, *rigidComp, fixtureDef);
-    collider->registerOnCollisionFunction(
-        [](ColliderComponent& self, ColliderComponent& other)
+    if (spawner)
+    {
+        auto spawner = gameObject->addComponent<ItemSpawnerComponent>(*gameObject);
+        for (auto type : itemType)
         {
-            auto damageComp = other.getGameObject().getComponent<DamageComponent>();
-            auto healthComp = self.getGameObject().getComponent<HealthComponent>();
+            spawner->LoadItem(spriteManager.getWindow(), type);
+        }
+    }
 
-            if (damageComp && healthComp)
-            {
-                std::cout << !damageComp->isActive() << std::endl;
-                if (!damageComp->isActive())
-                    return;
-                if (damageComp->getOwnerId() != self.getGameObject().getId())
-                {
-                    healthComp->takeDamage(damageComp->getDamage());
-                }
-            }
-        });
+
 
     if (!gameObject->init())
     {

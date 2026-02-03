@@ -21,15 +21,15 @@ void PickupComponent::pickup(ItemComponent& pickedUpItem)
 {
     if (pickedUpItem.getType() == ItemType::Crown)
     {
-        pickedUpItem.noPickup();
+        pickedUpItem.setPickup(false);
         HandleCrown(pickedUpItem);
         return;
     }
-    if (holdingItem)
+    if (holdingItem != ItemType::None)
         return;
-    holdingItem = &pickedUpItem;
+    holdingItem = pickedUpItem.getType();
     pickedUpItem.disappear();
-    pickedUpItem.noPickup();
+    pickedUpItem.setPickup(false);
 }
 
 void PickupComponent::HandleCrown(ItemComponent& crownItem)
@@ -44,10 +44,9 @@ void PickupComponent::loseItem()
     {
         m_scoreComp.setHasCrown(false);
         m_crown->disappear();
+        m_crown->setPickup(true);
+        m_crown = nullptr;
     }
-    if (holdingItem)
-        holdingItem->disappear();
-    m_crown     = nullptr;
-    holdingItem = nullptr;
+    holdingItem = ItemType::None;
 }
 } // namespace mmt_gd
