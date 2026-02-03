@@ -1,7 +1,7 @@
 #pragma once
 
 #include "IRenderComponent.hpp"
-
+#include "RigidBodyComponent.hpp"
 #include <SFML/Graphics.hpp>
 
 namespace mmt_gd
@@ -24,7 +24,11 @@ public:
     void update(float deltaTime) override;
     void draw() override;
 
+    void setTargets(const std::vector<std::shared_ptr<GameObject>>& targets);
+
 private:
     sf::View m_view;
+    sf::Vector2f m_standardPosition = { 0.f, 0.f };
+    std::vector<std::shared_ptr<RigidBodyComponent>> m_targets;
 };
 } // namespace mmt_gd
