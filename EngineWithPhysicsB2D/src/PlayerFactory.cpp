@@ -68,6 +68,7 @@ GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow&  window,
 
     auto deadComp = player->addComponent<DeadComponent>(*player, *health, *respawn, 2);
     deadComp->subscribeToDeath([spriteComp = spriteComp]() { spriteComp->setState(AnimationState::Dead); });
+
     respawn->SubscribeToOnRespawn([deadComp = deadComp]() { deadComp->setAlive(); });
     respawn->SubscribeToOnRespawn([healthComp = health]() { healthComp->fullHealth(); });
     respawn->SubscribeToOnRespawn([healthComp = health]() { healthComp->setInvincible(false); });
@@ -86,6 +87,7 @@ GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow&  window,
     move->subscribeToOnDashEnd([damageComp = damageComp]() { damageComp->setActive(false); });
 
     auto pickup = player->addComponent<PickupComponent>(*player);
+    deadComp->subscribeToDeath([pickupComp = pickup]() { pickupComp->loseItem(); });
 
     auto collider = player->addComponent<ColliderComponent>(*player, *rigidBody, fixtureDef);
     collider->registerOnCollisionFunction(

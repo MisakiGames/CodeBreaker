@@ -12,8 +12,9 @@ public:
     {
         return true;
     };
-    void update(float deltaTime) override {};
+    void update(float deltaTime) override;
     void pickup(ItemComponent& pickedUpItem);
+    void loseItem();
 
 private:
     void           HandleCrown(ItemComponent& crownItem);

@@ -29,6 +29,7 @@ public:
     {
         return m_type;
     };
+    void setPosition(sf::Vector2f setPos);
 
 private:
     ItemType                           m_type;
