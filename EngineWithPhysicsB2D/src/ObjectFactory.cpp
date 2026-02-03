@@ -4,6 +4,7 @@
 
 #include "ColliderComponent.hpp"
 #include "DamageComponent.hpp"
+#include "DestructionComponent.hpp"
 #include "GameObjectEvents.hpp"
 #include "PhysicsManager.hpp"
 #include "PlayerMoveComponent.hpp"
@@ -29,19 +30,14 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
     textureRect.width  = object.getSize().x;
     textureRect.height = object.getSize().y;
     fs::path spriteTexture;
-    fs::path bulletTexture;
-    auto     input     = false;
-    auto     playerIdx = 0;
+    bool     destroyable = false;
+    float    health      = 0;
 
     for (const auto* property : object.getProperties().get())
     {
         if (auto name = property->getName(); name == "Texture")
         {
             spriteTexture = resourcePath / std::any_cast<std::string>(property->getValue());
-        }
-        else if (name == "BulletTexture")
-        {
-            bulletTexture = resourcePath / std::any_cast<std::string>(property->getValue());
         }
         else if (name == "TextureRectLeft")
         {
@@ -51,15 +47,17 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
         {
             textureRect.top = std::any_cast<int>(property->getValue());
         }
-        else if (name == "InputPlayerIdx")
-        {
-            input     = true;
-            playerIdx = std::any_cast<int>(property->getValue());
-        }
-
         else if (name == "Mass")
         {
             auto mass = std::any_cast<float>(property->getValue());
+        }
+        else if (name == "Destroyable")
+        {
+            destroyable = std::any_cast<bool>(property->getValue());
+        }
+        else if (name == "Health")
+        {
+            health = std::any_cast<float>(property->getValue());
         }
     }
 
@@ -73,19 +71,12 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
         renderComp->getSprite().setTextureRect(textureRect);
     }
 
-    if (bulletTexture.string().length() > 0)
+    const auto rigidComp = gameObject->addComponent<RigidBodyComponent>(*gameObject, b2_staticBody);
+    if (destroyable)
     {
-        gameObject->addComponent<PlayerShootComponent>(*gameObject,
-                                                       5,
-                                                       spriteManager.getWindow(),
-                                                       bulletTexture.string(),
-                                                       textureRect,
-                                                       sf::FloatRect{0, 0, 49, 22},
-                                                       0.1F,
-                                                       layer);
+        auto health = gameObject->addComponent<HealthComponent>(*gameObject, 1, false);
+        gameObject->addComponent<DestructionComponent>(*gameObject, *health);
     }
-
-    const auto rigidComp = gameObject->addComponent<RigidBodyComponent>(*gameObject, b2_dynamicBody);
 
     b2PolygonShape polygonShape;
     const auto     size = PhysicsManager::t2b(object.getSize(), true);
@@ -94,12 +85,24 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
     fixtureDef.shape   = &polygonShape;
     fixtureDef.density = 1; //TOdo load from tiled
 
-    gameObject->addComponent<ColliderComponent>(*gameObject, *rigidComp, fixtureDef);
+    auto collider = gameObject->addComponent<ColliderComponent>(*gameObject, *rigidComp, fixtureDef);
+    collider->registerOnCollisionFunction(
+        [](ColliderComponent& self, ColliderComponent& other)
+        {
+            auto damageComp = other.getGameObject().getComponent<DamageComponent>();
+            auto healthComp = self.getGameObject().getComponent<HealthComponent>();
 
-    if (input)
-    {
-        //gameObject->addComponent<PlayerMoveComponent>(*gameObject, *rigidComp, playerIdx);
-    }
+            if (damageComp && healthComp)
+            {
+                std::cout << !damageComp->isActive() << std::endl;
+                if (!damageComp->isActive())
+                    return;
+                if (damageComp->getOwnerId() != self.getGameObject().getId())
+                {
+                    healthComp->takeDamage(damageComp->getDamage());
+                }
+            }
+        });
 
     if (!gameObject->init())
     {
@@ -210,10 +213,10 @@ GameObject::Ptr ObjectFactory::processTsonObject(tson::Object&        object,
                                                  const SpriteManager& spriteManager)
 {
     // Skip Sprite objects - player/enemy are created via ShipFactory
-    // if (object.getType() == "Sprite")
-    // {
-    //     auto sprite = loadSprite(object, layer.getName(), path, spriteManager);
-    // }
+    if (object.getType() == "Sprite")
+    {
+        auto sprite = loadSprite(object, layer.getName(), path, spriteManager);
+    }
     if (object.getType() == "Collider")
     {
         auto collider = loadCollider(object, layer.getName());

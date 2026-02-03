@@ -32,6 +32,7 @@ public:
 private:
     int         m_damage;
     std::string m_ownerId;
-    bool        m_isActive;
+    bool        m_isActive = true;
+
 };
 } // namespace mmt_gd

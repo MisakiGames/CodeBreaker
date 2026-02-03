@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="left-up" width="60" height="34" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="18">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="left-up" width="60" height="34" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="19">
  <editorsettings>
   <export target="../EngineWithPhysicsB2D/assets/MainGame.tmj" format="json"/>
  </editorsettings>
@@ -128,6 +128,16 @@
   <object id="17" name="Lava2" type="Collider" x="870.636" y="58.9394" width="34.6364" height="27.8182">
    <properties>
     <property name="Dead" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="18" name="Destroy_Object_0" type="Sprite" x="123.818" y="25.4545" width="16.1818" height="17.6364">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/furniture/furniture_05.png"/>
+    <property name="TextureRectLeft" type="int" value="0"/>
+    <property name="TextureRectTop" type="int" value="0"/>
    </properties>
   </object>
  </objectgroup>

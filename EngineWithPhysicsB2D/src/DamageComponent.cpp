@@ -4,10 +4,10 @@
 
 namespace mmt_gd
 {
-DamageComponent::DamageComponent(GameObject& gameObject, const int damage, const std::string& ownerId)
-    : IComponent(gameObject)
-    , m_damage(damage)
-    , m_ownerId(ownerId)
+DamageComponent::DamageComponent(GameObject& gameObject, const int damage, const std::string& ownerId) :
+IComponent(gameObject),
+m_damage(damage),
+m_ownerId(ownerId)
 {
 }
 
@@ -18,6 +18,7 @@ bool DamageComponent::init()
 
 void DamageComponent::update(float deltaTime)
 {
+
 }
 
 int DamageComponent::getDamage() const

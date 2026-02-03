@@ -84,8 +84,16 @@ GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow&  window,
     fixtureDef.density = 1.0f;
     auto move          = player->addComponent<PlayerMoveComponent>(*player, *rigidBody, *deadComp, plrIndex);
     move->subscribeToOnDash([spriteComp = spriteComp]() { spriteComp->setState(AnimationState::Dash); });
-    move->subscribeToOnDash([damageComp = damageComp]() { damageComp->setActive(true); });
-    move->subscribeToOnDashEnd([damageComp = damageComp]() { damageComp->setActive(false); });
+    move->subscribeToOnDash(
+        [damageComp = damageComp]()
+        {
+            damageComp->setActive(true);
+        });
+    move->subscribeToOnDashEnd(
+        [damageComp = damageComp]()
+        {
+            damageComp->setActive(false);
+        });
 
     auto score = player->addComponent<PlayerScoreComponent>(*player);
     respawn->SubscribeToOnRespawn([scoreComp = score]() { scoreComp->removePoints(10); });

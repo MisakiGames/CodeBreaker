@@ -44,11 +44,11 @@ void PlayerMoveComponent::update(const float deltaTime)
 
     if (InputManager::getInstance().isKeyDown("dash", m_playerIndex) && m_canDash)
     {
+        for (auto sub : m_onDash)
+            sub();
         m_rigidBody.setVelocity(m_lastMoveDirection * dashSpeedFactor);
         m_isDashing = true;
         m_dashDuration += deltaTime;
-        for (auto sub : m_onDash)
-            sub();
         return;
     }
 
@@ -68,6 +68,8 @@ void PlayerMoveComponent::update(const float deltaTime)
     {
         m_isDashing = false;
         m_canDash   = false;
+        for (auto sub : m_onDashEnd)
+            sub();
         return;
     }
 

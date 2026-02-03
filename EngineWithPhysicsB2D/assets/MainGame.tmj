@@ -231,6 +231,58 @@
                  "width":34.6364,
                  "x":870.636,
                  "y":58.9394
+                }, 
+                {
+                 "height":32,
+                 "id":18,
+                 "name":"Destroy_Object_0",
+                 "properties":[
+                        {
+                         "name":"Border",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"BorderSize",
+                         "type":"int",
+                         "value":32
+                        }, 
+                        {
+                         "name":"Destroyable",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Health",
+                         "type":"float",
+                         "value":10
+                        }, 
+                        {
+                         "name":"Mass",
+                         "type":"float",
+                         "value":1
+                        }, 
+                        {
+                         "name":"Texture",
+                         "type":"string",
+                         "value":"Map\/furniture\/furniture_05.png"
+                        }, 
+                        {
+                         "name":"TextureRectLeft",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"TextureRectTop",
+                         "type":"int",
+                         "value":0
+                        }],
+                 "rotation":0,
+                 "type":"Sprite",
+                 "visible":true,
+                 "width":32,
+                 "x":123.818181818182,
+                 "y":25.4545454545455
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -239,7 +291,7 @@
          "y":0
         }],
  "nextlayerid":6,
- "nextobjectid":18,
+ "nextobjectid":19,
  "orientation":"orthogonal",
  "renderorder":"left-up",
  "tiledversion":"1.11.2",
@@ -408,6 +460,19 @@
         {
          "columns":24,
          "firstgid":3313,
+         "image":"..\/..\/Map\/Map\/All_Spritesheet.png",
+         "imageheight":2208,
+         "imagewidth":384,
+         "margin":0,
+         "name":"CreedyCrownTileset",
+         "spacing":0,
+         "tilecount":3312,
+         "tileheight":16,
+         "tilewidth":16
+        }, 
+        {
+         "columns":24,
+         "firstgid":6625,
          "image":"..\/..\/Map\/Map\/All_Spritesheet.png",
          "imageheight":2208,
          "imagewidth":384,

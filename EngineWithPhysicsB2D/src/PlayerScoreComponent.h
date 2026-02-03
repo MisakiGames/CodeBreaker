@@ -16,7 +16,7 @@ public:
     }
     void update(float deltaTime) override
     {
-        std::cout << m_score << std::endl;
+        //std::cout << m_score << std::endl;
         if (m_hasCrown)
             m_score += deltaTime;
     }

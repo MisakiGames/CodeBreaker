@@ -32,7 +32,7 @@ public:
     }
     void subscribeToOnDashEnd(std::function<void()> subscriber)
     {
-        m_onDash.push_back(subscriber);
+        m_onDashEnd.push_back(subscriber);
     }
 
 private:
