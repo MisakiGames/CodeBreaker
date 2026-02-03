@@ -1,15 +1,17 @@
 #include "stdafx.h"
+
+#include "ObjectFactory.hpp"
+
 #include "ColliderComponent.hpp"
+#include "DamageComponent.hpp"
 #include "GameObjectEvents.hpp"
 #include "PhysicsManager.hpp"
 #include "PlayerMoveComponent.hpp"
 #include "PlayerShootComponent.hpp"
 #include "SpriteRenderComponent.hpp"
 #include "Tileson.hpp"
+
 #include <iostream>
-
-#include "ObjectFactory.hpp"
-
 
 namespace mmt_gd
 {
@@ -92,13 +94,11 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
     fixtureDef.shape   = &polygonShape;
     fixtureDef.density = 1; //TOdo load from tiled
 
-
     gameObject->addComponent<ColliderComponent>(*gameObject, *rigidComp, fixtureDef);
-
 
     if (input)
     {
-        gameObject->addComponent<PlayerMoveComponent>(*gameObject, *rigidComp, playerIdx);
+        //gameObject->addComponent<PlayerMoveComponent>(*gameObject, *rigidComp, playerIdx);
     }
 
     if (!gameObject->init())
@@ -111,10 +111,16 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
     return gameObject;
 }
 
-static GameObject::Ptr loadCollider(const tson::Object& object, const std::string& layer)
+static GameObject::Ptr loadCollider(tson::Object& object, const std::string& layer)
 {
     auto gameObject = GameObject::create(object.getName());
     gameObject->setPosition(static_cast<float>(object.getPosition().x), static_cast<float>(object.getPosition().y));
+    bool damage = false;
+    for (const auto* property : object.getProperties().get())
+    {
+        if (property->getName() == "Dead")
+            damage = true;
+    }
 
     const auto rigidComp = gameObject->addComponent<RigidBodyComponent>(*gameObject, b2_staticBody);
 
@@ -127,6 +133,9 @@ static GameObject::Ptr loadCollider(const tson::Object& object, const std::strin
 
     gameObject->addComponent<ColliderComponent>(*gameObject, *rigidComp, fixtureDef);
 
+    if (damage)
+        gameObject->addComponent<DamageComponent>(*gameObject, 9999, gameObject->getId());
+
     if (!gameObject->init())
     {
         sf::err() << "Could not initialize go " << gameObject->getId() << " in TileMap\n";
@@ -137,29 +146,53 @@ static GameObject::Ptr loadCollider(const tson::Object& object, const std::strin
     return gameObject;
 }
 
-static GameObject::Ptr loadTrigger(const tson::Object& object, const std::string& layer)
+static GameObject::Ptr loadTrigger(tson::Object& object, const std::string& layer)
 {
     auto gameObject = GameObject::create(object.getName());
     gameObject->setPosition(static_cast<float>(object.getPosition().x), static_cast<float>(object.getPosition().y));
-
+    bool damage = false;
+    for (const auto* property : object.getProperties().get())
+    {
+        if (property->getName() == "Dead")
+            damage = true;
+    }
     const auto rb = gameObject->addComponent<RigidBodyComponent>(*gameObject, b2_staticBody);
 
     b2PolygonShape polygonShape{};
     const auto     size = PhysicsManager::t2b(object.getSize());
     polygonShape.SetAsBox(size.x / 2, size.y / 2, b2Vec2{size.x / 2, size.y / 2}, 0);
 
-
     b2FixtureDef fixtureDef{};
     fixtureDef.shape    = &polygonShape;
     fixtureDef.isSensor = true;
 
+    if (damage)
+        gameObject->addComponent<DamageComponent>(*gameObject, 9999, gameObject->getId());
+
     auto collider = gameObject->addComponent<ColliderComponent>(*gameObject, *rb, fixtureDef);
-    
+
     // Add callback to output when something enters the trigger
-    collider->registerOnCollisionFunction([](ColliderComponent& self, ColliderComponent& other) {
-        std::cout << "Entered trigger zone: " << self.getGameObject().getId() 
-                  << " (collided with " << other.getGameObject().getId() << ")\n";
-    });
+    collider->registerOnCollisionFunction(
+        [](ColliderComponent& self, ColliderComponent& other)
+        {
+            std::cout << "Entered trigger zone: " << self.getGameObject().getId() << " (collided with "
+                      << other.getGameObject().getId() << ")\n";
+        });
+
+    if (!gameObject->init())
+    {
+        sf::err() << "Could not initialize go " << gameObject->getId() << " in TileMap\n";
+    }
+
+    EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(gameObject));
+
+    return gameObject;
+}
+
+static GameObject::Ptr loadSpawn(const tson::Object& object, const std::string& layer)
+{
+    auto gameObject = GameObject::create(object.getName());
+    gameObject->setPosition(static_cast<float>(object.getPosition().x), static_cast<float>(object.getPosition().y));
 
     if (!gameObject->init())
     {
@@ -188,6 +221,10 @@ GameObject::Ptr ObjectFactory::processTsonObject(tson::Object&        object,
     if (object.getType() == "Trigger")
     {
         auto trigger = loadTrigger(object, layer.getName());
+    }
+    if (object.getType() == "Spawn")
+    {
+        auto spawn = loadSpawn(object, layer.getName());
     }
 
     return {};

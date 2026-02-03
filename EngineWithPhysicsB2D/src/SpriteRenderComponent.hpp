@@ -7,23 +7,26 @@
 
 namespace mmt_gd
 {
-class SpriteRenderComponent final : public IRenderComponent
+class SpriteRenderComponent : public IRenderComponent
 {
 public:
     using Ptr = std::shared_ptr<SpriteRenderComponent>;
 
-    SpriteRenderComponent(GameObject& gameObject, sf::RenderWindow& renderWindow, std::string textureFile, std::string layerName,
-                          sf::IntRect textureRect = sf::IntRect());
+    SpriteRenderComponent(GameObject&       gameObject,
+                          sf::RenderWindow& renderWindow,
+                          std::string       textureFile,
+                          std::string       layerName,
+                          sf::IntRect       textureRect = sf::IntRect());
 
-    ~SpriteRenderComponent() override;
+    virtual ~SpriteRenderComponent() override;
 
-    bool init() override;
+    virtual bool init() override;
 
-    void update(float deltaTime) override
+    virtual void update(float deltaTime) override
     {
     }
 
-    void draw() override;
+    virtual void draw() override;
 
     sf::Sprite& getSprite()
     {
@@ -32,16 +35,16 @@ public:
 
     void setTextureRect(const sf::IntRect& rect)
     {
-        m_textureRect = rect;
+        m_textureRect    = rect;
         m_hasTextureRect = true;
     }
 
-private:
+protected:
     std::string m_textureFile;
     sf::Texture m_texture;
     sf::Sprite  m_sprite;
     std::string m_layerName;
     sf::IntRect m_textureRect;
-    bool m_hasTextureRect = false;
+    bool        m_hasTextureRect = false;
 };
 } // namespace mmt_gd

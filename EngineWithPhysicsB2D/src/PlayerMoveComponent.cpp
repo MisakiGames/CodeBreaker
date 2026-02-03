@@ -1,15 +1,20 @@
 #include "stdafx.h"
-#include "GameObject.hpp"
-#include "InputManager.hpp"
 
 #include "PlayerMoveComponent.hpp"
 
+#include "GameObject.hpp"
+#include "InputManager.hpp"
+
 namespace mmt_gd
 {
-PlayerMoveComponent::PlayerMoveComponent(GameObject& gameObject, RigidBodyComponent& rigidBody, const int playerIndex) :
+PlayerMoveComponent::PlayerMoveComponent(GameObject&         gameObject,
+                                         RigidBodyComponent& rigidBody,
+                                         DeadComponent&      deadComponent,
+                                         int                 playerIndex) :
 IComponent(gameObject),
-m_playerIndex(playerIndex),
-m_rigidBody(rigidBody)
+m_rigidBody(rigidBody),
+m_deadComponent(deadComponent),
+m_playerIndex(playerIndex)
 {
 }
 
@@ -22,17 +27,28 @@ bool PlayerMoveComponent::init()
 
 void PlayerMoveComponent::update(const float deltaTime)
 {
-    auto speed = 500.f;
-    auto dashSpeedFactor = 5.f;
+    if (m_deadComponent.isDead())
+        return;
+
+    auto speed            = 500.f;
+    auto dashSpeedFactor  = 5.f;
     auto dashCooldownTime = 2.f;
 
     // Dash logic
+    if (m_isDashing && !m_canDash)
+    {
+        m_isDashing = false;
+        for (auto sub : m_onDashEnd)
+            sub();
+    }
 
     if (InputManager::getInstance().isKeyDown("dash", m_playerIndex) && m_canDash)
     {
         m_rigidBody.setVelocity(m_lastMoveDirection * dashSpeedFactor);
         m_isDashing = true;
         m_dashDuration += deltaTime;
+        for (auto sub : m_onDash)
+            sub();
         return;
     }
 
@@ -41,7 +57,7 @@ void PlayerMoveComponent::update(const float deltaTime)
         m_dashCooldown += deltaTime;
         if (m_dashCooldown >= dashCooldownTime)
         {
-            m_canDash = true;
+            m_canDash      = true;
             m_dashCooldown = 0.f;
             std::cout << "Dash Duration: " << m_dashDuration << "\n";
             m_dashDuration = 0.f;
@@ -82,5 +98,10 @@ void PlayerMoveComponent::update(const float deltaTime)
         m_rigidBody.setVelocity(sf::Vector2f(0.f, 0.f));
         m_lastMoveDirection = sf::Vector2f(0.f, 0.f);
     }
+}
+void PlayerMoveComponent::OnCollision()
+{
+    if (m_isDashing)
+        m_canDash = false;
 }
 } // namespace mmt_gd

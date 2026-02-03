@@ -4,11 +4,12 @@
 
 namespace mmt_gd
 {
-HealthComponent::HealthComponent(GameObject& gameObject, const int maxHealth, const bool invincible)
-    : IComponent(gameObject)
-    , m_maxHealth(maxHealth)
-    , m_currentHealth(maxHealth)
-    , m_invincible(invincible)
+HealthComponent::HealthComponent(GameObject& gameObject, const int maxHealth, float maxInvince, const bool invincible) :
+IComponent(gameObject),
+m_maxHealth(maxHealth),
+m_currentHealth(maxHealth),
+m_invincible(invincible),
+m_maxInvinceTime(maxInvince)
 {
 }
 
@@ -19,6 +20,15 @@ bool HealthComponent::init()
 
 void HealthComponent::update(float deltaTime)
 {
+    if (m_invincible)
+    {
+        m_invinceTime += deltaTime;
+        if (m_invinceTime >= m_maxInvinceTime)
+        {
+            m_invincible  = false;
+            m_invinceTime = 0;
+        }
+    }
 }
 
 void HealthComponent::takeDamage(const int damage)

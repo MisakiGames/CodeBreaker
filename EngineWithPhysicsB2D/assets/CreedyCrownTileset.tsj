@@ -1,0 +1,14 @@
+{ "columns":24,
+ "image":"..\/..\/Map\/Map\/All_Spritesheet.png",
+ "imageheight":2208,
+ "imagewidth":384,
+ "margin":0,
+ "name":"CreedyCrownTileset",
+ "spacing":0,
+ "tilecount":3312,
+ "tiledversion":"1.11.2",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.10"
+}

@@ -6,6 +6,8 @@
 #include "ColliderComponent.hpp"
 #include "Game.hpp"
 #include "InputManager.hpp"
+#include "ItemFactory.h"
+#include "PlayerFactory.h"
 #include "ShipFactory.hpp"
 #include "TileMapLoader.hpp"
 #include "Tileson.hpp"
@@ -33,7 +35,7 @@ void MainState::init()
 
     // Load tile map
     tson::Tileson tileson;
-    const auto    map = tileson.parse(fs::path("../assets/game.tmj"));
+    const auto    map = tileson.parse(fs::path("../assets/MainGame.tmj"));
     if (map->getStatus() == tson::ParseStatus::OK)
     {
         TileMapLoader::loadTileLayers(map, "../assets", m_spriteManager);
@@ -45,10 +47,10 @@ void MainState::init()
     }
 
     // Create player ship (added to GameObjectManager via GameObjectCreateEvent)
-    auto player = ShipFactory::createPlayerShip(m_game->getWindow());
-
+    auto player = PlayerFactory::createPlayer(m_game->getWindow(), PlayerSpawn::TopLeft, m_gameObjectManager, 0);
+    auto crown  = ItemFactory::createItem(m_game->getWindow(), ItemType::Crown, m_gameObjectManager, 1);
     // Create enemy ship (added to GameObjectManager via GameObjectCreateEvent)
-    auto enemy = ShipFactory::createEnemyShip(m_game->getWindow(), player.get());
+    //auto enemy = ShipFactory::createEnemyShip(m_game->getWindow(), player.get());
     // Moving camera
     {
         const auto camera = GameObject::create("Camera");
@@ -60,7 +62,6 @@ void MainState::init()
         camera->addComponent<TransformAnimationComponent>(*camera,
                                                           std::make_shared<mmt::TransformAnimationSmoothFollow>(player, 10.F));
 
-
         if (!camera->init())
             FF_ERROR_MSG("Could not initialize camera");
 
@@ -69,9 +70,8 @@ void MainState::init()
     }
 
     // Define layer order manually here. Could come from custom file settings.
-    m_spriteManager.setLayerOrder({"Floor", "Background", "Objects", "GameObjects", "Top"});
 
-        // May move to view later on
+    // May move to view later on
     InputManager::getInstance().bind("up", sf::Keyboard::W, 0);
     InputManager::getInstance().bind("left", sf::Keyboard::A, 0);
     InputManager::getInstance().bind("down", sf::Keyboard::S, 0);
@@ -99,6 +99,7 @@ void MainState::init()
     InputManager::getInstance().bind("right", sf::Keyboard::D, 3);
     InputManager::getInstance().bind("fire", sf::Keyboard::Space, 3);
     InputManager::getInstance().bind("dash", sf::Keyboard::Enter, 3);
+    m_spriteManager.setLayerOrder({"Ground", "GameObjects"});
 }
 
 void MainState::update(const float deltaTime)
