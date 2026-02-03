@@ -35,13 +35,16 @@ void PickupComponent::pickup(ItemComponent& pickedUpItem)
 void PickupComponent::HandleCrown(ItemComponent& crownItem)
 {
     m_crown = &crownItem;
-    //TODO
+    m_scoreComp.setHasCrown(true);
 }
 
 void PickupComponent::loseItem()
 {
     if (m_crown)
+    {
+        m_scoreComp.setHasCrown(false);
         m_crown->disappear();
+    }
     if (holdingItem)
         holdingItem->disappear();
     m_crown     = nullptr;

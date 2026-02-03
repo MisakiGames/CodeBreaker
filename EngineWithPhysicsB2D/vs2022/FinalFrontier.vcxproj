@@ -150,6 +150,7 @@
     <ClInclude Include="..\src\ObservableProperty.hpp" />
     <ClInclude Include="..\src\PickupComponent.h" />
     <ClInclude Include="..\src\PlayerFactory.h" />
+    <ClInclude Include="..\src\PlayerScoreComponent.h" />
     <ClInclude Include="..\src\RespawnComponent.h" />
     <ClInclude Include="..\src\ShipFactory.hpp" />
     <ClInclude Include="..\src\ITransformAnimation.hpp" />
@@ -211,6 +212,7 @@
     <ClCompile Include="..\src\ItemFactory.cpp" />
     <ClCompile Include="..\src\PickupComponent.cpp" />
     <ClCompile Include="..\src\PlayerFactory.cpp" />
+    <ClCompile Include="..\src\PlayerScoreComponent.cpp" />
     <ClCompile Include="..\src\RespawnComponent.cpp" />
     <ClCompile Include="..\src\ShipFactory.cpp" />
     <ClCompile Include="..\src\EventBus.cpp" />

@@ -15,6 +15,7 @@
 #include "PhysicsManager.hpp"
 #include "PickupComponent.h"
 #include "PlayerMoveComponent.hpp"
+#include "PlayerScoreComponent.h"
 #include "PlayerShootComponent.hpp"
 #include "RespawnComponent.h"
 #include "RigidBodyComponent.hpp"
@@ -86,7 +87,10 @@ GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow&  window,
     move->subscribeToOnDash([damageComp = damageComp]() { damageComp->setActive(true); });
     move->subscribeToOnDashEnd([damageComp = damageComp]() { damageComp->setActive(false); });
 
-    auto pickup = player->addComponent<PickupComponent>(*player);
+    auto score = player->addComponent<PlayerScoreComponent>(*player);
+    respawn->SubscribeToOnRespawn([scoreComp = score]() { scoreComp->removePoints(10); });
+
+    auto pickup = player->addComponent<PickupComponent>(*player, *score);
     deadComp->subscribeToDeath([pickupComp = pickup]() { pickupComp->loseItem(); });
 
     auto collider = player->addComponent<ColliderComponent>(*player, *rigidBody, fixtureDef);
