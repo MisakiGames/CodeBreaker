@@ -7,7 +7,10 @@
 
 namespace mmt_gd
 {
-PlayerMoveComponent::PlayerMoveComponent(GameObject& gameObject, RigidBodyComponent& rigidBody, DeadComponent& deadComponent, int playerIndex) :
+PlayerMoveComponent::PlayerMoveComponent(GameObject&         gameObject,
+                                         RigidBodyComponent& rigidBody,
+                                         DeadComponent&      deadComponent,
+                                         int                 playerIndex) :
 IComponent(gameObject),
 m_rigidBody(rigidBody),
 m_deadComponent(deadComponent),
@@ -32,6 +35,12 @@ void PlayerMoveComponent::update(const float deltaTime)
     auto dashCooldownTime = 2.f;
 
     // Dash logic
+    if (m_isDashing && !m_canDash)
+    {
+        m_isDashing = false;
+        for (auto sub : m_onDashEnd)
+            sub();
+    }
 
     if (InputManager::getInstance().isKeyDown("dash", m_playerIndex) && m_canDash)
     {
