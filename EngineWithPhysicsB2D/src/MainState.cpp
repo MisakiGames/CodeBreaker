@@ -77,29 +77,14 @@ void MainState::init()
     InputManager::getInstance().bind("left", sf::Keyboard::A, 0);
     InputManager::getInstance().bind("down", sf::Keyboard::S, 0);
     InputManager::getInstance().bind("right", sf::Keyboard::D, 0);
-    InputManager::getInstance().bind("fire", sf::Keyboard::Space, 0);
     InputManager::getInstance().bind("dash", sf::Keyboard::Enter, 0);
 
-    InputManager::getInstance().bind("up", 3, 1);
-    InputManager::getInstance().bind("left", 2, 1);
-    InputManager::getInstance().bind("down", 0, 1);
-    InputManager::getInstance().bind("right", 1, 1);
-    InputManager::getInstance().bind("fire", sf::Keyboard::Space, 1);
-    InputManager::getInstance().bind("dash", sf::Keyboard::Enter, 1);
+    InputManager::getInstance().bind("left", {sf::Joystick::X, 30.0f, false}, 1);
+    InputManager::getInstance().bind("right", {sf::Joystick::X, 30.0f, true}, 1);
+    InputManager::getInstance().bind("up", {sf::Joystick::Y, 30.0f, false}, 1);
+    InputManager::getInstance().bind("down", {sf::Joystick::Y, 30.0f, true}, 1);
+    InputManager::getInstance().bind("dash", 0, 1);
 
-    InputManager::getInstance().bind("up", sf::Keyboard::W, 2);
-    InputManager::getInstance().bind("left", sf::Keyboard::A, 2);
-    InputManager::getInstance().bind("down", sf::Keyboard::S, 2);
-    InputManager::getInstance().bind("right", sf::Keyboard::D, 2);
-    InputManager::getInstance().bind("fire", sf::Keyboard::Space, 2);
-    InputManager::getInstance().bind("dash", sf::Keyboard::Enter, 2);
-
-    InputManager::getInstance().bind("up", sf::Keyboard::W, 3);
-    InputManager::getInstance().bind("left", sf::Keyboard::A, 3);
-    InputManager::getInstance().bind("down", sf::Keyboard::S, 3);
-    InputManager::getInstance().bind("right", sf::Keyboard::D, 3);
-    InputManager::getInstance().bind("fire", sf::Keyboard::Space, 3);
-    InputManager::getInstance().bind("dash", sf::Keyboard::Enter, 3);
     m_spriteManager.setLayerOrder({"Ground", "GameObjects"});
 }
 

@@ -10,7 +10,8 @@ namespace mmt_gd
 enum class InputDevice
 {
     Keyboard,
-    Joystick
+    JoystickButton,
+    JoystickAxis
 };
 
 class InputManager
@@ -21,6 +22,13 @@ public:
     InputManager(InputManager&& rhv)                  = delete;
     InputManager&  operator=(const InputManager& rhv) = delete;
     InputManager&& operator=(InputManager&& rhv)      = delete;
+
+    struct JoystickAxisData
+    {
+        sf::Joystick::Axis axis;
+        float              threshold;
+        bool               isPositive; // true für nach rechts/unten, false für links/oben
+    };
 
     /**
      * \brief Must be called at beginning of game update, before the update
@@ -43,6 +51,7 @@ public:
      */
     void bind(const std::string& action, sf::Keyboard::Key keyCode, int playerIdx);
     void bind(const std::string& action, unsigned int buttonIdx, int playerIdx);
+    void bind(const std::string& action, JoystickAxisData joystickData, int playerIdx);
 
     void unbind(const std::string& action, int playerIdx = 0);
 
@@ -83,28 +92,30 @@ private:
     InputManager()  = default;
     ~InputManager() = default;
 
-    int getKeyForAction(const std::string& action, int playerIdx);
-
     static constexpr int PlayerCount = 4; ///< maximum allowed players. Can be increased if needed.
 
     struct FrameData
     {
-        bool m_keys[PlayerCount][sf::Keyboard::KeyCount]       = {{false}};
-        bool m_buttons[PlayerCount][sf::Joystick::ButtonCount] = {{false}};
+        bool  m_keys[PlayerCount][sf::Keyboard::KeyCount]       = {{false}};
+        bool  m_buttons[PlayerCount][sf::Joystick::ButtonCount] = {{false}};
+        float m_axes[PlayerCount][sf::Joystick::AxisCount]      = {{0.0f}}; 
     };
 
     struct Binding
     {
-        int  code;
-        InputDevice type;
+        int          code;
+        InputDevice  type;
+        JoystickAxisData joystickAxisData;
     };
+
+    bool getRawState(const std::string& action, int playerIdx, const FrameData& frame) const;
+    int  getKeyForAction(const std::string& action, int playerIdx) const;
 
     FrameData m_lastFrame{};
     FrameData m_currentFrame{};
     FrameData m_eventFrame{};
 
-    sf::RenderWindow* m_renderWindow{nullptr};
-
+    sf::RenderWindow*                        m_renderWindow{nullptr};
     std::unordered_map<std::string, Binding> m_actionBinding[PlayerCount];
 };
 } // namespace mmt_gd
