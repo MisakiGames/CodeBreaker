@@ -51,7 +51,7 @@ GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow&  window,
     }
 
     auto spawnPoint = goManager.getGameObject(spawn)->getPosition();
-    auto player     = GameObject::create("Player");
+    auto player     = GameObject::create("Player" + plrIndex);
     player->setPosition(spawnPoint);
 
     auto spriteComp = player->addComponent<

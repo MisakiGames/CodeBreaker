@@ -30,9 +30,9 @@ void PlayerMoveComponent::update(const float deltaTime)
     if (m_deadComponent.isDead())
         return;
 
-    auto speed            = 500.f;
+    auto speed            = 300.f;
     auto dashSpeedFactor  = 5.f;
-    auto dashCooldownTime = 2.f;
+    auto dashCooldownTime = 1.f;
 
     // Dash logic
     if (m_isDashing && !m_canDash)

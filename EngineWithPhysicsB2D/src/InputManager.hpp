@@ -6,6 +6,14 @@
 
 namespace mmt_gd
 {
+
+enum class InputDevice
+{
+    Keyboard,
+    JoystickButton,
+    JoystickAxis
+};
+
 class InputManager
 {
 public:
@@ -14,6 +22,13 @@ public:
     InputManager(InputManager&& rhv)                  = delete;
     InputManager&  operator=(const InputManager& rhv) = delete;
     InputManager&& operator=(InputManager&& rhv)      = delete;
+
+    struct JoystickAxisData
+    {
+        sf::Joystick::Axis axis;
+        float              threshold;
+        bool               isPositive; // true für nach rechts/unten, false für links/oben
+    };
 
     /**
      * \brief Must be called at beginning of game update, before the update
@@ -34,47 +49,11 @@ public:
      * \param keyCode the keycode of the action
      * \param playerIdx the idx of the player
      */
-    void bind(const std::string& action, int keyCode, int playerIdx = 0);
+    void bind(const std::string& action, sf::Keyboard::Key keyCode, int playerIdx);
+    void bind(const std::string& action, unsigned int buttonIdx, int playerIdx);
+    void bind(const std::string& action, JoystickAxisData joystickData, int playerIdx);
 
     void unbind(const std::string& action, int playerIdx = 0);
-
-    /**
-     * \return Returns true if the key button is currently down.
-     */
-    [[nodiscard]] bool isKeyDown(const int keyCode) const
-    {
-        ffAssertMsg(keyCode >= 0 && keyCode < sf::Keyboard::KeyCount,
-                    "KeyCode out of bounds") return m_currentFrame.m_keys[keyCode];
-    }
-
-    /**
-     * \return Returns true if the key button is currently up.
-     */
-    [[nodiscard]] bool isKeyUp(const int keyCode) const
-    {
-        ffAssertMsg(keyCode >= 0 && keyCode < sf::Keyboard::KeyCount,
-                    "KeyCode out of bounds") return !m_currentFrame.m_keys[keyCode];
-    }
-
-    /**
-     * \return Returns true if the key button has been pressed.
-     */
-    [[nodiscard]] bool isKeyPressed(const int keyCode) const
-    {
-        ffAssertMsg(keyCode >= 0 && keyCode < sf::Keyboard::KeyCount,
-                    "KeyCode out of bounds") return m_currentFrame.m_keys[keyCode] &&
-            !m_lastFrame.m_keys[keyCode];
-    }
-
-    /**
-     * \return Returns true if the key button has been released.
-     */
-    [[nodiscard]] bool isKeyReleased(const int key_code) const
-    {
-        ffAssertMsg(key_code >= 0 && key_code < sf::Keyboard::KeyCount,
-                    "KeyCode out of bounds") return !m_currentFrame.m_keys[key_code] &&
-            m_lastFrame.m_keys[key_code];
-    }
 
     /**
      * \return Returns true if the button for the given Action is currently down.
@@ -106,27 +85,37 @@ public:
         m_renderWindow = window;
     }
 
+    void init();
     void shutdown();
 
 private:
     InputManager()  = default;
     ~InputManager() = default;
 
-
-    int getKeyForAction(const std::string& action, int playerIdx);
+    static constexpr int PlayerCount = 4; ///< maximum allowed players. Can be increased if needed.
 
     struct FrameData
     {
-        bool m_keys[sf::Keyboard::KeyCount];
+        bool  m_keys[PlayerCount][sf::Keyboard::KeyCount]       = {{false}};
+        bool  m_buttons[PlayerCount][sf::Joystick::ButtonCount] = {{false}};
+        float m_axes[PlayerCount][sf::Joystick::AxisCount]      = {{0.0f}}; 
     };
+
+    struct Binding
+    {
+        int          code;
+        InputDevice  type;
+        JoystickAxisData joystickAxisData;
+    };
+
+    bool getRawState(const std::string& action, int playerIdx, const FrameData& frame) const;
+    int  getKeyForAction(const std::string& action, int playerIdx) const;
 
     FrameData m_lastFrame{};
     FrameData m_currentFrame{};
     FrameData m_eventFrame{};
 
-    sf::RenderWindow* m_renderWindow{nullptr};
-
-    static constexpr int                 PlayerCount = 4; ///< maximum allowed players. Can be increased if needed.
-    std::unordered_map<std::string, int> m_actionBinding[PlayerCount];
+    sf::RenderWindow*                        m_renderWindow{nullptr};
+    std::unordered_map<std::string, Binding> m_actionBinding[PlayerCount];
 };
 } // namespace mmt_gd

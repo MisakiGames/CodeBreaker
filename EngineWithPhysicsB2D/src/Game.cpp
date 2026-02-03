@@ -53,25 +53,12 @@ void Game::run()
     shutdown();
 }
 
-void Game::initInputManager()
-{
-    m_inputManager = &InputManager::getInstance();
-
-    m_inputManager->bind("Exit", sf::Keyboard::Escape);
-
-    //m_inputManager->bind("up", sf::Keyboard::Up, 0);
-    //m_inputManager->bind("left", sf::Keyboard::Left, 0);
-    //m_inputManager->bind("down", sf::Keyboard::Down, 0);
-    //m_inputManager->bind("right", sf::Keyboard::Right, 0);
-
-    m_inputManager->bind("debugdraw", sf::Keyboard::F1, 0);
-}
-
 bool Game::init()
 {
     PROFILE_FUNCTION();
 
-    initInputManager();
+    m_inputManager = &InputManager::getInstance();
+    m_inputManager->init();
 
     m_debugDraw = &DebugDraw::getInstance();
     m_window.setFramerateLimit(120);

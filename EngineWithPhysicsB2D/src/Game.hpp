@@ -38,7 +38,6 @@ public:
 
 private:
     bool init();
-    void initInputManager();
     void update();
     void draw();
     void shutdown() const;
