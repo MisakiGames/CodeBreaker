@@ -11,8 +11,6 @@ namespace mmt_gd
 bool RespawnComponent::init()
 {
     m_spawn = m_gameObject.getPosition();
-    std::cout << m_spawn.x << "," << m_spawn.y << std::endl;
-
     return true;
 }
 

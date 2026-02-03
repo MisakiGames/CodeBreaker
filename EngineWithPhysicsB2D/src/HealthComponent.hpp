@@ -21,7 +21,10 @@ public:
     [[nodiscard]] bool isInvincible() const;
     [[nodiscard]] int  getHealth() const;
     [[nodiscard]] int  getMaxHealth() const;
-
+    void               fullHealth()
+    {
+        m_currentHealth = m_maxHealth;
+    }
     void setInvincible(bool invincible);
 
 private:

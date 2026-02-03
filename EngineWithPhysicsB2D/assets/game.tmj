@@ -25,6 +25,7 @@
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          "height":20,
          "id":1,
+         "locked":true,
          "name":"Floor",
          "opacity":1,
          "type":"tilelayer",
@@ -132,18 +133,17 @@
          "name":"GameObjects",
          "objects":[
                 {
-                 "class":"Trigger",
                  "height":105.302996969697,
                  "id":3,
                  "name":"Trigger",
                  "rotation":0,
+                 "type":"Trigger",
                  "visible":true,
                  "width":88.000033333333,
                  "x":1549.21178787879,
                  "y":261.30303030303
                 }, 
                 {
-                 "class":"Sprite",
                  "height":23,
                  "id":16,
                  "name":"Player0",
@@ -194,50 +194,51 @@
                          "value":25
                         }],
                  "rotation":0,
+                 "type":"Sprite",
                  "visible":true,
                  "width":23,
                  "x":62.9996666666667,
                  "y":91.3333333333334
                 }, 
                 {
-                 "class":"Collider",
                  "height":31.6364,
                  "id":9,
                  "name":"TopWallCollider",
                  "rotation":0,
+                 "type":"Collider",
                  "visible":true,
                  "width":3199.91,
                  "x":0.272727,
                  "y":0
                 }, 
                 {
-                 "class":"Collider",
                  "height":32.0909,
                  "id":10,
                  "name":"BottomWallCollider",
                  "rotation":0,
+                 "type":"Collider",
                  "visible":true,
                  "width":3199.71,
                  "x":0.151515,
                  "y":608.136
                 }, 
                 {
-                 "class":"Collider",
                  "height":576.167,
                  "id":12,
                  "name":"LeftWallCollider",
                  "rotation":0,
+                 "type":"Collider",
                  "visible":true,
                  "width":32,
                  "x":0.25,
                  "y":32.0833
                 }, 
                 {
-                 "class":"Collider",
                  "height":576.167,
                  "id":17,
                  "name":"RightWallCollider",
                  "rotation":0,
+                 "type":"Collider",
                  "visible":true,
                  "width":32,
                  "x":3167.94696969697,
@@ -250,10 +251,10 @@
          "y":0
         }],
  "nextlayerid":7,
- "nextobjectid":18,
+ "nextobjectid":19,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.9.2",
+ "tiledversion":"1.11.2",
  "tileheight":32,
  "tilesets":[
         {
@@ -286,6 +287,6 @@
         }],
  "tilewidth":32,
  "type":"map",
- "version":"1.9",
+ "version":"1.10",
  "width":100
 }

@@ -3,6 +3,7 @@
 #include "ObjectFactory.hpp"
 
 #include "ColliderComponent.hpp"
+#include "DamageComponent.hpp"
 #include "GameObjectEvents.hpp"
 #include "PhysicsManager.hpp"
 #include "PlayerMoveComponent.hpp"
@@ -110,10 +111,16 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
     return gameObject;
 }
 
-static GameObject::Ptr loadCollider(const tson::Object& object, const std::string& layer)
+static GameObject::Ptr loadCollider(tson::Object& object, const std::string& layer)
 {
     auto gameObject = GameObject::create(object.getName());
     gameObject->setPosition(static_cast<float>(object.getPosition().x), static_cast<float>(object.getPosition().y));
+    bool damage = false;
+    for (const auto* property : object.getProperties().get())
+    {
+        if (property->getName() == "Dead")
+            damage = true;
+    }
 
     const auto rigidComp = gameObject->addComponent<RigidBodyComponent>(*gameObject, b2_staticBody);
 
@@ -125,6 +132,9 @@ static GameObject::Ptr loadCollider(const tson::Object& object, const std::strin
     fixtureDef.shape = &polygonShape;
 
     gameObject->addComponent<ColliderComponent>(*gameObject, *rigidComp, fixtureDef);
+
+    if (damage)
+        gameObject->addComponent<DamageComponent>(*gameObject, 9999, gameObject->getId());
 
     if (!gameObject->init())
     {

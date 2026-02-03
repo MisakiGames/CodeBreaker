@@ -63,10 +63,13 @@ GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow&  window,
     auto rigidBody  = player->addComponent<RigidBodyComponent>(*player, b2_dynamicBody);
     auto damageComp = player->addComponent<DamageComponent>(*player, 10, player->getId());
     damageComp->setActive(false);
-    auto respawn  = player->addComponent<RespawnComponent>(*player);
+    auto respawn = player->addComponent<RespawnComponent>(*player);
+
     auto deadComp = player->addComponent<DeadComponent>(*player, *health, *respawn, 2);
     deadComp->subscribeToDeath([spriteComp = spriteComp]() { spriteComp->setState(AnimationState::Dead); });
-
+    respawn->SubscribeToOnRespawn([deadComp = deadComp]() { deadComp->setAlive(); });
+    respawn->SubscribeToOnRespawn([healthComp = health]() { healthComp->fullHealth(); });
+    respawn->SubscribeToOnRespawn([healthComp = health]() { healthComp->setInvincible(false); });
     rigidBody->getB2Body()->SetFixedRotation(true);
 
     b2PolygonShape shape;

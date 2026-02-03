@@ -4,8 +4,8 @@
 #include "IComponent.hpp"
 #include "RespawnComponent.h"
 
-#include <vector>
 #include <functional>
+#include <vector>
 
 namespace mmt_gd
 {
@@ -27,15 +27,18 @@ public:
     {
         m_onDeath.push_back(subscriber);
     }
-
-
+    void setAlive()
+    {
+        m_dead = false;
+        m_time = 0;
+    }
 
 private:
-    HealthComponent&  m_healthComponent;
-    RespawnComponent& m_respawnComponent;
-    bool              m_dead;
-    float             m_time;
-    float             m_maxTime;
+    HealthComponent&                   m_healthComponent;
+    RespawnComponent&                  m_respawnComponent;
+    bool                               m_dead;
+    float                              m_time;
+    float                              m_maxTime;
     std::vector<std::function<void()>> m_onDeath;
 };
 } // namespace mmt_gd
