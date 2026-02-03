@@ -14,6 +14,7 @@ ItemComponent::ItemComponent(GameObject& gameObject, ItemType type) : IComponent
 
 void ItemComponent::disappear()
 {
+    m_canBePickedUp = true;
     for (auto sub : m_onDisappear)
         sub();
 }

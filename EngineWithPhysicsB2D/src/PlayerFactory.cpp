@@ -124,7 +124,8 @@ GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow&  window,
             auto pickupComp = self.getGameObject().getComponent<PickupComponent>();
             if (itemComp && pickupComp)
             {
-                pickupComp->pickup(*itemComp);
+                if (itemComp->canBePickedUp())
+                    pickupComp->pickup(*itemComp);
             }
         });
 

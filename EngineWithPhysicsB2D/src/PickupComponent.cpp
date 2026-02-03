@@ -21,6 +21,7 @@ void PickupComponent::pickup(ItemComponent& pickedUpItem)
 {
     if (pickedUpItem.getType() == ItemType::Crown)
     {
+        pickedUpItem.noPickup();
         HandleCrown(pickedUpItem);
         return;
     }
@@ -28,12 +29,11 @@ void PickupComponent::pickup(ItemComponent& pickedUpItem)
         return;
     holdingItem = &pickedUpItem;
     pickedUpItem.disappear();
+    pickedUpItem.noPickup();
 }
 
 void PickupComponent::HandleCrown(ItemComponent& crownItem)
 {
-    if (m_crown)
-        return;
     m_crown = &crownItem;
     //TODO
 }

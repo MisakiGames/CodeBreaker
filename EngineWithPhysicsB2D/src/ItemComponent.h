@@ -30,8 +30,17 @@ public:
         return m_type;
     };
     void setPosition(sf::Vector2f setPos);
+    void noPickup()
+    {
+        m_canBePickedUp = false;
+    }
+    bool canBePickedUp()
+    {
+        return m_canBePickedUp;
+    }
 
 private:
+    bool                               m_canBePickedUp = true;
     ItemType                           m_type;
     std::vector<std::function<void()>> m_onDisappear;
 };
