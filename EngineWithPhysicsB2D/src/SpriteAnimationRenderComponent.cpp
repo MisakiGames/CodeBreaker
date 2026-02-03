@@ -45,7 +45,6 @@ bool SpriteAnimationRenderComponent::init()
 void SpriteAnimationRenderComponent::update(float deltaTime)
 {
     const float SPEED = 5;
-    m_time += deltaTime * SPEED;
     if (!m_stateSetThisFrame)
         setStateSecret(AnimationState::Idle);
     if (m_lastFramePos != m_gameObject.getPosition())
@@ -78,9 +77,10 @@ void SpriteAnimationRenderComponent::update(float deltaTime)
         m_lastFramePos = m_gameObject.getPosition();
     }
 
+    m_time += deltaTime * m_texturesSpeed[m_state];
     m_sprite.setTexture(m_textures[m_state]);
-    auto        textureRect    = m_textures[m_state].getSize();
-    int         animationFrame = static_cast<int>(m_time) % static_cast<int>(m_frameCount.x);
+    auto textureRect    = m_textures[m_state].getSize();
+    int  animationFrame = static_cast<int>(m_time) % static_cast<int>(m_frameCount.x);
     if (!m_texturesLoops[m_state] && static_cast<int>(m_time) > m_frameCount.x - 1)
         animationFrame = m_frameCount.x - 1;
     sf::IntRect newRect((textureRect.x / m_frameCount.x) * animationFrame + m_textureRect.left,
@@ -91,7 +91,7 @@ void SpriteAnimationRenderComponent::update(float deltaTime)
     m_stateSetThisFrame = false;
 }
 
-bool SpriteAnimationRenderComponent::loadAndMapTexture(std::string texturePath, enum AnimationState state, bool loop)
+bool SpriteAnimationRenderComponent::loadAndMapTexture(std::string texturePath, enum AnimationState state, float speed, bool loop)
 {
     sf::Image image;
     if (!image.loadFromFile(texturePath))
@@ -102,9 +102,9 @@ bool SpriteAnimationRenderComponent::loadAndMapTexture(std::string texturePath, 
     image.createMaskFromColor(sf::Color::Black);
     sf::Texture m_texture;
     m_texture.loadFromImage(image);
-    m_textures[state] = m_texture;
+    m_textures[state]      = m_texture;
     m_texturesLoops[state] = loop;
-
+    m_texturesSpeed[state] = speed;
     return true;
 }
 

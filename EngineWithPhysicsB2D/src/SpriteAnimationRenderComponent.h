@@ -32,7 +32,7 @@ public:
 
     void update(float deltaTime) override;
 
-    bool loadAndMapTexture(std::string texturePath, enum AnimationState state, bool loop = true);
+    bool loadAndMapTexture(std::string texturePath, enum AnimationState state, float speed = 1, bool loop = true);
 
     void setState(enum AnimationState state)
     {
@@ -41,7 +41,6 @@ public:
         m_state             = state;
         m_stateSetThisFrame = true;
     }
-
 
     void draw() override;
 
@@ -73,17 +72,16 @@ private:
 private:
     std::string                                     m_textureFile;
     std::unordered_map<AnimationState, sf::Texture> m_textures;
-    std::unordered_map<AnimationState, bool> m_texturesLoops;
+    std::unordered_map<AnimationState, bool>        m_texturesLoops;
+    std::unordered_map<AnimationState, float>       m_texturesSpeed;
     sf::Sprite                                      m_sprite;
     std::string                                     m_layerName;
     sf::IntRect                                     m_textureRect;
     bool                                            m_hasTextureRect = false;
-    float                                           m_time       = 0;
+    float                                           m_time           = 0;
     sf::Vector2f                                    m_frameCount{}, m_lastFramePos;
     AnimationDirection                              m_direction;
     AnimationState                                  m_state             = AnimationState::Idle;
     bool                                            m_stateSetThisFrame = false;
 };
-
-
 } // namespace mmt_gd
