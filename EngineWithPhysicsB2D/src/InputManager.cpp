@@ -12,22 +12,26 @@ InputManager& InputManager::getInstance()
 
 void InputManager::process(const sf::Event& event)
 {
-    switch (event.type) // NOLINT(clang-diagnostic-switch-enum)
+    if (event.type == sf::Event::KeyPressed || event.type == sf::Event::KeyReleased)
     {
-        case sf::Event::KeyPressed:
-            if (event.key.code >= 0 && event.key.code < sf::Keyboard::KeyCount)
+        bool isDown = (event.type == sf::Event::KeyPressed);
+        if (event.key.code >= 0 && event.key.code < sf::Keyboard::KeyCount)
+        {
+            // Keyboard-Input wird für alle Player gespiegelt (Globales Device)
+            for (int i = 0; i < PlayerCount; ++i)
             {
-                m_eventFrame.m_keys[event.key.code] = true;
+                m_eventFrame.m_keys[i][event.key.code] = isDown;
             }
-            break;
-        case sf::Event::KeyReleased:
-            if (event.key.code >= 0 && event.key.code < sf::Keyboard::KeyCount)
-            {
-                m_eventFrame.m_keys[event.key.code] = false;
-            }
-            break;
-        default:
-            break;
+        }
+    }
+    else if (event.type == sf::Event::JoystickButtonPressed || event.type == sf::Event::JoystickButtonReleased)
+    {
+        int playerIdx = event.joystickButton.joystickId + 1;
+        if (playerIdx >= 5 || event.joystickButton.button >= sf::Joystick::ButtonCount)
+            return;
+
+        bool isDown = (event.type == sf::Event::JoystickButtonPressed);
+        m_eventFrame.m_buttons[playerIdx][event.joystickButton.button] = isDown;
     }
 }
 
@@ -37,9 +41,20 @@ void InputManager::update()
     m_currentFrame = m_eventFrame;
 }
 
-void InputManager::bind(const std::string& action, const int keyCode, const int playerIdx)
+void InputManager::bind(const std::string& action, sf::Keyboard::Key keyCode, int playerIdx)
 {
-    ffAssertMsg(playerIdx < PlayerCount, "player out of bounds") m_actionBinding[playerIdx][action] = keyCode;
+    if (playerIdx < 0 || playerIdx >= 5)
+        return;
+
+    m_actionBinding[playerIdx][action] = {static_cast<int>(keyCode), InputDevice::Keyboard};
+}
+
+void InputManager::bind(const std::string& action, unsigned int buttonIdx, int playerIdx)
+{
+    if (playerIdx < 0 || playerIdx >= 5)
+        return;
+
+    m_actionBinding[playerIdx][action] = {static_cast<int>(buttonIdx), InputDevice::Joystick};
 }
 
 void InputManager::unbind(const std::string& action, const int playerIdx)
@@ -47,36 +62,96 @@ void InputManager::unbind(const std::string& action, const int playerIdx)
     ffAssertMsg(playerIdx < PlayerCount, "player out of bounds") m_actionBinding[playerIdx].erase(action);
 }
 
-int InputManager::getKeyForAction(const std::string& action, const int playerIdx)
+int InputManager::getKeyForAction(const std::string& action, int playerIdx)
 {
-    ffAssertMsg(playerIdx < PlayerCount, "player out of bounds")
+    if (playerIdx < 0 || playerIdx >= PlayerCount)
+        return -1;
 
-        const auto it = m_actionBinding[playerIdx].find(action);
+    auto it = m_actionBinding[playerIdx].find(action);
     if (it != m_actionBinding[playerIdx].end())
     {
-        return it->second;
+        return it->second.code;
     }
-    return 0;
+    return -1;
 }
 
-bool InputManager::isKeyDown(const std::string& action, const int playerIdx)
+bool InputManager::isKeyDown(const std::string& action, int playerIdx)
 {
-    return isKeyDown(getKeyForAction(action, playerIdx));
+    int code = getKeyForAction(action, playerIdx);
+    if (code == -1)
+        return false;
+
+    const auto& binding = m_actionBinding[playerIdx].at(action);
+    if (binding.type == InputDevice::Keyboard)
+    {
+        return m_currentFrame.m_keys[playerIdx][code];
+    }
+    else
+    {
+        return m_currentFrame.m_buttons[playerIdx][code];
+    }
 }
 
-bool InputManager::isKeyUp(const std::string& action, const int playerIdx)
+bool InputManager::isKeyUp(const std::string& action, int playerIdx)
 {
-    return isKeyUp(getKeyForAction(action, playerIdx));
+    int code = getKeyForAction(action, playerIdx);
+    if (code == -1)
+        return true;
+
+    const auto& binding = m_actionBinding[playerIdx].at(action);
+    if (binding.type == InputDevice::Keyboard)
+    {
+        return !m_currentFrame.m_keys[playerIdx][code];
+    }
+    else
+    {
+        return !m_currentFrame.m_buttons[playerIdx][code];
+    }
 }
 
-bool InputManager::isKeyPressed(const std::string& action, const int playerIdx)
+bool InputManager::isKeyPressed(const std::string& action, int playerIdx)
 {
-    return isKeyPressed(getKeyForAction(action, playerIdx));
+    int code = getKeyForAction(action, playerIdx);
+    if (code == -1)
+        return false;
+
+    const auto& binding = m_actionBinding[playerIdx].at(action);
+    if (binding.type == InputDevice::Keyboard)
+    {
+        return m_currentFrame.m_keys[playerIdx][code] && !m_lastFrame.m_keys[playerIdx][code];
+    }
+    else
+    {
+        return m_currentFrame.m_buttons[playerIdx][code] && !m_lastFrame.m_buttons[playerIdx][code];
+    }
 }
 
-bool InputManager::isKeyReleased(const std::string& action, const int playerIdx)
+bool InputManager::isKeyReleased(const std::string& action, int playerIdx)
 {
-    return isKeyReleased(getKeyForAction(action, playerIdx));
+    int code = getKeyForAction(action, playerIdx);
+    if (code == -1)
+        return false;
+
+    const auto& binding = m_actionBinding[playerIdx].at(action);
+    if (binding.type == InputDevice::Keyboard)
+    {
+        return !m_currentFrame.m_keys[playerIdx][code] && m_lastFrame.m_keys[playerIdx][code];
+    }
+    else
+    {
+        return !m_currentFrame.m_buttons[playerIdx][code] && m_lastFrame.m_buttons[playerIdx][code];
+    }
+}
+
+void InputManager::init()
+{
+    bind("Exit", sf::Keyboard::Escape, 0);
+    bind("debugdraw", sf::Keyboard::F1, 0);
+
+    bind("up", sf::Keyboard::Up, 0);
+    bind("left", sf::Keyboard::Left, 0);
+    bind("down", sf::Keyboard::Down, 0);
+    bind("right", sf::Keyboard::Right, 0);
 }
 
 void InputManager::shutdown()
@@ -89,9 +164,8 @@ void InputManager::shutdown()
 
 sf::Vector2f InputManager::getMousePosition() const
 {
-    ffAssertMsg(m_renderWindow != nullptr, "RenderWindow not set for getMousePosition.");
+    ffAssertMsg(m_renderWindow != nullptr, "RenderWindow not set!");
 
-        const auto p = sf::Mouse::getPosition(*m_renderWindow);
-    return {static_cast<float>(p.x), static_cast<float>(p.y)};
+    return m_renderWindow->mapPixelToCoords(sf::Mouse::getPosition(*m_renderWindow));
 }
 } // namespace mmt_gd
