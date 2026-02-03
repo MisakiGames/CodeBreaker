@@ -93,6 +93,8 @@ GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow&  window,
 
             if (damageComp && healthComp)
             {
+                if (!damageComp->isActive())
+                    return;
                 if (damageComp->getOwnerId() != self.getGameObject().getId())
                 {
                     healthComp->takeDamage(damageComp->getDamage());
