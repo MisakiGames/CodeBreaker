@@ -132,5 +132,6 @@ void Game::draw()
 void Game::shutdown() const
 {
     m_gameStateManager.shutdown();
+    InputManager::getInstance().shutdown();
 }
 } // namespace mmt_gd
