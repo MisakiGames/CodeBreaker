@@ -17,5 +17,6 @@ public:
 
     private:
     static std::string getAssetPath(enum ItemType type);
+    static sf::IntRect getIntRect(enum ItemType type);
 };
 }; // namespace mmt_gd
