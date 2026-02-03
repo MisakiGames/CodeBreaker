@@ -26,12 +26,24 @@ void InputManager::process(const sf::Event& event)
     }
     else if (event.type == sf::Event::JoystickButtonPressed || event.type == sf::Event::JoystickButtonReleased)
     {
-        int playerIdx = event.joystickButton.joystickId + 1;
-        if (playerIdx >= 5 || event.joystickButton.button >= sf::Joystick::ButtonCount)
-            return;
+        bool isDown    = (event.type == sf::Event::JoystickButtonPressed);
+        int  playerIdx = event.joystickButton.joystickId + 1;
 
-        bool isDown = (event.type == sf::Event::JoystickButtonPressed);
-        m_eventFrame.m_buttons[playerIdx][event.joystickButton.button] = isDown;
+        if (playerIdx >= 0 && playerIdx < PlayerCount)
+        {
+            if (event.joystickButton.button >= sf::Joystick::ButtonCount)
+                return;
+            m_eventFrame.m_buttons[playerIdx][event.joystickButton.button] = isDown;
+        }
+    }
+    else if (event.type == sf::Event::JoystickMoved)
+    {
+        int playerIdx = event.joystickMove.joystickId + 1;
+
+        if (playerIdx > 0 && playerIdx < PlayerCount && event.joystickMove.axis < sf::Joystick::AxisCount)
+        {
+            m_eventFrame.m_axes[playerIdx][event.joystickMove.axis] = event.joystickMove.position;
+        }
     }
 }
 
@@ -39,15 +51,6 @@ void InputManager::update()
 {
     m_lastFrame    = m_currentFrame;
     m_currentFrame = m_eventFrame;
-
-    // Aktuelle Achsenwerte für alle Spieler festhalten
-    for (int i = 1; i < PlayerCount; ++i)
-    {
-        for (int a = 0; a < sf::Joystick::AxisCount; ++a)
-        {
-            m_currentFrame.m_axes[i][a] = sf::Joystick::getAxisPosition(i - 1, static_cast<sf::Joystick::Axis>(a));
-        }
-    }
 }
 
 void InputManager::bind(const std::string& action, sf::Keyboard::Key keyCode, int playerIdx)
@@ -72,9 +75,9 @@ void InputManager::bind(const std::string& action, JoystickAxisData joystickData
         return;
 
     Binding binding;
-    binding.type         = InputDevice::JoystickAxis;
+    binding.type             = InputDevice::JoystickAxis;
     binding.joystickAxisData = joystickData;
-    binding.code         = static_cast<int>(joystickData.axis);
+    binding.code             = static_cast<int>(joystickData.axis);
 
     m_actionBinding[playerIdx][action] = binding;
 }

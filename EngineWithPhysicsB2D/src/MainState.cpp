@@ -79,10 +79,10 @@ void MainState::init()
     InputManager::getInstance().bind("right", sf::Keyboard::D, 0);
     InputManager::getInstance().bind("dash", sf::Keyboard::Enter, 0);
 
-    InputManager::getInstance().bind("left", {sf::Joystick::X, 30.0f, false}, 1);
-    InputManager::getInstance().bind("right", {sf::Joystick::X, 30.0f, true}, 1);
-    InputManager::getInstance().bind("up", {sf::Joystick::Y, 30.0f, false}, 1);
-    InputManager::getInstance().bind("down", {sf::Joystick::Y, 30.0f, true}, 1);
+    InputManager::getInstance().bind("left", {sf::Joystick::X, 50.0f, false}, 1);
+    InputManager::getInstance().bind("right", {sf::Joystick::X, 50.0f, true}, 1);
+    InputManager::getInstance().bind("up", {sf::Joystick::Y, 50.0f, false}, 1);
+    InputManager::getInstance().bind("down", {sf::Joystick::Y, 50.0f, true}, 1);
     InputManager::getInstance().bind("dash", 0, 1);
 
     m_spriteManager.setLayerOrder({"Ground", "GameObjects"});
