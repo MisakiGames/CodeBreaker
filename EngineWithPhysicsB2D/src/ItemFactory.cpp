@@ -164,7 +164,7 @@ GameObject::Ptr ItemFactory::createBombObject(sf::RenderWindow& window)
     bomb->setPosition(sf::Vector2f(100, 100));
     std::string filePath   = "../assets/explosion.png";
     auto        spriteComp = bomb->addComponent<
-               BombAnimationComponent>(*bomb, window, filePath, "GameObjects", 3, sf::IntRect(0, 0, 354, 342), sf::Vector2f(7, 1));
+               BombAnimationComponent>(*bomb, window, filePath, "GameObjects", 1, sf::IntRect(0, 0, 354, 342), sf::Vector2f(7, 1));
     bomb->setScale(1, 1);
     const auto                      rb             = bomb->addComponent<RigidBodyComponent>(*bomb, b2_staticBody);
     auto                            respawn        = bomb->addComponent<RespawnComponent>(*bomb);

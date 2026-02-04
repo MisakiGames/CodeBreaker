@@ -49,7 +49,7 @@ void BombAnimationComponent::update(float deltaTime)
 
     m_time += deltaTime * m_speed;
     int  animationFrame = static_cast<int>(m_time) % static_cast<int>(m_frameCount.x);
-    if (animationFrame = m_frameCount.x - 1)
+    if (animationFrame == m_frameCount.x - 1)
         m_stop = true;
     sf::IntRect newRect(m_textureRect.getSize().x * animationFrame,
                         m_textureRect.getPosition().y,
