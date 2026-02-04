@@ -40,10 +40,16 @@ std::vector<GameObject::Ptr> ItemFactory::createItem(sf::RenderWindow& window, I
         std::string filePath   = ItemFactory::getAssetPath(type);
         auto        spriteComp = item->addComponent<
                    SpriteRenderComponent>(*item, window, filePath, "GameObjects", ItemFactory::getIntRect(type));
-        const auto rb       = item->addComponent<RigidBodyComponent>(*item, b2_staticBody);
-        auto       respawn  = item->addComponent<RespawnComponent>(*item);
-        auto       itemComp = item->addComponent<ItemComponent>(*item, type);
-        itemComp->subscribeToOnDisappear([respawnComp = respawn]() { respawnComp->startRespawn(); });
+        const auto                      rb             = item->addComponent<RigidBodyComponent>(*item, b2_staticBody);
+        auto                            respawn        = item->addComponent<RespawnComponent>(*item);
+        std::weak_ptr<RespawnComponent> respawnWeakPtr = respawn;
+        auto                            itemComp       = item->addComponent<ItemComponent>(*item, type);
+        itemComp->subscribeToOnDisappear(
+            [respawnWeakPtr = respawnWeakPtr]()
+            {
+                if (auto respawnComp = respawnWeakPtr.lock())
+                    respawnComp->startRespawn();
+            });
 
         b2PolygonShape polygonShape{};
         tson::Vector2f tsonSize(ItemFactory::getIntRect(type).getSize().x, ItemFactory::getIntRect(type).getSize().y);
@@ -55,6 +61,8 @@ std::vector<GameObject::Ptr> ItemFactory::createItem(sf::RenderWindow& window, I
         fixtureDef.isSensor = true;
 
         auto collider = item->addComponent<ColliderComponent>(*item, *rb, fixtureDef);
+
+        ItemFactory::addSpecifiedItemComponent(item, *itemComp, type);
 
         if (!item->init())
         {
@@ -88,5 +96,22 @@ sf::IntRect ItemFactory::getIntRect(ItemType type)
     }
 
     return rect;
+}
+GameObject::Ptr ItemFactory::addSpecifiedItemComponent(GameObject::Ptr item, ItemComponent& itemComp, ItemType type)
+{
+    switch (type)
+    {
+        case mmt_gd::ItemType::None:
+            break;
+        case mmt_gd::ItemType::Crown:
+            break;
+        case mmt_gd::ItemType::Bomb:
+            break;
+        case mmt_gd::ItemType::Size:
+            break;
+        default:
+            break;
+    }
+    return item;
 }
 } // namespace mmt_gd

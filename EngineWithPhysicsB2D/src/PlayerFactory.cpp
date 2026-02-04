@@ -56,23 +56,46 @@ GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow&  window,
 
     auto spriteComp = player->addComponent<
         SpriteAnimationRenderComponent>(*player, window, "GameObjects", sf::IntRect(18, 20, 12, 24), sf::Vector2f(8, 6));
-
+    std::weak_ptr<SpriteAnimationRenderComponent> spriteWeakPtr = spriteComp;
     spriteComp->loadAndMapTexture("../assets/Character/Red/Walk.png", AnimationState::Walk, 5);
     spriteComp->loadAndMapTexture("../assets/Character/Red/Idle.png", AnimationState::Idle, 5);
     spriteComp->loadAndMapTexture("../assets/Character/Red/Dash.png", AnimationState::Dash, 10, false);
     spriteComp->loadAndMapTexture("../assets/Character/Red/Death.png", AnimationState::Dead, 10, false);
-    auto health     = player->addComponent<HealthComponent>(*player, 100, true);
-    auto rigidBody  = player->addComponent<RigidBodyComponent>(*player, b2_dynamicBody);
-    auto damageComp = player->addComponent<DamageComponent>(*player, 10, player->getId());
+    auto                           health        = player->addComponent<HealthComponent>(*player, 100, true);
+    std::weak_ptr<HealthComponent> healthWeakPtr = health;
+
+    auto                           rigidBody     = player->addComponent<RigidBodyComponent>(*player, b2_dynamicBody);
+    auto                           damageComp    = player->addComponent<DamageComponent>(*player, 10, player->getId());
+    std::weak_ptr<DamageComponent> damageWeakPtr = damageComp;
     damageComp->setActive(false);
     auto respawn = player->addComponent<RespawnComponent>(*player);
 
     auto deadComp = player->addComponent<DeadComponent>(*player, *health, *respawn, 2);
-    deadComp->subscribeToDeath([spriteComp = spriteComp]() { spriteComp->setState(AnimationState::Dead); });
-
-    respawn->SubscribeToOnRespawn([deadComp = deadComp]() { deadComp->setAlive(); });
-    respawn->SubscribeToOnRespawn([healthComp = health]() { healthComp->fullHealth(); });
-    respawn->SubscribeToOnRespawn([healthComp = health]() { healthComp->setInvincible(false); });
+    deadComp->subscribeToDeath(
+        [spriteWeakPtr = spriteWeakPtr]()
+        {
+            if (auto spriteComp = spriteWeakPtr.lock())
+                spriteComp->setState(AnimationState::Dead);
+        });
+    std::weak_ptr<DeadComponent> deadWeakComp = deadComp;
+    respawn->SubscribeToOnRespawn(
+        [deadWeakComp = deadWeakComp]()
+        {
+            if (auto deadComp = deadWeakComp.lock())
+                deadComp->setAlive();
+        });
+    respawn->SubscribeToOnRespawn(
+        [healthWeakPtr = healthWeakPtr]()
+        {
+            if (auto healthComp = healthWeakPtr.lock())
+                healthComp->fullHealth();
+        });
+    respawn->SubscribeToOnRespawn(
+        [healthWeakPtr = healthWeakPtr]()
+        {
+            if (auto healthComp = healthWeakPtr.lock())
+                healthComp->setInvincible(false);
+        });
     rigidBody->getB2Body()->SetFixedRotation(true);
 
     b2PolygonShape shape;
@@ -83,23 +106,43 @@ GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow&  window,
     fixtureDef.shape   = &shape;
     fixtureDef.density = 1.0f;
     auto move          = player->addComponent<PlayerMoveComponent>(*player, *rigidBody, *deadComp, plrIndex);
-    move->subscribeToOnDash([spriteComp = spriteComp]() { spriteComp->setState(AnimationState::Dash); });
+
     move->subscribeToOnDash(
-        [damageComp = damageComp]()
+        [spriteWeakPtr = spriteWeakPtr]()
         {
-            damageComp->setActive(true);
+            if (auto spriteComp = spriteWeakPtr.lock())
+                spriteComp->setState(AnimationState::Dash);
+        });
+    move->subscribeToOnDash(
+        [damageWeakPtr = damageWeakPtr]()
+        {
+            if (auto damageComp = damageWeakPtr.lock())
+                damageComp->setActive(true);
         });
     move->subscribeToOnDashEnd(
-        [damageComp = damageComp]()
+        [damageWeakPtr = damageWeakPtr]()
         {
-            damageComp->setActive(false);
+            if (auto damageComp = damageWeakPtr.lock())
+                damageComp->setActive(false);
         });
 
-    auto score = player->addComponent<PlayerScoreComponent>(*player);
-    respawn->SubscribeToOnRespawn([scoreComp = score]() { scoreComp->removePoints(10); });
+    auto                                score        = player->addComponent<PlayerScoreComponent>(*player);
+    std::weak_ptr<PlayerScoreComponent> scoreWeakPtr = score;
+    respawn->SubscribeToOnRespawn(
+        [scoreWeakPtr = scoreWeakPtr]()
+        {
+            if (auto scoreComp = scoreWeakPtr.lock())
+                scoreComp->removePoints(10);
+        });
 
-    auto pickup = player->addComponent<PickupComponent>(*player, *score);
-    deadComp->subscribeToDeath([pickupComp = pickup]() { pickupComp->loseItem(); });
+    auto                           pickup        = player->addComponent<PickupComponent>(*player, *score);
+    std::weak_ptr<PickupComponent> pickupWeakPtr = pickup;
+    deadComp->subscribeToDeath(
+        [pickupWeakPtr = pickupWeakPtr]()
+        {
+            if (auto pickupComp = pickupWeakPtr.lock())
+                pickupComp->loseItem();
+        });
 
     auto collider = player->addComponent<ColliderComponent>(*player, *rigidBody, fixtureDef);
     collider->registerOnCollisionFunction(

@@ -10,13 +10,11 @@ namespace mmt_gd
 class ItemFactory
 {
 public:
-    static std::vector<GameObject::Ptr> createItem(sf::RenderWindow&  window,
-                                                     enum ItemType      type,
-                                                     
-                                                     int                count);
+    static std::vector<GameObject::Ptr> createItem(sf::RenderWindow& window, enum ItemType type, int count);
 
-    private:
-    static std::string getAssetPath(enum ItemType type);
-    static sf::IntRect getIntRect(enum ItemType type);
+private:
+    static std::string     getAssetPath(enum ItemType type);
+    static sf::IntRect     getIntRect(enum ItemType type);
+    static GameObject::Ptr addSpecifiedItemComponent(GameObject::Ptr item, ItemComponent& itemComp, enum ItemType type);
 };
 }; // namespace mmt_gd

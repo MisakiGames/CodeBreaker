@@ -47,6 +47,9 @@
  <tileset firstgid="3313" name="CreedyCrownTileset" tilewidth="16" tileheight="16" tilecount="3312" columns="24">
   <image source="Map/All_Spritesheet.png" width="384" height="2208"/>
  </tileset>
+ <tileset firstgid="6625" name="CreedyCrownTileset" tilewidth="16" tileheight="16" tilecount="3312" columns="24">
+  <image source="Map/All_Spritesheet.png" width="384" height="2208"/>
+ </tileset>
  <layer id="1" name="Ground" width="60" height="34">
   <data encoding="csv">
 1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,
@@ -130,7 +133,7 @@
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="18" name="Destroy_Object_0" type="Sprite" x="123.818" y="25.4545" width="16.1818" height="17.6364">
+  <object id="18" name="Destroy_Object_0" type="Sprite" x="123.818" y="25.4545" width="32" height="17.6364">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -142,7 +145,7 @@
   </object>
   <object id="19" name="ItemSpawner" type="ItemSpawner" x="196.75" y="33.5" width="19.5" height="18">
    <properties>
-    <property name="Bomb" type="bool" value="true"/>
+    <property name="Bomb" type="bool" value="false"/>
     <property name="Size" type="bool" value="true"/>
    </properties>
   </object>
