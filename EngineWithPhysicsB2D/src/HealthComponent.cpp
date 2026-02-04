@@ -22,12 +22,17 @@ void HealthComponent::update(float deltaTime)
 {
     if (m_invincible)
     {
+        std::cout << m_invinceTime << std::endl;
         m_invinceTime += deltaTime;
         if (m_invinceTime >= m_maxInvinceTime)
         {
             m_invincible  = false;
             m_invinceTime = 0;
         }
+    }
+    else
+    {
+        m_invinceTime = 0;
     }
 }
 
@@ -43,6 +48,7 @@ void HealthComponent::takeDamage(const int damage)
     {
         m_currentHealth = 0;
     }
+    setInvincible(true);
 }
 
 void HealthComponent::heal(const int amount)

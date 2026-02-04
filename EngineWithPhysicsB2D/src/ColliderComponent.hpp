@@ -1,14 +1,13 @@
 #pragma once
 #include "IComponent.hpp"
 #include "RigidBodyComponent.hpp"
+
+#include <Box2D/Box2D.h>
 #include <functional>
 #include <list>
-#include <Box2D/Box2D.h>
 
 namespace mmt_gd
 {
-
-
 class ColliderComponent : public IComponent
 {
 public:
@@ -19,7 +18,14 @@ public:
     /// \param body the rigid body the collider is attached to.
     /// \param rect the size of the AABB in pixel
     ColliderComponent(GameObject& gameObject, RigidBodyComponent& body, b2FixtureDef& def);
-
+    void setTag(std::string tag)
+    {
+        m_tag = tag;
+    };
+    std::string getTag()
+    {
+        return m_tag;
+    }
     bool init() override
     {
         return true;
@@ -43,5 +49,6 @@ private:
     RigidBodyComponent&            m_body;
     b2Fixture*                     m_fixture;
     std::list<OnCollisionFunction> m_onCollisionFunctions;
+    std::string                    m_tag = "Collider";
 };
 } // namespace mmt_gd

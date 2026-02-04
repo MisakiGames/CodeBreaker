@@ -26,9 +26,13 @@ public:
         m_currentHealth = m_maxHealth;
     }
     void setInvincible(bool invincible);
+    void kill()
+    {
+        m_currentHealth = -1;
+    }
 
 private:
-    float m_invinceTime;
+    float m_invinceTime = 0;
     float m_maxInvinceTime;
     int   m_maxHealth;
     int   m_currentHealth;

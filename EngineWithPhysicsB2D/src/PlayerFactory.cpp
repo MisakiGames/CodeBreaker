@@ -61,7 +61,7 @@ GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow&  window,
     spriteComp->loadAndMapTexture("../assets/Character/Red/Idle.png", AnimationState::Idle, 5);
     spriteComp->loadAndMapTexture("../assets/Character/Red/Dash.png", AnimationState::Dash, 10, false);
     spriteComp->loadAndMapTexture("../assets/Character/Red/Death.png", AnimationState::Dead, 10, false);
-    auto                           health        = player->addComponent<HealthComponent>(*player, 100, 0.5, true);
+    auto                           health        = player->addComponent<HealthComponent>(*player, 100, 0.5, false);
     std::weak_ptr<HealthComponent> healthWeakPtr = health;
 
     auto                           rigidBody     = player->addComponent<RigidBodyComponent>(*player, b2_dynamicBody);
@@ -158,7 +158,8 @@ GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow&  window,
                 if (damageComp->getOwnerId() != self.getGameObject().getId())
                 {
                     healthComp->takeDamage(damageComp->getDamage());
-                    healthComp->setInvincible(true);
+                    if (other.getTag() == "InstaKill")
+                        healthComp->kill();
                 }
             }
         });

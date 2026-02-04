@@ -91,21 +91,25 @@
  <objectgroup id="4" name="GameObjects">
   <object id="2" name="TopWallCollider" type="Trigger" x="0.363636" y="-7.81818" width="960" height="8">
    <properties>
+    <property name="ColliderTag" value="OutsideWorld"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
   <object id="5" name="BottomWallCollider" type="Trigger" x="2" y="544" width="960" height="8">
    <properties>
+    <property name="ColliderTag" value="OutsideWorld"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
   <object id="3" name="RightWallCollider" type="Trigger" x="960.091" y="-0.181818" width="7" height="544">
    <properties>
+    <property name="ColliderTag" value="OutsideWorld"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
   <object id="4" name="LeftWallCollider" type="Trigger" x="-7.09091" y="0.181818" width="7" height="544">
    <properties>
+    <property name="ColliderTag" value="OutsideWorld"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
@@ -133,7 +137,7 @@
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="18" name="Destroy_Object_0" type="Sprite" x="123.818" y="25.4545" width="32" height="17.6364">
+  <object id="18" name="Destroy_Object_0" type="Sprite" x="123.818" y="25.4545" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>

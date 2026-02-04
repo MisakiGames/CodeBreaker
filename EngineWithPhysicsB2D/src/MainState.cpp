@@ -46,22 +46,12 @@ void MainState::init()
         sf::err() << "Could not load tile map\n";
     }
 
-<<<<<<< HEAD
-    // Create player ship (added to GameObjectManager via GameObjectCreateEvent)
     auto player  = PlayerFactory::createPlayer(m_game->getWindow(), PlayerSpawn::TopLeft, m_gameObjectManager, 0);
     auto player2 = PlayerFactory::createPlayer(m_game->getWindow(), PlayerSpawn::BottomLeft, m_gameObjectManager, 1);
     auto crown   = ItemFactory::createItem(m_game->getWindow(), ItemType::Crown, 1);
-    // Create enemy ship (added to GameObjectManager via GameObjectCreateEvent)
-    //auto enemy = ShipFactory::createEnemyShip(m_game->getWindow(), player.get());
-=======
-    auto player = PlayerFactory::createPlayer(m_game->getWindow(), PlayerSpawn::TopLeft, m_gameObjectManager, 0);
-    auto player2 = PlayerFactory::createPlayer(m_game->getWindow(), PlayerSpawn::BottomLeft, m_gameObjectManager, 1);
-    auto crown  = ItemFactory::createItem(m_game->getWindow(), ItemType::Crown, m_gameObjectManager, 1);
-   
->>>>>>> Develope
     // Moving camera
     {
-        const auto camera = GameObject::create("Camera");
+        const auto camera     = GameObject::create("Camera");
         const auto renderComp = camera->addComponent<CameraRenderComponent>(*camera,
                                                                             m_game->getWindow(),
                                                                             m_game->getWindow().getView());

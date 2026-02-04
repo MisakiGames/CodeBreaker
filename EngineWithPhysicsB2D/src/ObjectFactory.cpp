@@ -36,6 +36,7 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
     float                 health      = 0;
     bool                  spawner     = false;
     std::vector<ItemType> itemType;
+    std::string           tag = "";
 
     for (const auto* property : object.getProperties().get())
     {
@@ -71,6 +72,8 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
         {
             itemType.push_back(static_cast<ItemType>(std::any_cast<int>(property->getValue())));
         }
+        else if (property->getName() == "ColliderTag")
+            tag = std::any_cast<std::string>(property->getValue());
     }
 
     if (spriteTexture.string().length() > 0)
@@ -115,6 +118,9 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
                     }
                 }
             });
+
+        if (tag.length() > 0)
+            collider->setTag(tag);
     }
 
     if (spawner)
@@ -140,11 +146,15 @@ static GameObject::Ptr loadCollider(tson::Object& object, const std::string& lay
 {
     auto gameObject = GameObject::create(object.getName());
     gameObject->setPosition(static_cast<float>(object.getPosition().x), static_cast<float>(object.getPosition().y));
-    bool damage = false;
+    bool        damage = false;
+    std::string tag    = "";
+
     for (const auto* property : object.getProperties().get())
     {
         if (property->getName() == "Dead")
             damage = std::any_cast<bool>(property->getValue());
+        if (property->getName() == "ColliderTag")
+            tag = std::any_cast<std::string>(property->getValue());
     }
 
     const auto rigidComp = gameObject->addComponent<RigidBodyComponent>(*gameObject, b2_staticBody);
@@ -156,10 +166,13 @@ static GameObject::Ptr loadCollider(tson::Object& object, const std::string& lay
     b2FixtureDef fixtureDef{};
     fixtureDef.shape = &polygonShape;
 
-    gameObject->addComponent<ColliderComponent>(*gameObject, *rigidComp, fixtureDef);
+    auto collider = gameObject->addComponent<ColliderComponent>(*gameObject, *rigidComp, fixtureDef);
 
     if (damage)
         gameObject->addComponent<DamageComponent>(*gameObject, 9999, gameObject->getId());
+
+    if (tag.length() > 0)
+        collider->setTag(tag);
 
     if (!gameObject->init())
     {
@@ -175,11 +188,15 @@ static GameObject::Ptr loadTrigger(tson::Object& object, const std::string& laye
 {
     auto gameObject = GameObject::create(object.getName());
     gameObject->setPosition(static_cast<float>(object.getPosition().x), static_cast<float>(object.getPosition().y));
-    bool damage = false;
+    bool        damage = false;
+    std::string tag    = "";
+
     for (const auto* property : object.getProperties().get())
     {
         if (property->getName() == "Dead")
             damage = std::any_cast<bool>(property->getValue());
+        if (property->getName() == "ColliderTag")
+            tag = std::any_cast<std::string>(property->getValue());
     }
     const auto rb = gameObject->addComponent<RigidBodyComponent>(*gameObject, b2_staticBody);
 
@@ -195,6 +212,8 @@ static GameObject::Ptr loadTrigger(tson::Object& object, const std::string& laye
         gameObject->addComponent<DamageComponent>(*gameObject, 9999, gameObject->getId());
 
     auto collider = gameObject->addComponent<ColliderComponent>(*gameObject, *rb, fixtureDef);
+    if (tag.length() > 0)
+        collider->setTag(tag);
 
     // Add callback to output when something enters the trigger
     collider->registerOnCollisionFunction(
