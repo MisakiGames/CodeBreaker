@@ -1,5 +1,5 @@
 Panel.Player {
-    Size = (22%, 12%);
+    Size = (18%, 85);
 
     Label.Score {
         Text = "0";

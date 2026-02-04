@@ -48,18 +48,15 @@ void MainState::init()
         sf::err() << "Could not load tile map\n";
     }
 
-    m_players.push_back(
-        PlayerFactory::createPlayer(m_game->getWindow(), PlayerSpawn::TopLeft, m_gameObjectManager, 0, "red"));
-    m_players.push_back(
-        PlayerFactory::createPlayer(m_game->getWindow(), PlayerSpawn::BottomLeft, m_gameObjectManager, 1, "blue"));
-    m_players.push_back(
-        PlayerFactory::createPlayer(m_game->getWindow(), PlayerSpawn::BottomRight, m_gameObjectManager, 2, "green"));
-    m_players.push_back(
-        PlayerFactory::createPlayer(m_game->getWindow(), PlayerSpawn::TopRight, m_gameObjectManager, 3, "yellow"));
+
+    for (const auto& config : m_playerConfigs)
+    {
+        m_players.push_back(
+            PlayerFactory::createPlayer(m_game->getWindow(), config.spawn, m_gameObjectManager, config.id, config.color));
+    }
 
     auto crown = ItemFactory::createItem(m_game->getWindow(), ItemType::Crown, m_gameObjectManager, 1);
 
-    // Moving camera
     {
         const auto camera     = GameObject::create("Camera");
         const auto renderComp = camera->addComponent<CameraRenderComponent>(*camera,
@@ -76,19 +73,22 @@ void MainState::init()
         m_spriteManager.setCamera(renderComp.get());
     }
 
-    // Set Player Input Actions
-    // May move to view later on
-    InputManager::getInstance().bind("up", sf::Keyboard::W, 0);
-    InputManager::getInstance().bind("left", sf::Keyboard::A, 0);
-    InputManager::getInstance().bind("down", sf::Keyboard::S, 0);
-    InputManager::getInstance().bind("right", sf::Keyboard::D, 0);
-    InputManager::getInstance().bind("dash", sf::Keyboard::Enter, 0);
+    auto& input = InputManager::getInstance();
 
-    InputManager::getInstance().bind("left", {sf::Joystick::X, 50.0f, false}, 1);
-    InputManager::getInstance().bind("right", {sf::Joystick::X, 50.0f, true}, 1);
-    InputManager::getInstance().bind("up", {sf::Joystick::Y, 50.0f, false}, 1);
-    InputManager::getInstance().bind("down", {sf::Joystick::Y, 50.0f, true}, 1);
-    InputManager::getInstance().bind("dash", 0, 1);
+    input.bind("up", sf::Keyboard::W, 0);
+    input.bind("left", sf::Keyboard::A, 0);
+    input.bind("down", sf::Keyboard::S, 0);
+    input.bind("right", sf::Keyboard::D, 0);
+    input.bind("dash", sf::Keyboard::Enter, 0);
+
+    for (int i = 1; i <= 3; ++i)
+    {
+        input.bind("left", {sf::Joystick::X, 50.0f, false}, i);
+        input.bind("right", {sf::Joystick::X, 50.0f, true}, i);
+        input.bind("up", {sf::Joystick::Y, 50.0f, false}, i);
+        input.bind("down", {sf::Joystick::Y, 50.0f, true}, i);
+        input.bind("dash", 0u, i); 
+    }
 
     // Load and initialize TGui elements
     m_game->getGui().loadWidgetsFromFile("../assets/mainTgui.txt");
@@ -105,7 +105,7 @@ void MainState::init()
         std::string uniqueName = "PlayerUI_" + std::to_string(i);
         m_game->getGui().add(playerPanel, uniqueName);
 
-        playerPanel->setPosition({tgui::Layout(std::to_string(2 + i * 24) + "%"), "85%"});
+        playerPanel->setPosition({tgui::Layout(std::to_string(2 + i * 26) + "%"), "90%"});
 
         auto renderer = playerPanel->getRenderer();
         if (renderer)
@@ -155,6 +155,11 @@ void MainState::update(const float deltaTime)
             {
                 int roundedScore = static_cast<int>(std::round(scoreComp->getScore()));
                 label->setText("Score: \n" + std::to_string(roundedScore) + "%");
+
+                if (roundedScore >= m_maxScore)
+                {
+                    m_gameStateManager->setState("EndState");
+                }
             }
 
             if (auto crownImg = panel->get<tgui::Picture>("Crown"))

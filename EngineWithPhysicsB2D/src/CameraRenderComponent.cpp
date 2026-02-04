@@ -1,21 +1,22 @@
 #include "stdafx.h"
 
 #include "CameraRenderComponent.hpp"
+
 #include "GameObject.hpp"
-#include "RigidbodyComponent.hpp"
 #include "PhysicsManager.hpp"
+#include "RigidbodyComponent.hpp"
 
 namespace mmt_gd
 {
 CameraRenderComponent::CameraRenderComponent(GameObject& gameObject, sf::RenderWindow& renderWindow, const sf::View& view) :
 IRenderComponent(gameObject, renderWindow),
 m_view(view),
-m_baseSize(view.getSize()) 
+m_baseSize(view.getSize())
 {
     m_view.setCenter(m_standardPosition);
     m_renderWindow.setView(m_view);
 }
-  
+
 bool CameraRenderComponent::init()
 {
     return true;
@@ -65,11 +66,19 @@ void CameraRenderComponent::update(float deltaTime)
 
             playerCenter += pos;
         }
-        playerCenter     = playerCenter / static_cast<float>(m_targets.size());
+        //This function is more of a action camera:
+        //playerCenter = playerCenter / static_cast<float>(m_targets.size());
+
+        //This function assures that the camera always keeps all players in view:
+        float width      = maxX - minX;
+        float height     = maxY - minY;
+        auto  a          = maxX - (width / 2);
+        auto  b          = maxY - (height / 2) + m_padding / 4;
+        playerCenter = sf::Vector2f(a, b);
 
         // Zoom calculation
-        float width   = maxX - minX + m_padding;
-        float height  = maxY - minY + m_padding;
+        width      += m_padding;
+        height     += m_padding;
         float zoomFactor = std::max(width / m_baseSize.x, height / m_baseSize.y);
         zoomFactor       = std::clamp(zoomFactor, m_minZoom, m_maxZoom);
 
