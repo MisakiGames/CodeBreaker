@@ -169,6 +169,9 @@ GameObject::Ptr ItemFactory::createBombObject(sf::RenderWindow& window)
     const auto                      rb             = bomb->addComponent<RigidBodyComponent>(*bomb, b2_staticBody);
     auto                            respawn        = bomb->addComponent<RespawnComponent>(*bomb);
     std::weak_ptr<RespawnComponent> respawnWeakPtr = respawn;
+    spriteComp->subscribeToOnFinish([&respawn = respawn]() 
+        { respawn->startRespawn();
+        });
 
     b2PolygonShape polygonShape{};
     const auto     size = PhysicsManager::t2b(tson::Vector2f(354, 342));

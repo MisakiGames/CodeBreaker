@@ -2,6 +2,9 @@
 
 #include "IRenderComponent.hpp"
 
+#include <vector>
+#include <functional>
+
 namespace mmt_gd
 {
 
@@ -30,6 +33,10 @@ public:
         m_stop = false;
         m_time = 0;
     }
+    void subscribeToOnFinish(std::function<void()> subscriber)
+    {
+        m_onFinish.push_back(subscriber);
+    }
 
 private:
 
@@ -45,5 +52,6 @@ private:
     sf::IntRect  m_textureRect;
     bool         m_hasTextureRect = false;
     bool         m_stop = false;
+    std::vector<std::function<void()>> m_onFinish;
 };
 } // namespace mmt_gd
