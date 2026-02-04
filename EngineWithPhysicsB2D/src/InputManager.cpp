@@ -144,18 +144,7 @@ bool InputManager::isKeyReleased(const std::string& action, int playerIdx)
     return !getRawState(action, playerIdx, m_currentFrame) && getRawState(action, playerIdx, m_lastFrame);
 }
 
-void InputManager::init()
-{
-    bind("Exit", sf::Keyboard::Escape, 0);
-    bind("debugdraw", sf::Keyboard::F1, 0);
-
-    bind("up", sf::Keyboard::Up, 0);
-    bind("left", sf::Keyboard::Left, 0);
-    bind("down", sf::Keyboard::Down, 0);
-    bind("right", sf::Keyboard::Right, 0);
-}
-
-void InputManager::shutdown()
+void InputManager::clear()
 {
     for (int i = 0; i < PlayerCount; ++i)
     {

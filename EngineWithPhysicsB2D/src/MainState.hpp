@@ -20,11 +20,17 @@ public:
     void draw() override;
 
 private:
+    void endGame(std::shared_ptr<GameObject> winner);
+
     SpriteManager     m_spriteManager;
     GameObjectManager m_gameObjectManager;
     PhysicsManager    m_physicsManager;
+    GameObject::Ptr m_camera;
 
     const float m_maxScore = 100;
+    const float m_winDelay = 5.f;
+    float       m_winTimer = 0.f;
+    bool        m_gameEnded = false;
 
     struct PlayerConfig
     {

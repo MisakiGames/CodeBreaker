@@ -85,8 +85,7 @@ public:
         m_renderWindow = window;
     }
 
-    void init();
-    void shutdown();
+    void clear();
     int  getPlayerCount()
     {
         return PlayerCount;

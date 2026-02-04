@@ -34,6 +34,9 @@ void MenuState::init()
 
     m_view = m_game->getWindow().getView();
 
+    InputManager::getInstance().bind("Exit", sf::Keyboard::Escape, 0);
+    InputManager::getInstance().bind("debugdraw", sf::Keyboard::F1, 0);
+
     m_isInit = true;
 
     // LoadGui

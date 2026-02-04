@@ -1,5 +1,5 @@
 Panel.Player {
-    Size = (18%, 85);
+    Size = (18%, 12%);
 
     Label.Score {
         Text = "0";
@@ -22,8 +22,8 @@ Panel.Player {
 
     Picture.Crown {
         Position = (80%, 5%);
-        Size = (24, 24);
+        Size = (14, 14);
         Asset = "../assets/crown.png"; 
-        Visible = false;
+        Visible = true;
     }
 }

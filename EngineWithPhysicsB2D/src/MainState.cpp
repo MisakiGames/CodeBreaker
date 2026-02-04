@@ -57,19 +57,19 @@ void MainState::init()
 
     auto crown = ItemFactory::createItem(m_game->getWindow(), ItemType::Crown, m_gameObjectManager, 1);
 
+    m_camera = GameObject::create("Camera");
     {
-        const auto camera     = GameObject::create("Camera");
-        const auto renderComp = camera->addComponent<CameraRenderComponent>(*camera,
-                                                                            m_game->getWindow(),
-                                                                            m_game->getWindow().getView());
+        const auto renderComp = m_camera->addComponent<CameraRenderComponent>(*m_camera,
+                                                                              m_game->getWindow(),
+                                                                              m_game->getWindow().getView());
         renderComp->setTargets(m_players);
 
-        if (!camera->init())
+        if (!m_camera->init())
         {
             FF_ERROR_MSG("Could not initialize camera");
         }
 
-        m_gameObjectManager.addGameObject(camera);
+        m_gameObjectManager.addGameObject(m_camera);
         m_spriteManager.setCamera(renderComp.get());
     }
 
@@ -87,7 +87,7 @@ void MainState::init()
         input.bind("right", {sf::Joystick::X, 50.0f, true}, i);
         input.bind("up", {sf::Joystick::Y, 50.0f, false}, i);
         input.bind("down", {sf::Joystick::Y, 50.0f, true}, i);
-        input.bind("dash", 0u, i); 
+        input.bind("dash", 0u, i);
     }
 
     // Load and initialize TGui elements
@@ -105,13 +105,13 @@ void MainState::init()
         std::string uniqueName = "PlayerUI_" + std::to_string(i);
         m_game->getGui().add(playerPanel, uniqueName);
 
-        playerPanel->setPosition({tgui::Layout(std::to_string(2 + i * 26) + "%"), "90%"});
+        playerPanel->setPosition({tgui::Layout(std::to_string(2 + i * 26) + "%"), "86%"});
 
         auto renderer = playerPanel->getRenderer();
         if (renderer)
         {
             const float opacity = 130;
-            std::string id = m_players[i]->getId();
+            std::string id      = m_players[i]->getId();
 
             if (id == "Player_red")
                 renderer->setBackgroundColor(tgui::Color(255, 0, 0, opacity));
@@ -140,7 +140,6 @@ void MainState::update(const float deltaTime)
         return;
     }
 
-    // UI Update
     for (size_t i = 0; i < m_players.size(); ++i)
     {
         auto panel = m_game->getGui().get<tgui::Panel>("PlayerUI_" + std::to_string(i));
@@ -158,7 +157,19 @@ void MainState::update(const float deltaTime)
 
                 if (roundedScore >= m_maxScore)
                 {
-                    m_gameStateManager->setState("EndState");
+                    if (!m_gameEnded)
+                        endGame(m_players[i]);
+
+                    m_camera->update(deltaTime);
+                    m_winTimer += deltaTime;
+
+                    if (m_winTimer < m_winDelay)
+                        return;
+
+                    std::cout << "game ended \n";
+                    return;
+                    //m_winTimer = 0.f;
+                    //m_gameStateManager->setState("EndState");
                 }
             }
 
@@ -173,14 +184,21 @@ void MainState::update(const float deltaTime)
         }
     }
 
-    for (int i = 0; i < InputManager::getInstance().getPlayerCount(); ++i)
-    {
-        // Update all Uis with their player data
-    }
-
     EventBus::getInstance().processEvents(deltaTime);
     m_gameObjectManager.update(deltaTime);
     m_physicsManager.update(deltaTime);
+}
+
+void MainState::endGame(std::shared_ptr<GameObject> winner)
+{
+    m_gameEnded = true;
+
+    //deactivate input
+    InputManager::getInstance().clear();
+
+    std::vector<std::shared_ptr<GameObject>> winners;
+    winners.push_back(winner);
+    m_camera->getComponent<CameraRenderComponent>()->setTargets(winners);
 }
 
 void MainState::draw()

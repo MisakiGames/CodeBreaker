@@ -1,7 +1,6 @@
 #pragma once
 
 #include "GameState.hpp"
-
 #include <SFML/Graphics/Text.hpp>
 
 namespace mmt_gd
