@@ -1,0 +1,29 @@
+Panel.Player {
+    Size = (22%, 12%);
+
+    Label.Score {
+        Text = "0";
+        Position = (5%, 5%);
+        TextSize = 20;
+
+	Renderer {
+        	TextColor = rgb(255, 255, 255)
+    	}
+    }
+
+    ProgressBar.Health {
+        Position = (5%, 75%);
+        Size = (90%, 20%);
+        Minimum = 0;
+        Maximum = 100;
+        Value = 100;
+        Renderer { FillColor = Red; }
+    }
+
+    Picture.Crown {
+        Position = (80%, 5%);
+        Size = (24, 24);
+        Asset = "../assets/crown.png"; 
+        Visible = false;
+    }
+}

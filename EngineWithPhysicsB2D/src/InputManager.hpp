@@ -87,6 +87,10 @@ public:
 
     void init();
     void shutdown();
+    int  getPlayerCount()
+    {
+        return PlayerCount;
+    };
 
 private:
     InputManager()  = default;

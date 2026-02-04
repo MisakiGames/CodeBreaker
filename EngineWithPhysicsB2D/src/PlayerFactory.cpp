@@ -24,12 +24,15 @@
 #include "TransformAnimationComponent.hpp"
 #include "TransformAnimationSmoothFollow.hpp"
 
+#include <sstream>
+
 namespace mmt_gd
 {
 GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow&  window,
                                             enum PlayerSpawn   spawnName,
                                             GameObjectManager& goManager,
-                                            int                plrIndex)
+                                            int                plrIndex,
+                                            std::string        color)
 {
     std::string spawn = "";
     switch (spawnName)
@@ -51,16 +54,20 @@ GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow&  window,
     }
 
     auto spawnPoint = goManager.getGameObject(spawn)->getPosition();
-    auto player     = GameObject::create("Player" + plrIndex);
+    auto player     = GameObject::create("Player_" + color);
     player->setPosition(spawnPoint);
 
     auto spriteComp = player->addComponent<
         SpriteAnimationRenderComponent>(*player, window, "GameObjects", sf::IntRect(18, 20, 12, 24), sf::Vector2f(8, 6));
 
-    spriteComp->loadAndMapTexture("../assets/Character/Red/Walk.png", AnimationState::Walk, 5);
-    spriteComp->loadAndMapTexture("../assets/Character/Red/Idle.png", AnimationState::Idle, 5);
-    spriteComp->loadAndMapTexture("../assets/Character/Red/Dash.png", AnimationState::Dash, 10, false);
-    spriteComp->loadAndMapTexture("../assets/Character/Red/Death.png", AnimationState::Dead, 10, false);
+    std::stringstream sstream;
+    sstream << "../assets/Character/" << color << "/";
+
+    spriteComp->loadAndMapTexture(sstream.str() + "Walk.png", AnimationState::Walk, 5);
+    spriteComp->loadAndMapTexture(sstream.str() + "Idle.png", AnimationState::Idle, 5);
+    spriteComp->loadAndMapTexture(sstream.str() + "Dash.png", AnimationState::Dash, 10, false);
+    spriteComp->loadAndMapTexture(sstream.str() + "Death.png", AnimationState::Dead, 10, false);
+
     auto health     = player->addComponent<HealthComponent>(*player, 100, true);
     auto rigidBody  = player->addComponent<RigidBodyComponent>(*player, b2_dynamicBody);
     auto damageComp = player->addComponent<DamageComponent>(*player, 10, player->getId());

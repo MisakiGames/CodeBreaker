@@ -22,5 +22,7 @@ private:
     SpriteManager     m_spriteManager;
     GameObjectManager m_gameObjectManager;
     PhysicsManager    m_physicsManager;
+
+    std::vector<std::shared_ptr<GameObject>> m_players;
 };
 } // namespace mmt_gd

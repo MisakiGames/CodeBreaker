@@ -36,7 +36,6 @@ void MenuState::init()
 
     m_isInit = true;
 
-
     // LoadGui
     m_game->getGui().loadWidgetsFromFile("../assets/demoTgui.txt");
 
