@@ -13,8 +13,9 @@ public:
     static std::vector<GameObject::Ptr> createItem(sf::RenderWindow& window, enum ItemType type, int count, bool canBePickup = true);
 
 private:
-    static std::string     getAssetPath(enum ItemType type);
-    static sf::IntRect     getIntRect(enum ItemType type);
-    static GameObject::Ptr addSpecifiedItemComponent(GameObject::Ptr item, ItemComponent& itemComp, enum ItemType type);
+    static std::string                    getAssetPath(enum ItemType type);
+    static sf::IntRect                    getIntRect(enum ItemType type);
+    static float                          getMaxTime(enum ItemType type);
+    static std::shared_ptr<ItemComponent> addSpecifiedItemComponent(GameObject::Ptr item, enum ItemType type);
 };
 }; // namespace mmt_gd

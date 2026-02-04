@@ -22,7 +22,6 @@ void HealthComponent::update(float deltaTime)
 {
     if (m_invincible)
     {
-        std::cout << m_invinceTime << std::endl;
         m_invinceTime += deltaTime;
         if (m_invinceTime >= m_maxInvinceTime)
         {

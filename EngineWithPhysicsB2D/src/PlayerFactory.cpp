@@ -145,6 +145,7 @@ GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow&  window,
         });
 
     auto collider = player->addComponent<ColliderComponent>(*player, *rigidBody, fixtureDef);
+    collider->setSize(sf::Vector2f(12.0f, 24.0f));
     collider->registerOnCollisionFunction(
         [](ColliderComponent& self, ColliderComponent& other)
         {

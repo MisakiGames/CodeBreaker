@@ -54,6 +54,7 @@ public:
         m_textureRect    = rect;
         m_hasTextureRect = true;
     }
+    void setScale(float set);
 
 private:
     void setStateSecret(enum AnimationState state)

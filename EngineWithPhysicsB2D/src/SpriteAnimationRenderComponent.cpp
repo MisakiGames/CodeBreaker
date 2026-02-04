@@ -109,4 +109,8 @@ void SpriteAnimationRenderComponent::draw()
 {
     m_renderWindow.draw(m_sprite, m_gameObject.getTransform());
 }
+void SpriteAnimationRenderComponent::setScale(float set)
+{
+    m_gameObject.setScale(sf::Vector2f(set, set));
+}
 } // namespace mmt_gd

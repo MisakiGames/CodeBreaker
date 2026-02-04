@@ -18,11 +18,13 @@ public:
     void update(float deltaTime) override;
     void pickup(ItemComponent& pickedUpItem);
     void loseItem();
+    void loseCrown();
 
 private:
     void                  HandleCrown(ItemComponent& crownItem);
-    ItemType        holdingItem = ItemType::None;
+    ItemComponent*        holdingItem = nullptr;
     ItemComponent*        m_crown     = nullptr;
     PlayerScoreComponent& m_scoreComp;
+    float                 m_itemUseTime = 0;
 };
 } // namespace mmt_gd

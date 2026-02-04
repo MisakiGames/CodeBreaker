@@ -4,6 +4,7 @@
 
 #include "CameraRenderComponent.hpp"
 #include "ColliderComponent.hpp"
+#include "CrownItemComponent.h"
 #include "DamageComponent.hpp"
 #include "DeadComponent.h"
 #include "DestructionComponent.hpp"
@@ -15,6 +16,7 @@
 #include "PhysicsManager.hpp"
 #include "PlayerMoveComponent.hpp"
 #include "PlayerShootComponent.hpp"
+#include "ResizeItemComponent.h"
 #include "RespawnComponent.h"
 #include "RigidBodyComponent.hpp"
 #include "SpriteAnimationRenderComponent.h"
@@ -46,8 +48,8 @@ std::vector<GameObject::Ptr> ItemFactory::createItem(sf::RenderWindow& window, I
         const auto                      rb             = item->addComponent<RigidBodyComponent>(*item, b2_staticBody);
         auto                            respawn        = item->addComponent<RespawnComponent>(*item);
         std::weak_ptr<RespawnComponent> respawnWeakPtr = respawn;
-        auto                            itemComp       = item->addComponent<ItemComponent>(*item, type);
-        itemComp->setPickup(canBePickup);
+
+        auto itemComp = ItemFactory::addSpecifiedItemComponent(item, type);
         itemComp->subscribeToOnDisappear(
             [respawnWeakPtr = respawnWeakPtr]()
             {
@@ -65,8 +67,6 @@ std::vector<GameObject::Ptr> ItemFactory::createItem(sf::RenderWindow& window, I
         fixtureDef.isSensor = true;
 
         auto collider = item->addComponent<ColliderComponent>(*item, *rb, fixtureDef);
-
-        ItemFactory::addSpecifiedItemComponent(item, *itemComp, type);
 
         if (!item->init())
         {
@@ -115,21 +115,37 @@ sf::IntRect ItemFactory::getIntRect(ItemType type)
 
     return rect;
 }
-GameObject::Ptr ItemFactory::addSpecifiedItemComponent(GameObject::Ptr item, ItemComponent& itemComp, ItemType type)
+std::shared_ptr<ItemComponent> ItemFactory::addSpecifiedItemComponent(GameObject::Ptr item, ItemType type)
 {
+    std::shared_ptr<ItemComponent> itemComp;
     switch (type)
     {
-        case mmt_gd::ItemType::None:
-            break;
         case mmt_gd::ItemType::Crown:
+            itemComp = item->addComponent<CrownItemComponent>(*item, type, 0);
+            itemComp->setPickup(true);
             break;
         case mmt_gd::ItemType::Bomb:
             break;
         case mmt_gd::ItemType::Size:
+            itemComp = item->addComponent<ResizeItemComponent>(*item, type, 5);
             break;
         default:
             break;
     }
-    return item;
+    return itemComp;
+}
+float ItemFactory::getMaxTime(ItemType type)
+{
+    float maxTime = 0;
+    switch (type)
+    {
+        case mmt_gd::ItemType::Bomb:
+            maxTime = 5;
+            break;
+        case mmt_gd::ItemType::Size:
+            maxTime = 5;
+            break;
+    }
+    return maxTime;
 }
 } // namespace mmt_gd

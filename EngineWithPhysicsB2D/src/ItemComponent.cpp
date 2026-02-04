@@ -8,7 +8,10 @@
 
 namespace mmt_gd
 {
-ItemComponent::ItemComponent(GameObject& gameObject, ItemType type) : IComponent(gameObject), m_type(type)
+ItemComponent::ItemComponent(GameObject& gameObject, ItemType type, float maxTime) :
+IComponent(gameObject),
+m_type(type),
+m_maxTime(maxTime)
 {
 }
 
@@ -21,7 +24,6 @@ void ItemComponent::update(float deltaTime)
 
 void ItemComponent::disappear()
 {
-  
     for (auto sub : m_onDisappear)
         sub();
 }

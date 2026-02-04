@@ -16,14 +16,16 @@ enum class ItemType
 class ItemComponent : public IComponent
 {
 public:
-    ItemComponent(GameObject& gameObject, ItemType type);
-    bool init() override
+    ItemComponent(GameObject& gameObject, ItemType type, float maxTime);
+    virtual bool init() override
     {
         return true;
     };
-    void update(float deltaTime) override;
-    void disappear();
-    void subscribeToOnDisappear(std::function<void()> subscriber)
+    virtual void update(float deltaTime) override;
+    void         disappear();
+    virtual void use(GameObject& player)     = 0;
+    virtual void stopUse(GameObject& player) = 0;
+    void         subscribeToOnDisappear(std::function<void()> subscriber)
     {
         m_onDisappear.push_back(subscriber);
     };
@@ -40,12 +42,17 @@ public:
     {
         return m_canBePickedUp;
     }
+    float getMaxTime()
+    {
+        return m_maxTime;
+    }
 
 private:
-    bool                               m_canBePickedUp = true;
+    bool                               m_canBePickedUp = false;
     ItemType                           m_type;
     std::vector<std::function<void()>> m_onDisappear;
     bool                               warp = false;
     sf::Vector2f                       warpTo{};
+    float                              m_maxTime;
 };
 } // namespace mmt_gd

@@ -139,6 +139,7 @@
     <ClInclude Include="../src/stdafx.h" />
     <ClInclude Include="..\src\BulletPool.hpp" />
     <ClInclude Include="..\src\ColliderComponent.hpp" />
+    <ClInclude Include="..\src\CrownItemComponent.h" />
     <ClInclude Include="..\src\DamageComponent.hpp" />
     <ClInclude Include="..\src\DeadComponent.h" />
     <ClInclude Include="..\src\DestructionComponent.hpp" />
@@ -152,6 +153,7 @@
     <ClInclude Include="..\src\PickupComponent.h" />
     <ClInclude Include="..\src\PlayerFactory.h" />
     <ClInclude Include="..\src\PlayerScoreComponent.h" />
+    <ClInclude Include="..\src\ResizeItemComponent.h" />
     <ClInclude Include="..\src\RespawnComponent.h" />
     <ClInclude Include="..\src\ShipFactory.hpp" />
     <ClInclude Include="..\src\ITransformAnimation.hpp" />
@@ -203,6 +205,7 @@
     <ClCompile Include="../src/InputManager.cpp" />
     <ClCompile Include="..\src\BulletPool.cpp" />
     <ClCompile Include="..\src\ColliderComponent.cpp" />
+    <ClCompile Include="..\src\CrownItemComponent.cpp" />
     <ClCompile Include="..\src\DamageComponent.cpp" />
     <ClCompile Include="..\src\DeadComponent.cpp" />
     <ClCompile Include="..\src\DebugDraw.cpp" />
@@ -215,6 +218,7 @@
     <ClCompile Include="..\src\PickupComponent.cpp" />
     <ClCompile Include="..\src\PlayerFactory.cpp" />
     <ClCompile Include="..\src\PlayerScoreComponent.cpp" />
+    <ClCompile Include="..\src\ResizeItemComponent.cpp" />
     <ClCompile Include="..\src\RespawnComponent.cpp" />
     <ClCompile Include="..\src\ShipFactory.cpp" />
     <ClCompile Include="..\src\EventBus.cpp" />
