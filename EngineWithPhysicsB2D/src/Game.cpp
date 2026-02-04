@@ -69,6 +69,7 @@ bool Game::init()
     //
     m_window.create(sf::VideoMode(m_config.m_resolution.x, m_config.m_resolution.y), m_config.m_windowName);
     m_gui.setTarget(m_window);
+    m_gui.setFont("../assets/font.ttf");
 
     m_inputManager->setRenderWindow(&m_window);
 

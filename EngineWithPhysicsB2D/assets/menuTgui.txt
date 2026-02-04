@@ -1,0 +1,51 @@
+Panel.MainContainer {
+    Position = (50%, 50%);
+    Size = (100%, 500); 
+    Origin = (0.5, 0.5);
+    
+    Renderer {
+	BackgroundColor = rgba(15, 15, 20, 180);
+	BorderColor = (30, 15, 20, 160);
+        Borders = (0, 10, 0, 10);
+
+    }
+
+    Label.Title {
+        Text = "Code Breaker";
+        TextSize = 80;
+        Position = (50%, 30%);
+        Origin = (0.5, 0.5); 
+        
+        Renderer {
+	    TextColor = rgba(200, 200, 200, 255);
+            TextStyle = Bold;
+        }
+    }
+
+    Label.PressSpace {
+        Text = ">>> PRESS SPACE TO START <<<";
+        TextSize = 25;
+        Position = (50%, 50%);
+        Origin = (0.5, 0.5);
+        
+        Renderer {
+            TextColor = rgba(200, 200, 200, 255);
+        }
+    }
+
+    Button.StartGameBtn {
+        Position = (50%, 72%);
+        Size = (230, 70);
+        Origin = (0.5, 0.5);
+        Text = "Start Game";
+        TextSize = 18;
+
+        Renderer {
+            BackgroundColor = rgba(100, 100, 100, 200);
+	    TextColor = rgba(200, 200, 200, 255);
+            BorderColor = rgba(80, 70, 60, 255);
+            Borders = (2, 2, 2, 13);
+            BackgroundColorHover = rgba(120, 120, 120, 230);
+        }
+    }
+}
