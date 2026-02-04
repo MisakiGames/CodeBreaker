@@ -1,7 +1,7 @@
 #pragma once
 
 #include "IRenderComponent.hpp"
-
+#include "RigidBodyComponent.hpp"
 #include <SFML/Graphics.hpp>
 
 namespace mmt_gd
@@ -24,7 +24,22 @@ public:
     void update(float deltaTime) override;
     void draw() override;
 
+    void setTargets(const std::vector<std::shared_ptr<GameObject>>& targets);
+
 private:
+    sf::Vector2f m_baseSize;
     sf::View m_view;
+    std::vector<std::shared_ptr<RigidBodyComponent>> m_targets;
+
+    const sf::Vector2f m_standardPosition   = {-150.f, 150.f};
+    const float  m_standardZoom       = 1.f;
+    const float  m_moveSpeed       = 4.f;
+    const float  m_zoomSpeed        = 5.f;
+    const float  m_maxZoom         = 1.8f;
+    const float  m_minZoom         = 0.5f;
+    const float  m_padding            = 300.f;
+
+    sf::Vector2f m_currentPosition = m_standardPosition;
+    float        m_currentZoom     = m_standardZoom;
 };
 } // namespace mmt_gd
