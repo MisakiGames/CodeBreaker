@@ -21,7 +21,7 @@ public:
     {
         return true;
     };
-    void update(float deltaTime) override {};
+    void update(float deltaTime) override;
     void disappear();
     void subscribeToOnDisappear(std::function<void()> subscriber)
     {
@@ -45,5 +45,7 @@ private:
     bool                               m_canBePickedUp = true;
     ItemType                           m_type;
     std::vector<std::function<void()>> m_onDisappear;
+    bool                               warp = false;
+    sf::Vector2f                       warpTo{};
 };
 } // namespace mmt_gd

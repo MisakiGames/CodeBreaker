@@ -16,14 +16,19 @@ bool RespawnComponent::init()
 
 void RespawnComponent::update(float deltaTime)
 {
+    if (warp)
+    {
+        m_gameObject.getComponent<RigidBodyComponent>()->getB2Body()->SetTransform(PhysicsManager::s2b(m_spawn), 0);
+        for (auto sub : on_respawned)
+        {
+            sub();
+        }
+        warp = false;
+    }
 }
 
 void RespawnComponent::startRespawn()
 {
-    m_gameObject.getComponent<RigidBodyComponent>()->getB2Body()->SetTransform(PhysicsManager::s2b(m_spawn), 0);
-    for (auto sub : on_respawned)
-    {
-        sub();
-    }
+    warp = true;
 }
 } // namespace mmt_gd

@@ -25,8 +25,11 @@ public:
     void update(float deltaTime);
 
 private:
+    void spawnItem();
+
     bool                                                                   anyItemAbleToPickup();
     std::unordered_map<ItemType, std::vector<std::shared_ptr<GameObject>>> m_items;
+    std::unordered_map<ItemType, int>                                      m_itemsIndexPtr;
     float                                                                  m_spawnTime    = 0;
     float                                                                  m_spawnMaxTime = 10;
     std::weak_ptr<ItemComponent>                                           m_lastPickupable;

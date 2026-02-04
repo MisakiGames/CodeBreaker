@@ -93,15 +93,12 @@ void SpriteAnimationRenderComponent::update(float deltaTime)
 
 bool SpriteAnimationRenderComponent::loadAndMapTexture(std::string texturePath, enum AnimationState state, float speed, bool loop)
 {
-    sf::Image image;
-    if (!image.loadFromFile(texturePath))
+    sf::Texture m_texture;
+    if (!m_texture.loadFromFile(texturePath))
     {
         sf::err() << "Could not load texture from " << texturePath << '\n';
         return false;
     }
-    image.createMaskFromColor(sf::Color::Black);
-    sf::Texture m_texture;
-    m_texture.loadFromImage(image);
     m_textures[state]      = m_texture;
     m_texturesLoops[state] = loop;
     m_texturesSpeed[state] = speed;

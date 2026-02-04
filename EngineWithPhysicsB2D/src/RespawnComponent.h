@@ -30,5 +30,7 @@ public:
 private:
     sf::Vector2f                       m_spawn;
     std::vector<std::function<void()>> on_respawned;
+    bool                               warp = false;
+    ;
 };
 } // namespace mmt_gd

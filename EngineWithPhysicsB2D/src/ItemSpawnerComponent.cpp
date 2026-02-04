@@ -10,6 +10,7 @@ namespace mmt_gd
 void ItemSpawnerComponent::LoadItem(sf::RenderWindow& window, ItemType type)
 {
     m_items.emplace(type, ItemFactory::createItem(window, type, 10, false));
+    m_itemsIndexPtr.emplace(type, 0);
 }
 
 void ItemSpawnerComponent::update(float deltaTime)
@@ -20,16 +21,28 @@ void ItemSpawnerComponent::update(float deltaTime)
             return;
         m_lastPickupable.reset();
     }
-    if (anyItemAbleToPickup)
+    if (anyItemAbleToPickup())
         return;
     m_spawnTime += deltaTime;
     if (m_spawnTime >= m_spawnMaxTime)
     {
-        std::uniform_int_distribution<> distr(0, m_items.size() - 1);
-        auto                            randomNum = distr(randomGen);
-        auto                            it        = m_items.begin();
-        std::advance(it, randomNum);
+        spawnItem();
+        m_spawnTime = 0;
     }
+}
+void ItemSpawnerComponent::spawnItem()
+{
+    std::uniform_int_distribution<> distr(0, m_items.size() - 1);
+    auto                            randomNum = distr(randomGen);
+    auto                            it        = m_items.begin();
+    std::advance(it, randomNum);
+    ItemType choseType = it->first;
+    auto     item      = m_items[choseType][m_itemsIndexPtr[choseType]]->getComponent<ItemComponent>();
+    item->setPosition(m_gameObject.getPosition());
+    item->setPickup(true);
+    m_itemsIndexPtr[choseType]++;
+    if (m_itemsIndexPtr[choseType] == m_items[choseType].size())
+        m_itemsIndexPtr[choseType] = 0;
 }
 bool ItemSpawnerComponent::anyItemAbleToPickup()
 {

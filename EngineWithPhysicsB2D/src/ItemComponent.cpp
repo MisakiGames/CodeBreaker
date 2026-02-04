@@ -12,15 +12,23 @@ ItemComponent::ItemComponent(GameObject& gameObject, ItemType type) : IComponent
 {
 }
 
+void ItemComponent::update(float deltaTime)
+{
+    if (warp)
+        m_gameObject.getComponent<RigidBodyComponent>()->getB2Body()->SetTransform(PhysicsManager::s2b(warpTo), 0);
+    warp = false;
+}
+
 void ItemComponent::disappear()
 {
-    m_canBePickedUp = true;
+  
     for (auto sub : m_onDisappear)
         sub();
 }
 
 void ItemComponent::setPosition(sf::Vector2f setPos)
 {
-    m_gameObject.getComponent<RigidBodyComponent>()->getB2Body()->SetTransform(PhysicsManager::s2b(setPos), 0);
+    warpTo = setPos;
+    warp   = true;
 }
 } // namespace mmt_gd
