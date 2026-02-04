@@ -288,6 +288,16 @@
                          "value":32
                         }, 
                         {
+                         "name":"Destroyable",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Health",
+                         "type":"float",
+                         "value":1
+                        }, 
+                        {
                          "name":"Mass",
                          "type":"float",
                          "value":1
@@ -296,16 +306,6 @@
                          "name":"Texture",
                          "type":"string",
                          "value":"Map\/furniture\/furniture_05.png"
-                        }, 
-                        {
-                         "name":"TextureRectLeft",
-                         "type":"int",
-                         "value":0
-                        }, 
-                        {
-                         "name":"TextureRectTop",
-                         "type":"int",
-                         "value":0
                         }],
                  "rotation":0,
                  "type":"Sprite",

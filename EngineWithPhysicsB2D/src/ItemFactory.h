@@ -10,7 +10,7 @@ namespace mmt_gd
 class ItemFactory
 {
 public:
-    static std::vector<GameObject::Ptr> createItem(sf::RenderWindow& window, enum ItemType type, int count);
+    static std::vector<GameObject::Ptr> createItem(sf::RenderWindow& window, enum ItemType type, int count, bool canBePickup = true);
 
 private:
     static std::string     getAssetPath(enum ItemType type);

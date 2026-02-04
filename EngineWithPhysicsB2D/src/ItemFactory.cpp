@@ -27,7 +27,7 @@
 #include <string>
 namespace mmt_gd
 {
-std::vector<GameObject::Ptr> ItemFactory::createItem(sf::RenderWindow& window, ItemType type, int count)
+std::vector<GameObject::Ptr> ItemFactory::createItem(sf::RenderWindow& window, ItemType type, int count, bool canBePickup)
 {
     std::vector<GameObject::Ptr> itemGroup;
     for (int i = 0; i < count; i++)
@@ -36,7 +36,10 @@ std::vector<GameObject::Ptr> ItemFactory::createItem(sf::RenderWindow& window, I
         idStream << "Item_" << static_cast<int>(type) << "_" << i;
         std::string id   = idStream.str();
         auto        item = GameObject::create(id);
-        item->setPosition(sf::Vector2f(100, 100));
+        if (type == ItemType::Crown)
+            item->setPosition(sf::Vector2f(100, 100));
+        else
+            item->setPosition(sf::Vector2f(-1000, -1000));
         std::string filePath   = ItemFactory::getAssetPath(type);
         auto        spriteComp = item->addComponent<
                    SpriteRenderComponent>(*item, window, filePath, "GameObjects", ItemFactory::getIntRect(type));
@@ -44,6 +47,7 @@ std::vector<GameObject::Ptr> ItemFactory::createItem(sf::RenderWindow& window, I
         auto                            respawn        = item->addComponent<RespawnComponent>(*item);
         std::weak_ptr<RespawnComponent> respawnWeakPtr = respawn;
         auto                            itemComp       = item->addComponent<ItemComponent>(*item, type);
+        itemComp->setPickup(canBePickup);
         itemComp->subscribeToOnDisappear(
             [respawnWeakPtr = respawnWeakPtr]()
             {
@@ -82,6 +86,13 @@ std::string ItemFactory::getAssetPath(ItemType type)
     {
         case ItemType::Crown:
             path += "crown.png";
+            break;
+        case ItemType::Size:
+            path += "Potion.png";
+            break;
+        case ItemType::Bomb:
+            path += "Bomb.png";
+            break;
     }
 
     return path;
@@ -93,6 +104,13 @@ sf::IntRect ItemFactory::getIntRect(ItemType type)
     {
         case ItemType::Crown:
             rect = sf::IntRect(8, 8, 16, 16);
+            break;
+        case ItemType::Size:
+            rect = sf::IntRect(0, 0, 16, 32);
+            break;
+        case ItemType::Bomb:
+            rect = sf::IntRect(0, 0, 64, 64);
+            break;
     }
 
     return rect;

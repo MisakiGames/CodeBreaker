@@ -7,15 +7,49 @@
 
 namespace mmt_gd
 {
-
 void ItemSpawnerComponent::LoadItem(sf::RenderWindow& window, ItemType type)
 {
-    m_items.emplace(type, ItemFactory::createItem(window, type, 10));
+    m_items.emplace(type, ItemFactory::createItem(window, type, 10, false));
 }
 
 void ItemSpawnerComponent::update(float deltaTime)
 {
-    //TODO
+    if (!m_lastPickupable.expired())
+    {
+        if (auto lastPickupable = m_lastPickupable.lock(); lastPickupable->canBePickedUp())
+            return;
+        m_lastPickupable.reset();
+    }
+    if (anyItemAbleToPickup)
+        return;
+    m_spawnTime += deltaTime;
+    if (m_spawnTime >= m_spawnMaxTime)
+    {
+        std::uniform_int_distribution<> distr(0, m_items.size() - 1);
+        auto                            randomNum = distr(randomGen);
+        auto                            it        = m_items.begin();
+        std::advance(it, randomNum);
+    }
 }
+bool ItemSpawnerComponent::anyItemAbleToPickup()
+{
+    bool ablePickup = false;
+    for (auto itemVector : m_items)
+    {
+        for (auto item : itemVector.second)
+        {
+            auto itemComp = item->getComponent<ItemComponent>();
+            if (itemComp->canBePickedUp())
+            {
+                m_lastPickupable = itemComp;
+                ablePickup       = true;
+                break;
+            }
+        }
+        if (ablePickup)
+            break;
+    }
 
+    return ablePickup;
+}
 } // namespace mmt_gd
