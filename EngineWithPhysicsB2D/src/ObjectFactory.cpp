@@ -6,15 +6,15 @@
 #include "DamageComponent.hpp"
 #include "DestructionComponent.hpp"
 #include "GameObjectEvents.hpp"
+#include "ItemSpawnerComponent.h"
 #include "PhysicsManager.hpp"
 #include "PlayerMoveComponent.hpp"
 #include "PlayerShootComponent.hpp"
 #include "SpriteRenderComponent.hpp"
 #include "Tileson.hpp"
-#include "ItemSpawnerComponent.h"
-#include <vector>
 
 #include <iostream>
+#include <vector>
 
 namespace mmt_gd
 {
@@ -31,10 +31,10 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
     sf::IntRect textureRect{};
     textureRect.width  = object.getSize().x;
     textureRect.height = object.getSize().y;
-    fs::path spriteTexture;
-    bool     destroyable = false;
-    float    health      = 0;
-    bool     spawner     = false;
+    fs::path              spriteTexture;
+    bool                  destroyable = false;
+    float                 health      = 0;
+    bool                  spawner     = false;
     std::vector<ItemType> itemType;
 
     for (const auto* property : object.getProperties().get())
@@ -115,7 +115,6 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
                     }
                 }
             });
-
     }
 
     if (spawner)
@@ -126,8 +125,6 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
             spawner->LoadItem(spriteManager.getWindow(), type);
         }
     }
-
-
 
     if (!gameObject->init())
     {
@@ -147,7 +144,7 @@ static GameObject::Ptr loadCollider(tson::Object& object, const std::string& lay
     for (const auto* property : object.getProperties().get())
     {
         if (property->getName() == "Dead")
-            damage = true;
+            damage = std::any_cast<bool>(property->getValue());
     }
 
     const auto rigidComp = gameObject->addComponent<RigidBodyComponent>(*gameObject, b2_staticBody);
@@ -182,7 +179,7 @@ static GameObject::Ptr loadTrigger(tson::Object& object, const std::string& laye
     for (const auto* property : object.getProperties().get())
     {
         if (property->getName() == "Dead")
-            damage = true;
+            damage = std::any_cast<bool>(property->getValue());
     }
     const auto rb = gameObject->addComponent<RigidBodyComponent>(*gameObject, b2_staticBody);
 
@@ -231,6 +228,44 @@ static GameObject::Ptr loadSpawn(const tson::Object& object, const std::string& 
 
     return gameObject;
 }
+static GameObject::Ptr loadItemSpawner(tson::Object& object, const std::string& layer, const SpriteManager& spriteManager)
+{
+    auto gameObject = GameObject::create(object.getName());
+
+    gameObject->setPosition(static_cast<float>(object.getPosition().x), static_cast<float>(object.getPosition().y));
+
+    // Parse data from file
+    std::vector<ItemType> itemType;
+
+    for (const auto* property : object.getProperties().get())
+    {
+        if (auto name = property->getName(); name == "Bomb")
+        {
+            if (std::any_cast<bool>(property->getValue()))
+                itemType.push_back(ItemType::Bomb);
+        }
+        else if (name == "Size")
+        {
+            if (std::any_cast<bool>(property->getValue()))
+                itemType.push_back(ItemType::Size);
+        }
+    }
+
+    auto spawner = gameObject->addComponent<ItemSpawnerComponent>(*gameObject);
+    for (auto type : itemType)
+    {
+        spawner->LoadItem(spriteManager.getWindow(), type);
+    }
+
+    if (!gameObject->init())
+    {
+        sf::err() << "Could not initialize go " << gameObject->getId() << " in TileMap\n";
+    }
+
+    EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(gameObject));
+
+    return gameObject;
+}
 
 GameObject::Ptr ObjectFactory::processTsonObject(tson::Object&        object,
                                                  const tson::Layer&   layer,
@@ -253,6 +288,10 @@ GameObject::Ptr ObjectFactory::processTsonObject(tson::Object&        object,
     if (object.getType() == "Spawn")
     {
         auto spawn = loadSpawn(object, layer.getName());
+    }
+    if (object.getType() == "ItemSpawner")
+    {
+        auto spawn = loadItemSpawner(object, layer.getName(), spriteManager);
     }
 
     return {};

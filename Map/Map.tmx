@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="left-up" width="60" height="34" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="19">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="left-up" width="60" height="34" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="20">
  <editorsettings>
   <export target="../EngineWithPhysicsB2D/assets/MainGame.tmj" format="json"/>
  </editorsettings>
@@ -138,6 +138,12 @@
     <property name="Texture" value="Map/furniture/furniture_05.png"/>
     <property name="TextureRectLeft" type="int" value="0"/>
     <property name="TextureRectTop" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="19" name="ItemSpawner" type="ItemSpawner" x="196.75" y="33.5" width="19.5" height="18">
+   <properties>
+    <property name="Bomb" type="bool" value="true"/>
+    <property name="Size" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>

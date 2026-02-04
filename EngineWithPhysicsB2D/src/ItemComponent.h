@@ -9,7 +9,9 @@ namespace mmt_gd
 enum class ItemType
 {
     None,
-    Crown
+    Crown,
+    Bomb,
+    Size
 };
 class ItemComponent : public IComponent
 {
