@@ -12,7 +12,7 @@ public:
                          size_t             poolSize,
                          sf::RenderWindow&  renderWindow,
                          const std::string& textureFile,
-                         const sf::IntRect& textureRect,
+                         const sf::IntRect& m_textureRect,
                          const sf::FloatRect& colliderRect,
                          float              bulletMass,
                          const std::string& layerName,

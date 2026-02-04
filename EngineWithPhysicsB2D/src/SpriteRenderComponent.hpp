@@ -16,7 +16,7 @@ public:
                           sf::RenderWindow& renderWindow,
                           std::string       textureFile,
                           std::string       layerName,
-                          sf::IntRect       textureRect = sf::IntRect());
+                          sf::IntRect       m_textureRect = sf::IntRect());
 
     virtual ~SpriteRenderComponent() override;
 

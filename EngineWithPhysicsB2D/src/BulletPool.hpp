@@ -9,7 +9,7 @@ class BulletPool
 public:
     explicit BulletPool(size_t                                                                size,
                         const std::string&                                                    textureFile,
-                        sf::IntRect                                                           textureRect,
+                        sf::IntRect                                                           m_textureRect,
                         const std::string&                                                    layerName,
                         sf::RenderWindow&                                                     renderWindow,
                         const sf::FloatRect& colliderRect,

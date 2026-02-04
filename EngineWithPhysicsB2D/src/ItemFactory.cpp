@@ -2,6 +2,8 @@
 
 #include "ItemFactory.h"
 
+#include "BombAnimationComponent.h"
+#include "BombItemComponent.h"
 #include "CameraRenderComponent.hpp"
 #include "ColliderComponent.hpp"
 #include "CrownItemComponent.h"
@@ -29,6 +31,7 @@
 #include <string>
 namespace mmt_gd
 {
+int ItemFactory::bombCount = 0;
 std::vector<GameObject::Ptr> ItemFactory::createItem(sf::RenderWindow& window, ItemType type, int count, bool canBePickup)
 {
     std::vector<GameObject::Ptr> itemGroup;
@@ -49,7 +52,7 @@ std::vector<GameObject::Ptr> ItemFactory::createItem(sf::RenderWindow& window, I
         auto                            respawn        = item->addComponent<RespawnComponent>(*item);
         std::weak_ptr<RespawnComponent> respawnWeakPtr = respawn;
 
-        auto itemComp = ItemFactory::addSpecifiedItemComponent(item, type);
+        auto itemComp = ItemFactory::addSpecifiedItemComponent(window, item, type);
         itemComp->subscribeToOnDisappear(
             [respawnWeakPtr = respawnWeakPtr]()
             {
@@ -70,7 +73,7 @@ std::vector<GameObject::Ptr> ItemFactory::createItem(sf::RenderWindow& window, I
 
         if (!item->init())
         {
-            sf::err() << "Could not initialize player ship\n";
+            sf::err() << "Could not initialize item\n";
         }
 
         EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(item));
@@ -115,7 +118,7 @@ sf::IntRect ItemFactory::getIntRect(ItemType type)
 
     return rect;
 }
-std::shared_ptr<ItemComponent> ItemFactory::addSpecifiedItemComponent(GameObject::Ptr item, ItemType type)
+std::shared_ptr<ItemComponent> ItemFactory::addSpecifiedItemComponent(sf::RenderWindow& window, GameObject::Ptr item, ItemType type)
 {
     std::shared_ptr<ItemComponent> itemComp;
     switch (type)
@@ -125,6 +128,7 @@ std::shared_ptr<ItemComponent> ItemFactory::addSpecifiedItemComponent(GameObject
             itemComp->setPickup(true);
             break;
         case mmt_gd::ItemType::Bomb:
+            itemComp = item->addComponent<BombItemComponent>(*item, type, 0, ItemFactory::createBombObject(window));
             break;
         case mmt_gd::ItemType::Size:
             itemComp = item->addComponent<ResizeItemComponent>(*item, type, 5);
@@ -147,5 +151,43 @@ float ItemFactory::getMaxTime(ItemType type)
             break;
     }
     return maxTime;
+}
+
+GameObject::Ptr ItemFactory::createBombObject(sf::RenderWindow& window)
+{
+
+    std::stringstream idStream;
+    idStream << "Bomb_" << bombCount;
+    bombCount++;
+    std::string id   = idStream.str();
+    auto        bomb = GameObject::create(id);
+    bomb->setPosition(sf::Vector2f(100, 100));
+    std::string filePath   = "../assets/explosion.png";
+    auto        spriteComp = bomb->addComponent<
+               BombAnimationComponent>(*bomb, window, filePath, "GameObjects", 3, sf::IntRect(0, 0, 354, 342), sf::Vector2f(7, 1));
+    bomb->setScale(1, 1);
+    const auto                      rb             = bomb->addComponent<RigidBodyComponent>(*bomb, b2_staticBody);
+    auto                            respawn        = bomb->addComponent<RespawnComponent>(*bomb);
+    std::weak_ptr<RespawnComponent> respawnWeakPtr = respawn;
+
+    b2PolygonShape polygonShape{};
+    const auto     size = PhysicsManager::t2b(tson::Vector2f(354, 342));
+    polygonShape.SetAsBox(size.x / 2, size.y / 2, b2Vec2{size.x / 2, size.y / 2}, 0);
+
+    b2FixtureDef fixtureDef{};
+    fixtureDef.shape    = &polygonShape;
+    fixtureDef.isSensor = true;
+
+    auto damage   = bomb->addComponent<DamageComponent>(*bomb, 10, bomb->getId());
+    auto collider = bomb->addComponent<ColliderComponent>(*bomb, *rb, fixtureDef);
+
+    if (!bomb->init())
+    {
+        sf::err() << "Could not initialize bomb\n";
+    }
+
+    EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(bomb));
+
+    return bomb;
 }
 } // namespace mmt_gd

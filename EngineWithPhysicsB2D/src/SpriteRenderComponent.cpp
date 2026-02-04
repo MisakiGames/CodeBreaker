@@ -14,12 +14,12 @@ SpriteRenderComponent::SpriteRenderComponent(GameObject&       gameObject,
                                              sf::RenderWindow& renderWindow,
                                              std::string       textureFile,
                                              std::string       layerName,
-                                             sf::IntRect       textureRect) :
+                                             sf::IntRect       m_textureRect) :
 IRenderComponent(gameObject, renderWindow),
 m_textureFile(std::move(textureFile)),
 m_layerName(std::move(layerName)),
-m_textureRect(textureRect),
-m_hasTextureRect(textureRect.width > 0 && textureRect.height > 0)
+m_textureRect(m_textureRect),
+m_hasTextureRect(m_textureRect.width > 0 && m_textureRect.height > 0)
 {
     EventBus::getInstance().fireEvent(std::make_shared<RenderableCreateEvent>(m_layerName, *this));
 }

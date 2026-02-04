@@ -12,13 +12,13 @@ SpriteAnimationRenderComponent::SpriteAnimationRenderComponent(
     GameObject&       gameObject,
     sf::RenderWindow& renderWindow,
     std::string       layerName,
-    sf::IntRect       textureRect,
+    sf::IntRect       m_textureRect,
     sf::Vector2f      frameCount) :
 IRenderComponent(gameObject, renderWindow),
 m_frameCount(frameCount),
 m_layerName(std::move(layerName)),
-m_textureRect(textureRect),
-m_hasTextureRect(textureRect.width > 0 && textureRect.height > 0)
+m_textureRect(m_textureRect),
+m_hasTextureRect(m_textureRect.width > 0 && m_textureRect.height > 0)
 {
     EventBus::getInstance().fireEvent(std::make_shared<RenderableCreateEvent>(m_layerName, *this));
 }
@@ -44,7 +44,6 @@ bool SpriteAnimationRenderComponent::init()
 
 void SpriteAnimationRenderComponent::update(float deltaTime)
 {
-    const float SPEED = 5;
     if (!m_stateSetThisFrame)
         setStateSecret(AnimationState::Idle);
     if (m_lastFramePos != m_gameObject.getPosition())

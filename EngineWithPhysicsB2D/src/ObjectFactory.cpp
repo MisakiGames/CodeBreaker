@@ -28,9 +28,9 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
     gameObject->setPosition(static_cast<float>(object.getPosition().x), static_cast<float>(object.getPosition().y));
 
     // Parse data from file
-    sf::IntRect textureRect{};
-    textureRect.width  = object.getSize().x;
-    textureRect.height = object.getSize().y;
+    sf::IntRect m_textureRect{};
+    m_textureRect.width  = object.getSize().x;
+    m_textureRect.height = object.getSize().y;
     fs::path              spriteTexture;
     bool                  destroyable = false;
     float                 health      = 0;
@@ -46,11 +46,11 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
         }
         else if (name == "TextureRectLeft")
         {
-            textureRect.left = std::any_cast<int>(property->getValue());
+            m_textureRect.left = std::any_cast<int>(property->getValue());
         }
         else if (name == "TextureRectTop")
         {
-            textureRect.top = std::any_cast<int>(property->getValue());
+            m_textureRect.top = std::any_cast<int>(property->getValue());
         }
         else if (name == "Mass")
         {
@@ -83,7 +83,7 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
                                                                                 spriteTexture.string(),
                                                                                 layer);
 
-        renderComp->getSprite().setTextureRect(textureRect);
+        renderComp->getSprite().setTextureRect(m_textureRect);
     }
 
     const auto rigidComp = gameObject->addComponent<RigidBodyComponent>(*gameObject, b2_staticBody);

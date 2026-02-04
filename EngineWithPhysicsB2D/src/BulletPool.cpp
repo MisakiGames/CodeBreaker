@@ -16,7 +16,7 @@
 mmt_gd::BulletPool::BulletPool(
     const size_t size,
     const std::string& textureFile,
-    sf::IntRect textureRect,
+    sf::IntRect m_textureRect,
     const std::string& layerName,
     sf::RenderWindow& renderWindow,
     const sf::FloatRect& colliderRect,
@@ -30,7 +30,7 @@ m_collisionCallback(std::move(collisionCallback))*/
         gameObject = std::make_shared<GameObject>("Bullet_" + std::to_string(m_globalBulletIdx++));
         gameObject->setPosition(-1000, -1000);
 
-        const auto renderComp = gameObject->addComponent<SpriteRenderComponent>(*gameObject, renderWindow, textureFile, layerName, textureRect);
+        const auto renderComp = gameObject->addComponent<SpriteRenderComponent>(*gameObject, renderWindow, textureFile, layerName, m_textureRect);
 
         auto rigidBodyComponent = gameObject->addComponent<RigidBodyComponent>(*gameObject, b2_dynamicBody);
         rigidBodyComponent->getB2Body()->SetFixedRotation(true);

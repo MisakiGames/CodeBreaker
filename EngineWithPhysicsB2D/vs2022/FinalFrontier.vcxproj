@@ -137,6 +137,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="../src/stdafx.h" />
+    <ClInclude Include="..\src\BombAnimationComponent.h" />
+    <ClInclude Include="..\src\BombItemComponent.h" />
     <ClInclude Include="..\src\BulletPool.hpp" />
     <ClInclude Include="..\src\ColliderComponent.hpp" />
     <ClInclude Include="..\src\CrownItemComponent.h" />
@@ -203,6 +205,8 @@
     <ClCompile Include="../src/GameObject.cpp" />
     <ClCompile Include="../src/GameStateManager.cpp" />
     <ClCompile Include="../src/InputManager.cpp" />
+    <ClCompile Include="..\src\BombAnimationComponent.cpp" />
+    <ClCompile Include="..\src\BombItemComponent.cpp" />
     <ClCompile Include="..\src\BulletPool.cpp" />
     <ClCompile Include="..\src\ColliderComponent.cpp" />
     <ClCompile Include="..\src\CrownItemComponent.cpp" />

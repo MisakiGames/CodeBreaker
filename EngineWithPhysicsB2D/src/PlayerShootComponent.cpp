@@ -23,13 +23,13 @@ mmt_gd::PlayerShootComponent::PlayerShootComponent(
     const size_t         poolSize,
     sf::RenderWindow&    renderWindow,
     const std::string&   textureFile,
-    const sf::IntRect&   textureRect,
+    const sf::IntRect&   m_textureRect,
     const sf::FloatRect& colliderRect,
     const float          bulletMass,
     const std::string&   layerName,
     const bool           useInput) :
 IComponent(gameObject),
-m_pool(poolSize, textureFile, textureRect, layerName, renderWindow, colliderRect, bulletMass /*, onBulletCollision*/),
+m_pool(poolSize, textureFile, m_textureRect, layerName, renderWindow, colliderRect, bulletMass /*, onBulletCollision*/),
 m_useInput(useInput)
 {
 }

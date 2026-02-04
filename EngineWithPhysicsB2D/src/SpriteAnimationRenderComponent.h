@@ -23,7 +23,7 @@ public:
     SpriteAnimationRenderComponent(GameObject&       gameObject,
                                    sf::RenderWindow& renderWindow,
                                    std::string       layerName,
-                                   sf::IntRect       textureRect = sf::IntRect(),
+                                   sf::IntRect       m_textureRect = sf::IntRect(),
                                    sf::Vector2f      frameCount  = sf::Vector2f(1, 1));
 
     ~SpriteAnimationRenderComponent() override;
