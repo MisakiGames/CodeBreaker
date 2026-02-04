@@ -46,7 +46,11 @@ void PickupComponent::HandleCrown(ItemComponent& crownItem)
 void PickupComponent::loseItem()
 {
     loseCrown();
-    holdingItem   = nullptr;
+    if (holdingItem)
+    {
+        holdingItem->stopUse(m_gameObject);
+        holdingItem = nullptr;
+    }
     m_itemUseTime = 0;
 }
 void PickupComponent::loseCrown()
