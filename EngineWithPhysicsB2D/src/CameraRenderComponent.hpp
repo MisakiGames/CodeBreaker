@@ -33,11 +33,11 @@ private:
 
     const sf::Vector2f m_standardPosition   = {-150.f, 150.f};
     const float  m_standardZoom       = 1.f;
-    const float  m_moveSpeed       = 4.f;
-    const float  m_zoomSpeed        = 5.f;
+    const float  m_moveSpeed       = 5.f;
+    const float  m_zoomSpeed        = 6.f;
     const float  m_maxZoom         = 1.8f;
-    const float  m_minZoom         = 0.5f;
-    const float  m_padding            = 300.f;
+    const float  m_minZoom         = 0.2f;
+    const float  m_padding            = 200.f;
 
     sf::Vector2f m_currentPosition = m_standardPosition;
     float        m_currentZoom     = m_standardZoom;
