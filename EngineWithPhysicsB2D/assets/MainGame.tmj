@@ -342,12 +342,12 @@
                         {
                          "name":"Bomb",
                          "type":"bool",
-                         "value":false
+                         "value":true
                         }, 
                         {
                          "name":"Size",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"ItemSpawner",

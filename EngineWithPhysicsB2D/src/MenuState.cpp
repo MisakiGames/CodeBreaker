@@ -2,9 +2,13 @@
 
 #include "MenuState.hpp"
 
+#include "EventBus.hpp"
 #include "Game.hpp"
+#include "GameObject.hpp"
+#include "GameObjectEvents.hpp"
 #include "GameStateManager.hpp"
 #include "InputManager.hpp"
+#include "MusicComponent.h"
 #include "TGUI/TGUI.hpp"
 
 
@@ -15,7 +19,7 @@ using namespace std;
 void MenuState::init()
 {
     PROFILE_FUNCTION();
-
+    m_gameObjectManager.init();
     if (m_backgroundTexture.loadFromFile("../assets/menu_background.png"))
     {
         m_backgroundSprite.setTexture(m_backgroundTexture);
@@ -46,6 +50,19 @@ void MenuState::init()
     {
         btn->onClick([&manager = m_gameStateManager] { manager->setState("MainState"); });
     }
+
+    auto backgroundMusic = GameObject::create("BackgroundMusic");
+    auto musicComponent  = backgroundMusic->addComponent<MusicComponent>(*backgroundMusic);
+    musicComponent->addMusic("background", "../assets/musics/battlebgm.ogg", 100.0f);
+
+    if (!backgroundMusic->init())
+    {
+        sf::err() << "Could not initialize music\n";
+    }
+
+    EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(backgroundMusic));
+
+    musicComponent->playMusic("background", true);
 }
 
 void MenuState::update(float delta)
@@ -68,7 +85,7 @@ void MenuState::update(float delta)
         float speed    = 3.5f;
 
         float sinValue = std::sin(timer * speed);
-        float alpha = minAlpha + ((sinValue + 1.0f) * 0.5f) * (maxAlpha - minAlpha);
+        float alpha    = minAlpha + ((sinValue + 1.0f) * 0.5f) * (maxAlpha - minAlpha);
         label->getRenderer()->setTextColor(tgui::Color(255, 255, 255, static_cast<unsigned char>(alpha)));
     }
 }
@@ -82,9 +99,14 @@ void MenuState::draw()
 
 void MenuState::exit()
 {
+    auto backgroundMusic = m_gameObjectManager.getGameObject("BackgroundMusic");
+    if (backgroundMusic)
+        backgroundMusic->getComponent<MusicComponent>()->stopMusic("background");
+
+
     PROFILE_FUNCTION();
 
-    
+    m_gameObjectManager.shutdown();
     InputManager::getInstance().unbind("Select", 0);
     m_game->getGui().removeAllWidgets();
     GameState::exit();

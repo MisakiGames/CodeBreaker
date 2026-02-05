@@ -26,11 +26,15 @@ void PickupComponent::pickup(ItemComponent& pickedUpItem)
     if (pickedUpItem.getType() == ItemType::Crown)
     {
         pickedUpItem.setPickup(false);
+        for (auto sub : m_onPickup)
+            sub();
         HandleCrown(pickedUpItem);
         return;
     }
     if (holdingItem)
         return;
+    for (auto sub : m_onPickup)
+        sub();
     holdingItem = &pickedUpItem;
     std::cout << "pickup" << std::endl;
     pickedUpItem.disappear();
@@ -66,6 +70,8 @@ void PickupComponent::loseCrown()
         m_crown->stopUse(m_gameObject);
         m_crown->setPickup(true);
         m_crown = nullptr;
+        for (auto sub : m_onLoseCrown)
+            sub();
     }
 }
 } // namespace mmt_gd

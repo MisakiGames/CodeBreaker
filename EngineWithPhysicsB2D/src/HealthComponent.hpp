@@ -34,6 +34,8 @@ public:
     void kill()
     {
         m_currentHealth = -1;
+        for (auto sub : m_onTakeDamage)
+            sub();
     }
     void subsribeToOnTakeDamage(std::function<void()> subscriber)
     {

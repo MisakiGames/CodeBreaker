@@ -16,6 +16,14 @@ public:
     void playMusic(const std::string& musicName, bool loop = true);
     void stopMusic(const std::string& musicName);
     void addMusic(const std::string& musicName, const std::string& filePath, float volume);
+    bool init() override
+    {
+        return true;
+    }
+    void update(float deltaTime)
+    {
+        return;
+    }
 
 private:
     std::unordered_map<std::string, std::unique_ptr<sf::Music>> m_musics;

@@ -52,5 +52,7 @@ void BombItemComponent::explode()
     auto bombAnimation = m_bomb->getComponent<BombAnimationComponent>();
     bombAnimation->resetAnimation();
     m_spawnTime = 0;
+    for (auto sub : m_onExplode)
+        sub();
 }
 } // namespace mmt_gd

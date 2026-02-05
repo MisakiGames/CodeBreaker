@@ -1,6 +1,10 @@
 #pragma once
 
 #include "ItemComponent.h"
+
+#include <vector>
+#include <functional>
+
 namespace mmt_gd
 {
 class BombItemComponent : public ItemComponent
@@ -12,12 +16,17 @@ public:
     void use(GameObject& player) override;
     void stopUse(GameObject& player) override;
     void update(float deltaTime) override;
+    void subscribeToOnExplode(std::function<void()> sub)
+    {
+        m_onExplode.push_back(sub);
+    }
 
-private:
+private :
     void                        explode();
     GameObject*                 m_player = nullptr;
     std::shared_ptr<GameObject> m_bomb;
     float                       m_spawnTime    = 0;
     float                       m_maxSpawnTime = 3;
+    std::vector<std::function<void()>> m_onExplode;
 };
 } // namespace mmt_gd

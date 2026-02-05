@@ -18,6 +18,9 @@
 
 #include <memory>
 #include <thread>
+#include "SoundComponent.hpp"
+#include "GameObjectEvents.hpp"
+#include "MusicComponent.h"
 
 namespace mmt_gd
 {
@@ -134,6 +137,29 @@ void MainState::init()
     }
     m_game->getGui().remove(panel);
 
+      auto winSound = GameObject::create("WinSound");
+    auto soundComponent = winSound->addComponent<SoundComponent>(*winSound);
+      soundComponent->addSound("victory", "../assets/sounds/victory.wav", 100.0f);
+
+          if (!winSound->init())
+      {
+          sf::err() << "Could not initialize sound\n";
+      }
+
+      EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(winSound));
+      auto backgroundMusic= GameObject::create("BackgroundMusic");
+      auto musicComponent  = backgroundMusic->addComponent<MusicComponent>(*backgroundMusic);
+      musicComponent->addMusic("background", "../assets/musics/bossFight.ogg", 100.0f);
+
+      if (!backgroundMusic->init())
+      {
+          sf::err() << "Could not initialize music\n";
+      }
+
+      EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(backgroundMusic));
+
+      musicComponent->playMusic("background",true);
+
     // Define layer order manually here. Could come from custom file settings.
     m_spriteManager.setLayerOrder({"Ground", "GameObjects"});
 }
@@ -191,6 +217,9 @@ void MainState::update(const float deltaTime)
 
 void MainState::endGame(std::shared_ptr<GameObject> winner)
 {
+    auto winSound= m_gameObjectManager.getGameObject("WinSound");
+    if (winSound)
+        winSound->getComponent<SoundComponent>()->playSound("victory");
     m_gameEnded = true;
 
     //deactivate input
@@ -217,6 +246,10 @@ void MainState::draw()
 
 void MainState::exit()
 {
+    auto backgroundMusic = m_gameObjectManager.getGameObject("BackgroundMusic");
+    if (backgroundMusic)
+        backgroundMusic->getComponent<MusicComponent>()->stopMusic("background");
+
     PROFILE_FUNCTION();
 
     m_game->getGui().removeAllWidgets();

@@ -11,7 +11,7 @@ namespace mmt_gd
 {
 void MusicComponent::addMusic(const std::string& musicName, const std::string& filePath, float volume)
 {
-    auto music = std::unique_ptr<sf::Music>();
+    auto music = std::unique_ptr<sf::Music>(new sf::Music());
 
     if (music->openFromFile(filePath))
     {

@@ -55,8 +55,12 @@ void PlayerMoveComponent::update(const float deltaTime)
         if (InputManager::getInstance().isKeyDown("dash", m_playerIndex) && m_canDash)
         {
             if (!m_isDashing)
+            {
                 ResizeCollider();
-            for (auto sub : m_onDash)
+                for (auto sub : m_onDash)
+                    sub();
+            }
+            for (auto sub : m_onWhileDash)
                 sub();
             m_rigidBody.setVelocity(m_lastMoveDirection * dashSpeedFactor);
             m_isDashing = true;

@@ -31,16 +31,16 @@
 #include <string>
 namespace mmt_gd
 {
-int ItemFactory::bombCount      = 0;
-int ItemFactory::crownItemCount = 0;
-int ItemFactory::bombItemCount  = 0;
-int ItemFactory::sizeItemCount  = 0;
+int                          ItemFactory::bombCount      = 0;
+int                          ItemFactory::crownItemCount = 0;
+int                          ItemFactory::bombItemCount  = 0;
+int                          ItemFactory::sizeItemCount  = 0;
 std::vector<GameObject::Ptr> ItemFactory::createItem(
-    sf::RenderWindow& window,
-    ItemType          type,
+    sf::RenderWindow&  window,
+    ItemType           type,
     GameObjectManager& goManager,
-    int               count,
-    bool              canBePickup)
+    int                count,
+    bool               canBePickup)
 {
     std::vector<GameObject::Ptr> itemGroup;
     for (int i = 0; i < count; i++)
@@ -140,7 +140,11 @@ sf::IntRect ItemFactory::getIntRect(ItemType type)
 
     return rect;
 }
-std::shared_ptr<ItemComponent> ItemFactory::addSpecifiedItemComponent(sf::RenderWindow& window, GameObject::Ptr item, ItemType type, GameObjectManager& goManager)
+std::shared_ptr<ItemComponent> ItemFactory::addSpecifiedItemComponent(
+    sf::RenderWindow&  window,
+    GameObject::Ptr    item,
+    ItemType           type,
+    GameObjectManager& goManager)
 {
     std::shared_ptr<ItemComponent> itemComp;
     switch (type)
@@ -150,8 +154,20 @@ std::shared_ptr<ItemComponent> ItemFactory::addSpecifiedItemComponent(sf::Render
             itemComp->setPickup(true);
             break;
         case mmt_gd::ItemType::Bomb:
-            itemComp = item->addComponent<BombItemComponent>(*item, type, 5, ItemFactory::createBombObject(window));
-            break;
+        {
+            auto bombItem = item->addComponent<BombItemComponent>(*item, type, 5, ItemFactory::createBombObject(window));
+            auto                          soundComponent = item->addComponent<SoundComponent>(*item);
+            std::weak_ptr<SoundComponent> soundWeakPtr   = soundComponent;
+            soundComponent->addSound("bomb", "../assets/sounds/bomb.wav", 100.0f);
+            bombItem->subscribeToOnExplode(
+                [soundWeakPtr = soundWeakPtr]()
+                {
+                    if (auto soundComp = soundWeakPtr.lock())
+                        soundComp->playSound("bomb");
+                });
+            itemComp = bombItem;
+        }
+        break;
         case mmt_gd::ItemType::Size:
             itemComp = item->addComponent<ResizeItemComponent>(*item, type, 5);
             break;

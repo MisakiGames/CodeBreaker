@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GameState.hpp"
+#include "GameObjectManager.hpp"
 #include <SFML/Graphics/Text.hpp>
 
 namespace mmt_gd
@@ -18,6 +19,7 @@ public:
 
 private:
     sf::View m_view;
+    GameObjectManager m_gameObjectManager;
     sf::Sprite m_backgroundSprite;
     sf::Texture m_backgroundTexture;
 };

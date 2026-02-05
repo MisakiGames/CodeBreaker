@@ -3,6 +3,8 @@
 #include "IComponent.hpp"
 #include "ItemComponent.h"
 #include "PlayerScoreComponent.h"
+#include <vector>
+#include <functional>
 namespace mmt_gd
 {
 class PickupComponent : public IComponent
@@ -30,6 +32,14 @@ public:
     {
         return m_gotThisFrame;
     }
+    void subscribeToOnPickup(std::function<void()> sub)
+    {
+        m_onPickup.push_back(sub);
+    }
+    void subscribeToOnLoseCrown(std::function<void()> sub)
+    {
+        m_onLoseCrown.push_back(sub);
+    }
 
 private:
     void                  HandleCrown(ItemComponent& crownItem);
@@ -38,5 +48,7 @@ private:
     PlayerScoreComponent& m_scoreComp;
     float                 m_itemUseTime  = 0;
     bool                  m_gotThisFrame = false;
+    std::vector<std::function<void()>> m_onPickup;
+    std::vector<std::function<void()>> m_onLoseCrown;
 };
 } // namespace mmt_gd
