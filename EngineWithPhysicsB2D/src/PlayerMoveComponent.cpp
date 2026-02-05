@@ -2,6 +2,7 @@
 
 #include "PlayerMoveComponent.hpp"
 
+#include "DamageComponent.hpp"
 #include "GameObject.hpp"
 #include "InputManager.hpp"
 
@@ -10,11 +11,13 @@ namespace mmt_gd
 PlayerMoveComponent::PlayerMoveComponent(GameObject&         gameObject,
                                          RigidBodyComponent& rigidBody,
                                          DeadComponent&      deadComponent,
+                                         DamageComponent&    damage,
                                          int                 playerIndex) :
 IComponent(gameObject),
 m_rigidBody(rigidBody),
 m_deadComponent(deadComponent),
-m_playerIndex(playerIndex)
+m_playerIndex(playerIndex),
+m_damage(damage)
 {
 }
 
@@ -39,6 +42,7 @@ void PlayerMoveComponent::update(const float deltaTime)
         if (m_isDashing && !m_canDash)
         {
             m_isDashing = false;
+            m_damage.setDamageFactor(1);
             for (auto sub : m_onDashEnd)
                 sub();
         }
@@ -50,6 +54,7 @@ void PlayerMoveComponent::update(const float deltaTime)
             m_rigidBody.setVelocity(m_lastMoveDirection * dashSpeedFactor);
             m_isDashing = true;
             m_dashDuration += deltaTime;
+            m_damage.setDamageFactor(m_dashDuration + 1);
             return;
         }
 
@@ -69,6 +74,7 @@ void PlayerMoveComponent::update(const float deltaTime)
         {
             m_isDashing = false;
             m_canDash   = false;
+            m_damage.setDamageFactor(1);
             for (auto sub : m_onDashEnd)
                 sub();
             return;

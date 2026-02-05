@@ -113,7 +113,7 @@ GameObject::Ptr PlayerFactory::createPlayer(
     b2FixtureDef fixtureDef;
     fixtureDef.shape   = &shape;
     fixtureDef.density = 1.0f;
-    auto move          = player->addComponent<PlayerMoveComponent>(*player, *rigidBody, *deadComp, plrIndex);
+    auto move = player->addComponent<PlayerMoveComponent>(*player, *rigidBody, *deadComp, *damageComp, plrIndex);
 
     move->subscribeToOnDash(
         [spriteWeakPtr = spriteWeakPtr]()

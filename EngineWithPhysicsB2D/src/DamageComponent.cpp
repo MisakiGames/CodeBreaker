@@ -18,17 +18,22 @@ bool DamageComponent::init()
 
 void DamageComponent::update(float deltaTime)
 {
-
 }
 
 int DamageComponent::getDamage() const
 {
-    return m_damage;
+    return m_damage * m_damageFactor;
 }
 
 std::string DamageComponent::getOwnerId() const
 {
     return m_ownerId;
+}
+
+void DamageComponent::setDamageFactor(float set)
+{
+    m_damageFactor = set;
+    std::cout << m_damageFactor << std::endl;
 }
 
 void DamageComponent::setOwnerId(const std::string& ownerId)

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ColliderComponent.hpp"
+#include "DamageComponent.hpp"
 #include "DeadComponent.h"
 #include "IComponent.hpp"
 #include "RigidBodyComponent.hpp"
@@ -15,7 +16,11 @@ class PlayerMoveComponent : public IComponent
 public:
     using ptr = std::shared_ptr<PlayerMoveComponent>;
 
-    PlayerMoveComponent(GameObject& gameObject, RigidBodyComponent& rigidBody, DeadComponent& deadComponent, int playerIndex = 0);
+    PlayerMoveComponent(GameObject&         gameObject,
+                        RigidBodyComponent& rigidBody,
+                        DeadComponent&      deadComponent,
+                        DamageComponent&    damage,
+                        int                 playerIndex = 0);
 
     float getDashDuration() const
     {
@@ -55,5 +60,6 @@ private:
     float                              m_dashDuration = 0.f;
     std::vector<std::function<void()>> m_onDash;
     std::vector<std::function<void()>> m_onDashEnd;
+    DamageComponent&                   m_damage;
 };
 } // namespace mmt_gd
