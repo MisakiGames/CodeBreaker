@@ -33,7 +33,6 @@ std::string DamageComponent::getOwnerId() const
 void DamageComponent::setDamageFactor(float set)
 {
     m_damageFactor = set;
-    std::cout << m_damageFactor << std::endl;
 }
 
 void DamageComponent::setOwnerId(const std::string& ownerId)

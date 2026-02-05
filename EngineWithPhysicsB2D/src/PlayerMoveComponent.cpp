@@ -100,21 +100,25 @@ void PlayerMoveComponent::update(const float deltaTime)
     {
         m_lastMoveDirection = sf::Vector2f(speed, 0.f);
         m_rigidBody.setVelocity(m_lastMoveDirection);
+        DoOnMoved();
     }
     else if (InputManager::getInstance().isKeyDown("left", m_playerIndex))
     {
         m_lastMoveDirection = sf::Vector2f(-speed, 0.f);
         m_rigidBody.setVelocity(m_lastMoveDirection);
+        DoOnMoved();
     }
     else if (InputManager::getInstance().isKeyDown("up", m_playerIndex))
     {
         m_lastMoveDirection = sf::Vector2f(0.f, -speed);
         m_rigidBody.setVelocity(m_lastMoveDirection);
+        DoOnMoved();
     }
     else if (InputManager::getInstance().isKeyDown("down", m_playerIndex))
     {
         m_lastMoveDirection = sf::Vector2f(0.f, speed);
         m_rigidBody.setVelocity(m_lastMoveDirection);
+        DoOnMoved();
     }
     else
     {
@@ -126,6 +130,11 @@ void PlayerMoveComponent::OnCollision()
 {
     if (m_isDashing)
         m_canDash = false;
+}
+void PlayerMoveComponent::DoOnMoved()
+{
+    for (auto sub : m_onMoved)
+        sub();
 }
 void PlayerMoveComponent::ResizeCollider()
 {

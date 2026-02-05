@@ -52,8 +52,13 @@ public:
     {
         m_onDashEnd.push_back(subscriber);
     }
+    void subscribeToOnMoved(std::function<void()> subscriber)
+    {
+        m_onMoved.push_back(subscriber);
+    }
 
 private:
+    void                               DoOnMoved();
     void                               ResizeCollider();
     int                                m_playerIndex;
     DeadComponent&                     m_deadComponent;
@@ -67,6 +72,7 @@ private:
     std::vector<std::function<void()>> m_onDash;
     std::vector<std::function<void()>> m_onWhileDash;
     std::vector<std::function<void()>> m_onDashEnd;
+    std::vector<std::function<void()>> m_onMoved;
     DamageComponent&                   m_damage;
     bool                               m_resized = false;
 };

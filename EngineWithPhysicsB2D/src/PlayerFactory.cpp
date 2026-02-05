@@ -159,6 +159,12 @@ GameObject::Ptr PlayerFactory::createPlayer(
             if (auto soundComp = soundWeakPtr.lock())
                 soundComp->playSound("dash");
         });
+    move->subscribeToOnMoved(
+        [soundWeakPtr = soundWeakPtr]()
+        {
+            if (auto soundComp = soundWeakPtr.lock())
+                soundComp->playSound("step",true);
+        });
     move->subscribeToOnDashEnd(
         [damageWeakPtr = damageWeakPtr]()
         {

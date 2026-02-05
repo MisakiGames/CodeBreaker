@@ -26,7 +26,6 @@ void ItemSpawnerComponent::update(float deltaTime)
     m_spawnTime += deltaTime;
     if (m_spawnTime >= m_spawnMaxTime)
     {
-        std::cout << "spawn" << std::endl;
 
         spawnItem();
         m_spawnTime = 0;

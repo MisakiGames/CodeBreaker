@@ -22,11 +22,13 @@ void SoundComponent::addSound(const std::string& soundName, std::string filePath
 
 
 
-void SoundComponent::playSound(const std::string& soundName)
+void SoundComponent::playSound(const std::string& soundName, bool checkIfPlay)
 {
     auto it = m_sounds.find(soundName);
     if (it != m_sounds.end())
     {
+        if (checkIfPlay && it->second.getStatus() != sf::SoundSource::Stopped)
+            return;
         // Random Pitch
         static std::mt19937                   gen(std::random_device{}());
         std::uniform_real_distribution<float> dist(m_minPitch, m_maxPitch);

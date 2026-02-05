@@ -27,7 +27,7 @@ public:
         return;
     }
 
-    void playSound(const std::string& soundName);
+    void playSound(const std::string& soundName, bool checkIfPlay = false);
 
 
     void addSound(const std::string& soundName, std::string filePath, float volume);
