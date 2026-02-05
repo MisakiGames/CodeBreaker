@@ -158,11 +158,11 @@ GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow&  window,
                     return;
                 if (damageComp->getOwnerId() != self.getGameObject().getId())
                 {
+                    std::cout << other.getTag() << std::endl;
                     if (other.getTag() == "InstaKill")
                         healthComp->kill();
                     else if (other.getTag() != self.getGameObject().getId())
-                        {
-                        std::cout << "damage" << std::endl;
+                    {
                         healthComp->takeDamage(damageComp->getDamage());
                     }
                 }

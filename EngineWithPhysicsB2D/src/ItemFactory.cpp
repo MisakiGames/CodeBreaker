@@ -31,14 +31,31 @@
 #include <string>
 namespace mmt_gd
 {
-int ItemFactory::bombCount = 0;
+int ItemFactory::bombCount      = 0;
+int ItemFactory::crownItemCount = 0;
+int ItemFactory::bombItemCount  = 0;
+int ItemFactory::sizeItemCount  = 0;
 std::vector<GameObject::Ptr> ItemFactory::createItem(sf::RenderWindow& window, ItemType type, int count, bool canBePickup)
 {
     std::vector<GameObject::Ptr> itemGroup;
     for (int i = 0; i < count; i++)
     {
         std::stringstream idStream;
-        idStream << "Item_" << static_cast<int>(type) << "_" << i;
+        switch (type)
+        {
+            case mmt_gd::ItemType::Crown:
+                idStream << "Item_" << static_cast<int>(type) << "_" << crownItemCount;
+                crownItemCount++;
+                break;
+            case mmt_gd::ItemType::Bomb:
+                idStream << "Item_" << static_cast<int>(type) << "_" << bombItemCount;
+                bombItemCount++;
+                break;
+            case mmt_gd::ItemType::Size:
+                idStream << "Item_" << static_cast<int>(type) << "_" << sizeItemCount;
+                sizeItemCount++;
+                break;
+        }
         std::string id   = idStream.str();
         auto        item = GameObject::create(id);
         if (type == ItemType::Crown)
@@ -84,7 +101,7 @@ std::vector<GameObject::Ptr> ItemFactory::createItem(sf::RenderWindow& window, I
 }
 std::string ItemFactory::getAssetPath(ItemType type)
 {
-    std::string path = "../Assets/";
+    std::string path = "../assets/";
     switch (type)
     {
         case ItemType::Crown:
@@ -128,7 +145,7 @@ std::shared_ptr<ItemComponent> ItemFactory::addSpecifiedItemComponent(sf::Render
             itemComp->setPickup(true);
             break;
         case mmt_gd::ItemType::Bomb:
-            itemComp = item->addComponent<BombItemComponent>(*item, type, 0, ItemFactory::createBombObject(window));
+            itemComp = item->addComponent<BombItemComponent>(*item, type, 5, ItemFactory::createBombObject(window));
             break;
         case mmt_gd::ItemType::Size:
             itemComp = item->addComponent<ResizeItemComponent>(*item, type, 5);
@@ -155,22 +172,24 @@ float ItemFactory::getMaxTime(ItemType type)
 
 GameObject::Ptr ItemFactory::createBombObject(sf::RenderWindow& window)
 {
-
     std::stringstream idStream;
     idStream << "Bomb_" << bombCount;
     bombCount++;
     std::string id   = idStream.str();
     auto        bomb = GameObject::create(id);
-    bomb->setPosition(sf::Vector2f(100, 100));
+    bomb->setPosition(sf::Vector2f(-1000, -1000));
     std::string filePath   = "../assets/explosion.png";
     auto        spriteComp = bomb->addComponent<
-               BombAnimationComponent>(*bomb, window, filePath, "GameObjects", 1, sf::IntRect(0, 0, 354, 342), sf::Vector2f(7, 1));
+               BombAnimationComponent>(*bomb, window, filePath, "GameObjects", 6, sf::IntRect(0, 0, 354, 342), sf::Vector2f(7, 1));
     bomb->setScale(1, 1);
     const auto                      rb             = bomb->addComponent<RigidBodyComponent>(*bomb, b2_staticBody);
     auto                            respawn        = bomb->addComponent<RespawnComponent>(*bomb);
     std::weak_ptr<RespawnComponent> respawnWeakPtr = respawn;
-    spriteComp->subscribeToOnFinish([&respawn = respawn]() 
-        { respawn->startRespawn();
+    spriteComp->subscribeToOnFinish(
+        [respawnWeakPtr = respawnWeakPtr]()
+        {
+            if (auto respawn = respawnWeakPtr.lock())
+                respawn->startRespawn();
         });
 
     b2PolygonShape polygonShape{};

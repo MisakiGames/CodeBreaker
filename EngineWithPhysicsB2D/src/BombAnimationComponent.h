@@ -2,12 +2,11 @@
 
 #include "IRenderComponent.hpp"
 
-#include <vector>
 #include <functional>
+#include <vector>
 
 namespace mmt_gd
 {
-
 class BombAnimationComponent : public IRenderComponent
 {
 public:
@@ -33,6 +32,11 @@ public:
         m_stop = false;
         m_time = 0;
     }
+
+    sf::Sprite& getSprite()
+    {
+        return m_sprite;
+    }
     void subscribeToOnFinish(std::function<void()> subscriber)
     {
         m_onFinish.push_back(subscriber);
@@ -40,18 +44,17 @@ public:
 
 private:
 
-
 private:
-    float        m_speed;
-    float        m_time = 0;
-    sf::Vector2f m_frameCount{};
-    std::string  m_textureFile;
-    sf::Texture  m_texture;
-    sf::Sprite   m_sprite;
-    std::string  m_layerName;
-    sf::IntRect  m_textureRect;
-    bool         m_hasTextureRect = false;
-    bool         m_stop = false;
+    float                              m_speed;
+    float                              m_time = 0;
+    sf::Vector2f                       m_frameCount{};
+    std::string                        m_textureFile;
+    sf::Texture                        m_texture;
+    sf::Sprite                         m_sprite;
+    std::string                        m_layerName;
+    sf::IntRect                        m_textureRect;
+    bool                               m_hasTextureRect = false;
+    bool                               m_stop           = false;
     std::vector<std::function<void()>> m_onFinish;
 };
 } // namespace mmt_gd

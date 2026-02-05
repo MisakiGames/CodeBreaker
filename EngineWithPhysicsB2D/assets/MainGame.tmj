@@ -311,8 +311,8 @@
                  "type":"Sprite",
                  "visible":true,
                  "width":32,
-                 "x":123.818,
-                 "y":25.4545
+                 "x":101.318,
+                 "y":29.9545
                 }, 
                 {
                  "height":18,
@@ -322,12 +322,12 @@
                         {
                          "name":"Bomb",
                          "type":"bool",
-                         "value":false
+                         "value":true
                         }, 
                         {
                          "name":"Size",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"ItemSpawner",
@@ -343,7 +343,7 @@
          "y":0
         }],
  "nextlayerid":6,
- "nextobjectid":20,
+ "nextobjectid":22,
  "orientation":"orthogonal",
  "renderorder":"left-up",
  "tiledversion":"1.11.2",

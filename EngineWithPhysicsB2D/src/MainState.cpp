@@ -49,7 +49,7 @@ void MainState::init()
     auto player  = PlayerFactory::createPlayer(m_game->getWindow(), PlayerSpawn::TopLeft, m_gameObjectManager, 0);
     auto player2 = PlayerFactory::createPlayer(m_game->getWindow(), PlayerSpawn::BottomLeft, m_gameObjectManager, 1);
     auto crown   = ItemFactory::createItem(m_game->getWindow(), ItemType::Crown, 1);
-    auto bomb  = ItemFactory::createItem(m_game->getWindow(), ItemType::Bomb, 1);
+    //auto bomb  = ItemFactory::createItem(m_game->getWindow(), ItemType::Bomb, 1);
     // Moving camera
     {
         const auto camera     = GameObject::create("Camera");
