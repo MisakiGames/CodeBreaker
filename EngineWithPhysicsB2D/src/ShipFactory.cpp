@@ -129,9 +129,9 @@ GameObject::Ptr ShipFactory::createEnemyShip(sf::RenderWindow& window, GameObjec
 
     enemy->addComponent<EnemyAIComponent>(*enemy, *rigidBody, *shootComp, playerTarget, 100.0f, 1.5f, 100.0f, 500.0f);
 
-    auto health = enemy->addComponent<HealthComponent>(*enemy, 3, false);
+    /*auto health = enemy->addComponent<HealthComponent>(*enemy, 3, false);
 
-    enemy->addComponent<DestructionComponent>(*enemy, *health);
+    enemy->addComponent<DestructionComponent>(*enemy, *health);*/
 
     if (!enemy->init())
     {

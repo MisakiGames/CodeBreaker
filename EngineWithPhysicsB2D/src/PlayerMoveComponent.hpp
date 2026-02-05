@@ -4,6 +4,7 @@
 #include "DeadComponent.h"
 #include "IComponent.hpp"
 #include "RigidBodyComponent.hpp"
+#include "SoundComponent.hpp"
 
 #include <functional>
 #include <vector>
@@ -15,7 +16,11 @@ class PlayerMoveComponent : public IComponent
 public:
     using ptr = std::shared_ptr<PlayerMoveComponent>;
 
-    PlayerMoveComponent(GameObject& gameObject, RigidBodyComponent& rigidBody, DeadComponent& deadComponent, int playerIndex = 0);
+    PlayerMoveComponent(GameObject&         gameObject,
+                        RigidBodyComponent& rigidBody,
+                        DeadComponent&      deadComponent,
+                        SoundComponent&     soundComponent,
+                        int                 playerIndex = 0);
 
     float getDashDuration() const
     {
@@ -36,14 +41,17 @@ public:
     }
 
 private:
-    int                                m_playerIndex;
-    DeadComponent&                     m_deadComponent;
-    RigidBodyComponent&                m_rigidBody;
-    sf::Vector2f                       m_lastMoveDirection;
-    bool                               m_isDashing    = false;
-    bool                               m_canDash      = true;
-    float                              m_dashCooldown = 0.f;
-    float                              m_dashDuration = 0.f;
+    DeadComponent&      m_deadComponent;
+    RigidBodyComponent& m_rigidBody;
+    SoundComponent&     m_soundComponent;
+    sf::Vector2f        m_lastMoveDirection;
+
+    int   m_playerIndex;
+    bool  m_isDashing    = false;
+    bool  m_canDash      = true;
+    float m_dashCooldown = 0.f;
+    float m_dashDuration = 0.f;
+
     std::vector<std::function<void()>> m_onDash;
     std::vector<std::function<void()>> m_onDashEnd;
 };

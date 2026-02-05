@@ -7,35 +7,26 @@
 namespace mmt_gd
 {
 
-void SoundComponent::update(float deltaTime)
+void SoundComponent::addSound(const std::string& soundName, const sf::SoundBuffer& buffer, float volume = 100.0f)
 {
-    sf::Vector2f pos = m_gameObject.getPosition();
-    for (auto& [name, sound] : m_sounds)
-    {
-        if (sound.getStatus() == sf::Sound::Playing)
-        {
-            sound.setPosition(pos.x, pos.y, 0.f);
-        }
-    }
+    m_sounds[soundName].setBuffer(buffer);
+    m_sounds[soundName].setVolume(volume);
+    m_sounds[soundName].setRelativeToListener(false);
 }
 
-void SoundComponent::addSound(const std::string& soundName, const std::string& filePath)
+void SoundComponent::addMusic(const std::string& musicName, const std::string& filePath, float volume)
 {
-    sf::SoundBuffer buffer;
-    if (buffer.loadFromFile(filePath))
-    {
-        m_buffers[soundName] = buffer;
-        m_sounds[soundName].setBuffer(m_buffers[soundName]);
-        m_sounds[soundName].setRelativeToListener(false); 
-    }
-}
+    auto        music    = std::make_unique<sf::Music>();
+    std::string fullPath = m_defaultSoundPath + filePath;
 
-void SoundComponent::addMusic(const std::string& musicName, const std::string& filePath)
-{
-    auto music = std::make_unique<sf::Music>();
-    if (music->openFromFile(filePath))
+    if (music->openFromFile(fullPath))
     {
+        music->setVolume(volume); // Lautstärke für diesen Musik-Track setzen
         m_musics[musicName] = std::move(music);
+    }
+    else
+    {
+        sf::err() << "Could not load music: " << fullPath << std::endl;
     }
 }
 
@@ -49,13 +40,6 @@ void SoundComponent::playSound(const std::string& soundName)
         std::uniform_real_distribution<float> dist(m_minPitch, m_maxPitch);
 
         it->second.setPitch(dist(gen));
-
-        // Positional Sound
-        sf::Vector2f pos = m_gameObject.getPosition();
-        it->second.setPosition(pos.x, pos.y, 0.f);
-        it->second.setMinDistance(m_soundDistance);
-        it->second.setAttenuation(1.0f);
-
         it->second.play();
     }
 }

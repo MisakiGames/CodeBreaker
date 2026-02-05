@@ -33,7 +33,8 @@ GameObject::Ptr PlayerFactory::createPlayer(
     enum PlayerSpawn   spawnName,
     GameObjectManager& goManager,
     int                plrIndex,
-    std::string        color)
+    std::string        color,
+    const std::unordered_map<std::string, sf::SoundBuffer>& buffers)
 {
     std::string spawn = "";
     switch (spawnName)
@@ -58,6 +59,19 @@ GameObject::Ptr PlayerFactory::createPlayer(
     auto player     = GameObject::create("Player_" + color);
     player->setPosition(spawnPoint);
 
+    auto soundComponent = player->addComponent<SoundComponent>(*player);
+    soundComponent->addSound("dash", buffers.at("dash"), 70.0f);
+    soundComponent->addSound("step", buffers.at("step"), 100.0f);
+    soundComponent->addSound("impact", buffers.at("impact"), 100.0f);
+
+    soundComponent->addSound("damage", buffers.at("damage"), 90.0f);
+    soundComponent->addSound("item", buffers.at("item"), 70.0f);
+    soundComponent->addSound("bomb", buffers.at("bomb"), 100.0f);
+    soundComponent->addSound("crown_drop", buffers.at("crown_drop"), 85.0f);
+
+    soundComponent->addSound("dying", buffers.at("dying"), 95.0f);
+    soundComponent->addSound("victory", buffers.at("victory"), 100.0f);
+
     auto spriteComp = player->addComponent<
         SpriteAnimationRenderComponent>(*player, window, "GameObjects", sf::IntRect(18, 20, 12, 24), sf::Vector2f(8, 6));
     std::weak_ptr<SpriteAnimationRenderComponent> spriteWeakPtr = spriteComp;
@@ -69,7 +83,7 @@ GameObject::Ptr PlayerFactory::createPlayer(
     spriteComp->loadAndMapTexture(sstream.str() + "Dash.png", AnimationState::Dash, 10, false);
     spriteComp->loadAndMapTexture(sstream.str() + "Death.png", AnimationState::Dead, 10, false);
 
-    auto                           health        = player->addComponent<HealthComponent>(*player, 100, true);
+    auto                           health        = player->addComponent<HealthComponent>(*player, *soundComponent, 100, true);
     std::weak_ptr<HealthComponent> healthWeakPtr = health;
     auto                           rigidBody     = player->addComponent<RigidBodyComponent>(*player, b2_dynamicBody);
     auto                           damageComp    = player->addComponent<DamageComponent>(*player, 10, player->getId());
@@ -112,7 +126,8 @@ GameObject::Ptr PlayerFactory::createPlayer(
     b2FixtureDef fixtureDef;
     fixtureDef.shape   = &shape;
     fixtureDef.density = 1.0f;
-    auto move          = player->addComponent<PlayerMoveComponent>(*player, *rigidBody, *deadComp, plrIndex);
+
+    auto move = player->addComponent<PlayerMoveComponent>(*player, *rigidBody, *deadComp, *soundComponent, plrIndex);
 
     move->subscribeToOnDash(
         [spriteWeakPtr = spriteWeakPtr]()

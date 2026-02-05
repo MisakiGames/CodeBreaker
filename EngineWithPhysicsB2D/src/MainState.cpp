@@ -48,11 +48,32 @@ void MainState::init()
         sf::err() << "Could not load tile map\n";
     }
 
+    // Load sounds
+    std::string soundPath = "../assets/sounds/";
+    m_buffers["dash"].loadFromFile(soundPath + "dash.wav");
+    m_buffers["step"].loadFromFile(soundPath + "step.wav");
+    m_buffers["impact"].loadFromFile(soundPath + "impact.wav");
+
+    m_buffers["damage"].loadFromFile(soundPath + "damage.wav");
+    m_buffers["item"].loadFromFile(soundPath + "item.wav");
+    m_buffers["bomb"].loadFromFile(soundPath + "bomb.wav");
+    m_buffers["crown_drop"].loadFromFile(soundPath + "crown_drop.flac");
+
+    m_buffers["victory"].loadFromFile(soundPath + "victory.mp3");
+    m_buffers["dying"].loadFromFile(soundPath + "dying.wav");
+
+
     // Create players
     for (const auto& config : m_playerConfigs)
     {
         m_players.push_back(
-            PlayerFactory::createPlayer(m_game->getWindow(), config.spawn, m_gameObjectManager, config.id, config.color));
+            PlayerFactory::createPlayer(
+                m_game->getWindow(),
+                config.spawn,
+                m_gameObjectManager,
+                config.id, 
+                config.color,
+                m_buffers));
     }
 
     // Create GameObjects in Scene
@@ -216,8 +237,8 @@ void MainState::exit()
     m_physicsManager.shutdown();
     m_spriteManager.shutdown();
     m_gameObjectManager.shutdown();
-    m_players.clear();  
-    m_camera = nullptr; 
+    m_players.clear();
+    m_camera    = nullptr;
     m_gameEnded = false;
     m_winTimer  = 0.0f;
 }
