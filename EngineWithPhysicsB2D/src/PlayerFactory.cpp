@@ -149,7 +149,11 @@ GameObject::Ptr PlayerFactory::createPlayer(
         [pickupWeakPtr = pickupWeakPtr]()
         {
             if (auto pickupComp = pickupWeakPtr.lock())
-                pickupComp->loseItem();
+                pickupComp->loseAllItem();
+        });
+    health->subsribeToOnTakeDamage([pickupWeakPtr = pickupWeakPtr]() {
+            if (auto pickupComp = pickupWeakPtr.lock())
+                pickupComp->loseCrown();
         });
 
     auto collider = player->addComponent<ColliderComponent>(*player, *rigidBody, fixtureDef);
@@ -167,9 +171,13 @@ GameObject::Ptr PlayerFactory::createPlayer(
                 {
                     std::cout << other.getTag() << std::endl;
                     if (other.getTag() == "InstaKill")
+                    {
                         healthComp->kill();
+                    }
                     else if (other.getTag() == "DamageOverTime")
+                    {
                         healthComp->setDamagePerSecond(damageComp->getDamage());
+                    }
                     else if (other.getTag() != self.getGameObject().getId())
                     {
                         healthComp->takeDamage(damageComp->getDamage());

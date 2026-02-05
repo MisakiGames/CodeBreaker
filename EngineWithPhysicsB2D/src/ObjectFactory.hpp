@@ -2,6 +2,7 @@
 #include "GameObject.hpp"
 #include "SpriteManager.hpp"
 #include "Tileson.hpp"
+#include "GameObjectManager.hpp"
 
 namespace tson
 {
@@ -16,6 +17,7 @@ public:
     static GameObject::Ptr processTsonObject(tson::Object&        object,
                                              const tson::Layer&   layer,
                                              const fs::path&      path,
-                                             const SpriteManager& spriteManager);
+                                             const SpriteManager& spriteManager,
+                                             GameObjectManager&    goManager);
 };
 } //namespace mmt_gd

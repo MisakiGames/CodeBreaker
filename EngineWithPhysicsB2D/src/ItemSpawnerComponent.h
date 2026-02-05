@@ -2,6 +2,7 @@
 
 #include "IComponent.hpp"
 #include "ItemComponent.h"
+#include "GameObjectManager.hpp"
 
 #include <random>
 #include <unordered_map>
@@ -17,7 +18,7 @@ public:
         std::random_device rd;
         randomGen = std::mt19937(rd());
     };
-    void LoadItem(sf::RenderWindow& window, ItemType);
+    void LoadItem(sf::RenderWindow& window, ItemType, GameObjectManager& goManager);
     bool init()
     {
         return true;

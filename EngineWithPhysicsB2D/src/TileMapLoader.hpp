@@ -26,6 +26,7 @@ public:
 
     static void loadObjectLayers(const std::unique_ptr<tson::Map>& map,
                                  const fs::path&                   resourcePath,
-                                 const SpriteManager&              spriteManager);
+                                 const SpriteManager&              spriteManager,
+                                 GameObjectManager&                goManager);
 };
 } // namespace mmt_gd

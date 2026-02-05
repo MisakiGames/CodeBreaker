@@ -17,6 +17,7 @@ public:
     };
     void     update(float deltaTime) override;
     void     pickup(ItemComponent& pickedUpItem);
+    void     loseAllItem();
     void     loseItem();
     void     loseCrown();
     ItemType getItemType()
