@@ -20,7 +20,5 @@ private:
     sf::View m_view;
     sf::Sprite m_backgroundSprite;
     sf::Texture m_backgroundTexture;
-
-    bool m_isInit = false;
 };
 } // namespace mmt_gd

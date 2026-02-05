@@ -16,11 +16,6 @@ void MenuState::init()
 {
     PROFILE_FUNCTION();
 
-    if (m_isInit)
-    {
-        return;
-    }
-
     if (m_backgroundTexture.loadFromFile("../assets/menu_background.png"))
     {
         m_backgroundSprite.setTexture(m_backgroundTexture);
@@ -32,9 +27,9 @@ void MenuState::init()
                                     static_cast<float>(windowSize.y) / textureSize.y);
     }
 
-    m_view = m_game->getWindow().getView();
+    m_view = m_game->getWindow().getDefaultView();
+    m_game->getWindow().setView(m_view);
 
-    InputManager::getInstance().bind("Exit", sf::Keyboard::Escape, 0);
     InputManager::getInstance().bind("Select", sf::Keyboard::Space, 0);
     InputManager::getInstance().bind("debugdraw", sf::Keyboard::F1, 0);
 
@@ -51,8 +46,6 @@ void MenuState::init()
     {
         btn->onClick([&manager = m_gameStateManager] { manager->setState("MainState"); });
     }
-
-    m_isInit = true;
 }
 
 void MenuState::update(float delta)
@@ -91,6 +84,8 @@ void MenuState::exit()
 {
     PROFILE_FUNCTION();
 
+    
+    InputManager::getInstance().unbind("Select", 0);
     m_game->getGui().removeAllWidgets();
     GameState::exit();
 }

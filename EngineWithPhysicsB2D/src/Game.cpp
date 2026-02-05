@@ -26,7 +26,7 @@ void Game::run()
     Instrumentor::instance().endSession();
     Instrumentor::instance().beginSession("runtime", "runtime.json");
 
-    while (m_window.isOpen())
+    while (m_window.isOpen() && !InputManager::getInstance().isKeyDown("Exit"))
     {
         PROFILE_SCOPE("Frame");
 
@@ -59,6 +59,7 @@ bool Game::init()
     PROFILE_FUNCTION();
 
     m_inputManager = &InputManager::getInstance();
+    m_inputManager->bind("Exit", sf::Keyboard::Escape, 0);
 
     m_debugDraw = &DebugDraw::getInstance();
     m_window.setFramerateLimit(120);
@@ -67,7 +68,7 @@ bool Game::init()
     m_gameStateManager.registerState("MainState", make_shared<MainState>(&m_gameStateManager, this));
 
     //
-    m_window.create(sf::VideoMode(m_config.m_resolution.x, m_config.m_resolution.y), m_config.m_windowName);
+    m_window.create(sf::VideoMode(m_config.m_resolution.x, m_config.m_resolution.y), m_config.m_windowName, sf::Style::Fullscreen);
     m_gui.setTarget(m_window);
     m_gui.setFont("../assets/font.ttf");
 

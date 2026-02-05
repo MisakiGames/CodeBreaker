@@ -34,9 +34,11 @@ Panel.Player {
     }
 
     Picture.Crown {
-        Position = (80%, 5%);
-        Size = (14, 14);
-        Asset = "../assets/crown.png"; 
-        Visible = true;
+        Position = (50%, 5%);
+        Size = (50%, 60%);
+
+	Renderer {
+       	    Texture = "../assets/crown.png" Smooth;
+    	}
     }
 }
