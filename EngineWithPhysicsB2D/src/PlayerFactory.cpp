@@ -60,17 +60,18 @@ GameObject::Ptr PlayerFactory::createPlayer(
     player->setPosition(spawnPoint);
 
     auto soundComponent = player->addComponent<SoundComponent>(*player);
-    soundComponent->addSound("dash", buffers.at("dash"), 70.0f);
-    soundComponent->addSound("step", buffers.at("step"), 100.0f);
-    soundComponent->addSound("impact", buffers.at("impact"), 100.0f);
 
-    soundComponent->addSound("damage", buffers.at("damage"), 90.0f);
-    soundComponent->addSound("item", buffers.at("item"), 70.0f);
-    soundComponent->addSound("bomb", buffers.at("bomb"), 100.0f);
-    soundComponent->addSound("crown_drop", buffers.at("crown_drop"), 85.0f);
+    soundComponent->addSound("dash", "../assets/sounds/dash.wav", 70.0f);
+    soundComponent->addSound("step", "../assets/sounds/step.wav", 100.0f);
+    soundComponent->addSound("impact", "../assets/sounds/impact.wav", 100.0f);
 
-    soundComponent->addSound("dying", buffers.at("dying"), 95.0f);
-    soundComponent->addSound("victory", buffers.at("victory"), 100.0f);
+    soundComponent->addSound("damage", "../assets/sounds/damage.wav", 90.0f);
+    soundComponent->addSound("item", "../assets/sounds/item.wav", 70.0f);
+    soundComponent->addSound("bomb", "../assets/sounds/bomb.wav", 100.0f);
+    soundComponent->addSound("crown_drop", "../assets/sounds/crown_drop.flac", 85.0f);
+
+    soundComponent->addSound("dying", "../assets/sounds/dying.wav", 95.0f);
+    soundComponent->addSound("victory", "../assets/sounds/victory.wav", 100.0f);
 
     auto spriteComp = player->addComponent<
         SpriteAnimationRenderComponent>(*player, window, "GameObjects", sf::IntRect(18, 20, 12, 24), sf::Vector2f(8, 6));
@@ -83,7 +84,7 @@ GameObject::Ptr PlayerFactory::createPlayer(
     spriteComp->loadAndMapTexture(sstream.str() + "Dash.png", AnimationState::Dash, 10, false);
     spriteComp->loadAndMapTexture(sstream.str() + "Death.png", AnimationState::Dead, 10, false);
 
-    auto                           health        = player->addComponent<HealthComponent>(*player, *soundComponent, 100, true);
+    auto                           health        = player->addComponent<HealthComponent>(*player, 100,1, false);
     std::weak_ptr<HealthComponent> healthWeakPtr = health;
     auto                           rigidBody     = player->addComponent<RigidBodyComponent>(*player, b2_dynamicBody);
     auto                           damageComp    = player->addComponent<DamageComponent>(*player, 10, player->getId());
@@ -127,7 +128,7 @@ GameObject::Ptr PlayerFactory::createPlayer(
     fixtureDef.shape   = &shape;
     fixtureDef.density = 1.0f;
 
-    auto move = player->addComponent<PlayerMoveComponent>(*player, *rigidBody, *deadComp, *soundComponent, plrIndex);
+    auto move = player->addComponent<PlayerMoveComponent>(*player, *rigidBody, *deadComp, plrIndex);
 
     move->subscribeToOnDash(
         [spriteWeakPtr = spriteWeakPtr]()

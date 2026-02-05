@@ -10,7 +10,7 @@ class HealthComponent : public IComponent
 public:
     using Ptr = std::shared_ptr<HealthComponent>;
 
-    HealthComponent(GameObject& gameObject,  SoundComponent& soundComponent, int maxHealth, float maxInvince, bool invincible = false);
+    HealthComponent(GameObject& gameObject, int maxHealth, float maxInvince, bool invincible = false);
 
     [[nodiscard]] bool init() override;
     void               update(float deltaTime) override;
@@ -33,8 +33,6 @@ public:
     }
 
 private:
-    SoundComponent& m_soundComponent;
-
     float m_invinceTime = 0;
     float m_maxInvinceTime;
     int   m_maxHealth;

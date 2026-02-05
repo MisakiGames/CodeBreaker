@@ -10,13 +10,11 @@ namespace mmt_gd
 PlayerMoveComponent::PlayerMoveComponent(GameObject&         gameObject,
                                          RigidBodyComponent& rigidBody,
                                          DeadComponent&      deadComponent,
-                                         SoundComponent&     soundComponent,
                                          int                 playerIndex) :
 IComponent(gameObject),
 m_rigidBody(rigidBody),
 m_deadComponent(deadComponent),
-m_playerIndex(playerIndex),
-m_soundComponent(soundComponent)
+m_playerIndex(playerIndex)
 {
 }
 
@@ -46,7 +44,6 @@ void PlayerMoveComponent::update(const float deltaTime)
 
     if (InputManager::getInstance().isKeyDown("dash", m_playerIndex) && m_canDash)
     {
-        m_soundComponent.playSound("dash");
 
         for (auto sub : m_onDash)
             sub();

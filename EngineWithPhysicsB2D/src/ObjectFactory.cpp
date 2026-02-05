@@ -21,8 +21,7 @@ namespace mmt_gd
 static GameObject::Ptr loadSprite(tson::Object&        object,
                                   const std::string&   layer,
                                   const fs::path&      resourcePath,
-                                  const SpriteManager& spriteManager,
-                                  const std::unordered_map<std::string, sf::SoundBuffer>& buffers
+                                  const SpriteManager& spriteManager
 )
 {
     auto gameObject = GameObject::create(object.getName());
@@ -93,11 +92,11 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
     if (destroyable)
     {
         auto soundComp = gameObject->addComponent<SoundComponent>(*gameObject);
-        soundComp->addSound("damage", buffers.at("impact"), 50.0f); // Kiste macht "Pock" bei Treffer
-        soundComp->addSound("dying", buffers.at("bomb"), 80.0f);    // Kiste explodiert
+        soundComp->addSound("damage", " ../assets/sounds/impact.wav", 50.0f); // Kiste macht "Pock" bei Treffer
+        soundComp->addSound("dying", " ../assets/sounds/bomb.wav", 80.0f);  // Kiste explodiert
 
-        auto health = gameObject->addComponent<HealthComponent>(*gameObject, *soundComp, 1, false);
-        gameObject->addComponent<DestructionComponent>(*gameObject, *health);
+        auto healthComp = gameObject->addComponent<HealthComponent>(*gameObject,health, 1, false);
+        gameObject->addComponent<DestructionComponent>(*gameObject, *healthComp);
 
         b2PolygonShape polygonShape;
         const auto     size = PhysicsManager::t2b(object.getSize(), true);

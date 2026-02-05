@@ -4,13 +4,11 @@
 
 namespace mmt_gd
 {
-HealthComponent::HealthComponent(GameObject&     gameObject,
-                                 SoundComponent& soundComponent, 
-                                 const int       maxHealth,
-                                 float           maxInvince,
-                                 const bool      invincible) :
+HealthComponent::HealthComponent(GameObject& gameObject,
+                                 const int  maxHealth,
+                                 float      maxInvince,
+                                 const bool invincible) :
 IComponent(gameObject),
-m_soundComponent(soundComponent), 
 m_maxHealth(maxHealth),
 m_currentHealth(maxHealth),
 m_invincible(invincible),
@@ -51,11 +49,7 @@ void HealthComponent::takeDamage(const int damage)
     if (m_currentHealth <= 0)
     {
         m_currentHealth = 0;
-        m_soundComponent.playSound("dying");
-    }
-    else
-    {
-        m_soundComponent.playSound("damage");
+
     }
 
     setInvincible(true);

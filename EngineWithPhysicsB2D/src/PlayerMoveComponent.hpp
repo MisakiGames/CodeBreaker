@@ -19,7 +19,6 @@ public:
     PlayerMoveComponent(GameObject&         gameObject,
                         RigidBodyComponent& rigidBody,
                         DeadComponent&      deadComponent,
-                        SoundComponent&     soundComponent,
                         int                 playerIndex = 0);
 
     float getDashDuration() const
@@ -43,7 +42,6 @@ public:
 private:
     DeadComponent&      m_deadComponent;
     RigidBodyComponent& m_rigidBody;
-    SoundComponent&     m_soundComponent;
     sf::Vector2f        m_lastMoveDirection;
 
     int   m_playerIndex;
