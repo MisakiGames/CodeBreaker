@@ -21,197 +21,195 @@
 
 namespace mmt_gd
 {
-	MainState::MainState(GameStateManager* gameStateManager, Game* game) :
-		GameState(gameStateManager, game),
-		m_spriteManager(game->getWindow())
-	{
-	}
+MainState::MainState(GameStateManager* gameStateManager, Game* game) :
+GameState(gameStateManager, game),
+m_spriteManager(game->getWindow())
+{
+}
 
-	void MainState::init()
-	{
-		PROFILE_FUNCTION();
+void MainState::init()
+{
+    PROFILE_FUNCTION();
 
-		m_gameObjectManager.init();
-		m_spriteManager.init();
-		m_physicsManager.init();
+    m_gameObjectManager.init();
+    m_spriteManager.init();
+    m_physicsManager.init();
 
-		// Load tile map
-		tson::Tileson tileson;
-		const auto    map = tileson.parse(fs::path("../assets/MainGame.tmj"));
-		if (map->getStatus() == tson::ParseStatus::OK)
-		{
-			TileMapLoader::loadTileLayers(map, "../assets", m_spriteManager);
-			TileMapLoader::loadObjectLayers(map, "../assets", m_spriteManager);
-		}
-		else
-		{
-			sf::err() << "Could not load tile map\n";
-		}
+    // Load tile map
+    tson::Tileson tileson;
+    const auto    map = tileson.parse(fs::path("../assets/MainGame.tmj"));
+    if (map->getStatus() == tson::ParseStatus::OK)
+    {
+        TileMapLoader::loadTileLayers(map, "../assets", m_spriteManager);
+        TileMapLoader::loadObjectLayers(map, "../assets", m_spriteManager);
+    }
+    else
+    {
+        sf::err() << "Could not load tile map\n";
+    }
 
-		for (const auto& config : m_playerConfigs)
-		{
-			/*        const auto camera = GameObject::create("Camera");
-					const auto renderComp = camera->addComponent<CameraRenderComponent>(*camera,
-								 */                                                       m_game->getWindow(),
+    for (const auto& config : m_playerConfigs)
+    {
+        m_players.push_back(
+            PlayerFactory::createPlayer(m_game->getWindow(), config.spawn, m_gameObjectManager, config.id, config.color));
+    }
+    auto crown = ItemFactory::createItem(m_game->getWindow(), ItemType::Crown, 1);
+    m_camera   = GameObject::create("Camera");
+    {
+        const auto renderComp = m_camera->addComponent<CameraRenderComponent>(*m_camera,
+                                                                              m_game->getWindow(),
+                                                                              m_game->getWindow().getView());
+        renderComp->setTargets(m_players);
 
-	auto crown = ItemFactory::createItem(m_game->getWindow(), ItemType::Crown, m_gameObjectManager, 1);
+        if (!m_camera->init())
+        {
+            FF_ERROR_MSG("Could not initialize camera");
+        }
 
-								 m_camera = GameObject::create("Camera");
-								 {
-									 const auto renderComp = m_camera->addComponent<CameraRenderComponent>(*m_camera,
-										 m_game->getWindow(),
-										 m_game->getWindow().getView());
-									 renderComp->setTargets(m_players);
+        m_gameObjectManager.addGameObject(m_camera);
+        m_spriteManager.setCamera(renderComp.get());
+    }
 
-									 if (!m_camera->init())
-									 {
-										 FF_ERROR_MSG("Could not initialize camera");
-									 }
+    auto& input = InputManager::getInstance();
 
-									 m_gameObjectManager.addGameObject(m_camera);
-									 m_spriteManager.setCamera(renderComp.get());
-								 }
+    input.bind("up", sf::Keyboard::W, 0);
+    input.bind("left", sf::Keyboard::A, 0);
+    input.bind("down", sf::Keyboard::S, 0);
+    input.bind("right", sf::Keyboard::D, 0);
+    input.bind("dash", sf::Keyboard::Enter, 0);
 
-								 auto& input = InputManager::getInstance();
+    for (int i = 1; i <= 3; ++i)
+    {
+        input.bind("left", {sf::Joystick::X, 50.0f, false}, i);
+        input.bind("right", {sf::Joystick::X, 50.0f, true}, i);
+        input.bind("up", {sf::Joystick::Y, 50.0f, false}, i);
+        input.bind("down", {sf::Joystick::Y, 50.0f, true}, i);
+        input.bind("dash", 0u, i);
+    }
 
-								 input.bind("up", sf::Keyboard::W, 0);
-								 input.bind("left", sf::Keyboard::A, 0);
-								 input.bind("down", sf::Keyboard::S, 0);
-								 input.bind("right", sf::Keyboard::D, 0);
-								 input.bind("dash", sf::Keyboard::Enter, 0);
+    // Load and initialize TGui elements
+    m_game->getGui().loadWidgetsFromFile("../assets/mainTgui.txt");
+    auto panel = m_game->getGui().get<tgui::Panel>("Player");
 
-								 for (int i = 1; i <= 3; ++i)
-								 {
-									 input.bind("left", { sf::Joystick::X, 50.0f, false }, i);
-									 input.bind("right", { sf::Joystick::X, 50.0f, true }, i);
-									 input.bind("up", { sf::Joystick::Y, 50.0f, false }, i);
-									 input.bind("down", { sf::Joystick::Y, 50.0f, true }, i);
-									 input.bind("dash", 0u, i);
-								 }
+    if (!panel)
+        return;
 
-								 // Load and initialize TGui elements
-								 m_game->getGui().loadWidgetsFromFile("../assets/mainTgui.txt");
-								 auto panel = m_game->getGui().get<tgui::Panel>("Player");
+    for (size_t i = 0; i < m_players.size(); ++i)
+    {
+        auto playerPanel = tgui::Panel::copy(panel);
+        playerPanel->setVisible(true);
 
-								 if (!panel)
-									 return;
+        std::string uniqueName = "PlayerUI_" + std::to_string(i);
+        m_game->getGui().add(playerPanel, uniqueName);
 
-								 for (size_t i = 0; i < m_players.size(); ++i)
-								 {
-									 auto playerPanel = tgui::Panel::copy(panel);
-									 playerPanel->setVisible(true);
+        playerPanel->setPosition({tgui::Layout(std::to_string(2 + i * 26) + "%"), "86%"});
 
-									 std::string uniqueName = "PlayerUI_" + std::to_string(i);
-									 m_game->getGui().add(playerPanel, uniqueName);
+        auto renderer = playerPanel->getRenderer();
+        if (renderer)
+        {
+            const float opacity = 130;
+            std::string id      = m_players[i]->getId();
 
-									 playerPanel->setPosition({ tgui::Layout(std::to_string(2 + i * 26) + "%"), "86%" });
+            if (id == "Player_red")
+                renderer->setBackgroundColor(tgui::Color(255, 0, 0, opacity));
+            else if (id == "Player_blue")
+                renderer->setBackgroundColor(tgui::Color(0, 0, 255, opacity));
+            else if (id == "Player_green")
+                renderer->setBackgroundColor(tgui::Color(0, 255, 0, opacity));
+            else if (id == "Player_yellow")
+                renderer->setBackgroundColor(tgui::Color(255, 255, 0, opacity));
+            else
+                renderer->setBackgroundColor(tgui::Color(100, 100, 100, opacity));
+        }
+    }
+    m_game->getGui().remove(panel);
 
-									 auto renderer = playerPanel->getRenderer();
-									 if (renderer)
-									 {
-										 const float opacity = 130;
-										 std::string id = m_players[i]->getId();
+    // Define layer order manually here. Could come from custom file settings.
+    m_spriteManager.setLayerOrder({"Ground", "GameObjects"});
+}
 
-										 if (id == "Player_red")
-											 renderer->setBackgroundColor(tgui::Color(255, 0, 0, opacity));
-										 else if (id == "Player_blue")
-											 renderer->setBackgroundColor(tgui::Color(0, 0, 255, opacity));
-										 else if (id == "Player_green")
-											 renderer->setBackgroundColor(tgui::Color(0, 255, 0, opacity));
-										 else if (id == "Player_yellow")
-											 renderer->setBackgroundColor(tgui::Color(255, 255, 0, opacity));
-										 else
-											 renderer->setBackgroundColor(tgui::Color(100, 100, 100, opacity));
-									 }
-								 }
-								 m_game->getGui().remove(panel);
+void MainState::update(const float deltaTime)
+{
+    PROFILE_FUNCTION();
+    if (InputManager::getInstance().isKeyPressed("Exit"))
+    {
+        m_gameStateManager->setState("MenuState");
+        return;
+    }
 
-								 // Define layer order manually here. Could come from custom file settings.
-								 m_spriteManager.setLayerOrder({ "Ground", "GameObjects" });
-		}
+    for (size_t i = 0; i < m_players.size(); ++i)
+    {
+        auto panel = m_game->getGui().get<tgui::Panel>("PlayerUI_" + std::to_string(i));
+        if (!panel)
+            continue;
 
-		void MainState::update(const float deltaTime)
-		{
-			PROFILE_FUNCTION();
-			if (InputManager::getInstance().isKeyPressed("Exit"))
-			{
-				m_gameStateManager->setState("MenuState");
-				return;
-			}
+        auto& player = m_players[i];
 
-			for (size_t i = 0; i < m_players.size(); ++i)
-			{
-				auto panel = m_game->getGui().get<tgui::Panel>("PlayerUI_" + std::to_string(i));
-				if (!panel)
-					continue;
+        if (auto scoreComp = player->getComponent<PlayerScoreComponent>())
+        {
+            if (auto label = panel->get<tgui::Label>("Score"))
+            {
+                int roundedScore = static_cast<int>(std::round(scoreComp->getScore()));
+                label->setText("Score: \n" + std::to_string(roundedScore) + "%");
 
-				auto& player = m_players[i];
+                if (roundedScore >= m_maxScore)
+                {
+                    if (!m_gameEnded)
+                        endGame(m_players[i]);
 
-				if (auto scoreComp = player->getComponent<PlayerScoreComponent>())
-				{
-					if (auto label = panel->get<tgui::Label>("Score"))
-					{
-						int roundedScore = static_cast<int>(std::round(scoreComp->getScore()));
-						label->setText("Score: \n" + std::to_string(roundedScore) + "%");
+                    m_camera->update(deltaTime);
+                    m_winTimer += deltaTime;
 
-						if (roundedScore >= m_maxScore)
-						{
-							if (!m_gameEnded)
-								endGame(m_players[i]);
+                    if (m_winTimer < m_winDelay)
+                        return;
 
-							m_camera->update(deltaTime);
-							m_winTimer += deltaTime;
+                    std::cout << "game ended \n";
+                    return;
+                    //m_winTimer = 0.f;
+                    //m_gameStateManager->setState("EndState");
+                }
+            }
 
-							if (m_winTimer < m_winDelay)
-								return;
+            if (auto crownImg = panel->get<tgui::Picture>("Crown"))
+                crownImg->setVisible(scoreComp->hasCrown());
+        }
 
-							std::cout << "game ended \n";
-							return;
-							//m_winTimer = 0.f;
-							//m_gameStateManager->setState("EndState");
-						}
-					}
+        if (auto healthComp = player->getComponent<HealthComponent>())
+        {
+            if (auto bar = panel->get<tgui::ProgressBar>("Health"))
+                bar->setValue(healthComp->getHealth());
+        }
+    }
 
-					if (auto crownImg = panel->get<tgui::Picture>("Crown"))
-						crownImg->setVisible(scoreComp->hasCrown());
-				}
+    EventBus::getInstance().processEvents(deltaTime);
+    m_gameObjectManager.update(deltaTime);
+    m_physicsManager.update(deltaTime);
+}
 
-				if (auto healthComp = player->getComponent<HealthComponent>())
-				{
-					if (auto bar = panel->get<tgui::ProgressBar>("Health"))
-						bar->setValue(healthComp->getHealth());
-				}
-			}
+void MainState::endGame(std::shared_ptr<GameObject> winner)
+{
+    m_gameEnded = true;
 
-			EventBus::getInstance().processEvents(deltaTime);
-			m_gameObjectManager.update(deltaTime);
-			m_physicsManager.update(deltaTime);
-		}
+    //deactivate input
+    InputManager::getInstance().clear();
 
-		void MainState::endGame(std::shared_ptr<GameObject> winner)
-		{
-			m_gameEnded = true;
+    std::vector<std::shared_ptr<GameObject>> winners;
+    winners.push_back(winner);
+    m_camera->getComponent<CameraRenderComponent>()->setTargets(winners);
+}
 
-			//deactivate input
-			InputManager::getInstance().clear();
+void MainState::draw()
+{
+    PROFILE_FUNCTION();
+    m_spriteManager.draw();
+}
 
-			std::vector<std::shared_ptr<GameObject>> winners;
-			winners.push_back(winner);
-			m_camera->getComponent<CameraRenderComponent>()->setTargets(winners);
-		}
-
-		void MainState::draw()
-		{
-			PROFILE_FUNCTION();
-			m_spriteManager.draw();
-		}
-
-		void MainState::exit()
-		{
-			PROFILE_FUNCTION();
-			m_game->getGui().removeAllWidgets();
-			m_physicsManager.shutdown();
-			m_spriteManager.shutdown();
-			m_gameObjectManager.shutdown();
-		}
-	} // namespace mmt_gd
+void MainState::exit()
+{
+    PROFILE_FUNCTION();
+    m_game->getGui().removeAllWidgets();
+    m_physicsManager.shutdown();
+    m_spriteManager.shutdown();
+    m_gameObjectManager.shutdown();
+}
+} // namespace mmt_gd

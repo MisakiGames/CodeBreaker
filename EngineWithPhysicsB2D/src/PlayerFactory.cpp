@@ -28,11 +28,12 @@
 
 namespace mmt_gd
 {
-GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow&  window,
-                                            enum PlayerSpawn   spawnName,
-                                            GameObjectManager& goManager,
-                                            int                plrIndex,
-                                            std::string        color)
+GameObject::Ptr PlayerFactory::createPlayer(
+    sf::RenderWindow&  window,
+    enum PlayerSpawn   spawnName,
+    GameObjectManager& goManager,
+    int                plrIndex,
+    std::string        color)
 {
     std::string spawn = "";
     switch (spawnName)
@@ -59,8 +60,8 @@ GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow&  window,
 
     auto spriteComp = player->addComponent<
         SpriteAnimationRenderComponent>(*player, window, "GameObjects", sf::IntRect(18, 20, 12, 24), sf::Vector2f(8, 6));
-
-    std::stringstream sstream;
+    std::weak_ptr<SpriteAnimationRenderComponent> spriteWeakPtr = spriteComp;
+    std::stringstream                             sstream;
     sstream << "../assets/Character/" << color << "/";
 
     spriteComp->loadAndMapTexture(sstream.str() + "Walk.png", AnimationState::Walk, 5);
@@ -68,11 +69,13 @@ GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow&  window,
     spriteComp->loadAndMapTexture(sstream.str() + "Dash.png", AnimationState::Dash, 10, false);
     spriteComp->loadAndMapTexture(sstream.str() + "Death.png", AnimationState::Dead, 10, false);
 
-    auto health     = player->addComponent<HealthComponent>(*player, 100, true);
-    auto rigidBody  = player->addComponent<RigidBodyComponent>(*player, b2_dynamicBody);
-    auto damageComp = player->addComponent<DamageComponent>(*player, 10, player->getId());
+    auto                           health        = player->addComponent<HealthComponent>(*player, 100, true);
+    std::weak_ptr<HealthComponent> healthWeakPtr = health;
+    auto                           rigidBody     = player->addComponent<RigidBodyComponent>(*player, b2_dynamicBody);
+    auto                           damageComp    = player->addComponent<DamageComponent>(*player, 10, player->getId());
     damageComp->setActive(false);
-    auto respawn = player->addComponent<RespawnComponent>(*player);
+    std::weak_ptr<DamageComponent> damageWeakPtr = damageComp;
+    auto                           respawn       = player->addComponent<RespawnComponent>(*player);
 
     auto deadComp = player->addComponent<DeadComponent>(*player, *health, *respawn, 2);
     deadComp->subscribeToDeath(
