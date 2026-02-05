@@ -15,14 +15,12 @@ void ResizeItemComponent::use(GameObject& player)
     m_oldScale = m_player->getScale().x;
     std::cout << m_oldScale << std::endl;
     auto sprite = player.getComponent<SpriteAnimationRenderComponent>();
-    sprite->setScale(m_newScale);
     m_big    = true;
     m_resize = true;
 }
 void ResizeItemComponent::stopUse(GameObject& player)
 {
     auto sprite = player.getComponent<SpriteAnimationRenderComponent>();
-    sprite->setScale(m_oldScale);
     m_big    = false;
     m_resize = true;
 }
@@ -37,6 +35,7 @@ void ResizeItemComponent::update(float deltaTime)
             scale = m_newScale;
         }
         auto     sprite      = m_player->getComponent<SpriteAnimationRenderComponent>();
+    sprite->setScale(scale);
         auto     collider    = m_player->getComponent<ColliderComponent>();
         auto     fixture     = collider->getFixture();
         auto     userData    = fixture->GetUserData();

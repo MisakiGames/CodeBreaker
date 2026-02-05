@@ -20,6 +20,7 @@ void PickupComponent::update(float deltaTime)
     {
         holdingItem->stopUse(m_gameObject);
         holdingItem = nullptr;
+        m_itemUseTime = 0;
     }
 }
 void PickupComponent::pickup(ItemComponent& pickedUpItem)
