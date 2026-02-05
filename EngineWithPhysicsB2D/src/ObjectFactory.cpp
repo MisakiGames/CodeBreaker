@@ -94,10 +94,27 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
     if (destroyable)
     {
         auto soundComp = gameObject->addComponent<SoundComponent>(*gameObject);
-        soundComp->addSound("damage", " ../assets/sounds/impact.wav", 50.0f); // Kiste macht "Pock" bei Treffer
-        soundComp->addSound("dying", " ../assets/sounds/bomb.wav", 80.0f);  // Kiste explodiert
-
+        soundComp->addSound("damage", "../assets/sounds/impact.wav", 50.0f); // Kiste macht "Pock" bei Treffer
+        soundComp->addSound("dying", "../assets/sounds/bomb.wav", 80.0f);  // Kiste explodiert
+        std::weak_ptr<SoundComponent> soundWeakPtr = soundComp;
         auto healthComp = gameObject->addComponent<HealthComponent>(*gameObject,health, 1, false);
+        std::weak_ptr<HealthComponent> healthWeakPtr = healthComp;
+        healthComp->subsribeToOnTakeDamage(
+            [soundWeakPtr = soundWeakPtr, healthWeakPtr = healthWeakPtr]()
+            {
+                if (auto soundComp = soundWeakPtr.lock())
+                {
+                    if (auto health = healthWeakPtr.lock())
+                    {
+                        if (; health->isAlive())
+                        soundComp->playSound("damage");
+                    else
+                    {
+                        soundComp->playSound("dying");
+                    }
+                    }
+                }
+            });
         gameObject->addComponent<DestructionComponent>(*gameObject, *healthComp);
 
         b2PolygonShape polygonShape;

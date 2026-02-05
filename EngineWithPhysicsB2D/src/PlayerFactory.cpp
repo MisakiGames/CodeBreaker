@@ -33,8 +33,7 @@ GameObject::Ptr PlayerFactory::createPlayer(
     enum PlayerSpawn   spawnName,
     GameObjectManager& goManager,
     int                plrIndex,
-    std::string        color,
-    const std::unordered_map<std::string, sf::SoundBuffer>& buffers)
+    std::string        color)
 {
     const float scaleFaktor = 1;
     std::string spawn       = "";

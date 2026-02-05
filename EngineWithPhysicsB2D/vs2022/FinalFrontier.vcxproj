@@ -151,6 +151,7 @@
     <ClInclude Include="..\src\ItemComponent.h" />
     <ClInclude Include="..\src\ItemFactory.h" />
     <ClInclude Include="..\src\ItemSpawnerComponent.h" />
+    <ClInclude Include="..\src\MusicComponent.h" />
     <ClInclude Include="..\src\ObservableProperty.hpp" />
     <ClInclude Include="..\src\PickupComponent.h" />
     <ClInclude Include="..\src\PlayerFactory.h" />
@@ -221,6 +222,7 @@
     <ClCompile Include="..\src\ItemComponent.cpp" />
     <ClCompile Include="..\src\ItemFactory.cpp" />
     <ClCompile Include="..\src\ItemSpawnerComponent.cpp" />
+    <ClCompile Include="..\src\MusicComponent.cpp" />
     <ClCompile Include="..\src\PickupComponent.cpp" />
     <ClCompile Include="..\src\PlayerFactory.cpp" />
     <ClCompile Include="..\src\PlayerScoreComponent.cpp" />

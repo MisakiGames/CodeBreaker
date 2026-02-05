@@ -50,17 +50,6 @@ void MainState::init()
 
     // Load sounds
     std::string soundPath = "../assets/sounds/";
-    m_buffers["dash"].loadFromFile(soundPath + "dash.wav");
-    m_buffers["step"].loadFromFile(soundPath + "step.wav");
-    m_buffers["impact"].loadFromFile(soundPath + "impact.wav");
-
-    m_buffers["damage"].loadFromFile(soundPath + "damage.wav");
-    m_buffers["item"].loadFromFile(soundPath + "item.wav");
-    m_buffers["bomb"].loadFromFile(soundPath + "bomb.wav");
-    m_buffers["crown_drop"].loadFromFile(soundPath + "crown_drop.flac");
-
-    m_buffers["victory"].loadFromFile(soundPath + "victory.mp3");
-    m_buffers["dying"].loadFromFile(soundPath + "dying.wav");
 
 
     // Create players
@@ -72,8 +61,7 @@ void MainState::init()
                 config.spawn,
                 m_gameObjectManager,
                 config.id, 
-                config.color,
-                m_buffers));
+                config.color));
     }
     auto crown = ItemFactory::createItem(m_game->getWindow(), ItemType::Crown, m_gameObjectManager, 1);
     m_camera   = GameObject::create("Camera");

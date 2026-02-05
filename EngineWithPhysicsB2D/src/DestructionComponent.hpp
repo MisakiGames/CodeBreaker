@@ -16,8 +16,9 @@ public:
     void update(float deltaTime) override;
 
 private:
-    void triggerDestruction();
-
+    void               setPosition(sf::Vector2f setPos);
+    bool             warp = false;
+    sf::Vector2f     warpTo{};
     HealthComponent& m_healthComponent;
     bool m_destroyed;
 };

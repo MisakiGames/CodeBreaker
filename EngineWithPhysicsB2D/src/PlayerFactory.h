@@ -13,8 +13,7 @@ public:
                                         enum PlayerSpawn   spawnName,
                                         GameObjectManager& goManager,
                                         int                plrIndex,
-                                        std::string        color,
-                                        const std::unordered_map<std::string, sf::SoundBuffer>& buffers);
+                                        std::string        color);
 };
 
 enum PlayerSpawn
