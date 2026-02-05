@@ -41,7 +41,7 @@ void MainState::init()
     if (map->getStatus() == tson::ParseStatus::OK)
     {
         TileMapLoader::loadTileLayers(map, "../assets", m_spriteManager);
-        TileMapLoader::loadObjectLayers(map, "../assets", m_spriteManager);
+        TileMapLoader::loadObjectLayers(map, "../assets", m_spriteManager, m_gameObjectManager);
     }
     else
     {
@@ -75,9 +75,7 @@ void MainState::init()
                 config.color,
                 m_buffers));
     }
-
-    // Create GameObjects in Scene
-    auto crown = ItemFactory::createItem(m_game->getWindow(), ItemType::Crown, 1);
+    auto crown = ItemFactory::createItem(m_game->getWindow(), ItemType::Crown, m_gameObjectManager, 1);
     m_camera   = GameObject::create("Camera");
     {
         const auto renderComp = m_camera->addComponent<CameraRenderComponent>(*m_camera,

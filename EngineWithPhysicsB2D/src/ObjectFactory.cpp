@@ -12,9 +12,11 @@
 #include "PlayerShootComponent.hpp"
 #include "SpriteRenderComponent.hpp"
 #include "Tileson.hpp"
+#include "RectComponent.h"
 
 #include <iostream>
 #include <vector>
+#include "GameObjectManager.hpp"
 
 namespace mmt_gd
 {
@@ -106,7 +108,7 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
         fixtureDef.density = 1; //TOdo load from tiled
 
         auto collider = gameObject->addComponent<ColliderComponent>(*gameObject, *rigidComp, fixtureDef);
-        collider->registerOnCollisionFunction(
+        collider->registerOnCollisionEnterFunction(
             [](ColliderComponent& self, ColliderComponent& other)
             {
                 auto damageComp = other.getGameObject().getComponent<DamageComponent>();
@@ -128,14 +130,6 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
             collider->setTag(tag);
     }
 
-    if (spawner)
-    {
-        auto spawner = gameObject->addComponent<ItemSpawnerComponent>(*gameObject);
-        for (auto type : itemType)
-        {
-            spawner->LoadItem(spriteManager.getWindow(), type);
-        }
-    }
 
     if (!gameObject->init())
     {
@@ -193,8 +187,9 @@ static GameObject::Ptr loadTrigger(tson::Object& object, const std::string& laye
 {
     auto gameObject = GameObject::create(object.getName());
     gameObject->setPosition(static_cast<float>(object.getPosition().x), static_cast<float>(object.getPosition().y));
-    bool        damage = false;
-    std::string tag    = "";
+    bool        damage       = false;
+    std::string tag          = "";
+    float       damageAmount = 0;
 
     for (const auto* property : object.getProperties().get())
     {
@@ -202,6 +197,8 @@ static GameObject::Ptr loadTrigger(tson::Object& object, const std::string& laye
             damage = std::any_cast<bool>(property->getValue());
         if (property->getName() == "ColliderTag")
             tag = std::any_cast<std::string>(property->getValue());
+        if (property->getName() == "DamageAmount")
+            damageAmount = std::any_cast<float>(property->getValue());
     }
     const auto rb = gameObject->addComponent<RigidBodyComponent>(*gameObject, b2_staticBody);
 
@@ -214,14 +211,14 @@ static GameObject::Ptr loadTrigger(tson::Object& object, const std::string& laye
     fixtureDef.isSensor = true;
 
     if (damage)
-        gameObject->addComponent<DamageComponent>(*gameObject, 9999, gameObject->getId());
+        gameObject->addComponent<DamageComponent>(*gameObject, damageAmount, gameObject->getId());
 
     auto collider = gameObject->addComponent<ColliderComponent>(*gameObject, *rb, fixtureDef);
     if (tag.length() > 0)
         collider->setTag(tag);
 
     // Add callback to output when something enters the trigger
-    collider->registerOnCollisionFunction(
+    collider->registerOnCollisionEnterFunction(
         [](ColliderComponent& self, ColliderComponent& other)
         {
             std::cout << "Entered trigger zone: " << self.getGameObject().getId() << " (collided with "
@@ -252,7 +249,29 @@ static GameObject::Ptr loadSpawn(const tson::Object& object, const std::string& 
 
     return gameObject;
 }
-static GameObject::Ptr loadItemSpawner(tson::Object& object, const std::string& layer, const SpriteManager& spriteManager)
+static GameObject::Ptr loadCrownSpace(const tson::Object& object, const std::string& layer)
+{
+    auto gameObject = GameObject::create(object.getName());
+    gameObject->setPosition(static_cast<float>(object.getPosition().x), static_cast<float>(object.getPosition().y));
+    sf::IntRect m_spaceRect;
+    m_spaceRect.width  = object.getSize().x;
+    m_spaceRect.height = object.getSize().y;
+
+    gameObject->addComponent<RectComponent>(*gameObject, m_spaceRect);
+
+    if (!gameObject->init())
+    {
+        sf::err() << "Could not initialize go " << gameObject->getId() << " in TileMap\n";
+    }
+
+    EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(gameObject));
+
+    return gameObject;
+}
+static GameObject::Ptr loadItemSpawner(tson::Object&        object,
+                                       const std::string&   layer,
+                                       const SpriteManager& spriteManager,
+                                       GameObjectManager&    goManager)
 {
     auto gameObject = GameObject::create(object.getName());
 
@@ -278,7 +297,7 @@ static GameObject::Ptr loadItemSpawner(tson::Object& object, const std::string& 
     auto spawner = gameObject->addComponent<ItemSpawnerComponent>(*gameObject);
     for (auto type : itemType)
     {
-        spawner->LoadItem(spriteManager.getWindow(), type);
+        spawner->LoadItem(spriteManager.getWindow(), type, goManager);
     }
 
     if (!gameObject->init())
@@ -294,7 +313,8 @@ static GameObject::Ptr loadItemSpawner(tson::Object& object, const std::string& 
 GameObject::Ptr ObjectFactory::processTsonObject(tson::Object&        object,
                                                  const tson::Layer&   layer,
                                                  const fs::path&      path,
-                                                 const SpriteManager& spriteManager)
+    const SpriteManager& spriteManager,
+    GameObjectManager&    goManager)
 {
     // Skip Sprite objects - player/enemy are created via ShipFactory
     if (object.getType() == "Sprite")
@@ -315,7 +335,11 @@ GameObject::Ptr ObjectFactory::processTsonObject(tson::Object&        object,
     }
     if (object.getType() == "ItemSpawner")
     {
-        auto spawn = loadItemSpawner(object, layer.getName(), spriteManager);
+        auto itemSpawn = loadItemSpawner(object, layer.getName(), spriteManager, goManager);
+    }
+    if (object.getType() == "CrownSpace")
+    {
+        auto crownSpace = loadCrownSpace(object, layer.getName());
     }
 
     return {};

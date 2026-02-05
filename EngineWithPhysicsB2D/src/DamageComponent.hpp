@@ -26,13 +26,14 @@ public:
     {
         m_isActive = set;
     };
+    void setDamageFactor(float set);
 
     void setOwnerId(const std::string& ownerId);
 
 private:
     int         m_damage;
     std::string m_ownerId;
-    bool        m_isActive = true;
-
+    bool        m_isActive     = true;
+    float       m_damageFactor = 1;
 };
 } // namespace mmt_gd

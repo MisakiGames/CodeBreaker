@@ -35,7 +35,12 @@ int ItemFactory::bombCount      = 0;
 int ItemFactory::crownItemCount = 0;
 int ItemFactory::bombItemCount  = 0;
 int ItemFactory::sizeItemCount  = 0;
-std::vector<GameObject::Ptr> ItemFactory::createItem(sf::RenderWindow& window, ItemType type, int count, bool canBePickup)
+std::vector<GameObject::Ptr> ItemFactory::createItem(
+    sf::RenderWindow& window,
+    ItemType          type,
+    GameObjectManager& goManager,
+    int               count,
+    bool              canBePickup)
 {
     std::vector<GameObject::Ptr> itemGroup;
     for (int i = 0; i < count; i++)
@@ -69,7 +74,7 @@ std::vector<GameObject::Ptr> ItemFactory::createItem(sf::RenderWindow& window, I
         auto                            respawn        = item->addComponent<RespawnComponent>(*item);
         std::weak_ptr<RespawnComponent> respawnWeakPtr = respawn;
 
-        auto itemComp = ItemFactory::addSpecifiedItemComponent(window, item, type);
+        auto itemComp = ItemFactory::addSpecifiedItemComponent(window, item, type, goManager);
         itemComp->subscribeToOnDisappear(
             [respawnWeakPtr = respawnWeakPtr]()
             {
@@ -135,13 +140,13 @@ sf::IntRect ItemFactory::getIntRect(ItemType type)
 
     return rect;
 }
-std::shared_ptr<ItemComponent> ItemFactory::addSpecifiedItemComponent(sf::RenderWindow& window, GameObject::Ptr item, ItemType type)
+std::shared_ptr<ItemComponent> ItemFactory::addSpecifiedItemComponent(sf::RenderWindow& window, GameObject::Ptr item, ItemType type, GameObjectManager& goManager)
 {
     std::shared_ptr<ItemComponent> itemComp;
     switch (type)
     {
         case mmt_gd::ItemType::Crown:
-            itemComp = item->addComponent<CrownItemComponent>(*item, type, 0);
+            itemComp = item->addComponent<CrownItemComponent>(*item, type, 0, *goManager.getGameObject("CrownSpace"));
             itemComp->setPickup(true);
             break;
         case mmt_gd::ItemType::Bomb:
@@ -154,20 +159,6 @@ std::shared_ptr<ItemComponent> ItemFactory::addSpecifiedItemComponent(sf::Render
             break;
     }
     return itemComp;
-}
-float ItemFactory::getMaxTime(ItemType type)
-{
-    float maxTime = 0;
-    switch (type)
-    {
-        case mmt_gd::ItemType::Bomb:
-            maxTime = 5;
-            break;
-        case mmt_gd::ItemType::Size:
-            maxTime = 5;
-            break;
-    }
-    return maxTime;
 }
 
 GameObject::Ptr ItemFactory::createBombObject(sf::RenderWindow& window)

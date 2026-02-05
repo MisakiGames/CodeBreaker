@@ -8,6 +8,7 @@ namespace mmt_gd
 {
 void PickupComponent::update(float deltaTime)
 {
+    m_gotThisFrame = false;
     if (m_crown)
     {
         m_crown->use(m_gameObject);
@@ -17,8 +18,7 @@ void PickupComponent::update(float deltaTime)
     m_itemUseTime += deltaTime;
     if (m_itemUseTime >= holdingItem->getMaxTime())
     {
-        holdingItem->stopUse(m_gameObject);
-        holdingItem = nullptr;
+        loseItem();
     }
 }
 void PickupComponent::pickup(ItemComponent& pickedUpItem)
@@ -36,6 +36,7 @@ void PickupComponent::pickup(ItemComponent& pickedUpItem)
     pickedUpItem.disappear();
     pickedUpItem.setPickup(false);
     holdingItem->use(m_gameObject);
+    m_gotThisFrame = true;
 }
 
 void PickupComponent::HandleCrown(ItemComponent& crownItem)
@@ -43,24 +44,27 @@ void PickupComponent::HandleCrown(ItemComponent& crownItem)
     m_crown = &crownItem;
 }
 
-void PickupComponent::loseItem()
+void PickupComponent::loseAllItem()
 {
     loseCrown();
+    loseItem();
+}
+void PickupComponent::loseItem()
+{
     if (holdingItem)
     {
         holdingItem->stopUse(m_gameObject);
         holdingItem = nullptr;
-    }
     m_itemUseTime = 0;
+    }
 }
 void PickupComponent::loseCrown()
 {
     if (m_crown)
     {
         m_scoreComp.setHasCrown(false);
-        m_crown->disappear();
-        m_crown->setPickup(true);
         m_crown->stopUse(m_gameObject);
+        m_crown->setPickup(true);
         m_crown = nullptr;
     }
 }

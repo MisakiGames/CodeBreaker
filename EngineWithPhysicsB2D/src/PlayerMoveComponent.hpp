@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ColliderComponent.hpp"
+#include "DamageComponent.hpp"
 #include "DeadComponent.h"
 #include "IComponent.hpp"
 #include "RigidBodyComponent.hpp"
@@ -19,6 +20,7 @@ public:
     PlayerMoveComponent(GameObject&         gameObject,
                         RigidBodyComponent& rigidBody,
                         DeadComponent&      deadComponent,
+                        DamageComponent&    damage,
                         int                 playerIndex = 0);
 
     float getDashDuration() const
@@ -30,6 +32,14 @@ public:
     void update(float deltaTime) override;
 
     void OnCollision();
+    void deactivateDash()
+    {
+        m_dashActive = false;
+    }
+    void activateDash()
+    {
+        m_dashActive = true;
+    };
     void subscribeToOnDash(std::function<void()> subscriber)
     {
         m_onDash.push_back(subscriber);
@@ -40,17 +50,19 @@ public:
     }
 
 private:
-    DeadComponent&      m_deadComponent;
-    RigidBodyComponent& m_rigidBody;
-    sf::Vector2f        m_lastMoveDirection;
-
-    int   m_playerIndex;
-    bool  m_isDashing    = false;
-    bool  m_canDash      = true;
-    float m_dashCooldown = 0.f;
-    float m_dashDuration = 0.f;
-
+    void                               ResizeCollider();
+    int                                m_playerIndex;
+    DeadComponent&                     m_deadComponent;
+    RigidBodyComponent&                m_rigidBody;
+    sf::Vector2f                       m_lastMoveDirection;
+    bool                               m_isDashing    = false;
+    bool                               m_canDash      = true;
+    bool                               m_dashActive   = true;
+    float                              m_dashCooldown = 0.f;
+    float                              m_dashDuration = 0.f;
     std::vector<std::function<void()>> m_onDash;
     std::vector<std::function<void()>> m_onDashEnd;
+    DamageComponent&                   m_damage;
+    bool                               m_resized = false;
 };
 } // namespace mmt_gd

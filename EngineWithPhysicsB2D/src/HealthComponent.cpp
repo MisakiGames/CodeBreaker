@@ -23,6 +23,10 @@ bool HealthComponent::init()
 
 void HealthComponent::update(float deltaTime)
 {
+    auto temp = m_invincible;
+    m_invincible = false;
+    takeDamageSecretly(m_damagePerSec * deltaTime);
+    m_invincible = temp;
     if (m_invincible)
     {
         m_invinceTime += deltaTime;
@@ -38,9 +42,9 @@ void HealthComponent::update(float deltaTime)
     }
 }
 
-void HealthComponent::takeDamage(const int damage)
+void HealthComponent::takeDamage(const float damage)
 {
-    if (m_invincible)
+    if (m_invincible || damage == 0)
     {
         return;
     }
@@ -53,6 +57,22 @@ void HealthComponent::takeDamage(const int damage)
     }
 
     setInvincible(true);
+    for (auto sub : m_onTakeDamage)
+        sub();
+}
+
+void HealthComponent::takeDamageSecretly(const float damage)
+{
+    m_currentHealth -= damage;
+    if (m_currentHealth < 0)
+    {
+        m_currentHealth = 0;
+    }
+}
+
+void HealthComponent::setDamagePerSecond(float damage)
+{
+    m_damagePerSec = damage;
 }
 
 void HealthComponent::heal(const int amount)
@@ -82,6 +102,12 @@ int HealthComponent::getHealth() const
 int HealthComponent::getMaxHealth() const
 {
     return m_maxHealth;
+}
+
+void HealthComponent::healPercent(float percent)
+{
+    percent = percent / 100;
+    heal(m_maxHealth * percent);
 }
 
 void HealthComponent::setInvincible(const bool invincible)

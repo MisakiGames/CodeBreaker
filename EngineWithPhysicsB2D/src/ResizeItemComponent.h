@@ -10,8 +10,13 @@ public:
     ItemComponent(gameObject, type, maxTime) {};
     void use(GameObject& player) override;
     void stopUse(GameObject& player) override;
+    void update(float deltaTime) override;
 
 private:
-    float scaleFactor = 2;
+    float       m_newScale = 3;
+    float       m_oldScale = 1;
+    GameObject* m_player   = nullptr;
+    bool        m_big      = false;
+    bool        m_resize   = false;
 };
 } // namespace mmt_gd

@@ -30,35 +30,32 @@ public:
     {
         return true;
     }
-    void setSize(sf::Vector2f size)
-    {
-        m_size = size;
-    }
     virtual void update(float fDeltaTime) override;
     /// Add delegate function to be executed when collision is detected.
     /// Signature: void func(ColliderComponent&)
-    void registerOnCollisionFunction(const OnCollisionFunction& func);
+    void registerOnCollisionEnterFunction(const OnCollisionFunction& func);
+    void registerOnCollisionExitFunction(const OnCollisionFunction& func);
 
     /// Method called when collision occured. Method calls all subscribed
     /// OnCollisionFunctions
     ///
     /// \param collider collision occured with this collider
-    void                onCollision(ColliderComponent& collider);
+    void                onCollisionEnter(ColliderComponent& collider);
+    void                onCollisionExit(ColliderComponent& collider);
     RigidBodyComponent& getBody() const
     {
         return m_body;
     }
-
-    void setScale(sf::Vector2f scale);
+    b2Fixture* getFixture()
+    {
+        return fixture;
+    }
 
 private:
-    void                           scale();
     RigidBodyComponent&            m_body;
-    b2Fixture*                     m_fixture;
-    std::list<OnCollisionFunction> m_onCollisionFunctions;
+    b2Fixture*                     fixture;
+    std::list<OnCollisionFunction> m_onCollisionEnterFunctions;
+    std::list<OnCollisionFunction> m_onCollisionExitFunctions;
     std::string                    m_tag = "Collider";
-    sf::Vector2f                   m_size{0, 0};
-    sf::Vector2f                   m_scale{1, 1};
-    bool                           m_needScale = false;
 };
 } // namespace mmt_gd

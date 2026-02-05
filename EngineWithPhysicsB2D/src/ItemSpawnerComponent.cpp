@@ -7,9 +7,9 @@
 
 namespace mmt_gd
 {
-void ItemSpawnerComponent::LoadItem(sf::RenderWindow& window, ItemType type)
+void ItemSpawnerComponent::LoadItem(sf::RenderWindow& window, ItemType type, GameObjectManager& goManager)
 {
-    m_items.emplace(type, ItemFactory::createItem(window, type, 10, false));
+    m_items.emplace(type, ItemFactory::createItem(window, type, goManager, 10, false));
     m_itemsIndexPtr.emplace(type, 0);
 }
 

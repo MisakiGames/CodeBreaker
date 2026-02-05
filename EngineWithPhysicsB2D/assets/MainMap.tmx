@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="left-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="1" nextlayerid="3" nextobjectid="16">
+ <editorsettings>
+  <export format="json"/>
+ </editorsettings>
+ <tileset firstgid="1" source="../../Map/MainGame.tsx"/>
+ <layer id="1" name="Ground" width="50" height="50">
+  <data encoding="csv">
+   <chunk x="-16" y="-16" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
+  </data>
+ </layer>
+ <objectgroup id="2" name="GameObjects">
+  <object id="1" name="TopWallCollider" type="Trigger" x="-239.636" y="-424.909" width="960" height="8">
+   <properties>
+    <property name="ColliderTag" value="InstaKill"/>
+    <property name="Dead" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="2" name="BottomWallCollider" type="Trigger" x="-238" y="126.909" width="960" height="8">
+   <properties>
+    <property name="ColliderTag" value="InstaKill"/>
+    <property name="Dead" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="3" name="RightWallCollider" type="Trigger" x="720.091" y="-417.273" width="7" height="544">
+   <properties>
+    <property name="ColliderTag" value="InstaKill"/>
+    <property name="Dead" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="4" name="LeftWallCollider" type="Trigger" x="-247.091" y="-416.909" width="7" height="544">
+   <properties>
+    <property name="ColliderTag" value="InstaKill"/>
+    <property name="Dead" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="5" name="TopLeftSpawn" type="Spawn" x="-219.167" y="-395.091" width="23" height="23"/>
+  <object id="15" name="CrownSpawn" type="Spawn" x="-17.0758" y="-286.773" width="23" height="23"/>
+  <object id="6" name="BottomLeftSpawn" type="Spawn" x="-219.5" y="82.9091" width="23" height="23"/>
+  <object id="7" name="BottomRightSpawn" type="Spawn" x="676.833" y="83.9091" width="23" height="23"/>
+  <object id="8" name="TopRightSpawn" type="Spawn" x="677.5" y="-395.758" width="23" height="23"/>
+  <object id="9" name="Lava0" type="Trigger" x="-185.375" y="-357.909" width="34.3182" height="27.8864">
+   <properties>
+    <property name="ColliderTag" value="Lava"/>
+    <property name="DamageAmount" type="float" value="1"/>
+    <property name="Dead" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="10" name="Lava1" type="Trigger" x="-185.034" y="41.9661" width="34.6932" height="28.3864">
+   <properties>
+    <property name="ColliderTag" value="Lava"/>
+    <property name="DamageAmount" type="float" value="1"/>
+    <property name="Dead" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="11" name="Lava3" type="Trigger" x="630.864" y="41.5151" width="34.2727" height="28.3637">
+   <properties>
+    <property name="ColliderTag" value="Lava"/>
+    <property name="DamageAmount" type="float" value="1"/>
+    <property name="Dead" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="12" name="Lava2" type="Trigger" x="630.636" y="-358.152" width="34.6364" height="27.8182">
+   <properties>
+    <property name="ColliderTag" value="Lava"/>
+    <property name="DamageAmount" type="float" value="1"/>
+    <property name="Dead" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="13" name="Destroy_Object_0" type="Sprite" x="-138.682" y="-387.136" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/furniture/furniture_05.png"/>
+   </properties>
+  </object>
+  <object id="14" name="ItemSpawner" type="ItemSpawner" x="-43.25" y="-383.591" width="19.5" height="18">
+   <properties>
+    <property name="Bomb" type="bool" value="false"/>
+    <property name="Size" type="bool" value="true"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

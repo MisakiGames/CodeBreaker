@@ -36,7 +36,8 @@ GameObject::Ptr PlayerFactory::createPlayer(
     std::string        color,
     const std::unordered_map<std::string, sf::SoundBuffer>& buffers)
 {
-    std::string spawn = "";
+    const float scaleFaktor = 1;
+    std::string spawn       = "";
     switch (spawnName)
     {
         case mmt_gd::PlayerSpawn::TopLeft:
@@ -73,6 +74,7 @@ GameObject::Ptr PlayerFactory::createPlayer(
     soundComponent->addSound("dying", "../assets/sounds/dying.wav", 95.0f);
     soundComponent->addSound("victory", "../assets/sounds/victory.wav", 100.0f);
 
+    player->setScale(scaleFaktor, scaleFaktor);
     auto spriteComp = player->addComponent<
         SpriteAnimationRenderComponent>(*player, window, "GameObjects", sf::IntRect(18, 20, 12, 24), sf::Vector2f(8, 6));
     std::weak_ptr<SpriteAnimationRenderComponent> spriteWeakPtr = spriteComp;
@@ -121,14 +123,13 @@ GameObject::Ptr PlayerFactory::createPlayer(
     rigidBody->getB2Body()->SetFixedRotation(true);
 
     b2PolygonShape shape;
-    const auto     size = PhysicsManager::s2b(sf::Vector2f(12.0f, 24.0f));
-    shape.SetAsBox(size.x / 2, size.y / 2, b2Vec2{size.x / 2, size.y / 2}, 0);
+    const auto     size = PhysicsManager::s2b(sf::Vector2f(12.0f * scaleFaktor, 12.0f * scaleFaktor));
+    shape.SetAsBox(size.x / 2, size.y / 2, b2Vec2{size.x / 2, size.y * 1.5f}, 0);
 
     b2FixtureDef fixtureDef;
     fixtureDef.shape   = &shape;
     fixtureDef.density = 1.0f;
-
-    auto move = player->addComponent<PlayerMoveComponent>(*player, *rigidBody, *deadComp, plrIndex);
+    auto move = player->addComponent<PlayerMoveComponent>(*player, *rigidBody, *deadComp, *damageComp, plrIndex);
 
     move->subscribeToOnDash(
         [spriteWeakPtr = spriteWeakPtr]()
@@ -164,12 +165,15 @@ GameObject::Ptr PlayerFactory::createPlayer(
         [pickupWeakPtr = pickupWeakPtr]()
         {
             if (auto pickupComp = pickupWeakPtr.lock())
-                pickupComp->loseItem();
+                pickupComp->loseAllItem();
+        });
+    health->subsribeToOnTakeDamage([pickupWeakPtr = pickupWeakPtr]() {
+            if (auto pickupComp = pickupWeakPtr.lock())
+                pickupComp->loseCrown();
         });
 
     auto collider = player->addComponent<ColliderComponent>(*player, *rigidBody, fixtureDef);
-    collider->setSize(sf::Vector2f(12.0f, 24.0f));
-    collider->registerOnCollisionFunction(
+    collider->registerOnCollisionEnterFunction(
         [](ColliderComponent& self, ColliderComponent& other)
         {
             auto damageComp = other.getGameObject().getComponent<DamageComponent>();
@@ -183,7 +187,13 @@ GameObject::Ptr PlayerFactory::createPlayer(
                 {
                     std::cout << other.getTag() << std::endl;
                     if (other.getTag() == "InstaKill")
+                    {
                         healthComp->kill();
+                    }
+                    else if (other.getTag() == "DamageOverTime")
+                    {
+                        healthComp->setDamagePerSecond(damageComp->getDamage());
+                    }
                     else if (other.getTag() != self.getGameObject().getId())
                     {
                         healthComp->takeDamage(damageComp->getDamage());
@@ -191,7 +201,25 @@ GameObject::Ptr PlayerFactory::createPlayer(
                 }
             }
         });
-    collider->registerOnCollisionFunction(
+    collider->registerOnCollisionExitFunction(
+        [](ColliderComponent& self, ColliderComponent& other)
+        {
+            auto damageComp = other.getGameObject().getComponent<DamageComponent>();
+            auto healthComp = self.getGameObject().getComponent<HealthComponent>();
+
+            if (damageComp && healthComp)
+            {
+                std::cout << other.getTag() << std::endl;
+                if (!damageComp->isActive())
+                    return;
+                if (damageComp->getOwnerId() != self.getGameObject().getId())
+                {
+                    if (other.getTag() == "DamageOverTime")
+                        healthComp->setDamagePerSecond(0);
+                }
+            }
+        });
+    collider->registerOnCollisionEnterFunction(
         [](ColliderComponent& self, ColliderComponent& other)
         {
             auto moveComp = self.getGameObject().getComponent<PlayerMoveComponent>();
@@ -201,7 +229,7 @@ GameObject::Ptr PlayerFactory::createPlayer(
                 moveComp->OnCollision();
             }
         });
-    collider->registerOnCollisionFunction(
+    collider->registerOnCollisionEnterFunction(
         [](ColliderComponent& self, ColliderComponent& other)
         {
             auto itemComp   = other.getGameObject().getComponent<ItemComponent>();

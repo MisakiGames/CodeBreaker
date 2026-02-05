@@ -155,6 +155,7 @@
     <ClInclude Include="..\src\PickupComponent.h" />
     <ClInclude Include="..\src\PlayerFactory.h" />
     <ClInclude Include="..\src\PlayerScoreComponent.h" />
+    <ClInclude Include="..\src\RectComponent.h" />
     <ClInclude Include="..\src\ResizeItemComponent.h" />
     <ClInclude Include="..\src\RespawnComponent.h" />
     <ClInclude Include="..\src\ShipFactory.hpp" />
