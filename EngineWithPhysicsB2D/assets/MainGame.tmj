@@ -192,7 +192,7 @@
                         {
                          "name":"ColliderTag",
                          "type":"string",
-                         "value":"Lava"
+                         "value":"DamageOverTime"
                         }, 
                         {
                          "name":"DamageAmount",
@@ -219,7 +219,7 @@
                         {
                          "name":"ColliderTag",
                          "type":"string",
-                         "value":"Lava"
+                         "value":"DamageOverTime"
                         }, 
                         {
                          "name":"DamageAmount",
@@ -246,7 +246,7 @@
                         {
                          "name":"ColliderTag",
                          "type":"string",
-                         "value":"Lava"
+                         "value":"DamageOverTime"
                         }, 
                         {
                          "name":"DamageAmount",
@@ -273,7 +273,7 @@
                         {
                          "name":"ColliderTag",
                          "type":"string",
-                         "value":"Lava"
+                         "value":"DamageOverTime"
                         }, 
                         {
                          "name":"DamageAmount",

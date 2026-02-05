@@ -49,6 +49,7 @@ public:
     }
 
 private:
+    void                               ResizeCollider();
     int                                m_playerIndex;
     DeadComponent&                     m_deadComponent;
     RigidBodyComponent&                m_rigidBody;
@@ -61,5 +62,6 @@ private:
     std::vector<std::function<void()>> m_onDash;
     std::vector<std::function<void()>> m_onDashEnd;
     DamageComponent&                   m_damage;
+    bool                               m_resized = false;
 };
 } // namespace mmt_gd

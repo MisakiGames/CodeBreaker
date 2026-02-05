@@ -15,16 +15,27 @@ public:
     {
         return true;
     };
-    void update(float deltaTime) override;
-    void pickup(ItemComponent& pickedUpItem);
-    void loseItem();
-    void loseCrown();
+    void     update(float deltaTime) override;
+    void     pickup(ItemComponent& pickedUpItem);
+    void     loseItem();
+    void     loseCrown();
+    ItemType getItemType()
+    {
+        if (!holdingItem)
+            return ItemType::None;
+        return holdingItem->getType();
+    }
+    bool getGotItemThisFrame()
+    {
+        return m_gotThisFrame;
+    }
 
 private:
     void                  HandleCrown(ItemComponent& crownItem);
     ItemComponent*        holdingItem = nullptr;
     ItemComponent*        m_crown     = nullptr;
     PlayerScoreComponent& m_scoreComp;
-    float                 m_itemUseTime = 0;
+    float                 m_itemUseTime  = 0;
+    bool                  m_gotThisFrame = false;
 };
 } // namespace mmt_gd

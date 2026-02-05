@@ -8,6 +8,7 @@ namespace mmt_gd
 {
 void PickupComponent::update(float deltaTime)
 {
+    m_gotThisFrame = false;
     if (m_crown)
     {
         m_crown->use(m_gameObject);
@@ -36,6 +37,7 @@ void PickupComponent::pickup(ItemComponent& pickedUpItem)
     pickedUpItem.disappear();
     pickedUpItem.setPickup(false);
     holdingItem->use(m_gameObject);
+    m_gotThisFrame = true;
 }
 
 void PickupComponent::HandleCrown(ItemComponent& crownItem)
