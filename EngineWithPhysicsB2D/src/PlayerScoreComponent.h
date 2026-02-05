@@ -18,21 +18,34 @@ public:
     {
         //std::cout << m_score << std::endl;
         if (m_hasCrown)
-            m_score += deltaTime;
+            m_score += deltaTime * m_pointsPerSecond;
     }
+
+    bool hasCrown()
+    {
+        return m_hasCrown;
+    }
+
     void setHasCrown(bool set)
     {
         m_hasCrown = set;
     }
+
     void removePoints(float remove)
     {
         m_score -= remove;
         if (m_score < 0)
             m_score = 0;
     }
+        
+    float getScore() const
+    {
+        return m_score;
+    }
 
 private:
     bool  m_hasCrown = false;
     float m_score    = 0;
+    const float m_pointsPerSecond = 50.f;
 };
 } // namespace mmt_gd

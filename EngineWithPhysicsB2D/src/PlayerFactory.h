@@ -12,7 +12,8 @@ public:
     static GameObject::Ptr createPlayer(sf::RenderWindow&  window,
                                         enum PlayerSpawn   spawnName,
                                         GameObjectManager& goManager,
-                                        int                plrIndex);
+                                        int                plrIndex,
+                                        std::string        color);
 };
 
 enum PlayerSpawn

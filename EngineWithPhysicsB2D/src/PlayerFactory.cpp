@@ -24,12 +24,15 @@
 #include "TransformAnimationComponent.hpp"
 #include "TransformAnimationSmoothFollow.hpp"
 
+#include <sstream>
+
 namespace mmt_gd
 {
 GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow&  window,
                                             enum PlayerSpawn   spawnName,
                                             GameObjectManager& goManager,
-                                            int                plrIndex)
+                                            int                plrIndex,
+                                            std::string        color)
 {
     std::string spawn = "";
     switch (spawnName)
@@ -51,22 +54,23 @@ GameObject::Ptr PlayerFactory::createPlayer(sf::RenderWindow&  window,
     }
 
     auto spawnPoint = goManager.getGameObject(spawn)->getPosition();
-    auto player     = GameObject::create("Player" + plrIndex);
+    auto player     = GameObject::create("Player_" + color);
     player->setPosition(spawnPoint);
 
     auto spriteComp = player->addComponent<
         SpriteAnimationRenderComponent>(*player, window, "GameObjects", sf::IntRect(18, 20, 12, 24), sf::Vector2f(8, 6));
-    std::weak_ptr<SpriteAnimationRenderComponent> spriteWeakPtr = spriteComp;
-    spriteComp->loadAndMapTexture("../assets/Character/Red/Walk.png", AnimationState::Walk, 5);
-    spriteComp->loadAndMapTexture("../assets/Character/Red/Idle.png", AnimationState::Idle, 5);
-    spriteComp->loadAndMapTexture("../assets/Character/Red/Dash.png", AnimationState::Dash, 10, false);
-    spriteComp->loadAndMapTexture("../assets/Character/Red/Death.png", AnimationState::Dead, 10, false);
-    auto                           health        = player->addComponent<HealthComponent>(*player, 10, 0.5, false);
-    std::weak_ptr<HealthComponent> healthWeakPtr = health;
 
-    auto                           rigidBody     = player->addComponent<RigidBodyComponent>(*player, b2_dynamicBody);
-    auto                           damageComp    = player->addComponent<DamageComponent>(*player, 3, player->getId());
-    std::weak_ptr<DamageComponent> damageWeakPtr = damageComp;
+    std::stringstream sstream;
+    sstream << "../assets/Character/" << color << "/";
+
+    spriteComp->loadAndMapTexture(sstream.str() + "Walk.png", AnimationState::Walk, 5);
+    spriteComp->loadAndMapTexture(sstream.str() + "Idle.png", AnimationState::Idle, 5);
+    spriteComp->loadAndMapTexture(sstream.str() + "Dash.png", AnimationState::Dash, 10, false);
+    spriteComp->loadAndMapTexture(sstream.str() + "Death.png", AnimationState::Dead, 10, false);
+
+    auto health     = player->addComponent<HealthComponent>(*player, 100, true);
+    auto rigidBody  = player->addComponent<RigidBodyComponent>(*player, b2_dynamicBody);
+    auto damageComp = player->addComponent<DamageComponent>(*player, 10, player->getId());
     damageComp->setActive(false);
     auto respawn = player->addComponent<RespawnComponent>(*player);
 
