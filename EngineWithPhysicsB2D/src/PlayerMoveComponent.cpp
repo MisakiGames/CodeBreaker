@@ -33,44 +33,46 @@ void PlayerMoveComponent::update(const float deltaTime)
     auto speed            = 300.f;
     auto dashSpeedFactor  = 5.f;
     auto dashCooldownTime = 1.f;
-
-    // Dash logic
-    if (m_isDashing && !m_canDash)
+    if (m_dashActive)
     {
-        m_isDashing = false;
-        for (auto sub : m_onDashEnd)
-            sub();
-    }
-
-    if (InputManager::getInstance().isKeyDown("dash", m_playerIndex) && m_canDash)
-    {
-        for (auto sub : m_onDash)
-            sub();
-        m_rigidBody.setVelocity(m_lastMoveDirection * dashSpeedFactor);
-        m_isDashing = true;
-        m_dashDuration += deltaTime;
-        return;
-    }
-
-    if (!m_canDash)
-    {
-        m_dashCooldown += deltaTime;
-        if (m_dashCooldown >= dashCooldownTime)
+        // Dash logic
+        if (m_isDashing && !m_canDash)
         {
-            m_canDash      = true;
-            m_dashCooldown = 0.f;
-            std::cout << "Dash Duration: " << m_dashDuration << "\n";
-            m_dashDuration = 0.f;
+            m_isDashing = false;
+            for (auto sub : m_onDashEnd)
+                sub();
         }
-    }
 
-    if (InputManager::getInstance().isKeyReleased("dash", m_playerIndex) && m_isDashing)
-    {
-        m_isDashing = false;
-        m_canDash   = false;
-        for (auto sub : m_onDashEnd)
-            sub();
-        return;
+        if (InputManager::getInstance().isKeyDown("dash", m_playerIndex) && m_canDash)
+        {
+            for (auto sub : m_onDash)
+                sub();
+            m_rigidBody.setVelocity(m_lastMoveDirection * dashSpeedFactor);
+            m_isDashing = true;
+            m_dashDuration += deltaTime;
+            return;
+        }
+
+        if (!m_canDash)
+        {
+            m_dashCooldown += deltaTime;
+            if (m_dashCooldown >= dashCooldownTime)
+            {
+                m_canDash      = true;
+                m_dashCooldown = 0.f;
+                std::cout << "Dash Duration: " << m_dashDuration << "\n";
+                m_dashDuration = 0.f;
+            }
+        }
+
+        if (InputManager::getInstance().isKeyReleased("dash", m_playerIndex) && m_isDashing)
+        {
+            m_isDashing = false;
+            m_canDash   = false;
+            for (auto sub : m_onDashEnd)
+                sub();
+            return;
+        }
     }
 
     // Normal movement

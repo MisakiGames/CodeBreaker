@@ -26,6 +26,14 @@ public:
     void update(float deltaTime) override;
 
     void OnCollision();
+    void deactivateDash()
+    {
+        m_dashActive = false;
+    }
+    void activateDash()
+    {
+        m_dashActive = true;
+    };
     void subscribeToOnDash(std::function<void()> subscriber)
     {
         m_onDash.push_back(subscriber);
@@ -42,6 +50,7 @@ private:
     sf::Vector2f                       m_lastMoveDirection;
     bool                               m_isDashing    = false;
     bool                               m_canDash      = true;
+    bool                               m_dashActive   = true;
     float                              m_dashCooldown = 0.f;
     float                              m_dashDuration = 0.f;
     std::vector<std::function<void()>> m_onDash;
