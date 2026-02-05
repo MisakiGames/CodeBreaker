@@ -17,6 +17,7 @@ public:
     void               update(float deltaTime) override;
 
     void takeDamage(const float damage);
+    void takeDamageSecretly(const float damage);
     void setDamagePerSecond(float damage);
     void heal(int amount);
 

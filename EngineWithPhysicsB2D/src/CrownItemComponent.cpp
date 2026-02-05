@@ -43,14 +43,25 @@ sf::Vector2f CrownItemComponent::getRandomPointInCircle(GameObject& player)
 {
     const float radius = 50;
     auto        center = player.getPosition();
-    // Setup random number engine (C++11)
-    static std::mt19937                   gen(std::random_device{}());
-    std::uniform_real_distribution<float> dist(0.0f, 1.0f);
+    static std::mt19937 gen(std::random_device{}());
+    // Distribution for a square from -radius to +radius
+    std::uniform_real_distribution<float> dist(-radius, radius);
 
-    float angle = dist(gen) * 2.0f * 3.14159f;   // Random angle
-    float r     = std::sqrt(dist(gen)) * radius; // Square root for uniform distribution
+    float x, y;
+    float radiusSquared = radius * radius;
 
-    return sf::Vector2f(center.x + r * std::cos(angle), center.y + r * std::sin(angle));
+    while (true)
+    {
+        x = dist(gen);
+        y = dist(gen);
+
+        // Check if the point is within the circle's radius
+        // We use x*x + y*y instead of sqrt to keep it fast
+        if (x * x + y * y <= radiusSquared)
+        {
+            return sf::Vector2f(center.x + x, center.y + y);
+        }
+    }
 }
 void CrownItemComponent::update(float deltaTime)
 {
