@@ -101,7 +101,7 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
         fixtureDef.density = 1; //TOdo load from tiled
 
         auto collider = gameObject->addComponent<ColliderComponent>(*gameObject, *rigidComp, fixtureDef);
-        collider->registerOnCollisionFunction(
+        collider->registerOnCollisionEnterFunction(
             [](ColliderComponent& self, ColliderComponent& other)
             {
                 auto damageComp = other.getGameObject().getComponent<DamageComponent>();
@@ -188,8 +188,9 @@ static GameObject::Ptr loadTrigger(tson::Object& object, const std::string& laye
 {
     auto gameObject = GameObject::create(object.getName());
     gameObject->setPosition(static_cast<float>(object.getPosition().x), static_cast<float>(object.getPosition().y));
-    bool        damage = false;
-    std::string tag    = "";
+    bool        damage       = false;
+    std::string tag          = "";
+    float       damageAmount = 0;
 
     for (const auto* property : object.getProperties().get())
     {
@@ -197,6 +198,8 @@ static GameObject::Ptr loadTrigger(tson::Object& object, const std::string& laye
             damage = std::any_cast<bool>(property->getValue());
         if (property->getName() == "ColliderTag")
             tag = std::any_cast<std::string>(property->getValue());
+        if (property->getName() == "DamageAmount")
+            damageAmount = std::any_cast<float>(property->getValue());
     }
     const auto rb = gameObject->addComponent<RigidBodyComponent>(*gameObject, b2_staticBody);
 
@@ -209,14 +212,14 @@ static GameObject::Ptr loadTrigger(tson::Object& object, const std::string& laye
     fixtureDef.isSensor = true;
 
     if (damage)
-        gameObject->addComponent<DamageComponent>(*gameObject, 9999, gameObject->getId());
+        gameObject->addComponent<DamageComponent>(*gameObject, damageAmount, gameObject->getId());
 
     auto collider = gameObject->addComponent<ColliderComponent>(*gameObject, *rb, fixtureDef);
     if (tag.length() > 0)
         collider->setTag(tag);
 
     // Add callback to output when something enters the trigger
-    collider->registerOnCollisionFunction(
+    collider->registerOnCollisionEnterFunction(
         [](ColliderComponent& self, ColliderComponent& other)
         {
             std::cout << "Entered trigger zone: " << self.getGameObject().getId() << " (collided with "

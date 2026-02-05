@@ -41,7 +41,7 @@ GameObject::Ptr ShipFactory::createPlayerShip(sf::RenderWindow& window)
 
     auto collider = player->addComponent<ColliderComponent>(*player, *rigidBody, fixtureDef);
 
-    collider->registerOnCollisionFunction(
+    collider->registerOnCollisionEnterFunction(
         [](ColliderComponent& self, ColliderComponent& other)
         {
             auto damageComp = other.getGameObject().getComponent<DamageComponent>();
@@ -101,7 +101,7 @@ GameObject::Ptr ShipFactory::createEnemyShip(sf::RenderWindow& window, GameObjec
 
     auto collider = enemy->addComponent<ColliderComponent>(*enemy, *rigidBody, fixtureDef);
 
-    collider->registerOnCollisionFunction(
+    collider->registerOnCollisionEnterFunction(
         [](ColliderComponent& self, ColliderComponent& other)
         {
             auto damageComp = other.getGameObject().getComponent<DamageComponent>();

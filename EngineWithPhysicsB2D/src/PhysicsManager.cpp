@@ -28,15 +28,22 @@ void PhysicsManager::BeginContact(b2Contact* contact)
     auto* const colliderB = reinterpret_cast<ColliderComponent*>(contact->GetFixtureB()->GetUserData().pointer);
     if (colliderA != nullptr && colliderB != nullptr)
     {
-        colliderA->onCollision(*colliderB);
-        colliderB->onCollision(*colliderA);
+        colliderA->onCollisionEnter(*colliderB);
+        colliderB->onCollisionEnter(*colliderA);
     }
 }
 
 void PhysicsManager::EndContact(b2Contact* contact)
 {
+    //Todo: Use b2d fixure  objects https://box2d.org/documentation/md__d_1__git_hub_box2d_docs_loose_ends.html
+    auto* const colliderA = reinterpret_cast<ColliderComponent*>(contact->GetFixtureA()->GetUserData().pointer);
+    auto* const colliderB = reinterpret_cast<ColliderComponent*>(contact->GetFixtureB()->GetUserData().pointer);
+    if (colliderA != nullptr && colliderB != nullptr)
+    {
+        colliderA->onCollisionExit(*colliderB);
+        colliderB->onCollisionExit(*colliderA);
+    }
 }
-
 
 void PhysicsManager::PostSolve(b2Contact* contact, const b2ContactImpulse* impulse)
 {

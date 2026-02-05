@@ -24,20 +24,31 @@ void ColliderComponent::update(float deltaTime)
     //auto box = m_fixture->GetAABB(0);
     //auto ex  = box.GetExtents();
     //DebugDraw::getInstance().drawRectangle(m_gameObject.getPosition(), {ex.x * 2, ex.y * 2}, sf::Color::Green);
-
 }
 
-void ColliderComponent::registerOnCollisionFunction(const OnCollisionFunction& func)
+void ColliderComponent::registerOnCollisionEnterFunction(const OnCollisionFunction& func)
 {
-    m_onCollisionFunctions.push_back(func);
+    m_onCollisionEnterFunctions.push_back(func);
 }
 
-void ColliderComponent::onCollision(ColliderComponent& collider)
+void ColliderComponent::registerOnCollisionExitFunction(const OnCollisionFunction& func)
 {
-    for (const auto& f : m_onCollisionFunctions)
+    m_onCollisionExitFunctions.push_back(func);
+}
+
+void ColliderComponent::onCollisionEnter(ColliderComponent& collider)
+{
+    for (const auto& f : m_onCollisionEnterFunctions)
     {
         f(*this, collider);
     }
 }
 
+void ColliderComponent::onCollisionExit(ColliderComponent& collider)
+{
+    for (const auto& f : m_onCollisionExitFunctions)
+    {
+        f(*this, collider);
+    }
+}
 } // namespace mmt_gd

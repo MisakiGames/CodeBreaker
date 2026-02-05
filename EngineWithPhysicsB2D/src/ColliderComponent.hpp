@@ -33,13 +33,15 @@ public:
     virtual void update(float fDeltaTime) override;
     /// Add delegate function to be executed when collision is detected.
     /// Signature: void func(ColliderComponent&)
-    void registerOnCollisionFunction(const OnCollisionFunction& func);
+    void registerOnCollisionEnterFunction(const OnCollisionFunction& func);
+    void registerOnCollisionExitFunction(const OnCollisionFunction& func);
 
     /// Method called when collision occured. Method calls all subscribed
     /// OnCollisionFunctions
     ///
     /// \param collider collision occured with this collider
-    void                onCollision(ColliderComponent& collider);
+    void                onCollisionEnter(ColliderComponent& collider);
+    void                onCollisionExit(ColliderComponent& collider);
     RigidBodyComponent& getBody() const
     {
         return m_body;
@@ -52,7 +54,8 @@ public:
 private:
     RigidBodyComponent&            m_body;
     b2Fixture*                     fixture;
-    std::list<OnCollisionFunction> m_onCollisionFunctions;
+    std::list<OnCollisionFunction> m_onCollisionEnterFunctions;
+    std::list<OnCollisionFunction> m_onCollisionExitFunctions;
     std::string                    m_tag = "Collider";
 };
 } // namespace mmt_gd

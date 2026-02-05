@@ -153,7 +153,7 @@ GameObject::Ptr PlayerFactory::createPlayer(
         });
 
     auto collider = player->addComponent<ColliderComponent>(*player, *rigidBody, fixtureDef);
-    collider->registerOnCollisionFunction(
+    collider->registerOnCollisionEnterFunction(
         [](ColliderComponent& self, ColliderComponent& other)
         {
             auto damageComp = other.getGameObject().getComponent<DamageComponent>();
@@ -168,6 +168,8 @@ GameObject::Ptr PlayerFactory::createPlayer(
                     std::cout << other.getTag() << std::endl;
                     if (other.getTag() == "InstaKill")
                         healthComp->kill();
+                    else if (other.getTag() == "Lava")
+                        healthComp->setDamagePerSecond(damageComp->getDamage());
                     else if (other.getTag() != self.getGameObject().getId())
                     {
                         healthComp->takeDamage(damageComp->getDamage());
@@ -175,7 +177,25 @@ GameObject::Ptr PlayerFactory::createPlayer(
                 }
             }
         });
-    collider->registerOnCollisionFunction(
+    collider->registerOnCollisionExitFunction(
+        [](ColliderComponent& self, ColliderComponent& other)
+        {
+            auto damageComp = other.getGameObject().getComponent<DamageComponent>();
+            auto healthComp = self.getGameObject().getComponent<HealthComponent>();
+
+            if (damageComp && healthComp)
+            {
+                std::cout << other.getTag() << std::endl;
+                if (!damageComp->isActive())
+                    return;
+                if (damageComp->getOwnerId() != self.getGameObject().getId())
+                {
+                    if (other.getTag() == "Lava")
+                        healthComp->setDamagePerSecond(0);
+                }
+            }
+        });
+    collider->registerOnCollisionEnterFunction(
         [](ColliderComponent& self, ColliderComponent& other)
         {
             auto moveComp = self.getGameObject().getComponent<PlayerMoveComponent>();
@@ -185,7 +205,7 @@ GameObject::Ptr PlayerFactory::createPlayer(
                 moveComp->OnCollision();
             }
         });
-    collider->registerOnCollisionFunction(
+    collider->registerOnCollisionEnterFunction(
         [](ColliderComponent& self, ColliderComponent& other)
         {
             auto itemComp   = other.getGameObject().getComponent<ItemComponent>();

@@ -20,6 +20,7 @@ bool HealthComponent::init()
 
 void HealthComponent::update(float deltaTime)
 {
+    m_currentHealth -= m_damagePerSec * deltaTime;
     if (m_invincible)
     {
         m_invinceTime += deltaTime;
@@ -48,6 +49,11 @@ void HealthComponent::takeDamage(const int damage)
         m_currentHealth = 0;
     }
     setInvincible(true);
+}
+
+void HealthComponent::setDamagePerSecond(float damage)
+{
+    m_damagePerSec = damage;
 }
 
 void HealthComponent::heal(const int amount)
