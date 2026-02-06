@@ -208,7 +208,7 @@ GameObject::Ptr ItemFactory::createBombObject(sf::RenderWindow& window)
     fixtureDef.shape    = &polygonShape;
     fixtureDef.isSensor = true;
 
-    auto damage   = bomb->addComponent<DamageComponent>(*bomb, 10, bomb->getId());
+    auto damage   = bomb->addComponent<DamageComponent>(*bomb, 30, bomb->getId());
     auto collider = bomb->addComponent<ColliderComponent>(*bomb, *rb, fixtureDef);
 
     if (!bomb->init())

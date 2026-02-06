@@ -230,6 +230,50 @@
                  "y":247.826
                 }, 
                 {
+                 "height":8,
+                 "id":136,
+                 "name":"TopWallCollider2",
+                 "properties":[
+                        {
+                         "name":"ColliderTag",
+                         "type":"string",
+                         "value":"InstaKill"
+                        }, 
+                        {
+                         "name":"Dead",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"Trigger",
+                 "visible":true,
+                 "width":125,
+                 "x":978.083666666667,
+                 "y":247.159333333333
+                }, 
+                {
+                 "height":8,
+                 "id":137,
+                 "name":"TopWallCollider3",
+                 "properties":[
+                        {
+                         "name":"ColliderTag",
+                         "type":"string",
+                         "value":"InstaKill"
+                        }, 
+                        {
+                         "name":"Dead",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"Trigger",
+                 "visible":true,
+                 "width":125,
+                 "x":1298.75033333333,
+                 "y":246.492666666667
+                }, 
+                {
                  "height":737.333,
                  "id":3,
                  "name":"RightWallCollider",
@@ -385,7 +429,7 @@
                         {
                          "name":"DamageAmount",
                          "type":"float",
-                         "value":3
+                         "value":5
                         }, 
                         {
                          "name":"Dead",
@@ -422,7 +466,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -586,7 +630,7 @@
                         {
                          "name":"DamageAmount",
                          "type":"float",
-                         "value":3
+                         "value":5
                         }, 
                         {
                          "name":"Dead",
@@ -613,7 +657,7 @@
                         {
                          "name":"DamageAmount",
                          "type":"float",
-                         "value":3
+                         "value":5
                         }, 
                         {
                          "name":"Dead",
@@ -640,7 +684,7 @@
                         {
                          "name":"DamageAmount",
                          "type":"float",
-                         "value":3
+                         "value":5
                         }, 
                         {
                          "name":"Dead",
@@ -667,7 +711,7 @@
                         {
                          "name":"DamageAmount",
                          "type":"float",
-                         "value":3
+                         "value":5
                         }, 
                         {
                          "name":"Dead",
@@ -694,7 +738,7 @@
                         {
                          "name":"DamageAmount",
                          "type":"float",
-                         "value":3
+                         "value":5
                         }, 
                         {
                          "name":"Dead",
@@ -721,7 +765,7 @@
                         {
                          "name":"DamageAmount",
                          "type":"float",
-                         "value":3
+                         "value":5
                         }, 
                         {
                          "name":"Dead",
@@ -748,7 +792,7 @@
                         {
                          "name":"DamageAmount",
                          "type":"float",
-                         "value":3
+                         "value":5
                         }, 
                         {
                          "name":"Dead",
@@ -1069,7 +1113,8 @@
                  "width":62,
                  "x":673,
                  "y":386
-                }, 
+                },
+            
                 {
                  "height":62,
                  "id":67,
@@ -1091,8 +1136,7 @@
                  "width":64.6667,
                  "x":1347.33,
                  "y":738
-                },
-            
+                }, 
                 {
                  "height":31,
                  "id":73,
@@ -1211,7 +1255,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1253,7 +1297,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1295,7 +1339,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1337,7 +1381,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1379,7 +1423,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1421,7 +1465,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1463,7 +1507,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1505,7 +1549,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1547,7 +1591,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1589,7 +1633,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1631,7 +1675,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1673,7 +1717,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1715,7 +1759,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1757,7 +1801,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1799,7 +1843,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1883,7 +1927,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1925,7 +1969,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1967,7 +2011,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -2009,7 +2053,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -2051,7 +2095,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -2067,7 +2111,7 @@
                  "type":"Sprite",
                  "visible":true,
                  "width":32,
-                 "x":1380.67,
+                 "x":1380.33666666667,
                  "y":344.667
                 }, 
                 {
@@ -2093,7 +2137,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -2135,7 +2179,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -2723,7 +2767,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -2975,7 +3019,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -3142,7 +3186,7 @@
          "y":0
         }],
  "nextlayerid":5,
- "nextobjectid":136,
+ "nextobjectid":138,
  "orientation":"orthogonal",
  "renderorder":"left-up",
  "tiledversion":"1.11.2",

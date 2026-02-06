@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="left-up" width="60" height="79" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="136">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="left-up" width="60" height="79" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="138">
  <editorsettings>
   <export target="MainMap.tmj" format="json"/>
  </editorsettings>
@@ -131,6 +131,18 @@
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
+  <object id="136" name="TopWallCollider2" type="Trigger" x="978.084" y="247.159" width="125" height="8">
+   <properties>
+    <property name="ColliderTag" value="InstaKill"/>
+    <property name="Dead" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="137" name="TopWallCollider3" type="Trigger" x="1298.75" y="246.493" width="125" height="8">
+   <properties>
+    <property name="ColliderTag" value="InstaKill"/>
+    <property name="Dead" type="bool" value="true"/>
+   </properties>
+  </object>
   <object id="3" name="RightWallCollider" type="Trigger" x="1572.09" y="224.394" width="7" height="737.333">
    <properties>
     <property name="ColliderTag" value="InstaKill"/>
@@ -163,7 +175,7 @@
   <object id="9" name="Lava_1" type="Trigger" x="737.958" y="419.091" width="96.9849" height="27.8864">
    <properties>
     <property name="ColliderTag" value="DamageOverTime"/>
-    <property name="DamageAmount" type="float" value="3"/>
+    <property name="DamageAmount" type="float" value="5"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
@@ -172,7 +184,7 @@
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
     <property name="Destroyable" type="bool" value="true"/>
-    <property name="Health" type="float" value="1"/>
+    <property name="Health" type="float" value="12"/>
     <property name="Mass" type="float" value="1"/>
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
@@ -216,49 +228,49 @@
   <object id="21" name="Lava_7" type="Trigger" x="1248.34" y="411.39" width="90.9847" height="34.5531">
    <properties>
     <property name="ColliderTag" value="DamageOverTime"/>
-    <property name="DamageAmount" type="float" value="3"/>
+    <property name="DamageAmount" type="float" value="5"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
   <object id="22" name="Lava_4" type="Trigger" x="1250.34" y="738.057" width="91.318" height="37.5531">
    <properties>
     <property name="ColliderTag" value="DamageOverTime"/>
-    <property name="DamageAmount" type="float" value="3"/>
+    <property name="DamageAmount" type="float" value="5"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
   <object id="23" name="Lava_2" type="Trigger" x="738.008" y="738.057" width="94.6513" height="27.8864">
    <properties>
     <property name="ColliderTag" value="DamageOverTime"/>
-    <property name="DamageAmount" type="float" value="3"/>
+    <property name="DamageAmount" type="float" value="5"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
   <object id="24" name="Lava_3" type="Trigger" x="740.341" y="768.057" width="38.318" height="27.8864">
    <properties>
     <property name="ColliderTag" value="DamageOverTime"/>
-    <property name="DamageAmount" type="float" value="3"/>
+    <property name="DamageAmount" type="float" value="5"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
   <object id="25" name="Lava_0" type="Trigger" x="740.341" y="387.057" width="38.318" height="27.8864">
    <properties>
     <property name="ColliderTag" value="DamageOverTime"/>
-    <property name="DamageAmount" type="float" value="3"/>
+    <property name="DamageAmount" type="float" value="5"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
   <object id="26" name="Lava_6" type="Trigger" x="1300.34" y="384.057" width="37.318" height="22.5531">
    <properties>
     <property name="ColliderTag" value="DamageOverTime"/>
-    <property name="DamageAmount" type="float" value="3"/>
+    <property name="DamageAmount" type="float" value="5"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
   <object id="27" name="Lava_5" type="Trigger" x="1297.34" y="778.39" width="42.318" height="18.5531">
    <properties>
     <property name="ColliderTag" value="DamageOverTime"/>
-    <property name="DamageAmount" type="float" value="3"/>
+    <property name="DamageAmount" type="float" value="5"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
@@ -318,7 +330,7 @@
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
     <property name="Destroyable" type="bool" value="true"/>
-    <property name="Health" type="float" value="1"/>
+    <property name="Health" type="float" value="12"/>
     <property name="Mass" type="float" value="1"/>
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
@@ -328,7 +340,7 @@
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
     <property name="Destroyable" type="bool" value="true"/>
-    <property name="Health" type="float" value="1"/>
+    <property name="Health" type="float" value="12"/>
     <property name="Mass" type="float" value="1"/>
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
@@ -338,7 +350,7 @@
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
     <property name="Destroyable" type="bool" value="true"/>
-    <property name="Health" type="float" value="1"/>
+    <property name="Health" type="float" value="12"/>
     <property name="Mass" type="float" value="1"/>
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
@@ -348,7 +360,7 @@
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
     <property name="Destroyable" type="bool" value="true"/>
-    <property name="Health" type="float" value="1"/>
+    <property name="Health" type="float" value="12"/>
     <property name="Mass" type="float" value="1"/>
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
@@ -358,7 +370,7 @@
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
     <property name="Destroyable" type="bool" value="true"/>
-    <property name="Health" type="float" value="1"/>
+    <property name="Health" type="float" value="12"/>
     <property name="Mass" type="float" value="1"/>
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
@@ -368,7 +380,7 @@
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
     <property name="Destroyable" type="bool" value="true"/>
-    <property name="Health" type="float" value="1"/>
+    <property name="Health" type="float" value="12"/>
     <property name="Mass" type="float" value="1"/>
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
@@ -378,7 +390,7 @@
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
     <property name="Destroyable" type="bool" value="true"/>
-    <property name="Health" type="float" value="1"/>
+    <property name="Health" type="float" value="12"/>
     <property name="Mass" type="float" value="1"/>
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
@@ -388,7 +400,7 @@
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
     <property name="Destroyable" type="bool" value="true"/>
-    <property name="Health" type="float" value="1"/>
+    <property name="Health" type="float" value="12"/>
     <property name="Mass" type="float" value="1"/>
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
@@ -398,7 +410,7 @@
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
     <property name="Destroyable" type="bool" value="true"/>
-    <property name="Health" type="float" value="1"/>
+    <property name="Health" type="float" value="12"/>
     <property name="Mass" type="float" value="1"/>
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
@@ -408,7 +420,7 @@
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
     <property name="Destroyable" type="bool" value="true"/>
-    <property name="Health" type="float" value="1"/>
+    <property name="Health" type="float" value="12"/>
     <property name="Mass" type="float" value="1"/>
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
@@ -418,7 +430,7 @@
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
     <property name="Destroyable" type="bool" value="true"/>
-    <property name="Health" type="float" value="1"/>
+    <property name="Health" type="float" value="12"/>
     <property name="Mass" type="float" value="1"/>
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
@@ -428,7 +440,7 @@
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
     <property name="Destroyable" type="bool" value="true"/>
-    <property name="Health" type="float" value="1"/>
+    <property name="Health" type="float" value="12"/>
     <property name="Mass" type="float" value="1"/>
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
@@ -438,7 +450,7 @@
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
     <property name="Destroyable" type="bool" value="true"/>
-    <property name="Health" type="float" value="1"/>
+    <property name="Health" type="float" value="12"/>
     <property name="Mass" type="float" value="1"/>
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
@@ -448,7 +460,7 @@
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
     <property name="Destroyable" type="bool" value="true"/>
-    <property name="Health" type="float" value="1"/>
+    <property name="Health" type="float" value="12"/>
     <property name="Mass" type="float" value="1"/>
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
@@ -458,7 +470,7 @@
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
     <property name="Destroyable" type="bool" value="true"/>
-    <property name="Health" type="float" value="1"/>
+    <property name="Health" type="float" value="12"/>
     <property name="Mass" type="float" value="1"/>
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
@@ -478,7 +490,7 @@
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
     <property name="Destroyable" type="bool" value="true"/>
-    <property name="Health" type="float" value="1"/>
+    <property name="Health" type="float" value="12"/>
     <property name="Mass" type="float" value="1"/>
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
@@ -488,7 +500,7 @@
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
     <property name="Destroyable" type="bool" value="true"/>
-    <property name="Health" type="float" value="1"/>
+    <property name="Health" type="float" value="12"/>
     <property name="Mass" type="float" value="1"/>
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
@@ -498,7 +510,7 @@
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
     <property name="Destroyable" type="bool" value="true"/>
-    <property name="Health" type="float" value="1"/>
+    <property name="Health" type="float" value="12"/>
     <property name="Mass" type="float" value="1"/>
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
@@ -508,17 +520,17 @@
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
     <property name="Destroyable" type="bool" value="true"/>
-    <property name="Health" type="float" value="1"/>
+    <property name="Health" type="float" value="12"/>
     <property name="Mass" type="float" value="1"/>
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="97" name="Box_17" type="Sprite" x="1380.67" y="344.667" width="32" height="32">
+  <object id="97" name="Box_17" type="Sprite" x="1380.34" y="344.667" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
     <property name="Destroyable" type="bool" value="true"/>
-    <property name="Health" type="float" value="1"/>
+    <property name="Health" type="float" value="12"/>
     <property name="Mass" type="float" value="1"/>
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
@@ -528,7 +540,7 @@
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
     <property name="Destroyable" type="bool" value="true"/>
-    <property name="Health" type="float" value="1"/>
+    <property name="Health" type="float" value="12"/>
     <property name="Mass" type="float" value="1"/>
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
@@ -538,7 +550,7 @@
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
     <property name="Destroyable" type="bool" value="true"/>
-    <property name="Health" type="float" value="1"/>
+    <property name="Health" type="float" value="12"/>
     <property name="Mass" type="float" value="1"/>
     <property name="Texture" value="Map/barrels/Barrels_01.png"/>
    </properties>
@@ -678,7 +690,7 @@
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
     <property name="Destroyable" type="bool" value="true"/>
-    <property name="Health" type="float" value="1"/>
+    <property name="Health" type="float" value="12"/>
     <property name="Mass" type="float" value="1"/>
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
@@ -738,7 +750,7 @@
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
     <property name="Destroyable" type="bool" value="true"/>
-    <property name="Health" type="float" value="1"/>
+    <property name="Health" type="float" value="12"/>
     <property name="Mass" type="float" value="1"/>
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>

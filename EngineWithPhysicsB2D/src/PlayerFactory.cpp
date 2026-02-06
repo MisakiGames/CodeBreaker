@@ -235,7 +235,6 @@ GameObject::Ptr PlayerFactory::createPlayer(
                     }
                     else if (other.getTag() != self.getGameObject().getId())
                     {
-
                         healthComp->takeDamage(damageComp->getDamage());
                     }
                 }
@@ -303,7 +302,7 @@ GameObject::Ptr PlayerFactory::createPlayer(
 
     auto dashCollider = dashGO->addComponent<ColliderComponent>(*dashGO, *dashRigidBody, dashFixtureDef);
 
-    auto dashDamageComp = dashGO->addComponent<DamageComponent>(*dashGO, 10, player->getId());
+    auto dashDamageComp = dashGO->addComponent<DamageComponent>(*dashGO, 15, player->getId());
     dashDamageComp->setActive(false);
     std::weak_ptr<DamageComponent> dashDamageWeakPtr = dashDamageComp;
 
