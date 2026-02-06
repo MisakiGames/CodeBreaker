@@ -162,8 +162,8 @@
   <object id="8" name="TopRightSpawn" type="Spawn" x="1443.5" y="323.242" width="23" height="23"/>
   <object id="9" name="Lava_1" type="Trigger" x="737.958" y="419.091" width="96.9849" height="27.8864">
    <properties>
-    <property name="ColliderTag" value="Lava"/>
-    <property name="DamageAmount" type="float" value="1"/>
+    <property name="ColliderTag" value="DamageOverTime"/>
+    <property name="DamageAmount" type="float" value="3"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
@@ -185,8 +185,8 @@
   </object>
   <object id="16" name="ItemSpawner_0" type="ItemSpawner" x="1030.25" y="330" width="19.5" height="18">
    <properties>
-    <property name="Bomb" type="bool" value="false"/>
-    <property name="Size" type="bool" value="true"/>
+    <property name="Bomb" type="bool" value="true"/>
+    <property name="Size" type="bool" value="false"/>
    </properties>
   </object>
   <object id="17" name="ItemSpawner_2" type="ItemSpawner" x="711.25" y="649" width="19.5" height="18">
@@ -197,8 +197,8 @@
   </object>
   <object id="18" name="ItemSpawner_3" type="ItemSpawner" x="1029.25" y="839" width="19.5" height="18">
    <properties>
-    <property name="Bomb" type="bool" value="false"/>
-    <property name="Size" type="bool" value="true"/>
+    <property name="Bomb" type="bool" value="true"/>
+    <property name="Size" type="bool" value="false"/>
    </properties>
   </object>
   <object id="19" name="ItemSpawner_4" type="ItemSpawner" x="1350.25" y="647" width="19.5" height="18">
@@ -215,50 +215,50 @@
   </object>
   <object id="21" name="Lava_7" type="Trigger" x="1248.34" y="411.39" width="90.9847" height="34.5531">
    <properties>
-    <property name="ColliderTag" value="Lava"/>
-    <property name="DamageAmount" type="float" value="1"/>
+    <property name="ColliderTag" value="DamageOverTime"/>
+    <property name="DamageAmount" type="float" value="3"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
   <object id="22" name="Lava_4" type="Trigger" x="1250.34" y="738.057" width="91.318" height="37.5531">
    <properties>
-    <property name="ColliderTag" value="Lava"/>
-    <property name="DamageAmount" type="float" value="1"/>
+    <property name="ColliderTag" value="DamageOverTime"/>
+    <property name="DamageAmount" type="float" value="3"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
   <object id="23" name="Lava_2" type="Trigger" x="738.008" y="738.057" width="94.6513" height="27.8864">
    <properties>
-    <property name="ColliderTag" value="Lava"/>
-    <property name="DamageAmount" type="float" value="1"/>
+    <property name="ColliderTag" value="DamageOverTime"/>
+    <property name="DamageAmount" type="float" value="3"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
   <object id="24" name="Lava_3" type="Trigger" x="740.341" y="768.057" width="38.318" height="27.8864">
    <properties>
-    <property name="ColliderTag" value="Lava"/>
-    <property name="DamageAmount" type="float" value="1"/>
+    <property name="ColliderTag" value="DamageOverTime"/>
+    <property name="DamageAmount" type="float" value="3"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
   <object id="25" name="Lava_0" type="Trigger" x="740.341" y="387.057" width="38.318" height="27.8864">
    <properties>
-    <property name="ColliderTag" value="Lava"/>
-    <property name="DamageAmount" type="float" value="1"/>
+    <property name="ColliderTag" value="DamageOverTime"/>
+    <property name="DamageAmount" type="float" value="3"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
   <object id="26" name="Lava_6" type="Trigger" x="1300.34" y="384.057" width="37.318" height="22.5531">
    <properties>
-    <property name="ColliderTag" value="Lava"/>
-    <property name="DamageAmount" type="float" value="1"/>
+    <property name="ColliderTag" value="DamageOverTime"/>
+    <property name="DamageAmount" type="float" value="3"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
   <object id="27" name="Lava_5" type="Trigger" x="1297.34" y="778.39" width="42.318" height="18.5531">
    <properties>
-    <property name="ColliderTag" value="Lava"/>
-    <property name="DamageAmount" type="float" value="1"/>
+    <property name="ColliderTag" value="DamageOverTime"/>
+    <property name="DamageAmount" type="float" value="3"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>

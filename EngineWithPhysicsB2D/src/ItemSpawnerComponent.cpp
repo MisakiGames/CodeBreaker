@@ -24,9 +24,8 @@ void ItemSpawnerComponent::update(float deltaTime)
     if (anyItemAbleToPickup())
         return;
     m_spawnTime += deltaTime;
-    if (m_spawnTime >= m_spawnMaxTime)
+    if (m_spawnTime >= m_spawnNowTime)
     {
-
         spawnItem();
         m_spawnTime = 0;
     }
@@ -44,6 +43,8 @@ void ItemSpawnerComponent::spawnItem()
     m_itemsIndexPtr[choseType]++;
     if (m_itemsIndexPtr[choseType] == m_items[choseType].size())
         m_itemsIndexPtr[choseType] = 0;
+    std::uniform_int_distribution<> distrRandomSpawn(m_spawnMinTime, m_spawnMaxTime);
+    m_spawnNowTime = distrRandomSpawn(randomGen);
 }
 bool ItemSpawnerComponent::anyItemAbleToPickup()
 {
