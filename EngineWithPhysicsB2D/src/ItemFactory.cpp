@@ -134,7 +134,7 @@ sf::IntRect ItemFactory::getIntRect(ItemType type)
             rect = sf::IntRect(0, 0, 16, 32);
             break;
         case ItemType::Bomb:
-            rect = sf::IntRect(0, 0, 64, 64);
+            rect = sf::IntRect(20, 20, 28, 34);
             break;
     }
 
@@ -155,7 +155,7 @@ std::shared_ptr<ItemComponent> ItemFactory::addSpecifiedItemComponent(
             break;
         case mmt_gd::ItemType::Bomb:
         {
-            auto bombItem = item->addComponent<BombItemComponent>(*item, type, 5, ItemFactory::createBombObject(window));
+            auto bombItem = item->addComponent<BombItemComponent>(*item, type, 10, ItemFactory::createBombObject(window));
             auto                          soundComponent = item->addComponent<SoundComponent>(*item);
             std::weak_ptr<SoundComponent> soundWeakPtr   = soundComponent;
             soundComponent->addSound("bomb", "../assets/sounds/bomb.wav", 100.0f);
@@ -169,7 +169,7 @@ std::shared_ptr<ItemComponent> ItemFactory::addSpecifiedItemComponent(
         }
         break;
         case mmt_gd::ItemType::Size:
-            itemComp = item->addComponent<ResizeItemComponent>(*item, type, 5);
+            itemComp = item->addComponent<ResizeItemComponent>(*item, type, 10);
             break;
         default:
             break;
@@ -179,6 +179,7 @@ std::shared_ptr<ItemComponent> ItemFactory::addSpecifiedItemComponent(
 
 GameObject::Ptr ItemFactory::createBombObject(sf::RenderWindow& window)
 {
+    sf::Vector2f      explosionScale(1 / 3.0f, 1 / 3.0f);
     std::stringstream idStream;
     idStream << "Bomb_" << bombCount;
     bombCount++;
@@ -188,7 +189,7 @@ GameObject::Ptr ItemFactory::createBombObject(sf::RenderWindow& window)
     std::string filePath   = "../assets/explosion.png";
     auto        spriteComp = bomb->addComponent<
                BombAnimationComponent>(*bomb, window, filePath, "GameObjects", 6, sf::IntRect(0, 0, 354, 342), sf::Vector2f(7, 1));
-    bomb->setScale(1, 1);
+    bomb->setScale(explosionScale);
     const auto                      rb             = bomb->addComponent<RigidBodyComponent>(*bomb, b2_staticBody);
     auto                            respawn        = bomb->addComponent<RespawnComponent>(*bomb);
     std::weak_ptr<RespawnComponent> respawnWeakPtr = respawn;
@@ -200,7 +201,7 @@ GameObject::Ptr ItemFactory::createBombObject(sf::RenderWindow& window)
         });
 
     b2PolygonShape polygonShape{};
-    const auto     size = PhysicsManager::t2b(tson::Vector2f(354, 342));
+    const auto     size = PhysicsManager::t2b(tson::Vector2f(354 * explosionScale.x, 342 * explosionScale.y));
     polygonShape.SetAsBox(size.x / 2, size.y / 2, b2Vec2{size.x / 2, size.y / 2}, 0);
 
     b2FixtureDef fixtureDef{};

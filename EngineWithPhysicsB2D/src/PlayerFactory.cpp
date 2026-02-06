@@ -72,10 +72,11 @@ GameObject::Ptr PlayerFactory::createPlayer(
 
     soundComponent->addSound("dying", "../assets/sounds/dying.wav", 95.0f);
 
-
     player->setScale(scaleFaktor, scaleFaktor);
+    auto playerRect = sf::IntRect(15, 18, 18, 26);
+    //auto playerRect = sf::IntRect(18, 20, 12, 24);
     auto spriteComp = player->addComponent<
-        SpriteAnimationRenderComponent>(*player, window, "GameObjects", sf::IntRect(18, 20, 12, 24), sf::Vector2f(8, 6));
+        SpriteAnimationRenderComponent>(*player, window, "GameObjects", playerRect, sf::Vector2f(8, 6));
     std::weak_ptr<SpriteAnimationRenderComponent> spriteWeakPtr = spriteComp;
     std::stringstream                             playerSpriteStream;
     playerSpriteStream << "../assets/Character/" << color << "/";
@@ -96,7 +97,6 @@ GameObject::Ptr PlayerFactory::createPlayer(
                 else
                     soundComp->playSound("dying");
         });
-
 
     auto rigidBody  = player->addComponent<RigidBodyComponent>(*player, b2_dynamicBody);
     auto damageComp = player->addComponent<DamageComponent>(*player, 10, player->getId());
@@ -133,7 +133,7 @@ GameObject::Ptr PlayerFactory::createPlayer(
     rigidBody->getB2Body()->SetFixedRotation(true);
 
     b2PolygonShape shape;
-    const auto     size = PhysicsManager::s2b(sf::Vector2f(12.0f * scaleFaktor, 12.0f * scaleFaktor));
+    const auto size = PhysicsManager::s2b(sf::Vector2f(playerRect.width * scaleFaktor, playerRect.height / 2 * scaleFaktor));
     shape.SetAsBox(size.x / 2, size.y / 2, b2Vec2{size.x / 2, size.y * 1.5f}, 0);
 
     b2FixtureDef fixtureDef;
@@ -163,7 +163,7 @@ GameObject::Ptr PlayerFactory::createPlayer(
         [soundWeakPtr = soundWeakPtr]()
         {
             if (auto soundComp = soundWeakPtr.lock())
-                soundComp->playSound("step",true);
+                soundComp->playSound("step", true);
         });
     move->subscribeToOnDashEnd(
         [damageWeakPtr = damageWeakPtr]()
