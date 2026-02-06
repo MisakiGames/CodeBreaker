@@ -64,7 +64,7 @@ std::vector<GameObject::Ptr> ItemFactory::createItem(
         std::string id   = idStream.str();
         auto        item = GameObject::create(id);
         if (type == ItemType::Crown)
-            item->setPosition(sf::Vector2f(100, 100));
+            item->setPosition(goManager.getGameObject("CrownSpawn")->getPosition());
         else
             item->setPosition(sf::Vector2f(-1000, -1000));
         std::string filePath   = ItemFactory::getAssetPath(type);
