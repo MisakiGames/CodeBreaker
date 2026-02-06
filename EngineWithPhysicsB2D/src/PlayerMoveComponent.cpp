@@ -76,7 +76,6 @@ void PlayerMoveComponent::update(const float deltaTime)
             {
                 m_canDash      = true;
                 m_dashCooldown = 0.f;
-                std::cout << "Dash Duration: " << m_dashDuration << "\n";
                 m_dashDuration = 0.f;
             }
         }

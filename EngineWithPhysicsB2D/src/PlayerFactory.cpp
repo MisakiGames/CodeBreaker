@@ -235,7 +235,7 @@ GameObject::Ptr PlayerFactory::createPlayer(
                     }
                     else if (other.getTag() != self.getGameObject().getId())
                     {
-                        std::cout << damageComp->getOwnerId() << std::endl;
+
                         healthComp->takeDamage(damageComp->getDamage());
                     }
                 }
@@ -257,7 +257,6 @@ GameObject::Ptr PlayerFactory::createPlayer(
 
             if (damageComp && healthComp)
             {
-                std::cout << other.getTag() << std::endl;
                 if (!damageComp->isActive())
                     return;
                 if (damageComp->getOwnerId() != self.getGameObject().getId())

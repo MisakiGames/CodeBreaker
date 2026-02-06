@@ -14,7 +14,6 @@ void ResizeItemComponent::use(GameObject& player)
 {
     m_player   = &player;
     m_oldScale = m_player->getScale().x;
-    std::cout << m_oldScale << std::endl;
     auto sprite = player.getComponent<SpriteAnimationRenderComponent>();
     m_big       = true;
     m_resize    = true;

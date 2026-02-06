@@ -48,7 +48,6 @@ void BombItemComponent::explode()
     const float x_offset = ((rectPlayer.getSize().x * scale.x) / 2) - (rectBomb.getSize().x * bombScale.y) / 2;
     auto        pos      = m_player->getPosition();
     pos                  = sf::Vector2f(pos.x + x_offset, pos.y + y_offset);
-    std::cout << pos.x << "," << pos.y << std::endl;
     auto bombRigid = m_bomb->getComponent<RigidBodyComponent>();
     bombRigid->getB2Body()->SetTransform(PhysicsManager::s2b(pos), 0);
     auto bombAnimation = m_bomb->getComponent<BombAnimationComponent>();

@@ -6,25 +6,24 @@
 #include "DamageComponent.hpp"
 #include "DestructionComponent.hpp"
 #include "GameObjectEvents.hpp"
+#include "GameObjectManager.hpp"
 #include "ItemSpawnerComponent.h"
 #include "PhysicsManager.hpp"
 #include "PlayerMoveComponent.hpp"
 #include "PlayerShootComponent.hpp"
+#include "RectComponent.h"
 #include "SpriteRenderComponent.hpp"
 #include "Tileson.hpp"
-#include "RectComponent.h"
 
 #include <iostream>
 #include <vector>
-#include "GameObjectManager.hpp"
 
 namespace mmt_gd
 {
 static GameObject::Ptr loadSprite(tson::Object&        object,
                                   const std::string&   layer,
                                   const fs::path&      resourcePath,
-                                  const SpriteManager& spriteManager
-)
+                                  const SpriteManager& spriteManager)
 {
     auto gameObject = GameObject::create(object.getName());
 
@@ -95,9 +94,9 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
     {
         auto soundComp = gameObject->addComponent<SoundComponent>(*gameObject);
         soundComp->addSound("damage", "../assets/sounds/impact.wav", 50.0f); // Kiste macht "Pock" bei Treffer
-        soundComp->addSound("dying", "../assets/sounds/bomb.wav", 80.0f);  // Kiste explodiert
+        soundComp->addSound("dying", "../assets/sounds/bomb.wav", 80.0f);    // Kiste explodiert
         std::weak_ptr<SoundComponent> soundWeakPtr = soundComp;
-        auto healthComp = gameObject->addComponent<HealthComponent>(*gameObject,health, 1, false);
+        auto healthComp = gameObject->addComponent<HealthComponent>(*gameObject, health, 1, false);
         std::weak_ptr<HealthComponent> healthWeakPtr = healthComp;
         healthComp->subsribeToOnTakeDamage(
             [soundWeakPtr = soundWeakPtr, healthWeakPtr = healthWeakPtr]()
@@ -107,11 +106,11 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
                     if (auto health = healthWeakPtr.lock())
                     {
                         if (; health->isAlive())
-                        soundComp->playSound("damage");
-                    else
-                    {
-                        soundComp->playSound("dying");
-                    }
+                            soundComp->playSound("damage");
+                        else
+                        {
+                            soundComp->playSound("dying");
+                        }
                     }
                 }
             });
@@ -133,7 +132,6 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
 
                 if (damageComp && healthComp)
                 {
-                    std::cout << !damageComp->isActive() << std::endl;
                     if (!damageComp->isActive())
                         return;
                     if (damageComp->getOwnerId() != self.getGameObject().getId())
@@ -146,7 +144,6 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
         if (tag.length() > 0)
             collider->setTag(tag);
     }
-
 
     if (!gameObject->init())
     {
@@ -235,13 +232,14 @@ static GameObject::Ptr loadTrigger(tson::Object& object, const std::string& laye
         collider->setTag(tag);
 
     // Add callback to output when something enters the trigger
+#ifdef DEBUG
     collider->registerOnCollisionEnterFunction(
         [](ColliderComponent& self, ColliderComponent& other)
         {
             std::cout << "Entered trigger zone: " << self.getGameObject().getId() << " (collided with "
                       << other.getGameObject().getId() << ")\n";
         });
-
+#endif
     if (!gameObject->init())
     {
         sf::err() << "Could not initialize go " << gameObject->getId() << " in TileMap\n";
@@ -288,7 +286,7 @@ static GameObject::Ptr loadCrownSpace(const tson::Object& object, const std::str
 static GameObject::Ptr loadItemSpawner(tson::Object&        object,
                                        const std::string&   layer,
                                        const SpriteManager& spriteManager,
-                                       GameObjectManager&    goManager)
+                                       GameObjectManager&   goManager)
 {
     auto gameObject = GameObject::create(object.getName());
 
@@ -327,11 +325,12 @@ static GameObject::Ptr loadItemSpawner(tson::Object&        object,
     return gameObject;
 }
 
-GameObject::Ptr ObjectFactory::processTsonObject(tson::Object&        object,
-                                                 const tson::Layer&   layer,
-                                                 const fs::path&      path,
+GameObject::Ptr ObjectFactory::processTsonObject(
+    tson::Object&        object,
+    const tson::Layer&   layer,
+    const fs::path&      path,
     const SpriteManager& spriteManager,
-    GameObjectManager&    goManager)
+    GameObjectManager&   goManager)
 {
     // Skip Sprite objects - player/enemy are created via ShipFactory
     if (object.getType() == "Sprite")
