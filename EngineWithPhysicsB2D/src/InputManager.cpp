@@ -26,21 +26,20 @@ void InputManager::process(const sf::Event& event)
     }
     else if (event.type == sf::Event::JoystickButtonPressed || event.type == sf::Event::JoystickButtonReleased)
     {
-        bool isDown    = (event.type == sf::Event::JoystickButtonPressed);
-        int  playerIdx = event.joystickButton.joystickId + 1;
+        bool isDown = (event.type == sf::Event::JoystickButtonPressed);
+        int playerIdx = event.joystickButton.joystickId;
 
         if (playerIdx >= 0 && playerIdx < PlayerCount)
         {
-            if (event.joystickButton.button >= sf::Joystick::ButtonCount)
-                return;
-            m_eventFrame.m_buttons[playerIdx][event.joystickButton.button] = isDown;
+            if (event.joystickButton.button < sf::Joystick::ButtonCount)
+                m_eventFrame.m_buttons[playerIdx][event.joystickButton.button] = isDown;
         }
     }
     else if (event.type == sf::Event::JoystickMoved)
     {
-        int playerIdx = event.joystickMove.joystickId + 1;
+        int playerIdx = event.joystickMove.joystickId;
 
-        if (playerIdx > 0 && playerIdx < PlayerCount && event.joystickMove.axis < sf::Joystick::AxisCount)
+        if (playerIdx >= 0 && playerIdx < PlayerCount && event.joystickMove.axis < sf::Joystick::AxisCount)
         {
             m_eventFrame.m_axes[playerIdx][event.joystickMove.axis] = event.joystickMove.position;
         }
