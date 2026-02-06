@@ -5,12 +5,15 @@
 #include "CameraRenderComponent.hpp"
 #include "ColliderComponent.hpp"
 #include "Game.hpp"
+#include "GameObjectEvents.hpp"
 #include "HealthComponent.hpp"
 #include "InputManager.hpp"
 #include "ItemFactory.h"
+#include "MusicComponent.h"
 #include "PlayerFactory.h"
 #include "PlayerScoreComponent.h"
 #include "ShipFactory.hpp"
+#include "SoundComponent.hpp"
 #include "TileMapLoader.hpp"
 #include "Tileson.hpp"
 #include "TransformAnimationComponent.hpp"
@@ -18,9 +21,6 @@
 
 #include <memory>
 #include <thread>
-#include "SoundComponent.hpp"
-#include "GameObjectEvents.hpp"
-#include "MusicComponent.h"
 
 namespace mmt_gd
 {
@@ -54,17 +54,11 @@ void MainState::init()
     // Load sounds
     std::string soundPath = "../assets/sounds/";
 
-
     // Create players
     for (const auto& config : m_playerConfigs)
     {
         m_players.push_back(
-            PlayerFactory::createPlayer(
-                m_game->getWindow(),
-                config.spawn,
-                m_gameObjectManager,
-                config.id, 
-                config.color));
+            PlayerFactory::createPlayer(m_game->getWindow(), config.spawn, m_gameObjectManager, config.id, config.color));
     }
     auto crown = ItemFactory::createItem(m_game->getWindow(), ItemType::Crown, m_gameObjectManager, 1);
     m_camera   = GameObject::create("Camera");
@@ -94,11 +88,11 @@ void MainState::init()
         input.bind("dash", 0u, i);
     }
 
-    //input.bind("up", sf::Keyboard::W, 0);
-    //input.bind("left", sf::Keyboard::A, 0);
-    //input.bind("down", sf::Keyboard::S, 0);
-    //input.bind("right", sf::Keyboard::D, 0);
-    //input.bind("dash", sf::Keyboard::Enter, 0);
+    //input.bind("up", sf::Keyboard::W, 3);
+    //input.bind("left", sf::Keyboard::A, 3);
+    //input.bind("down", sf::Keyboard::S, 3);
+    //input.bind("right", sf::Keyboard::D, 3);
+    //input.bind("dash", sf::Keyboard::Enter, 3);
 
     // Load and initialize TGui elements
     m_game->getGui().loadWidgetsFromFile("../assets/mainTgui.txt");
@@ -137,28 +131,28 @@ void MainState::init()
     }
     m_game->getGui().remove(panel);
 
-      auto winSound = GameObject::create("WinSound");
+    auto winSound       = GameObject::create("WinSound");
     auto soundComponent = winSound->addComponent<SoundComponent>(*winSound);
-      soundComponent->addSound("victory", "../assets/sounds/victory.wav", 100.0f);
+    soundComponent->addSound("victory", "../assets/sounds/victory.wav", 100.0f);
 
-          if (!winSound->init())
-      {
-          sf::err() << "Could not initialize sound\n";
-      }
+    if (!winSound->init())
+    {
+        sf::err() << "Could not initialize sound\n";
+    }
 
-      EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(winSound));
-      auto backgroundMusic= GameObject::create("BackgroundMusic");
-      auto musicComponent  = backgroundMusic->addComponent<MusicComponent>(*backgroundMusic);
-      musicComponent->addMusic("background", "../assets/musics/bossFight.ogg", 100.0f);
+    EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(winSound));
+    auto backgroundMusic = GameObject::create("BackgroundMusic");
+    auto musicComponent  = backgroundMusic->addComponent<MusicComponent>(*backgroundMusic);
+    musicComponent->addMusic("background", "../assets/musics/bossFight.ogg", 100.0f);
 
-      if (!backgroundMusic->init())
-      {
-          sf::err() << "Could not initialize music\n";
-      }
+    if (!backgroundMusic->init())
+    {
+        sf::err() << "Could not initialize music\n";
+    }
 
-      EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(backgroundMusic));
+    EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(backgroundMusic));
 
-      musicComponent->playMusic("background",true);
+    musicComponent->playMusic("background", true);
 
     // Define layer order manually here. Could come from custom file settings.
     m_spriteManager.setLayerOrder({"Ground", "GameObjects"});
@@ -217,7 +211,7 @@ void MainState::update(const float deltaTime)
 
 void MainState::endGame(std::shared_ptr<GameObject> winner)
 {
-    auto winSound= m_gameObjectManager.getGameObject("WinSound");
+    auto winSound = m_gameObjectManager.getGameObject("WinSound");
     if (winSound)
         winSound->getComponent<SoundComponent>()->playSound("victory");
     m_gameEnded = true;
