@@ -5,6 +5,7 @@
 #include "CameraRenderComponent.hpp"
 #include "ColliderComponent.hpp"
 #include "DamageComponent.hpp"
+#include "DashReferenceComponent.h"
 #include "DeadComponent.h"
 #include "DestructionComponent.hpp"
 #include "EnemyAIComponent.hpp"
@@ -319,6 +320,8 @@ GameObject::Ptr PlayerFactory::createPlayer(
             if (auto damageComp = damageWeakPtr.lock())
                 damageComp->setActive(false);
         });
+
+    player->addComponent<DashReferenceComponent>(*player, *dashGO);
 
     if (!player->init())
     {
