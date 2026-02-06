@@ -64,11 +64,14 @@ private:
     DeadComponent&                     m_deadComponent;
     RigidBodyComponent&                m_rigidBody;
     sf::Vector2f                       m_lastMoveDirection;
+
     bool                               m_isDashing    = false;
     bool                               m_canDash      = true;
     bool                               m_dashActive   = true;
+
     float                              m_dashCooldown = 0.f;
     float                              m_dashDuration = 0.f;
+
     std::vector<std::function<void()>> m_onDash;
     std::vector<std::function<void()>> m_onWhileDash;
     std::vector<std::function<void()>> m_onDashEnd;
