@@ -1,16 +1,203 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="left-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="1" nextlayerid="3" nextobjectid="16">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="left-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="1" nextlayerid="5" nextobjectid="125">
  <editorsettings>
-  <export format="json"/>
+  <export target="MainMap.tmj" format="json"/>
  </editorsettings>
- <tileset firstgid="1" source="../../Map/MainGame.tsx"/>
+ <tileset firstgid="1" name="MainGame" tilewidth="32" tileheight="32" tilecount="3312" columns="24">
+  <image source="All_Spritesheet.png" width="768" height="4416"/>
+  <wangsets>
+   <wangset name="Unnamed Set" type="mixed" tile="-1">
+    <wangcolor name="" color="#ff0000" tile="-1" probability="1"/>
+   </wangset>
+  </wangsets>
+ </tileset>
  <layer id="1" name="Ground" width="50" height="50">
   <data encoding="csv">
+   <chunk x="0" y="-32" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,126,4,50,50,50,5,98,98,
+0,0,0,0,0,0,0,0,0,27,1,2,2,29,26,26,
+0,0,0,0,0,0,0,0,0,27,25,54,54,26,26,26,
+0,0,0,0,0,0,0,0,0,27,25,26,78,26,26,26,
+0,0,0,0,0,0,0,0,0,28,29,26,26,26,26,54,
+0,0,0,0,0,0,0,0,0,98,26,26,26,54,12,13
+</chunk>
+   <chunk x="16" y="-32" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,106,106,106,0,0,0,0,0,98,98,98,98,98,98,
+0,4,50,50,50,50,50,5,0,0,98,4,50,50,50,50,
+26,28,2,2,2,2,2,29,26,26,26,28,2,2,2,2,
+26,26,26,26,26,26,26,26,54,26,26,26,26,26,26,26,
+26,26,26,54,26,54,26,26,54,30,54,26,26,26,54,26,
+26,4,50,50,50,5,26,26,26,54,26,26,26,4,50,50,
+196,172,146,2,2,29,26,4,5,26,4,5,26,28,2,2
+</chunk>
+   <chunk x="32" y="-32" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+98,98,98,98,98,98,98,98,98,98,0,0,0,0,0,0,
+50,5,98,98,98,4,50,50,50,5,0,0,0,0,0,0,
+2,29,26,26,26,28,2,2,3,25,0,0,0,0,0,0,
+54,26,26,26,26,54,54,26,27,25,55,0,0,0,0,0,
+26,26,26,26,26,26,78,26,27,25,55,0,0,0,0,0,
+50,5,26,26,54,26,26,26,28,29,151,0,0,0,0,0,
+146,173,218,12,13,26,26,54,26,98,55,0,0,0,0,0
+</chunk>
+   <chunk x="48" y="-32" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,98,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
    <chunk x="-16" y="-16" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,98,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
+   <chunk x="0" y="-16" width="16" height="16">
+0,0,0,0,0,0,0,0,0,98,26,26,26,26,36,37,
+0,0,0,0,0,0,0,0,0,98,26,26,26,26,26,26,
+0,0,0,0,0,0,0,126,126,4,5,26,26,26,26,54,
+0,0,0,0,0,0,0,0,0,27,25,54,26,26,54,30,
+0,0,0,0,0,0,0,0,0,28,29,26,26,26,26,26,
+0,0,0,0,0,0,0,0,0,98,26,26,26,26,26,26,
+0,0,0,0,0,0,0,0,0,4,5,26,26,26,26,54,
+0,0,0,0,0,0,0,0,0,27,25,26,26,26,54,78,
+0,0,0,0,0,0,0,0,0,28,29,26,26,26,26,26,
+0,0,0,0,0,0,0,0,0,98,54,26,26,26,26,26,
+0,0,0,0,0,0,0,0,0,98,26,26,26,26,12,13,
+0,0,0,0,0,0,0,0,0,98,26,26,26,26,36,37,
+0,0,0,0,0,0,0,0,0,4,5,54,26,54,54,26,
+0,0,0,0,0,0,0,0,0,27,25,54,30,26,26,26,
+0,0,0,0,0,0,0,0,0,27,25,26,26,54,26,26,
+0,0,0,0,0,0,0,0,0,27,49,50,50,5,26,26
+</chunk>
+   <chunk x="16" y="-16" width="16" height="16">
+218,170,170,54,26,26,26,28,29,26,28,29,26,26,54,26,
+26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,
+26,26,4,50,50,5,26,26,54,26,26,26,26,4,50,50,
+54,26,28,2,2,29,26,26,26,26,26,26,54,28,2,2,
+26,26,26,26,54,26,26,26,26,26,26,26,26,26,54,26,
+26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,
+26,26,54,26,26,26,26,26,26,26,26,26,26,26,26,26,
+26,26,4,50,50,5,54,26,26,26,26,26,26,4,50,50,
+26,54,28,2,2,29,26,26,26,26,26,54,26,28,2,2,
+26,26,26,26,26,26,26,26,54,26,26,26,26,26,26,26,
+170,218,196,26,26,26,26,4,5,26,4,5,26,54,26,26,
+196,148,194,50,50,5,26,28,29,26,28,29,26,4,50,50,
+26,28,2,2,2,29,26,26,26,26,54,26,26,28,2,2,
+26,26,26,26,54,26,26,26,54,78,26,26,26,26,26,26,
+26,26,54,26,26,26,26,26,26,26,54,26,26,54,26,26,
+26,4,50,50,50,50,50,5,26,26,26,4,50,50,50,50
+</chunk>
+   <chunk x="32" y="-16" width="16" height="16">
+196,196,170,36,37,26,26,26,26,98,55,0,0,0,0,0,
+26,26,26,26,26,26,26,26,26,98,55,0,0,0,0,0,
+5,26,26,26,54,26,26,26,4,5,55,0,0,0,0,0,
+29,26,54,30,26,26,26,54,27,25,55,0,0,0,0,0,
+26,26,26,54,26,26,26,26,28,29,80,0,0,0,0,0,
+26,26,26,26,26,26,26,26,26,98,55,0,0,0,0,0,
+26,26,26,54,26,26,26,26,4,5,55,0,724,0,0,0,
+5,54,26,78,54,26,26,26,27,25,55,32,0,0,0,0,
+29,26,26,26,26,26,26,26,28,29,55,98,0,0,0,0,
+26,26,26,54,54,26,26,26,26,98,55,0,0,0,0,0,
+218,170,196,12,13,26,26,26,26,98,0,0,0,0,0,0,
+194,149,170,36,37,26,26,26,26,98,0,0,0,0,0,0,
+2,29,26,26,26,26,26,54,4,5,55,0,0,0,0,0,
+54,26,26,26,26,26,30,26,27,25,55,0,0,0,0,0,
+26,26,26,26,54,54,26,26,27,25,55,0,0,0,0,0,
+50,5,26,26,26,4,50,50,51,25,0,0,0,0,0,0
+</chunk>
+   <chunk x="0" y="0" width="16" height="16">
+0,0,0,0,0,0,0,0,0,28,2,2,2,29,98,98,
+0,0,0,0,0,0,0,0,0,98,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,98,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
+   <chunk x="16" y="0" width="16" height="16">
+98,28,2,2,2,2,2,29,98,98,98,28,2,2,2,2,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
+   <chunk x="32" y="0" width="16" height="16">
+2,29,151,151,151,28,2,2,2,29,98,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -27,77 +214,626 @@
   </data>
  </layer>
  <objectgroup id="2" name="GameObjects">
-  <object id="1" name="TopWallCollider" type="Trigger" x="-239.636" y="-424.909" width="960" height="8">
+  <object id="1" name="TopWallCollider" type="Trigger" x="282.531" y="-715.909" width="1069.67" height="8">
    <properties>
     <property name="ColliderTag" value="InstaKill"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="2" name="BottomWallCollider" type="Trigger" x="-238" y="126.909" width="960" height="8">
+  <object id="2" name="BottomWallCollider" type="Trigger" x="282" y="36.909" width="1071" height="8">
    <properties>
     <property name="ColliderTag" value="InstaKill"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="3" name="RightWallCollider" type="Trigger" x="720.091" y="-417.273" width="7" height="544">
+  <object id="3" name="RightWallCollider" type="Trigger" x="1348.09" y="-703.606" width="7" height="737.333">
    <properties>
     <property name="ColliderTag" value="InstaKill"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="4" name="LeftWallCollider" type="Trigger" x="-247.091" y="-416.909" width="7" height="544">
+  <object id="4" name="LeftWallCollider" type="Trigger" x="277.909" y="-704.909" width="7" height="735">
    <properties>
     <property name="ColliderTag" value="InstaKill"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="5" name="TopLeftSpawn" type="Spawn" x="-219.167" y="-395.091" width="23" height="23"/>
-  <object id="15" name="CrownSpawn" type="Spawn" x="-17.0758" y="-286.773" width="23" height="23"/>
-  <object id="6" name="BottomLeftSpawn" type="Spawn" x="-219.5" y="82.9091" width="23" height="23"/>
-  <object id="7" name="BottomRightSpawn" type="Spawn" x="676.833" y="83.9091" width="23" height="23"/>
-  <object id="8" name="TopRightSpawn" type="Spawn" x="677.5" y="-395.758" width="23" height="23"/>
-  <object id="9" name="Lava0" type="Trigger" x="-185.375" y="-357.909" width="34.3182" height="27.8864">
+  <object id="5" name="TopLeftSpawn" type="Spawn" x="385.833" y="-603.091" width="23" height="23"/>
+  <object id="15" name="CrownSpawn" type="Spawn" x="804.924" y="-344.773" width="23" height="23"/>
+  <object id="6" name="BottomLeftSpawn" type="Spawn" x="386.5" y="-90.0909" width="23" height="23"/>
+  <object id="7" name="BottomRightSpawn" type="Spawn" x="1218.83" y="-90.0909" width="23" height="23"/>
+  <object id="8" name="TopRightSpawn" type="Spawn" x="1219.5" y="-604.758" width="23" height="23"/>
+  <object id="9" name="Lava_1" type="Trigger" x="513.958" y="-508.909" width="96.9849" height="27.8864">
    <properties>
     <property name="ColliderTag" value="Lava"/>
     <property name="DamageAmount" type="float" value="1"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="10" name="Lava1" type="Trigger" x="-185.034" y="41.9661" width="34.6932" height="28.3864">
-   <properties>
-    <property name="ColliderTag" value="Lava"/>
-    <property name="DamageAmount" type="float" value="1"/>
-    <property name="Dead" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="11" name="Lava3" type="Trigger" x="630.864" y="41.5151" width="34.2727" height="28.3637">
-   <properties>
-    <property name="ColliderTag" value="Lava"/>
-    <property name="DamageAmount" type="float" value="1"/>
-    <property name="Dead" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="12" name="Lava2" type="Trigger" x="630.636" y="-358.152" width="34.6364" height="27.8182">
-   <properties>
-    <property name="ColliderTag" value="Lava"/>
-    <property name="DamageAmount" type="float" value="1"/>
-    <property name="Dead" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="13" name="Destroy_Object_0" type="Sprite" x="-138.682" y="-387.136" width="32" height="32">
+  <object id="13" name="Box_13" type="Sprite" x="603.318" y="-648.136" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
     <property name="Destroyable" type="bool" value="true"/>
     <property name="Health" type="float" value="1"/>
     <property name="Mass" type="float" value="1"/>
-    <property name="Texture" value="Map/furniture/furniture_05.png"/>
+    <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="14" name="ItemSpawner" type="ItemSpawner" x="-43.25" y="-383.591" width="19.5" height="18">
+  <object id="14" name="ItemSpawner_1" type="ItemSpawner" x="485.75" y="-406.591" width="19.5" height="18">
    <properties>
     <property name="Bomb" type="bool" value="false"/>
     <property name="Size" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="16" name="ItemSpawner_0" type="ItemSpawner" x="806.25" y="-598" width="19.5" height="18">
+   <properties>
+    <property name="Bomb" type="bool" value="false"/>
+    <property name="Size" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="17" name="ItemSpawner_2" type="ItemSpawner" x="487.25" y="-279" width="19.5" height="18">
+   <properties>
+    <property name="Bomb" type="bool" value="false"/>
+    <property name="Size" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="18" name="ItemSpawner_3" type="ItemSpawner" x="805.25" y="-89" width="19.5" height="18">
+   <properties>
+    <property name="Bomb" type="bool" value="false"/>
+    <property name="Size" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="19" name="ItemSpawner_4" type="ItemSpawner" x="1126.25" y="-281" width="19.5" height="18">
+   <properties>
+    <property name="Bomb" type="bool" value="false"/>
+    <property name="Size" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="20" name="ItemSpawner_5" type="ItemSpawner" x="1127.25" y="-408" width="19.5" height="18">
+   <properties>
+    <property name="Bomb" type="bool" value="false"/>
+    <property name="Size" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="21" name="Lava_7" type="Trigger" x="1024.34" y="-516.61" width="90.9847" height="34.5531">
+   <properties>
+    <property name="ColliderTag" value="Lava"/>
+    <property name="DamageAmount" type="float" value="1"/>
+    <property name="Dead" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="22" name="Lava_4" type="Trigger" x="1026.34" y="-189.943" width="91.318" height="37.5531">
+   <properties>
+    <property name="ColliderTag" value="Lava"/>
+    <property name="DamageAmount" type="float" value="1"/>
+    <property name="Dead" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="23" name="Lava_2" type="Trigger" x="514.008" y="-189.943" width="94.6513" height="27.8864">
+   <properties>
+    <property name="ColliderTag" value="Lava"/>
+    <property name="DamageAmount" type="float" value="1"/>
+    <property name="Dead" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="24" name="Lava_3" type="Trigger" x="516.341" y="-159.943" width="38.318" height="27.8864">
+   <properties>
+    <property name="ColliderTag" value="Lava"/>
+    <property name="DamageAmount" type="float" value="1"/>
+    <property name="Dead" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="25" name="Lava_0" type="Trigger" x="516.341" y="-540.943" width="38.318" height="27.8864">
+   <properties>
+    <property name="ColliderTag" value="Lava"/>
+    <property name="DamageAmount" type="float" value="1"/>
+    <property name="Dead" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="26" name="Lava_6" type="Trigger" x="1076.34" y="-543.943" width="37.318" height="22.5531">
+   <properties>
+    <property name="ColliderTag" value="Lava"/>
+    <property name="DamageAmount" type="float" value="1"/>
+    <property name="Dead" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="27" name="Lava_5" type="Trigger" x="1073.34" y="-149.61" width="42.318" height="18.5531">
+   <properties>
+    <property name="ColliderTag" value="Lava"/>
+    <property name="DamageAmount" type="float" value="1"/>
+    <property name="Dead" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="38" name="Wall_30" type="Collider" x="311" y="-688" width="119" height="31"/>
+  <object id="39" name="Wall_29" type="Collider" x="565.5" y="-686.5" width="182" height="31"/>
+  <object id="40" name="Wall_28" type="Collider" x="883.5" y="-686.5" width="180" height="31"/>
+  <object id="41" name="Wall_27" type="Collider" x="1203.5" y="-15.5" width="119" height="31"/>
+  <object id="42" name="Wall_26" type="Collider" x="1206.5" y="-690.5" width="119" height="31"/>
+  <object id="43" name="Wall_25" type="Collider" x="312.5" y="-14.5" width="119" height="31"/>
+  <object id="44" name="Wall_24" type="Collider" x="306.5" y="-647.5" width="27" height="89"/>
+  <object id="45" name="Wall_23" type="Collider" x="306.5" y="-110.5" width="27" height="89"/>
+  <object id="46" name="Wall_22" type="Collider" x="1297.5" y="-651.5" width="27" height="89"/>
+  <object id="47" name="Wall_21" type="Collider" x="1298.5" y="-109.5" width="27" height="89"/>
+  <object id="48" name="Wall_20" type="Collider" x="307.5" y="-302.5" width="27" height="61"/>
+  <object id="50" name="Wall_19" type="Collider" x="310.5" y="-430.5" width="27" height="61"/>
+  <object id="51" name="Wall_18" type="Collider" x="1300.5" y="-428.5" width="27" height="61"/>
+  <object id="52" name="Wall_17" type="Collider" x="1298.5" y="-300.5" width="27" height="61"/>
+  <object id="53" name="Wall_16" type="Collider" x="564.5" y="-142.5" width="119" height="31"/>
+  <object id="54" name="Wall_15" type="Collider" x="947.5" y="-558.5" width="119" height="31"/>
+  <object id="55" name="Wall_14" type="Collider" x="566.5" y="-560.5" width="119" height="31"/>
+  <object id="56" name="Wall_13" type="Collider" x="947.5" y="-143.5" width="119" height="31"/>
+  <object id="57" name="Wall_12" type="Collider" x="594.5" y="-432.5" width="89" height="31"/>
+  <object id="58" name="Wall_11" type="Collider" x="949.5" y="-429.5" width="89" height="31"/>
+  <object id="59" name="Wall_10" type="Collider" x="599.5" y="-272.5" width="89" height="31"/>
+  <object id="60" name="Wall_9" type="Collider" x="949.5" y="-271.5" width="89" height="31"/>
+  <object id="61" name="Wall_8" type="Collider" x="752.5" y="-527.5" width="30" height="31"/>
+  <object id="62" name="Wall_7" type="Collider" x="848" y="-527.5" width="30" height="31"/>
+  <object id="63" name="Wall_6" type="Collider" x="751" y="-174.5" width="30" height="31"/>
+  <object id="64" name="Wall_5" type="Collider" x="848" y="-176.5" width="30" height="31"/>
+  <object id="65" name="Wall_4" type="Collider" x="446" y="-191.5" width="64.3333" height="62"/>
+  <object id="66" name="Wall_3" type="Collider" x="449" y="-542" width="62" height="62"/>
+  <object id="67" name="Wall_2" type="Collider" x="1122" y="-543" width="65" height="62"/>
+  <object id="68" name="Wall_1" type="Collider" x="1123.33" y="-190" width="64.6667" height="62"/>
+  <object id="73" name="Wall_0" type="Collider" x="565" y="-14.5" width="182" height="31"/>
+  <object id="75" name="Box_12" type="Sprite" x="410" y="-544" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/boxes/box_01.png"/>
+   </properties>
+  </object>
+  <object id="76" name="Box_11" type="Sprite" x="481.667" y="-579.667" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/boxes/box_01.png"/>
+   </properties>
+  </object>
+  <object id="77" name="Box_10" type="Sprite" x="347" y="-448" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/boxes/box_01.png"/>
+   </properties>
+  </object>
+  <object id="78" name="Box_9" type="Sprite" x="344" y="-408" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/boxes/box_01.png"/>
+   </properties>
+  </object>
+  <object id="79" name="Box_8" type="Sprite" x="383" y="-425" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/boxes/box_01.png"/>
+   </properties>
+  </object>
+  <object id="80" name="Box_7" type="Sprite" x="409" y="-190.667" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/boxes/box_01.png"/>
+   </properties>
+  </object>
+  <object id="81" name="Box_6" type="Sprite" x="555" y="-277" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/boxes/box_01.png"/>
+   </properties>
+  </object>
+  <object id="82" name="Box_5" type="Sprite" x="606" y="-390" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/boxes/box_01.png"/>
+   </properties>
+  </object>
+  <object id="83" name="Box_4" type="Sprite" x="754" y="-422" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/boxes/box_01.png"/>
+   </properties>
+  </object>
+  <object id="84" name="Box_3" type="Sprite" x="768" y="-459" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/boxes/box_01.png"/>
+   </properties>
+  </object>
+  <object id="85" name="Box_2" type="Sprite" x="845" y="-439" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/boxes/box_01.png"/>
+   </properties>
+  </object>
+  <object id="86" name="Box_1" type="Sprite" x="851" y="-285" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/boxes/box_01.png"/>
+   </properties>
+  </object>
+  <object id="87" name="Box_0" type="Sprite" x="744" y="-257" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/boxes/box_01.png"/>
+   </properties>
+  </object>
+  <object id="88" name="Box_26" type="Sprite" x="845" y="-139" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/boxes/box_01.png"/>
+   </properties>
+  </object>
+  <object id="89" name="Box_25" type="Sprite" x="807.5" y="-163.5" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/boxes/box_01.png"/>
+   </properties>
+  </object>
+  <object id="90" name="Box_24" type="Sprite" x="710.667" y="-57.3333" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/boxes/box_01.png"/>
+   </properties>
+  </object>
+  <object id="91" name="Box_23" type="Sprite" x="568" y="-106" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/boxes/box_01.png"/>
+   </properties>
+  </object>
+  <object id="92" name="Box_22" type="Sprite" x="972" y="-55.3333" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/boxes/box_01.png"/>
+   </properties>
+  </object>
+  <object id="93" name="Box_21" type="Sprite" x="1260.67" y="-270.667" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/boxes/box_01.png"/>
+   </properties>
+  </object>
+  <object id="94" name="Box_20" type="Sprite" x="1222.67" y="-290" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/boxes/box_01.png"/>
+   </properties>
+  </object>
+  <object id="95" name="Box_19" type="Sprite" x="1047.33" y="-421.333" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/boxes/box_01.png"/>
+   </properties>
+  </object>
+  <object id="96" name="Box_18" type="Sprite" x="990" y="-597.333" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/boxes/box_01.png"/>
+   </properties>
+  </object>
+  <object id="97" name="Box_17" type="Sprite" x="1156.67" y="-583.333" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/boxes/box_01.png"/>
+   </properties>
+  </object>
+  <object id="98" name="Box_16" type="Sprite" x="749.333" y="-567.333" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/boxes/box_01.png"/>
+   </properties>
+  </object>
+  <object id="99" name="Barrel_19" type="Sprite" x="643.333" y="-650" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/barrels/Barrels_01.png"/>
+   </properties>
+  </object>
+  <object id="100" name="Barrel_18" type="Sprite" x="902.667" y="-646" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/barrels/Barrels_01.png"/>
+   </properties>
+  </object>
+  <object id="101" name="Barrel_17" type="Sprite" x="1031.33" y="-597.333" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/barrels/Barrels_01.png"/>
+   </properties>
+  </object>
+  <object id="102" name="Barrel_16" type="Sprite" x="788.667" y="-539.333" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/barrels/Barrels_01.png"/>
+   </properties>
+  </object>
+  <object id="103" name="Barrel_15" type="Sprite" x="906.667" y="-368.667" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/barrels/Barrels_01.png"/>
+   </properties>
+  </object>
+  <object id="104" name="Barrel_14" type="Sprite" x="706.667" y="-332.667" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/barrels/Barrels_01.png"/>
+   </properties>
+  </object>
+  <object id="105" name="Barrel_13" type="Sprite" x="583.333" y="-314.667" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/barrels/Barrels_01.png"/>
+   </properties>
+  </object>
+  <object id="106" name="Barrel_12" type="Sprite" x="1003.33" y="-389.333" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/barrels/Barrels_01.png"/>
+   </properties>
+  </object>
+  <object id="107" name="Barrel_11" type="Sprite" x="979.333" y="-312" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/barrels/Barrels_01.png"/>
+   </properties>
+  </object>
+  <object id="109" name="Barrel_10" type="Sprite" x="1049.33" y="-259.333" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/barrels/Barrels_01.png"/>
+   </properties>
+  </object>
+  <object id="110" name="Barrel_9" type="Sprite" x="606.667" y="-103.333" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/barrels/Barrels_01.png"/>
+   </properties>
+  </object>
+  <object id="111" name="Barrel_8" type="Sprite" x="453.333" y="-125.333" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/barrels/Barrels_01.png"/>
+   </properties>
+  </object>
+  <object id="113" name="Barrel_7" type="Sprite" x="552.667" y="-452.667" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/barrels/Barrels_01.png"/>
+   </properties>
+  </object>
+  <object id="114" name="Barrel_6" type="Sprite" x="441.333" y="-584.667" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/barrels/Barrels_01.png"/>
+   </properties>
+  </object>
+  <object id="117" name="Box_15" type="Sprite" x="350" y="-288.667" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/boxes/box_01.png"/>
+   </properties>
+  </object>
+  <object id="118" name="Barrel_5" type="Sprite" x="665.333" y="-230" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/barrels/Barrels_01.png"/>
+   </properties>
+  </object>
+  <object id="119" name="Barrel_4" type="Sprite" x="826" y="-244.667" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/barrels/Barrels_01.png"/>
+   </properties>
+  </object>
+  <object id="120" name="Barrel_3" type="Sprite" x="1194" y="-513.333" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/barrels/Barrels_01.png"/>
+   </properties>
+  </object>
+  <object id="121" name="Barrel_2" type="Sprite" x="1262" y="-418" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/barrels/Barrels_01.png"/>
+   </properties>
+  </object>
+  <object id="122" name="Barrel_1" type="Sprite" x="1122.67" y="-120" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/barrels/Barrels_01.png"/>
+   </properties>
+  </object>
+  <object id="123" name="Box_14" type="Sprite" x="1194" y="-173.333" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/boxes/box_01.png"/>
+   </properties>
+  </object>
+  <object id="124" name="Barrel_0" type="Sprite" x="1011.33" y="-58" width="32" height="32">
+   <properties>
+    <property name="Border" type="bool" value="true"/>
+    <property name="BorderSize" type="int" value="32"/>
+    <property name="Destroyable" type="bool" value="true"/>
+    <property name="Health" type="float" value="1"/>
+    <property name="Mass" type="float" value="1"/>
+    <property name="Texture" value="Map/barrels/Barrels_01.png"/>
    </properties>
   </object>
  </objectgroup>
