@@ -146,6 +146,7 @@
     <ClInclude Include="..\src\DeadComponent.h" />
     <ClInclude Include="..\src\DestructionComponent.hpp" />
     <ClInclude Include="..\src\EnemyAIComponent.hpp" />
+    <ClInclude Include="..\src\FollowPlayer.h" />
     <ClInclude Include="..\src\GameState.hpp" />
     <ClInclude Include="..\src\HealthComponent.hpp" />
     <ClInclude Include="..\src\ItemComponent.h" />
@@ -218,6 +219,7 @@
     <ClCompile Include="..\src\DebugDraw.cpp" />
     <ClCompile Include="..\src\DestructionComponent.cpp" />
     <ClCompile Include="..\src\EnemyAIComponent.cpp" />
+    <ClCompile Include="..\src\FollowPlayer.cpp" />
     <ClCompile Include="..\src\HealthComponent.cpp" />
     <ClCompile Include="..\src\ItemComponent.cpp" />
     <ClCompile Include="..\src\ItemFactory.cpp" />
