@@ -42,6 +42,7 @@ void RigidBodyComponent::addVelocity(const sf::Vector2f& velocity) const
     auto vel = m_body->GetLinearVelocity();
     vel += PhysicsManager::s2b(velocity);
     m_body->SetLinearVelocity(vel);
+    
 }
 
 void RigidBodyComponent::setVelocity(const sf::Vector2f& velocity) const

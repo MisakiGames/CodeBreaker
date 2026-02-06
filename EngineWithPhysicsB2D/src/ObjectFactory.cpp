@@ -23,7 +23,8 @@ namespace mmt_gd
 static GameObject::Ptr loadSprite(tson::Object&        object,
                                   const std::string&   layer,
                                   const fs::path&      resourcePath,
-                                  const SpriteManager& spriteManager)
+                                  const SpriteManager& spriteManager
+)
 {
     auto gameObject = GameObject::create(object.getName());
 
@@ -92,8 +93,29 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
 
     if (destroyable)
     {
-        auto health = gameObject->addComponent<HealthComponent>(*gameObject, 1, false);
-        gameObject->addComponent<DestructionComponent>(*gameObject, *health);
+        auto soundComp = gameObject->addComponent<SoundComponent>(*gameObject);
+        soundComp->addSound("damage", "../assets/sounds/impact.wav", 50.0f); // Kiste macht "Pock" bei Treffer
+        soundComp->addSound("dying", "../assets/sounds/bomb.wav", 80.0f);  // Kiste explodiert
+        std::weak_ptr<SoundComponent> soundWeakPtr = soundComp;
+        auto healthComp = gameObject->addComponent<HealthComponent>(*gameObject,health, 1, false);
+        std::weak_ptr<HealthComponent> healthWeakPtr = healthComp;
+        healthComp->subsribeToOnTakeDamage(
+            [soundWeakPtr = soundWeakPtr, healthWeakPtr = healthWeakPtr]()
+            {
+                if (auto soundComp = soundWeakPtr.lock())
+                {
+                    if (auto health = healthWeakPtr.lock())
+                    {
+                        if (; health->isAlive())
+                        soundComp->playSound("damage");
+                    else
+                    {
+                        soundComp->playSound("dying");
+                    }
+                    }
+                }
+            });
+        gameObject->addComponent<DestructionComponent>(*gameObject, *healthComp);
 
         b2PolygonShape polygonShape;
         const auto     size = PhysicsManager::t2b(object.getSize(), true);

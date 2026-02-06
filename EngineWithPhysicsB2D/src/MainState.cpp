@@ -18,6 +18,9 @@
 
 #include <memory>
 #include <thread>
+#include "SoundComponent.hpp"
+#include "GameObjectEvents.hpp"
+#include "MusicComponent.h"
 
 namespace mmt_gd
 {
@@ -48,10 +51,20 @@ void MainState::init()
         sf::err() << "Could not load tile map\n";
     }
 
+    // Load sounds
+    std::string soundPath = "../assets/sounds/";
+
+
+    // Create players
     for (const auto& config : m_playerConfigs)
     {
         m_players.push_back(
-            PlayerFactory::createPlayer(m_game->getWindow(), config.spawn, m_gameObjectManager, config.id, config.color));
+            PlayerFactory::createPlayer(
+                m_game->getWindow(),
+                config.spawn,
+                m_gameObjectManager,
+                config.id, 
+                config.color));
     }
     auto crown = ItemFactory::createItem(m_game->getWindow(), ItemType::Crown, m_gameObjectManager, 1);
     m_camera   = GameObject::create("Camera");
@@ -72,13 +85,7 @@ void MainState::init()
 
     auto& input = InputManager::getInstance();
 
-    input.bind("up", sf::Keyboard::W, 0);
-    input.bind("left", sf::Keyboard::A, 0);
-    input.bind("down", sf::Keyboard::S, 0);
-    input.bind("right", sf::Keyboard::D, 0);
-    input.bind("dash", sf::Keyboard::Enter, 0);
-
-    for (int i = 1; i <= 3; ++i)
+    for (int i = 0; i < m_players.size(); ++i)
     {
         input.bind("left", {sf::Joystick::X, 50.0f, false}, i);
         input.bind("right", {sf::Joystick::X, 50.0f, true}, i);
@@ -86,6 +93,12 @@ void MainState::init()
         input.bind("down", {sf::Joystick::Y, 50.0f, true}, i);
         input.bind("dash", 0u, i);
     }
+
+    input.bind("up", sf::Keyboard::W, 0);
+    input.bind("left", sf::Keyboard::A, 0);
+    input.bind("down", sf::Keyboard::S, 0);
+    input.bind("right", sf::Keyboard::D, 0);
+    input.bind("dash", sf::Keyboard::Enter, 0);
 
     // Load and initialize TGui elements
     m_game->getGui().loadWidgetsFromFile("../assets/mainTgui.txt");
@@ -124,6 +137,29 @@ void MainState::init()
     }
     m_game->getGui().remove(panel);
 
+      auto winSound = GameObject::create("WinSound");
+    auto soundComponent = winSound->addComponent<SoundComponent>(*winSound);
+      soundComponent->addSound("victory", "../assets/sounds/victory.wav", 100.0f);
+
+          if (!winSound->init())
+      {
+          sf::err() << "Could not initialize sound\n";
+      }
+
+      EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(winSound));
+      auto backgroundMusic= GameObject::create("BackgroundMusic");
+      auto musicComponent  = backgroundMusic->addComponent<MusicComponent>(*backgroundMusic);
+      musicComponent->addMusic("background", "../assets/musics/bossFight.ogg", 100.0f);
+
+      if (!backgroundMusic->init())
+      {
+          sf::err() << "Could not initialize music\n";
+      }
+
+      EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(backgroundMusic));
+
+      musicComponent->playMusic("background",true);
+
     // Define layer order manually here. Could come from custom file settings.
     m_spriteManager.setLayerOrder({"Ground", "GameObjects"});
 }
@@ -131,11 +167,6 @@ void MainState::init()
 void MainState::update(const float deltaTime)
 {
     PROFILE_FUNCTION();
-    if (InputManager::getInstance().isKeyPressed("Exit"))
-    {
-        m_gameStateManager->setState("MenuState");
-        return;
-    }
 
     for (size_t i = 0; i < m_players.size(); ++i)
     {
@@ -163,10 +194,8 @@ void MainState::update(const float deltaTime)
                     if (m_winTimer < m_winDelay)
                         return;
 
-                    std::cout << "game ended \n";
+                    m_gameStateManager->setState("MenuState");
                     return;
-                    //m_winTimer = 0.f;
-                    //m_gameStateManager->setState("EndState");
                 }
             }
 
@@ -188,10 +217,21 @@ void MainState::update(const float deltaTime)
 
 void MainState::endGame(std::shared_ptr<GameObject> winner)
 {
+    auto winSound= m_gameObjectManager.getGameObject("WinSound");
+    if (winSound)
+        winSound->getComponent<SoundComponent>()->playSound("victory");
     m_gameEnded = true;
 
     //deactivate input
-    InputManager::getInstance().clear();
+    auto& input = InputManager::getInstance();
+    for (int i = 1; i < m_players.size(); ++i)
+    {
+        input.unbind("left", i);
+        input.unbind("right", i);
+        input.unbind("up", i);
+        input.unbind("down", i);
+        input.unbind("dash", i);
+    }
 
     std::vector<std::shared_ptr<GameObject>> winners;
     winners.push_back(winner);
@@ -206,10 +246,19 @@ void MainState::draw()
 
 void MainState::exit()
 {
+    auto backgroundMusic = m_gameObjectManager.getGameObject("BackgroundMusic");
+    if (backgroundMusic)
+        backgroundMusic->getComponent<MusicComponent>()->stopMusic("background");
+
     PROFILE_FUNCTION();
+
     m_game->getGui().removeAllWidgets();
     m_physicsManager.shutdown();
     m_spriteManager.shutdown();
     m_gameObjectManager.shutdown();
+    m_players.clear();
+    m_camera    = nullptr;
+    m_gameEnded = false;
+    m_winTimer  = 0.0f;
 }
 } // namespace mmt_gd

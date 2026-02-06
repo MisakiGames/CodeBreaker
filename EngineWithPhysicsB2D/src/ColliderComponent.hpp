@@ -30,6 +30,10 @@ public:
     {
         return true;
     }
+    bool isSensor()
+    {
+        return fixture->IsSensor();
+    }
     virtual void update(float fDeltaTime) override;
     /// Add delegate function to be executed when collision is detected.
     /// Signature: void func(ColliderComponent&)

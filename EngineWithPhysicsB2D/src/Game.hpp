@@ -15,8 +15,8 @@ class Game
 public:
     struct Config
     {
-        sf::Vector2i m_resolution{800, 600};
-        std::string  m_windowName = "FinalFrontier";
+        sf::Vector2i m_resolution{1600, 900};
+        std::string  m_windowName = "Code Breaker";
     };
 
     Config& getConfig()

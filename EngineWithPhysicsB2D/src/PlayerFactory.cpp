@@ -58,22 +58,48 @@ GameObject::Ptr PlayerFactory::createPlayer(
     auto spawnPoint = goManager.getGameObject(spawn)->getPosition();
     auto player     = GameObject::create("Player_" + color);
     player->setPosition(spawnPoint);
+
+    auto                          soundComponent = player->addComponent<SoundComponent>(*player);
+    std::weak_ptr<SoundComponent> soundWeakPtr   = soundComponent;
+
+    soundComponent->addSound("dash", "../assets/sounds/dash.wav", 70.0f);
+    soundComponent->addSound("step", "../assets/sounds/step.wav", 100.0f);
+    soundComponent->addSound("impact", "../assets/sounds/impact.wav", 100.0f);
+
+    soundComponent->addSound("damage", "../assets/sounds/damage.wav", 90.0f);
+    soundComponent->addSound("item", "../assets/sounds/item.wav", 70.0f);
+    soundComponent->addSound("crown_drop", "../assets/sounds/crown_drop.flac", 85.0f);
+
+    soundComponent->addSound("dying", "../assets/sounds/dying.wav", 95.0f);
+
     player->setScale(scaleFaktor, scaleFaktor);
+    auto playerRect = sf::IntRect(15, 18, 18, 26);
+    //auto playerRect = sf::IntRect(18, 20, 12, 24);
     auto spriteComp = player->addComponent<
-        SpriteAnimationRenderComponent>(*player, window, "GameObjects", sf::IntRect(18, 20, 12, 24), sf::Vector2f(8, 6));
+        SpriteAnimationRenderComponent>(*player, window, "GameObjects", playerRect, sf::Vector2f(8, 6));
     std::weak_ptr<SpriteAnimationRenderComponent> spriteWeakPtr = spriteComp;
-    std::stringstream                             sstream;
-    sstream << "../assets/Character/" << color << "/";
+    std::stringstream                             playerSpriteStream;
+    playerSpriteStream << "../assets/Character/" << color << "/";
 
-    spriteComp->loadAndMapTexture(sstream.str() + "Walk.png", AnimationState::Walk, 5);
-    spriteComp->loadAndMapTexture(sstream.str() + "Idle.png", AnimationState::Idle, 5);
-    spriteComp->loadAndMapTexture(sstream.str() + "Dash.png", AnimationState::Dash, 10, false);
-    spriteComp->loadAndMapTexture(sstream.str() + "Death.png", AnimationState::Dead, 10, false);
+    spriteComp->loadAndMapTexture(playerSpriteStream.str() + "Walk.png", AnimationState::Walk, 5);
+    spriteComp->loadAndMapTexture(playerSpriteStream.str() + "Idle.png", AnimationState::Idle, 5);
+    spriteComp->loadAndMapTexture(playerSpriteStream.str() + "Dash.png", AnimationState::Dash, 10, false);
+    spriteComp->loadAndMapTexture(playerSpriteStream.str() + "Death.png", AnimationState::Dead, 10, false);
 
-    auto                           health        = player->addComponent<HealthComponent>(*player, 100, true);
+    auto                           health        = player->addComponent<HealthComponent>(*player, 100, 1, false);
     std::weak_ptr<HealthComponent> healthWeakPtr = health;
-    auto                           rigidBody     = player->addComponent<RigidBodyComponent>(*player, b2_dynamicBody);
-    auto                           damageComp    = player->addComponent<DamageComponent>(*player, 10, player->getId());
+    health->subsribeToOnTakeDamage(
+        [soundWeakPtr = soundWeakPtr, healthWeakPtr = healthWeakPtr]()
+        {
+            if (auto soundComp = soundWeakPtr.lock())
+                if (auto healthComp = healthWeakPtr.lock(); healthComp->isAlive())
+                    soundComp->playSound("damage");
+                else
+                    soundComp->playSound("dying");
+        });
+
+    auto rigidBody  = player->addComponent<RigidBodyComponent>(*player, b2_dynamicBody);
+    auto damageComp = player->addComponent<DamageComponent>(*player, 10, player->getId());
     damageComp->setActive(false);
     std::weak_ptr<DamageComponent> damageWeakPtr = damageComp;
     auto                           respawn       = player->addComponent<RespawnComponent>(*player);
@@ -107,7 +133,7 @@ GameObject::Ptr PlayerFactory::createPlayer(
     rigidBody->getB2Body()->SetFixedRotation(true);
 
     b2PolygonShape shape;
-    const auto     size = PhysicsManager::s2b(sf::Vector2f(12.0f * scaleFaktor, 12.0f * scaleFaktor));
+    const auto size = PhysicsManager::s2b(sf::Vector2f(playerRect.width * scaleFaktor, playerRect.height / 2 * scaleFaktor));
     shape.SetAsBox(size.x / 2, size.y / 2, b2Vec2{size.x / 2, size.y * 1.5f}, 0);
 
     b2FixtureDef fixtureDef;
@@ -115,7 +141,7 @@ GameObject::Ptr PlayerFactory::createPlayer(
     fixtureDef.density = 1.0f;
     auto move = player->addComponent<PlayerMoveComponent>(*player, *rigidBody, *deadComp, *damageComp, plrIndex);
 
-    move->subscribeToOnDash(
+    move->subscribeToOnWhileDash(
         [spriteWeakPtr = spriteWeakPtr]()
         {
             if (auto spriteComp = spriteWeakPtr.lock())
@@ -126,6 +152,18 @@ GameObject::Ptr PlayerFactory::createPlayer(
         {
             if (auto damageComp = damageWeakPtr.lock())
                 damageComp->setActive(true);
+        });
+    move->subscribeToOnDash(
+        [soundWeakPtr = soundWeakPtr]()
+        {
+            if (auto soundComp = soundWeakPtr.lock())
+                soundComp->playSound("dash");
+        });
+    move->subscribeToOnMoved(
+        [soundWeakPtr = soundWeakPtr]()
+        {
+            if (auto soundComp = soundWeakPtr.lock())
+                soundComp->playSound("step", true);
         });
     move->subscribeToOnDashEnd(
         [damageWeakPtr = damageWeakPtr]()
@@ -145,6 +183,20 @@ GameObject::Ptr PlayerFactory::createPlayer(
 
     auto                           pickup        = player->addComponent<PickupComponent>(*player, *score);
     std::weak_ptr<PickupComponent> pickupWeakPtr = pickup;
+
+    pickup->subscribeToOnPickup(
+        [soundWeakPtr = soundWeakPtr]()
+        {
+            if (auto soundComp = soundWeakPtr.lock())
+                soundComp->playSound("item");
+        });
+    pickup->subscribeToOnLoseCrown(
+        [soundWeakPtr = soundWeakPtr]()
+        {
+            if (auto soundComp = soundWeakPtr.lock())
+                soundComp->playSound("crown_drop");
+        });
+
     deadComp->subscribeToDeath(
         [pickupWeakPtr = pickupWeakPtr]()
         {
@@ -186,6 +238,14 @@ GameObject::Ptr PlayerFactory::createPlayer(
                     }
                 }
             }
+        });
+    collider->registerOnCollisionEnterFunction(
+        [soundWeakPtr = soundWeakPtr](ColliderComponent& self, ColliderComponent& other)
+        {
+            if (other.isSensor())
+                return;
+            if (auto soundComp = soundWeakPtr.lock())
+                soundComp->playSound("impact");
         });
     collider->registerOnCollisionExitFunction(
         [](ColliderComponent& self, ColliderComponent& other)
@@ -229,7 +289,7 @@ GameObject::Ptr PlayerFactory::createPlayer(
 
     if (!player->init())
     {
-        sf::err() << "Could not initialize player ship\n";
+        sf::err() << "Could not initialize player\n";
     }
 
     EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(player));

@@ -5,6 +5,7 @@
 #include "DeadComponent.h"
 #include "IComponent.hpp"
 #include "RigidBodyComponent.hpp"
+#include "SoundComponent.hpp"
 
 #include <functional>
 #include <vector>
@@ -43,12 +44,21 @@ public:
     {
         m_onDash.push_back(subscriber);
     }
+    void subscribeToOnWhileDash(std::function<void()> subscriber)
+    {
+        m_onWhileDash.push_back(subscriber);
+    }
     void subscribeToOnDashEnd(std::function<void()> subscriber)
     {
         m_onDashEnd.push_back(subscriber);
     }
+    void subscribeToOnMoved(std::function<void()> subscriber)
+    {
+        m_onMoved.push_back(subscriber);
+    }
 
 private:
+    void                               DoOnMoved();
     void                               ResizeCollider();
     int                                m_playerIndex;
     DeadComponent&                     m_deadComponent;
@@ -60,7 +70,9 @@ private:
     float                              m_dashCooldown = 0.f;
     float                              m_dashDuration = 0.f;
     std::vector<std::function<void()>> m_onDash;
+    std::vector<std::function<void()>> m_onWhileDash;
     std::vector<std::function<void()>> m_onDashEnd;
+    std::vector<std::function<void()>> m_onMoved;
     DamageComponent&                   m_damage;
     bool                               m_resized = false;
 };

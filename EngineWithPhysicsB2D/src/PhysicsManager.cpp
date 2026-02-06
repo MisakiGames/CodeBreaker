@@ -6,7 +6,7 @@
 #include "GameObjectManager.hpp"
 #include "PhysicsComponentEvents.hpp"
 #include "RigidBodyComponent.hpp"
-#include "SpriteRenderComponent.hpp"
+#include "SpriteRenderComponent.hpp" 
 
 #include <Box2D/box2d.h>
 
@@ -26,6 +26,12 @@ void PhysicsManager::BeginContact(b2Contact* contact)
     //Todo: Use b2d fixure  objects https://box2d.org/documentation/md__d_1__git_hub_box2d_docs_loose_ends.html
     auto* const colliderA = reinterpret_cast<ColliderComponent*>(contact->GetFixtureA()->GetUserData().pointer);
     auto* const colliderB = reinterpret_cast<ColliderComponent*>(contact->GetFixtureB()->GetUserData().pointer);
+    
+        auto userDataA = contact->GetFixtureA()->GetUserData().pointer;
+    auto userDataB = contact->GetFixtureB()->GetUserData().pointer;
+    if (userDataA == 0 || userDataB == 0)
+        return; // Nothing to do
+    
     if (colliderA != nullptr && colliderB != nullptr)
     {
         colliderA->onCollisionEnter(*colliderB);
@@ -38,6 +44,11 @@ void PhysicsManager::EndContact(b2Contact* contact)
     //Todo: Use b2d fixure  objects https://box2d.org/documentation/md__d_1__git_hub_box2d_docs_loose_ends.html
     auto* const colliderA = reinterpret_cast<ColliderComponent*>(contact->GetFixtureA()->GetUserData().pointer);
     auto* const colliderB = reinterpret_cast<ColliderComponent*>(contact->GetFixtureB()->GetUserData().pointer);
+    auto        userDataA = contact->GetFixtureA()->GetUserData().pointer;
+    auto        userDataB = contact->GetFixtureB()->GetUserData().pointer;
+    if (userDataA == 0 || userDataB == 0)
+        return; // Nothing to do
+    
     if (colliderA != nullptr && colliderB != nullptr)
     {
         colliderA->onCollisionExit(*colliderB);

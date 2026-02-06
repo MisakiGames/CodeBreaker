@@ -28,7 +28,7 @@ private:
     GameObject::Ptr m_camera;
 
     const float m_maxScore = 100;
-    const float m_winDelay = 5.f;
+    const float m_winDelay = 8.f;
     float       m_winTimer = 0.f;
     bool        m_gameEnded = false;
 
@@ -39,6 +39,7 @@ private:
         std::string color;
     };
 
+    std::unordered_map<std::string, sf::SoundBuffer> m_buffers;
     std::vector<std::shared_ptr<GameObject>> m_players;
     const std::vector<PlayerConfig> m_playerConfigs = {{PlayerSpawn::TopLeft, 0, "red"},
                                                      {PlayerSpawn::BottomLeft, 1, "blue"},

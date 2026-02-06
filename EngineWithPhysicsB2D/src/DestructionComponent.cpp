@@ -2,6 +2,8 @@
 #include "DestructionComponent.hpp"
 #include "GameObject.hpp"
 #include "DeadComponent.h"
+#include "PhysicsManager.hpp"
+#include "RigidBodyComponent.hpp"
 
 namespace mmt_gd
 {
@@ -19,17 +21,18 @@ bool DestructionComponent::init()
 
 void DestructionComponent::update(float deltaTime)
 {
+    //we act like its destroyed when its yeetet to notherness :3
     if (!m_destroyed && !m_healthComponent.isAlive())
     {
-        triggerDestruction();
+        setPosition(sf::Vector2f(-1500,-1500));
     }
+    if (warp)
+        m_gameObject.getComponent<RigidBodyComponent>()->getB2Body()->SetTransform(PhysicsManager::s2b(warpTo), 0);
+    warp = false;
 }
-
-
-
-void DestructionComponent::triggerDestruction()
+void DestructionComponent::setPosition(sf::Vector2f setPos)
 {
-    m_destroyed = true;
-    m_gameObject.markForDelete();
+    warpTo = setPos;
+    warp   = true;
 }
 } // namespace mmt_gd

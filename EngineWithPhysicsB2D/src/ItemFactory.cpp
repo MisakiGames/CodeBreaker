@@ -31,16 +31,16 @@
 #include <string>
 namespace mmt_gd
 {
-int ItemFactory::bombCount      = 0;
-int ItemFactory::crownItemCount = 0;
-int ItemFactory::bombItemCount  = 0;
-int ItemFactory::sizeItemCount  = 0;
+int                          ItemFactory::bombCount      = 0;
+int                          ItemFactory::crownItemCount = 0;
+int                          ItemFactory::bombItemCount  = 0;
+int                          ItemFactory::sizeItemCount  = 0;
 std::vector<GameObject::Ptr> ItemFactory::createItem(
-    sf::RenderWindow& window,
-    ItemType          type,
+    sf::RenderWindow&  window,
+    ItemType           type,
     GameObjectManager& goManager,
-    int               count,
-    bool              canBePickup)
+    int                count,
+    bool               canBePickup)
 {
     std::vector<GameObject::Ptr> itemGroup;
     for (int i = 0; i < count; i++)
@@ -134,13 +134,17 @@ sf::IntRect ItemFactory::getIntRect(ItemType type)
             rect = sf::IntRect(0, 0, 16, 32);
             break;
         case ItemType::Bomb:
-            rect = sf::IntRect(0, 0, 64, 64);
+            rect = sf::IntRect(20, 20, 28, 34);
             break;
     }
 
     return rect;
 }
-std::shared_ptr<ItemComponent> ItemFactory::addSpecifiedItemComponent(sf::RenderWindow& window, GameObject::Ptr item, ItemType type, GameObjectManager& goManager)
+std::shared_ptr<ItemComponent> ItemFactory::addSpecifiedItemComponent(
+    sf::RenderWindow&  window,
+    GameObject::Ptr    item,
+    ItemType           type,
+    GameObjectManager& goManager)
 {
     std::shared_ptr<ItemComponent> itemComp;
     switch (type)
@@ -150,10 +154,22 @@ std::shared_ptr<ItemComponent> ItemFactory::addSpecifiedItemComponent(sf::Render
             itemComp->setPickup(true);
             break;
         case mmt_gd::ItemType::Bomb:
-            itemComp = item->addComponent<BombItemComponent>(*item, type, 5, ItemFactory::createBombObject(window));
-            break;
+        {
+            auto bombItem = item->addComponent<BombItemComponent>(*item, type, 10, ItemFactory::createBombObject(window));
+            auto                          soundComponent = item->addComponent<SoundComponent>(*item);
+            std::weak_ptr<SoundComponent> soundWeakPtr   = soundComponent;
+            soundComponent->addSound("bomb", "../assets/sounds/bomb.wav", 100.0f);
+            bombItem->subscribeToOnExplode(
+                [soundWeakPtr = soundWeakPtr]()
+                {
+                    if (auto soundComp = soundWeakPtr.lock())
+                        soundComp->playSound("bomb");
+                });
+            itemComp = bombItem;
+        }
+        break;
         case mmt_gd::ItemType::Size:
-            itemComp = item->addComponent<ResizeItemComponent>(*item, type, 5);
+            itemComp = item->addComponent<ResizeItemComponent>(*item, type, 10);
             break;
         default:
             break;
@@ -163,6 +179,7 @@ std::shared_ptr<ItemComponent> ItemFactory::addSpecifiedItemComponent(sf::Render
 
 GameObject::Ptr ItemFactory::createBombObject(sf::RenderWindow& window)
 {
+    sf::Vector2f      explosionScale(1 / 3.0f, 1 / 3.0f);
     std::stringstream idStream;
     idStream << "Bomb_" << bombCount;
     bombCount++;
@@ -172,7 +189,7 @@ GameObject::Ptr ItemFactory::createBombObject(sf::RenderWindow& window)
     std::string filePath   = "../assets/explosion.png";
     auto        spriteComp = bomb->addComponent<
                BombAnimationComponent>(*bomb, window, filePath, "GameObjects", 6, sf::IntRect(0, 0, 354, 342), sf::Vector2f(7, 1));
-    bomb->setScale(1, 1);
+    bomb->setScale(explosionScale);
     const auto                      rb             = bomb->addComponent<RigidBodyComponent>(*bomb, b2_staticBody);
     auto                            respawn        = bomb->addComponent<RespawnComponent>(*bomb);
     std::weak_ptr<RespawnComponent> respawnWeakPtr = respawn;
@@ -184,7 +201,7 @@ GameObject::Ptr ItemFactory::createBombObject(sf::RenderWindow& window)
         });
 
     b2PolygonShape polygonShape{};
-    const auto     size = PhysicsManager::t2b(tson::Vector2f(354, 342));
+    const auto     size = PhysicsManager::t2b(tson::Vector2f(354 * explosionScale.x, 342 * explosionScale.y));
     polygonShape.SetAsBox(size.x / 2, size.y / 2, b2Vec2{size.x / 2, size.y / 2}, 0);
 
     b2FixtureDef fixtureDef{};
