@@ -19,7 +19,7 @@ Panel.Player {
 
     ProgressBar.Health {
         Position = (8%, 68%);
-        Size = (84%, 22%);
+        Size = (250, 22%);
         Minimum = 0;
         Maximum = 100;
         Value = 100;
@@ -34,8 +34,8 @@ Panel.Player {
     }
 
     Picture.Crown {
-        Position = (50%, 5%);
-        Size = (50%, 60%);
+        Position = (55%, 0%);
+        Size = (30%, 80%);
 
 	Renderer {
        	    Texture = "../assets/crown.png" Smooth;

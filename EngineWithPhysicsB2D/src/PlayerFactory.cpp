@@ -37,7 +37,7 @@ GameObject::Ptr PlayerFactory::createPlayer(
     int                plrIndex,
     std::string        color)
 {
-    const float scaleFaktor = 1;
+    const float scaleFaktor = 1.2f;
     std::string spawn       = "";
     switch (spawnName)
     {
