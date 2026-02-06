@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="left-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="1" nextlayerid="5" nextobjectid="126">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="left-up" width="60" height="79" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="136">
  <editorsettings>
   <export target="MainMap.tmj" format="json"/>
  </editorsettings>
@@ -11,246 +11,163 @@
    </wangset>
   </wangsets>
  </tileset>
- <layer id="1" name="Ground" width="50" height="50">
+ <layer id="1" name="Ground" width="60" height="79">
   <data encoding="csv">
-   <chunk x="0" y="-32" width="16" height="16">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,126,4,50,50,50,5,98,98,
-0,0,0,0,0,0,0,0,0,27,1,2,2,29,26,26,
-0,0,0,0,0,0,0,0,0,27,25,54,54,26,26,26,
-0,0,0,0,0,0,0,0,0,27,25,26,78,26,26,26,
-0,0,0,0,0,0,0,0,0,28,29,26,26,26,26,54,
-0,0,0,0,0,0,0,0,0,98,26,26,26,54,12,13
-</chunk>
-   <chunk x="16" y="-32" width="16" height="16">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,106,106,106,0,0,0,0,0,98,98,98,98,98,98,
-0,4,50,50,50,50,50,5,0,0,98,4,50,50,50,50,
-26,28,2,2,2,2,2,29,26,26,26,28,2,2,2,2,
-26,26,26,26,26,26,26,26,54,26,26,26,26,26,26,26,
-26,26,26,54,26,54,26,26,54,30,54,26,26,26,54,26,
-26,4,50,50,50,5,26,26,26,54,26,26,26,4,50,50,
-196,172,146,2,2,29,26,4,5,26,4,5,26,28,2,2
-</chunk>
-   <chunk x="32" y="-32" width="16" height="16">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-98,98,98,98,98,98,98,98,98,98,0,0,0,0,0,0,
-50,5,98,98,98,4,50,50,50,5,0,0,0,0,0,0,
-2,29,26,26,26,28,2,2,3,25,0,0,0,0,0,0,
-54,26,26,26,26,54,54,26,27,25,55,0,0,0,0,0,
-26,26,26,26,26,26,78,26,27,25,55,0,0,0,0,0,
-50,5,26,26,54,26,26,26,28,29,151,0,0,0,0,0,
-146,173,218,12,13,26,26,54,26,98,55,0,0,0,0,0
-</chunk>
-   <chunk x="48" y="-32" width="16" height="16">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,98,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-</chunk>
-   <chunk x="-16" y="-16" width="16" height="16">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,98,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-</chunk>
-   <chunk x="0" y="-16" width="16" height="16">
-0,0,0,0,0,0,0,0,0,98,26,26,26,26,36,37,
-0,0,0,0,0,0,0,0,0,98,26,26,26,26,26,26,
-0,0,0,0,0,0,0,126,126,4,5,26,26,26,26,54,
-0,0,0,0,0,0,0,0,0,27,25,54,26,26,54,30,
-0,0,0,0,0,0,0,0,0,28,29,26,26,26,26,26,
-0,0,0,0,0,0,0,0,0,98,26,26,26,26,26,26,
-0,0,0,0,0,0,0,0,0,4,5,26,26,26,26,54,
-0,0,0,0,0,0,0,0,0,27,25,26,26,26,54,78,
-0,0,0,0,0,0,0,0,0,28,29,26,26,26,26,26,
-0,0,0,0,0,0,0,0,0,98,54,26,26,26,26,26,
-0,0,0,0,0,0,0,0,0,98,26,26,26,26,12,13,
-0,0,0,0,0,0,0,0,0,98,26,26,26,26,36,37,
-0,0,0,0,0,0,0,0,0,4,5,54,26,54,54,26,
-0,0,0,0,0,0,0,0,0,27,25,54,30,26,26,26,
-0,0,0,0,0,0,0,0,0,27,25,26,26,54,26,26,
-0,0,0,0,0,0,0,0,0,27,49,50,50,5,26,26
-</chunk>
-   <chunk x="16" y="-16" width="16" height="16">
-218,170,170,54,26,26,26,28,29,26,28,29,26,26,54,26,
-26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,
-26,26,4,50,50,5,26,26,54,26,26,26,26,4,50,50,
-54,26,28,2,2,29,26,26,26,26,26,26,54,28,2,2,
-26,26,26,26,54,26,26,26,26,26,26,26,26,26,54,26,
-26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,
-26,26,54,26,26,26,26,26,26,26,26,26,26,26,26,26,
-26,26,4,50,50,5,54,26,26,26,26,26,26,4,50,50,
-26,54,28,2,2,29,26,26,26,26,26,54,26,28,2,2,
-26,26,26,26,26,26,26,26,54,26,26,26,26,26,26,26,
-170,218,196,26,26,26,26,4,5,26,4,5,26,54,26,26,
-196,148,194,50,50,5,26,28,29,26,28,29,26,4,50,50,
-26,28,2,2,2,29,26,26,26,26,54,26,26,28,2,2,
-26,26,26,26,54,26,26,26,54,78,26,26,26,26,26,26,
-26,26,54,26,26,26,26,26,26,26,54,26,26,54,26,26,
-26,4,50,50,50,50,50,5,26,26,26,4,50,50,50,50
-</chunk>
-   <chunk x="32" y="-16" width="16" height="16">
-196,196,170,36,37,26,26,26,26,98,55,0,0,0,0,0,
-26,26,26,26,26,26,26,26,26,98,55,0,0,0,0,0,
-5,26,26,26,54,26,26,26,4,5,55,0,0,0,0,0,
-29,26,54,30,26,26,26,54,27,25,55,0,0,0,0,0,
-26,26,26,54,26,26,26,26,28,29,80,0,0,0,0,0,
-26,26,26,26,26,26,26,26,26,98,55,0,0,0,0,0,
-26,26,26,54,26,26,26,26,4,5,55,0,724,0,0,0,
-5,54,26,78,54,26,26,26,27,25,55,32,0,0,0,0,
-29,26,26,26,26,26,26,26,28,29,55,98,0,0,0,0,
-26,26,26,54,54,26,26,26,26,98,55,0,0,0,0,0,
-218,170,196,12,13,26,26,26,26,98,0,0,0,0,0,0,
-194,149,170,36,37,26,26,26,26,98,0,0,0,0,0,0,
-2,29,26,26,26,26,26,54,4,5,55,0,0,0,0,0,
-54,26,26,26,26,26,30,26,27,25,55,0,0,0,0,0,
-26,26,26,26,54,54,26,26,27,25,55,0,0,0,0,0,
-50,5,26,26,26,4,50,50,51,25,0,0,0,0,0,0
-</chunk>
-   <chunk x="0" y="0" width="16" height="16">
-0,0,0,0,0,0,0,0,0,28,2,2,2,29,98,98,
-0,0,0,0,0,0,0,0,0,98,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,98,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-</chunk>
-   <chunk x="16" y="0" width="16" height="16">
-98,28,2,2,2,2,2,29,98,98,98,28,2,2,2,2,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-</chunk>
-   <chunk x="32" y="0" width="16" height="16">
-2,29,151,151,151,28,2,2,2,29,98,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-</chunk>
-  </data>
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,106,106,106,0,0,0,0,0,98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,126,4,50,50,50,5,98,98,0,4,50,50,50,50,50,5,0,0,98,4,50,50,50,50,50,5,98,98,98,4,50,50,50,5,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,27,1,2,2,29,26,26,26,28,2,2,2,2,2,29,26,26,26,28,2,2,2,2,2,29,26,26,26,28,2,2,3,25,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,27,25,54,54,26,26,26,26,26,26,26,26,26,26,26,54,26,26,26,26,26,26,26,54,26,26,26,26,54,54,26,27,25,55,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,27,25,26,78,26,26,26,26,26,26,54,26,54,26,26,54,30,54,26,26,26,54,26,26,26,26,26,26,26,78,26,27,25,55,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,28,29,26,26,26,26,54,26,4,50,50,50,5,26,26,26,54,26,26,26,4,50,50,50,5,26,26,54,26,26,26,28,29,151,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,26,26,26,54,12,13,196,172,146,2,2,29,26,4,5,26,4,5,26,28,2,2,146,173,218,12,13,26,26,54,26,98,55,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,26,26,26,26,36,37,218,170,170,54,26,26,26,28,29,26,28,29,26,26,54,26,196,196,170,36,37,26,26,26,26,98,55,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,98,55,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,126,126,4,5,26,26,26,26,54,26,26,4,50,50,5,26,26,54,26,26,26,26,4,50,50,5,26,26,26,54,26,26,26,4,5,55,0,0,0,0,0,0,0,0,0,0,
+98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,27,25,54,26,26,54,30,54,26,28,2,2,29,26,26,26,26,26,26,54,28,2,2,29,26,54,30,26,26,26,54,27,25,55,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,28,29,26,26,26,26,26,26,26,26,26,54,26,26,26,26,26,26,26,26,26,54,26,26,26,26,54,26,26,26,26,28,29,80,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,98,55,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,5,26,26,26,26,54,26,26,54,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,54,26,26,26,26,4,5,55,0,724,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,27,25,26,26,26,54,78,26,26,4,50,50,5,54,26,26,26,26,26,26,4,50,50,5,54,26,78,54,26,26,26,27,25,55,32,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,28,29,26,26,26,26,26,26,54,28,2,2,29,26,26,26,26,26,54,26,28,2,2,29,26,26,26,26,26,26,26,28,29,55,98,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,54,26,26,26,26,26,26,26,26,26,26,26,26,26,54,26,26,26,26,26,26,26,26,26,26,54,54,26,26,26,26,98,55,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,26,26,26,26,12,13,170,218,196,26,26,26,26,4,5,26,4,5,26,54,26,26,218,170,196,12,13,26,26,26,26,98,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,26,26,26,26,36,37,196,148,194,50,50,5,26,28,29,26,28,29,26,4,50,50,194,149,170,36,37,26,26,26,26,98,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,5,54,26,54,54,26,26,28,2,2,2,29,26,26,26,26,54,26,26,28,2,2,2,29,26,26,26,26,26,54,4,5,55,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,27,25,54,30,26,26,26,26,26,26,26,54,26,26,26,54,78,26,26,26,26,26,26,54,26,26,26,26,26,30,26,27,25,55,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,27,25,26,26,54,26,26,26,26,54,26,26,26,26,26,26,26,54,26,26,54,26,26,26,26,26,26,54,54,26,26,27,25,55,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,27,49,50,50,5,26,26,26,4,50,50,50,50,50,5,26,26,26,4,50,50,50,50,50,5,26,26,26,4,50,50,51,25,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,28,2,2,2,29,98,98,98,28,2,2,2,2,2,29,98,98,98,28,2,2,2,2,2,29,151,151,151,28,2,2,2,29,98,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
  </layer>
  <objectgroup id="2" name="GameObjects">
-  <object id="1" name="TopWallCollider" type="Trigger" x="282.531" y="-715.909" width="1069.67" height="8">
+  <object id="1" name="TopWallCollider" type="Trigger" x="506.531" y="212.091" width="1069.67" height="8">
    <properties>
     <property name="ColliderTag" value="InstaKill"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="2" name="BottomWallCollider" type="Trigger" x="282" y="36.909" width="1071" height="8">
+  <object id="2" name="BottomWallCollider" type="Trigger" x="506" y="964.909" width="1071" height="8">
    <properties>
     <property name="ColliderTag" value="InstaKill"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="3" name="RightWallCollider" type="Trigger" x="1348.09" y="-703.606" width="7" height="737.333">
+  <object id="126" name="BottomWallCollider1" type="Trigger" x="658.25" y="928.159" width="125" height="8">
    <properties>
     <property name="ColliderTag" value="InstaKill"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="4" name="LeftWallCollider" type="Trigger" x="277.909" y="-704.909" width="7" height="735">
+  <object id="127" name="BottomWallCollider2" type="Trigger" x="976.917" y="926.159" width="125" height="8">
    <properties>
     <property name="ColliderTag" value="InstaKill"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="5" name="TopLeftSpawn" type="Spawn" x="385.833" y="-603.091" width="23" height="23"/>
-  <object id="15" name="CrownSpawn" type="Spawn" x="804.924" y="-344.773" width="23" height="23"/>
-  <object id="6" name="BottomLeftSpawn" type="Spawn" x="386.5" y="-90.0909" width="23" height="23"/>
-  <object id="7" name="BottomRightSpawn" type="Spawn" x="1218.83" y="-90.0909" width="23" height="23"/>
-  <object id="8" name="TopRightSpawn" type="Spawn" x="1219.5" y="-604.758" width="23" height="23"/>
-  <object id="9" name="Lava_1" type="Trigger" x="513.958" y="-508.909" width="96.9849" height="27.8864">
+  <object id="128" name="BottomWallCollider3" type="Trigger" x="1297.92" y="927.826" width="125" height="8">
+   <properties>
+    <property name="ColliderTag" value="InstaKill"/>
+    <property name="Dead" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="129" name="TopWallCollider1" type="Trigger" x="657.417" y="247.826" width="125" height="8">
+   <properties>
+    <property name="ColliderTag" value="InstaKill"/>
+    <property name="Dead" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="3" name="RightWallCollider" type="Trigger" x="1572.09" y="224.394" width="7" height="737.333">
+   <properties>
+    <property name="ColliderTag" value="InstaKill"/>
+    <property name="Dead" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="4" name="LeftWallCollider" type="Trigger" x="501.909" y="223.091" width="7" height="735">
+   <properties>
+    <property name="ColliderTag" value="InstaKill"/>
+    <property name="Dead" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="130" name="LeftWallCollider2" type="Trigger" x="535.659" y="701.674" width="7" height="100">
+   <properties>
+    <property name="ColliderTag" value="InstaKill"/>
+    <property name="Dead" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="134" name="RightWallCollider2" type="Trigger" x="1534.33" y="703.008" width="7" height="100">
+   <properties>
+    <property name="ColliderTag" value="InstaKill"/>
+    <property name="Dead" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="5" name="TopLeftSpawn" type="Spawn" x="609.833" y="324.909" width="23" height="23"/>
+  <object id="15" name="CrownSpawn" type="Spawn" x="1028.92" y="583.227" width="23" height="23"/>
+  <object id="6" name="BottomLeftSpawn" type="Spawn" x="610.5" y="837.909" width="23" height="23"/>
+  <object id="7" name="BottomRightSpawn" type="Spawn" x="1442.83" y="837.909" width="23" height="23"/>
+  <object id="8" name="TopRightSpawn" type="Spawn" x="1443.5" y="323.242" width="23" height="23"/>
+  <object id="9" name="Lava_1" type="Trigger" x="737.958" y="419.091" width="96.9849" height="27.8864">
    <properties>
     <property name="ColliderTag" value="Lava"/>
     <property name="DamageAmount" type="float" value="1"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="13" name="Box_13" type="Sprite" x="603.318" y="-648.136" width="32" height="32">
+  <object id="13" name="Box_13" type="Sprite" x="827.318" y="279.864" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -260,123 +177,123 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="14" name="ItemSpawner_1" type="ItemSpawner" x="485.75" y="-406.591" width="19.5" height="18">
+  <object id="14" name="ItemSpawner_1" type="ItemSpawner" x="709.75" y="521.409" width="19.5" height="18">
    <properties>
     <property name="Bomb" type="bool" value="false"/>
     <property name="Size" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="16" name="ItemSpawner_0" type="ItemSpawner" x="806.25" y="-598" width="19.5" height="18">
+  <object id="16" name="ItemSpawner_0" type="ItemSpawner" x="1030.25" y="330" width="19.5" height="18">
    <properties>
     <property name="Bomb" type="bool" value="false"/>
     <property name="Size" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="17" name="ItemSpawner_2" type="ItemSpawner" x="487.25" y="-279" width="19.5" height="18">
+  <object id="17" name="ItemSpawner_2" type="ItemSpawner" x="711.25" y="649" width="19.5" height="18">
    <properties>
     <property name="Bomb" type="bool" value="false"/>
     <property name="Size" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="18" name="ItemSpawner_3" type="ItemSpawner" x="805.25" y="-89" width="19.5" height="18">
+  <object id="18" name="ItemSpawner_3" type="ItemSpawner" x="1029.25" y="839" width="19.5" height="18">
    <properties>
     <property name="Bomb" type="bool" value="false"/>
     <property name="Size" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="19" name="ItemSpawner_4" type="ItemSpawner" x="1126.25" y="-281" width="19.5" height="18">
+  <object id="19" name="ItemSpawner_4" type="ItemSpawner" x="1350.25" y="647" width="19.5" height="18">
    <properties>
     <property name="Bomb" type="bool" value="false"/>
     <property name="Size" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="20" name="ItemSpawner_5" type="ItemSpawner" x="1127.25" y="-408" width="19.5" height="18">
+  <object id="20" name="ItemSpawner_5" type="ItemSpawner" x="1351.25" y="520" width="19.5" height="18">
    <properties>
     <property name="Bomb" type="bool" value="false"/>
     <property name="Size" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="21" name="Lava_7" type="Trigger" x="1024.34" y="-516.61" width="90.9847" height="34.5531">
+  <object id="21" name="Lava_7" type="Trigger" x="1248.34" y="411.39" width="90.9847" height="34.5531">
    <properties>
     <property name="ColliderTag" value="Lava"/>
     <property name="DamageAmount" type="float" value="1"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="22" name="Lava_4" type="Trigger" x="1026.34" y="-189.943" width="91.318" height="37.5531">
+  <object id="22" name="Lava_4" type="Trigger" x="1250.34" y="738.057" width="91.318" height="37.5531">
    <properties>
     <property name="ColliderTag" value="Lava"/>
     <property name="DamageAmount" type="float" value="1"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="23" name="Lava_2" type="Trigger" x="514.008" y="-189.943" width="94.6513" height="27.8864">
+  <object id="23" name="Lava_2" type="Trigger" x="738.008" y="738.057" width="94.6513" height="27.8864">
    <properties>
     <property name="ColliderTag" value="Lava"/>
     <property name="DamageAmount" type="float" value="1"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="24" name="Lava_3" type="Trigger" x="516.341" y="-159.943" width="38.318" height="27.8864">
+  <object id="24" name="Lava_3" type="Trigger" x="740.341" y="768.057" width="38.318" height="27.8864">
    <properties>
     <property name="ColliderTag" value="Lava"/>
     <property name="DamageAmount" type="float" value="1"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="25" name="Lava_0" type="Trigger" x="516.341" y="-540.943" width="38.318" height="27.8864">
+  <object id="25" name="Lava_0" type="Trigger" x="740.341" y="387.057" width="38.318" height="27.8864">
    <properties>
     <property name="ColliderTag" value="Lava"/>
     <property name="DamageAmount" type="float" value="1"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="26" name="Lava_6" type="Trigger" x="1076.34" y="-543.943" width="37.318" height="22.5531">
+  <object id="26" name="Lava_6" type="Trigger" x="1300.34" y="384.057" width="37.318" height="22.5531">
    <properties>
     <property name="ColliderTag" value="Lava"/>
     <property name="DamageAmount" type="float" value="1"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="27" name="Lava_5" type="Trigger" x="1073.34" y="-149.61" width="42.318" height="18.5531">
+  <object id="27" name="Lava_5" type="Trigger" x="1297.34" y="778.39" width="42.318" height="18.5531">
    <properties>
     <property name="ColliderTag" value="Lava"/>
     <property name="DamageAmount" type="float" value="1"/>
     <property name="Dead" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="38" name="Wall_30" type="Collider" x="311" y="-688" width="119" height="31"/>
-  <object id="39" name="Wall_29" type="Collider" x="565.5" y="-686.5" width="182" height="31"/>
-  <object id="40" name="Wall_28" type="Collider" x="883.5" y="-686.5" width="180" height="31"/>
-  <object id="41" name="Wall_27" type="Collider" x="1203.5" y="-15.5" width="119" height="31"/>
-  <object id="42" name="Wall_26" type="Collider" x="1206.5" y="-690.5" width="119" height="31"/>
-  <object id="43" name="Wall_25" type="Collider" x="312.5" y="-14.5" width="119" height="31"/>
-  <object id="44" name="Wall_24" type="Collider" x="306.5" y="-647.5" width="27" height="89"/>
-  <object id="45" name="Wall_23" type="Collider" x="306.5" y="-110.5" width="27" height="89"/>
-  <object id="46" name="Wall_22" type="Collider" x="1297.5" y="-651.5" width="27" height="89"/>
-  <object id="47" name="Wall_21" type="Collider" x="1298.5" y="-109.5" width="27" height="89"/>
-  <object id="48" name="Wall_20" type="Collider" x="307.5" y="-302.5" width="27" height="61"/>
-  <object id="50" name="Wall_19" type="Collider" x="310.5" y="-430.5" width="27" height="61"/>
-  <object id="51" name="Wall_18" type="Collider" x="1300.5" y="-428.5" width="27" height="61"/>
-  <object id="52" name="Wall_17" type="Collider" x="1298.5" y="-300.5" width="27" height="61"/>
-  <object id="53" name="Wall_16" type="Collider" x="564.5" y="-142.5" width="119" height="31"/>
-  <object id="54" name="Wall_15" type="Collider" x="947.5" y="-558.5" width="119" height="31"/>
-  <object id="55" name="Wall_14" type="Collider" x="566.5" y="-560.5" width="119" height="31"/>
-  <object id="56" name="Wall_13" type="Collider" x="947.5" y="-143.5" width="119" height="31"/>
-  <object id="57" name="Wall_12" type="Collider" x="594.5" y="-432.5" width="89" height="31"/>
-  <object id="58" name="Wall_11" type="Collider" x="949.5" y="-429.5" width="89" height="31"/>
-  <object id="59" name="Wall_10" type="Collider" x="599.5" y="-272.5" width="89" height="31"/>
-  <object id="60" name="Wall_9" type="Collider" x="949.5" y="-271.5" width="89" height="31"/>
-  <object id="61" name="Wall_8" type="Collider" x="752.5" y="-527.5" width="30" height="31"/>
-  <object id="62" name="Wall_7" type="Collider" x="848" y="-527.5" width="30" height="31"/>
-  <object id="63" name="Wall_6" type="Collider" x="751" y="-174.5" width="30" height="31"/>
-  <object id="64" name="Wall_5" type="Collider" x="848" y="-176.5" width="30" height="31"/>
-  <object id="65" name="Wall_4" type="Collider" x="446" y="-191.5" width="64.3333" height="62"/>
-  <object id="66" name="Wall_3" type="Collider" x="449" y="-542" width="62" height="62"/>
-  <object id="67" name="Wall_2" type="Collider" x="1122" y="-543" width="65" height="62"/>
-  <object id="68" name="Wall_1" type="Collider" x="1123.33" y="-190" width="64.6667" height="62"/>
-  <object id="73" name="Wall_0" type="Collider" x="565" y="-14.5" width="182" height="31"/>
-  <object id="75" name="Box_12" type="Sprite" x="410" y="-544" width="32" height="32">
+  <object id="38" name="Wall_30" type="Collider" x="535" y="240" width="119" height="31"/>
+  <object id="39" name="Wall_29" type="Collider" x="789.5" y="241.5" width="182" height="31"/>
+  <object id="40" name="Wall_28" type="Collider" x="1107.5" y="241.5" width="180" height="31"/>
+  <object id="41" name="Wall_27" type="Collider" x="1427.5" y="912.5" width="119" height="31"/>
+  <object id="42" name="Wall_26" type="Collider" x="1430.5" y="237.5" width="119" height="31"/>
+  <object id="43" name="Wall_25" type="Collider" x="536.5" y="913.5" width="119" height="31"/>
+  <object id="44" name="Wall_24" type="Collider" x="530.5" y="280.5" width="27" height="89"/>
+  <object id="45" name="Wall_23" type="Collider" x="530.5" y="817.5" width="27" height="89"/>
+  <object id="46" name="Wall_22" type="Collider" x="1521.5" y="276.5" width="27" height="89"/>
+  <object id="47" name="Wall_21" type="Collider" x="1522.5" y="818.5" width="27" height="89"/>
+  <object id="48" name="Wall_20" type="Collider" x="531.5" y="625.5" width="27" height="61"/>
+  <object id="50" name="Wall_19" type="Collider" x="534.5" y="497.5" width="27" height="61"/>
+  <object id="51" name="Wall_18" type="Collider" x="1524.5" y="499.5" width="27" height="61"/>
+  <object id="52" name="Wall_17" type="Collider" x="1522.5" y="627.5" width="27" height="61"/>
+  <object id="53" name="Wall_16" type="Collider" x="788.5" y="785.5" width="119" height="31"/>
+  <object id="54" name="Wall_15" type="Collider" x="1171.5" y="369.5" width="119" height="31"/>
+  <object id="55" name="Wall_14" type="Collider" x="790.5" y="367.5" width="119" height="31"/>
+  <object id="56" name="Wall_13" type="Collider" x="1171.5" y="784.5" width="119" height="31"/>
+  <object id="57" name="Wall_12" type="Collider" x="818.5" y="495.5" width="89" height="31"/>
+  <object id="58" name="Wall_11" type="Collider" x="1173.5" y="498.5" width="89" height="31"/>
+  <object id="59" name="Wall_10" type="Collider" x="823.5" y="655.5" width="89" height="31"/>
+  <object id="60" name="Wall_9" type="Collider" x="1173.5" y="656.5" width="89" height="31"/>
+  <object id="61" name="Wall_8" type="Collider" x="976.5" y="400.5" width="30" height="31"/>
+  <object id="62" name="Wall_7" type="Collider" x="1072" y="400.5" width="30" height="31"/>
+  <object id="63" name="Wall_6" type="Collider" x="975" y="753.5" width="30" height="31"/>
+  <object id="64" name="Wall_5" type="Collider" x="1072" y="751.5" width="30" height="31"/>
+  <object id="65" name="Wall_4" type="Collider" x="670" y="736.5" width="64.3333" height="62"/>
+  <object id="66" name="Wall_3" type="Collider" x="673" y="386" width="62" height="62"/>
+  <object id="67" name="Wall_2" type="Collider" x="1346" y="385" width="65" height="62"/>
+  <object id="68" name="Wall_1" type="Collider" x="1347.33" y="738" width="64.6667" height="62"/>
+  <object id="73" name="Wall_0" type="Collider" x="789" y="913.5" width="182" height="31"/>
+  <object id="75" name="Box_12" type="Sprite" x="634" y="384" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -386,7 +303,7 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="76" name="Box_11" type="Sprite" x="481.667" y="-579.667" width="32" height="32">
+  <object id="76" name="Box_11" type="Sprite" x="705.667" y="348.333" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -396,7 +313,7 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="77" name="Box_10" type="Sprite" x="347" y="-448" width="32" height="32">
+  <object id="77" name="Box_10" type="Sprite" x="571" y="480" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -406,7 +323,7 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="78" name="Box_9" type="Sprite" x="344" y="-408" width="32" height="32">
+  <object id="78" name="Box_9" type="Sprite" x="568" y="520" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -416,7 +333,7 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="79" name="Box_8" type="Sprite" x="383" y="-425" width="32" height="32">
+  <object id="79" name="Box_8" type="Sprite" x="607" y="503" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -426,7 +343,7 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="80" name="Box_7" type="Sprite" x="409" y="-190.667" width="32" height="32">
+  <object id="80" name="Box_7" type="Sprite" x="633" y="737.333" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -436,7 +353,7 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="81" name="Box_6" type="Sprite" x="555" y="-277" width="32" height="32">
+  <object id="81" name="Box_6" type="Sprite" x="779" y="651" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -446,7 +363,7 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="82" name="Box_5" type="Sprite" x="606" y="-390" width="32" height="32">
+  <object id="82" name="Box_5" type="Sprite" x="830" y="538" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -456,7 +373,7 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="83" name="Box_4" type="Sprite" x="754" y="-422" width="32" height="32">
+  <object id="83" name="Box_4" type="Sprite" x="978" y="506" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -466,7 +383,7 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="84" name="Box_3" type="Sprite" x="768" y="-459" width="32" height="32">
+  <object id="84" name="Box_3" type="Sprite" x="992" y="469" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -476,7 +393,7 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="85" name="Box_2" type="Sprite" x="845" y="-439" width="32" height="32">
+  <object id="85" name="Box_2" type="Sprite" x="1069" y="489" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -486,7 +403,7 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="86" name="Box_1" type="Sprite" x="851" y="-285" width="32" height="32">
+  <object id="86" name="Box_1" type="Sprite" x="1075" y="643" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -496,7 +413,7 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="87" name="Box_0" type="Sprite" x="744" y="-257" width="32" height="32">
+  <object id="87" name="Box_0" type="Sprite" x="968" y="671" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -506,7 +423,7 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="88" name="Box_26" type="Sprite" x="845" y="-139" width="32" height="32">
+  <object id="88" name="Box_26" type="Sprite" x="1069" y="789" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -516,7 +433,7 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="89" name="Box_25" type="Sprite" x="807.5" y="-163.5" width="32" height="32">
+  <object id="89" name="Box_25" type="Sprite" x="1031.5" y="764.5" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -526,7 +443,7 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="90" name="Box_24" type="Sprite" x="710.667" y="-57.3333" width="32" height="32">
+  <object id="90" name="Box_24" type="Sprite" x="934.667" y="870.667" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -536,7 +453,7 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="91" name="Box_23" type="Sprite" x="568" y="-106" width="32" height="32">
+  <object id="91" name="Box_23" type="Sprite" x="792" y="822" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -546,7 +463,7 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="92" name="Box_22" type="Sprite" x="972" y="-55.3333" width="32" height="32">
+  <object id="92" name="Box_22" type="Sprite" x="1196" y="872.667" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -556,7 +473,7 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="93" name="Box_21" type="Sprite" x="1260.67" y="-270.667" width="32" height="32">
+  <object id="93" name="Box_21" type="Sprite" x="1484.67" y="657.333" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -566,7 +483,7 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="94" name="Box_20" type="Sprite" x="1222.67" y="-290" width="32" height="32">
+  <object id="94" name="Box_20" type="Sprite" x="1446.67" y="638" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -576,7 +493,7 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="95" name="Box_19" type="Sprite" x="1047.33" y="-421.333" width="32" height="32">
+  <object id="95" name="Box_19" type="Sprite" x="1271.33" y="506.667" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -586,7 +503,7 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="96" name="Box_18" type="Sprite" x="990" y="-597.333" width="32" height="32">
+  <object id="96" name="Box_18" type="Sprite" x="1214" y="330.667" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -596,7 +513,7 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="97" name="Box_17" type="Sprite" x="1156.67" y="-583.333" width="32" height="32">
+  <object id="97" name="Box_17" type="Sprite" x="1380.67" y="344.667" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -606,7 +523,7 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="98" name="Box_16" type="Sprite" x="749.333" y="-567.333" width="32" height="32">
+  <object id="98" name="Box_16" type="Sprite" x="973.333" y="360.667" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -616,7 +533,7 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="99" name="Barrel_19" type="Sprite" x="643.333" y="-650" width="32" height="32">
+  <object id="99" name="Barrel_19" type="Sprite" x="867.333" y="278" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -626,7 +543,7 @@
     <property name="Texture" value="Map/barrels/Barrels_01.png"/>
    </properties>
   </object>
-  <object id="100" name="Barrel_18" type="Sprite" x="902.667" y="-646" width="32" height="32">
+  <object id="100" name="Barrel_18" type="Sprite" x="1126.67" y="282" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -636,7 +553,7 @@
     <property name="Texture" value="Map/barrels/Barrels_01.png"/>
    </properties>
   </object>
-  <object id="101" name="Barrel_17" type="Sprite" x="1031.33" y="-597.333" width="32" height="32">
+  <object id="101" name="Barrel_17" type="Sprite" x="1255.33" y="330.667" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -646,7 +563,7 @@
     <property name="Texture" value="Map/barrels/Barrels_01.png"/>
    </properties>
   </object>
-  <object id="102" name="Barrel_16" type="Sprite" x="788.667" y="-539.333" width="32" height="32">
+  <object id="102" name="Barrel_16" type="Sprite" x="1012.67" y="388.667" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -656,7 +573,7 @@
     <property name="Texture" value="Map/barrels/Barrels_01.png"/>
    </properties>
   </object>
-  <object id="103" name="Barrel_15" type="Sprite" x="906.667" y="-368.667" width="32" height="32">
+  <object id="103" name="Barrel_15" type="Sprite" x="1130.67" y="559.333" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -666,7 +583,7 @@
     <property name="Texture" value="Map/barrels/Barrels_01.png"/>
    </properties>
   </object>
-  <object id="104" name="Barrel_14" type="Sprite" x="706.667" y="-332.667" width="32" height="32">
+  <object id="104" name="Barrel_14" type="Sprite" x="930.667" y="595.333" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -676,7 +593,7 @@
     <property name="Texture" value="Map/barrels/Barrels_01.png"/>
    </properties>
   </object>
-  <object id="105" name="Barrel_13" type="Sprite" x="583.333" y="-314.667" width="32" height="32">
+  <object id="105" name="Barrel_13" type="Sprite" x="807.333" y="613.333" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -686,7 +603,7 @@
     <property name="Texture" value="Map/barrels/Barrels_01.png"/>
    </properties>
   </object>
-  <object id="106" name="Barrel_12" type="Sprite" x="1003.33" y="-389.333" width="32" height="32">
+  <object id="106" name="Barrel_12" type="Sprite" x="1227.33" y="538.667" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -696,7 +613,7 @@
     <property name="Texture" value="Map/barrels/Barrels_01.png"/>
    </properties>
   </object>
-  <object id="107" name="Barrel_11" type="Sprite" x="979.333" y="-312" width="32" height="32">
+  <object id="107" name="Barrel_11" type="Sprite" x="1203.33" y="616" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -706,7 +623,7 @@
     <property name="Texture" value="Map/barrels/Barrels_01.png"/>
    </properties>
   </object>
-  <object id="109" name="Barrel_10" type="Sprite" x="1049.33" y="-259.333" width="32" height="32">
+  <object id="109" name="Barrel_10" type="Sprite" x="1273.33" y="668.667" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -716,7 +633,7 @@
     <property name="Texture" value="Map/barrels/Barrels_01.png"/>
    </properties>
   </object>
-  <object id="110" name="Barrel_9" type="Sprite" x="606.667" y="-103.333" width="32" height="32">
+  <object id="110" name="Barrel_9" type="Sprite" x="830.667" y="824.667" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -726,7 +643,7 @@
     <property name="Texture" value="Map/barrels/Barrels_01.png"/>
    </properties>
   </object>
-  <object id="111" name="Barrel_8" type="Sprite" x="453.333" y="-125.333" width="32" height="32">
+  <object id="111" name="Barrel_8" type="Sprite" x="677.333" y="802.667" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -736,7 +653,7 @@
     <property name="Texture" value="Map/barrels/Barrels_01.png"/>
    </properties>
   </object>
-  <object id="113" name="Barrel_7" type="Sprite" x="552.667" y="-452.667" width="32" height="32">
+  <object id="113" name="Barrel_7" type="Sprite" x="776.667" y="475.333" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -746,7 +663,7 @@
     <property name="Texture" value="Map/barrels/Barrels_01.png"/>
    </properties>
   </object>
-  <object id="114" name="Barrel_6" type="Sprite" x="441.333" y="-584.667" width="32" height="32">
+  <object id="114" name="Barrel_6" type="Sprite" x="665.333" y="343.333" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -756,7 +673,7 @@
     <property name="Texture" value="Map/barrels/Barrels_01.png"/>
    </properties>
   </object>
-  <object id="117" name="Box_15" type="Sprite" x="350" y="-288.667" width="32" height="32">
+  <object id="117" name="Box_15" type="Sprite" x="574" y="639.333" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -766,7 +683,7 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="118" name="Barrel_5" type="Sprite" x="665.333" y="-230" width="32" height="32">
+  <object id="118" name="Barrel_5" type="Sprite" x="889.333" y="698" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -776,7 +693,7 @@
     <property name="Texture" value="Map/barrels/Barrels_01.png"/>
    </properties>
   </object>
-  <object id="119" name="Barrel_4" type="Sprite" x="826" y="-244.667" width="32" height="32">
+  <object id="119" name="Barrel_4" type="Sprite" x="1050" y="683.333" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -786,7 +703,7 @@
     <property name="Texture" value="Map/barrels/Barrels_01.png"/>
    </properties>
   </object>
-  <object id="120" name="Barrel_3" type="Sprite" x="1194" y="-513.333" width="32" height="32">
+  <object id="120" name="Barrel_3" type="Sprite" x="1418" y="414.667" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -796,7 +713,7 @@
     <property name="Texture" value="Map/barrels/Barrels_01.png"/>
    </properties>
   </object>
-  <object id="121" name="Barrel_2" type="Sprite" x="1262" y="-418" width="32" height="32">
+  <object id="121" name="Barrel_2" type="Sprite" x="1486" y="510" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -806,7 +723,7 @@
     <property name="Texture" value="Map/barrels/Barrels_01.png"/>
    </properties>
   </object>
-  <object id="122" name="Barrel_1" type="Sprite" x="1122.67" y="-120" width="32" height="32">
+  <object id="122" name="Barrel_1" type="Sprite" x="1346.67" y="808" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -816,7 +733,7 @@
     <property name="Texture" value="Map/barrels/Barrels_01.png"/>
    </properties>
   </object>
-  <object id="123" name="Box_14" type="Sprite" x="1194" y="-173.333" width="32" height="32">
+  <object id="123" name="Box_14" type="Sprite" x="1418" y="754.667" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -826,7 +743,7 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="124" name="Barrel_0" type="Sprite" x="1011.33" y="-58" width="32" height="32">
+  <object id="124" name="Barrel_0" type="Sprite" x="1235.33" y="870" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -836,6 +753,30 @@
     <property name="Texture" value="Map/barrels/Barrels_01.png"/>
    </properties>
   </object>
-  <object id="125" name="CrownSpace" type="CrownSpace" x="342" y="-646" width="947" height="620"/>
+  <object id="125" name="CrownSpace" type="CrownSpace" x="566" y="282" width="947" height="620"/>
+  <object id="131" name="LeftWallCollider1" type="Trigger" x="537.5" y="383.5" width="7" height="100">
+   <properties>
+    <property name="ColliderTag" value="InstaKill"/>
+    <property name="Dead" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="135" name="RightWallCollider1" type="Trigger" x="1535" y="384" width="7" height="100">
+   <properties>
+    <property name="ColliderTag" value="InstaKill"/>
+    <property name="Dead" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="132" name="LeftWallCollider3" type="Trigger" x="537.75" y="565.75" width="7" height="50">
+   <properties>
+    <property name="ColliderTag" value="InstaKill"/>
+    <property name="Dead" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="133" name="RightWallCollider3" type="Trigger" x="1536.42" y="569.083" width="7" height="50">
+   <properties>
+    <property name="ColliderTag" value="InstaKill"/>
+    <property name="Dead" type="bool" value="true"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

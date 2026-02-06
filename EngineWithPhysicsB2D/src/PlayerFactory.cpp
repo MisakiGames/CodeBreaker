@@ -151,7 +151,9 @@ GameObject::Ptr PlayerFactory::createPlayer(
             if (auto pickupComp = pickupWeakPtr.lock())
                 pickupComp->loseAllItem();
         });
-    health->subsribeToOnTakeDamage([pickupWeakPtr = pickupWeakPtr]() {
+    health->subsribeToOnTakeDamage(
+        [pickupWeakPtr = pickupWeakPtr]()
+        {
             if (auto pickupComp = pickupWeakPtr.lock())
                 pickupComp->loseCrown();
         });
