@@ -13,6 +13,10 @@ void PickupComponent::update(float deltaTime)
     {
         m_crown->use(m_gameObject);
     }
+    else
+    {
+        m_crownCooldown += deltaTime;
+    }
     if (!holdingItem)
         return;
     m_itemUseTime += deltaTime;
@@ -25,6 +29,8 @@ void PickupComponent::pickup(ItemComponent& pickedUpItem)
 {
     if (pickedUpItem.getType() == ItemType::Crown)
     {
+        if (m_crownCooldown < m_crownMaxCooldown)
+            return;
         pickedUpItem.setPickup(false);
         for (auto sub : m_onPickup)
             sub();
@@ -66,6 +72,7 @@ void PickupComponent::loseCrown()
 {
     if (m_crown)
     {
+        m_crownCooldown = 0;
         m_scoreComp.setHasCrown(false);
         m_crown->stopUse(m_gameObject);
         m_crown->setPickup(true);

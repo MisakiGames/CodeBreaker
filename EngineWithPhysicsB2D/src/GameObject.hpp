@@ -84,10 +84,7 @@ public:
 
     void update(float deltaTime) const;
 
-    [[nodiscard]] bool isMarkedForDelete() const
-    {
-        return m_wantToDie;
-    }
+    [[nodiscard]] bool isMarkedForDelete() const;
 
     void markForDelete()
     {

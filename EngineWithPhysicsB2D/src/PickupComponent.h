@@ -50,5 +50,7 @@ private:
     bool                  m_gotThisFrame = false;
     std::vector<std::function<void()>> m_onPickup;
     std::vector<std::function<void()>> m_onLoseCrown;
+    float                              m_crownMaxCooldown = 1;
+    float                              m_crownCooldown = m_crownMaxCooldown;
 };
 } // namespace mmt_gd

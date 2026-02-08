@@ -17,6 +17,15 @@ void GameObject::update(const float deltaTime) const
     }
 }
 
+bool GameObject::isMarkedForDelete() const
+{
+    for (const auto& comp : m_componentList)
+    {
+        comp->setGameObjectDeleted();
+    }
+    return m_wantToDie;
+}
+
 bool GameObject::init() const
 {
     for (const auto& comp : m_componentList) // NOLINT(readability-use-anyofallof)

@@ -74,13 +74,7 @@ std::vector<GameObject::Ptr> ItemFactory::createItem(
         auto                            respawn        = item->addComponent<RespawnComponent>(*item);
         std::weak_ptr<RespawnComponent> respawnWeakPtr = respawn;
 
-        auto itemComp = ItemFactory::addSpecifiedItemComponent(window, item, type, goManager);
-        itemComp->subscribeToOnDisappear(
-            [respawnWeakPtr = respawnWeakPtr]()
-            {
-                if (auto respawnComp = respawnWeakPtr.lock())
-                    respawnComp->startRespawn();
-            });
+
 
         b2PolygonShape polygonShape{};
         tson::Vector2f tsonSize(ItemFactory::getIntRect(type).getSize().x, ItemFactory::getIntRect(type).getSize().y);
@@ -92,7 +86,13 @@ std::vector<GameObject::Ptr> ItemFactory::createItem(
         fixtureDef.isSensor = true;
 
         auto collider = item->addComponent<ColliderComponent>(*item, *rb, fixtureDef);
-
+        auto itemComp = ItemFactory::addSpecifiedItemComponent(window, item, type, goManager);
+        itemComp->subscribeToOnDisappear(
+            [respawnWeakPtr = respawnWeakPtr]()
+            {
+                if (auto respawnComp = respawnWeakPtr.lock())
+                    respawnComp->startRespawn();
+            });
         if (!item->init())
         {
             sf::err() << "Could not initialize item\n";
@@ -150,8 +150,44 @@ std::shared_ptr<ItemComponent> ItemFactory::addSpecifiedItemComponent(
     switch (type)
     {
         case mmt_gd::ItemType::Crown:
-            itemComp = item->addComponent<CrownItemComponent>(*item, type, 0, *goManager.getGameObject("CrownSpace"));
+        {
+            auto crownItem = item->addComponent<CrownItemComponent>(*item, type, 0, *goManager.getGameObject("CrownSpace"));
+            std::weak_ptr<CrownItemComponent> crownItemWeakPtr = crownItem;
+            auto collider = item->getComponent<ColliderComponent>();
+            collider->registerOnCollisionEnterFunction(
+                [crownItemWeakPtr = crownItemWeakPtr](ColliderComponent self, ColliderComponent other) 
+                {
+                    if (other.getTag() != "Wall")
+                        return;
+                    if (auto crownItem = crownItemWeakPtr.lock())
+                    {
+                        auto crownCentralPoint   = crownItem->getCentralPoint();
+                        auto crownCentralPoint2d = PhysicsManager::t2b(
+                            tson::Vector2f(crownCentralPoint.x, crownCentralPoint.y));
+                        b2Transform transform = other.getFixture()->GetBody()->GetTransform();
+                        bool isInside = other.getFixture()->GetShape()->TestPoint(transform, crownCentralPoint2d);
+                        if (isInside)
+                        {
+                            b2PolygonShape* shape = (b2PolygonShape*)other.getFixture()->GetShape();
+
+                            // Vertex 2 is typically the top-right corner (halfWidth, halfHeight)
+                            // in local coordinates.
+                            float halfWidth  = shape->m_vertices[2].x;
+                            float halfHeight = shape->m_vertices[2].y;
+
+                            float fullWidth     = halfWidth * 2.0f;
+                            float fullHeight    = halfHeight * 2.0f;
+                            auto  otherPosition = other.getGameObject().getPosition();
+                            crownItem->setTouchingCollision(
+                                sf::IntRect(otherPosition.x, otherPosition.y, fullWidth, fullHeight));
+                        }
+                    }
+                });
+
+            itemComp = crownItem;
             itemComp->setPickup(true);
+        }
+
             break;
         case mmt_gd::ItemType::Bomb:
         {

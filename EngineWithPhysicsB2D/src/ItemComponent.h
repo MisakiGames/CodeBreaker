@@ -47,7 +47,7 @@ public:
         return m_maxTime;
     }
 
-private:
+protected:
     bool                               m_canBePickedUp = false;
     ItemType                           m_type;
     std::vector<std::function<void()>> m_onDisappear;

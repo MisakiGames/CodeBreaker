@@ -28,8 +28,17 @@ public:
     {
         return m_gameObject;
     }
+    void setGameObjectDeleted()
+    {
+        m_gameObjectDeleted = true;
+    }
+    bool getGameObjectDeleted()
+    {
+        return m_gameObjectDeleted;
+    }
 
 protected:
     GameObject& m_gameObject;
+    bool        m_gameObjectDeleted = false;
 };
 } // namespace mmt_gd

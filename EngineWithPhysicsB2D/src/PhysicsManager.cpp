@@ -27,13 +27,10 @@ void PhysicsManager::BeginContact(b2Contact* contact)
     auto* const colliderA = reinterpret_cast<ColliderComponent*>(contact->GetFixtureA()->GetUserData().pointer);
     auto* const colliderB = reinterpret_cast<ColliderComponent*>(contact->GetFixtureB()->GetUserData().pointer);
     
-        auto userDataA = contact->GetFixtureA()->GetUserData().pointer;
-    auto userDataB = contact->GetFixtureB()->GetUserData().pointer;
-    if (userDataA == 0 || userDataB == 0)
-        return; // Nothing to do
-    
     if (colliderA != nullptr && colliderB != nullptr)
     {
+        if (colliderA->getGameObjectDeleted() && colliderB->getGameObjectDeleted())
+            return;
         colliderA->onCollisionEnter(*colliderB);
         colliderB->onCollisionEnter(*colliderA);
     }
@@ -44,13 +41,12 @@ void PhysicsManager::EndContact(b2Contact* contact)
     //Todo: Use b2d fixure  objects https://box2d.org/documentation/md__d_1__git_hub_box2d_docs_loose_ends.html
     auto* const colliderA = reinterpret_cast<ColliderComponent*>(contact->GetFixtureA()->GetUserData().pointer);
     auto* const colliderB = reinterpret_cast<ColliderComponent*>(contact->GetFixtureB()->GetUserData().pointer);
-    auto        userDataA = contact->GetFixtureA()->GetUserData().pointer;
-    auto        userDataB = contact->GetFixtureB()->GetUserData().pointer;
-    if (userDataA == 0 || userDataB == 0)
-        return; // Nothing to do
+
     
     if (colliderA != nullptr && colliderB != nullptr)
     {
+        if (colliderA->getGameObjectDeleted() && colliderB->getGameObjectDeleted())
+            return;
         colliderA->onCollisionExit(*colliderB);
         colliderB->onCollisionExit(*colliderA);
     }
