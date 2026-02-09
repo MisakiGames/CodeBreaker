@@ -2,6 +2,7 @@
 
 #include "ItemComponent.h"
 
+#include "ColliderComponent.hpp"
 #include "GameObject.hpp"
 #include "PhysicsManager.hpp"
 #include "RigidBodyComponent.hpp"
@@ -18,8 +19,12 @@ m_maxTime(maxTime)
 void ItemComponent::update(float deltaTime)
 {
     if (warp)
+    {
         m_gameObject.getComponent<RigidBodyComponent>()->getB2Body()->SetTransform(PhysicsManager::s2b(warpTo), 0);
-    warp = false;
+        auto collider = m_gameObject.getComponent<ColliderComponent>();
+        collider->getFixture()->Refilter();
+        warp = false;
+    }
 }
 
 void ItemComponent::disappear()

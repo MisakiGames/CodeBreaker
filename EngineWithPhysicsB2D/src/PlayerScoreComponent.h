@@ -37,15 +37,15 @@ public:
         if (m_score < 0)
             m_score = 0;
     }
-        
+
     float getScore() const
     {
         return m_score;
     }
 
 private:
-    bool  m_hasCrown = false;
-    float m_score    = 0;
-    const float m_pointsPerSecond = 5.f;
+    bool        m_hasCrown        = false;
+    float       m_score           = 0;
+    const float m_pointsPerSecond = 0.f;
 };
 } // namespace mmt_gd

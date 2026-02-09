@@ -3,8 +3,9 @@
 #include "IComponent.hpp"
 #include "ItemComponent.h"
 #include "PlayerScoreComponent.h"
-#include <vector>
+
 #include <functional>
+#include <vector>
 namespace mmt_gd
 {
 class PickupComponent : public IComponent
@@ -42,15 +43,15 @@ public:
     }
 
 private:
-    void                  HandleCrown(ItemComponent& crownItem);
-    ItemComponent*        holdingItem = nullptr;
-    ItemComponent*        m_crown     = nullptr;
-    PlayerScoreComponent& m_scoreComp;
-    float                 m_itemUseTime  = 0;
-    bool                  m_gotThisFrame = false;
+    void                               HandleCrown(ItemComponent& crownItem);
+    ItemComponent*                     holdingItem = nullptr;
+    ItemComponent*                     m_crown     = nullptr;
+    PlayerScoreComponent&              m_scoreComp;
+    float                              m_itemUseTime  = 0;
+    bool                               m_gotThisFrame = false;
     std::vector<std::function<void()>> m_onPickup;
     std::vector<std::function<void()>> m_onLoseCrown;
     float                              m_crownMaxCooldown = 1;
-    float                              m_crownCooldown = m_crownMaxCooldown;
+    float                              m_crownCooldown    = m_crownMaxCooldown;
 };
 } // namespace mmt_gd

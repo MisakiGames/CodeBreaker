@@ -53,7 +53,9 @@ void BombItemComponent::explode()
     bombRigid->getB2Body()->SetTransform(PhysicsManager::s2b(pos), 0);
     auto bombAnimation = m_bomb->getComponent<BombAnimationComponent>();
     bombAnimation->resetAnimation();
-    m_spawnTime = 0;
+    m_spawnTime   = 0;
+    auto collider = m_bomb->getComponent<ColliderComponent>();
+    collider->getFixture()->Refilter();
     for (auto sub : m_onExplode)
         sub();
 }

@@ -98,7 +98,7 @@ GameObject::Ptr PlayerFactory::createPlayer(
                     soundComp->playSound("dying");
         });
 
-    auto rigidBody  = player->addComponent<RigidBodyComponent>(*player, b2_dynamicBody);
+    auto rigidBody  = player->addComponent<RigidBodyComponent>(*player, b2_dynamicBody, false);
     auto damageComp = player->addComponent<DamageComponent>(*player, 10, player->getId());
     damageComp->setActive(false);
     std::weak_ptr<DamageComponent> damageWeakPtr = damageComp;
@@ -280,6 +280,8 @@ GameObject::Ptr PlayerFactory::createPlayer(
         {
             auto itemComp   = other.getGameObject().getComponent<ItemComponent>();
             auto pickupComp = self.getGameObject().getComponent<PickupComponent>();
+            std::cout << "pickup" << std::endl;
+
             if (itemComp && pickupComp)
             {
                 if (itemComp->canBePickedUp())

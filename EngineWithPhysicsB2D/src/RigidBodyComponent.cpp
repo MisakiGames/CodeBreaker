@@ -13,13 +13,14 @@
 
 namespace mmt_gd
 {
-RigidBodyComponent::RigidBodyComponent(GameObject& gameObject, const b2BodyType type) :
+RigidBodyComponent::RigidBodyComponent(GameObject& gameObject, const b2BodyType type, bool allowSleep) :
 IComponent(gameObject),
 m_body(nullptr)
 {
     b2BodyDef def;
-    def.position = PhysicsManager::s2b(gameObject.getPosition());
-    def.type     = type;
+    def.position   = PhysicsManager::s2b(gameObject.getPosition());
+    def.type       = type;
+    def.allowSleep = allowSleep;
 
     m_body = PhysicsManager::createB2Body(def);
 
@@ -42,7 +43,6 @@ void RigidBodyComponent::addVelocity(const sf::Vector2f& velocity) const
     auto vel = m_body->GetLinearVelocity();
     vel += PhysicsManager::s2b(velocity);
     m_body->SetLinearVelocity(vel);
-    
 }
 
 void RigidBodyComponent::setVelocity(const sf::Vector2f& velocity) const
@@ -89,7 +89,6 @@ void RigidBodyComponent::physicsUpdate(float deltaTime)
     DebugDraw::getInstance().drawAabb(&aabb, sf::Color::Green);
     DebugDraw::getInstance().DrawTransform(getB2Body()->GetTransform());
 }
-
 
 b2Body* RigidBodyComponent::getB2Body() const
 {

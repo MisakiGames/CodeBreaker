@@ -6,7 +6,7 @@
 #include "GameObjectManager.hpp"
 #include "PhysicsComponentEvents.hpp"
 #include "RigidBodyComponent.hpp"
-#include "SpriteRenderComponent.hpp" 
+#include "SpriteRenderComponent.hpp"
 
 #include <Box2D/box2d.h>
 
@@ -26,11 +26,14 @@ void PhysicsManager::BeginContact(b2Contact* contact)
     //Todo: Use b2d fixure  objects https://box2d.org/documentation/md__d_1__git_hub_box2d_docs_loose_ends.html
     auto* const colliderA = reinterpret_cast<ColliderComponent*>(contact->GetFixtureA()->GetUserData().pointer);
     auto* const colliderB = reinterpret_cast<ColliderComponent*>(contact->GetFixtureB()->GetUserData().pointer);
-    
+
     if (colliderA != nullptr && colliderB != nullptr)
     {
         if (colliderA->getGameObjectDeleted() && colliderB->getGameObjectDeleted())
+        {
+            std::cout << "gameobject destroyed" << std::endl;
             return;
+        }
         colliderA->onCollisionEnter(*colliderB);
         colliderB->onCollisionEnter(*colliderA);
     }
@@ -42,7 +45,6 @@ void PhysicsManager::EndContact(b2Contact* contact)
     auto* const colliderA = reinterpret_cast<ColliderComponent*>(contact->GetFixtureA()->GetUserData().pointer);
     auto* const colliderB = reinterpret_cast<ColliderComponent*>(contact->GetFixtureB()->GetUserData().pointer);
 
-    
     if (colliderA != nullptr && colliderB != nullptr)
     {
         if (colliderA->getGameObjectDeleted() && colliderB->getGameObjectDeleted())
@@ -91,6 +93,7 @@ void PhysicsManager::init()
                                          });
         m_listeners.push_back(id);
     }
+    m_world->SetGravity({0, 0});
 }
 
 void PhysicsManager::shutdown()
@@ -102,6 +105,10 @@ void PhysicsManager::shutdown()
 
     m_listeners.clear();
     m_rbodies.clear();
+    if (m_world)
+    {
+        m_world->SetContactListener(nullptr);
+    }
 }
 
 void PhysicsManager::update(const float deltaTime)

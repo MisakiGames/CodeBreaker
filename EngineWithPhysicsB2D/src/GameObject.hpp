@@ -1,10 +1,11 @@
 #pragma once
 
 #include "IComponent.hpp"
+
+#include <SFML/Graphics.hpp>
 #include <list>
 #include <string>
 #include <utility>
-#include <SFML/Graphics.hpp>
 
 namespace mmt_gd
 {
@@ -21,6 +22,7 @@ public:
     explicit GameObject(std::string id) : m_id(std::move(id))
     {
     }
+    ~GameObject();
 
     /**
      * \brief Add a component to the game object.
@@ -36,7 +38,6 @@ public:
         }
         return {};
     }
-
 
     /**
      * \brief Remove a component from the game object.
@@ -86,10 +87,7 @@ public:
 
     [[nodiscard]] bool isMarkedForDelete() const;
 
-    void markForDelete()
-    {
-        m_wantToDie = true;
-    }
+    void markForDelete();
 
     [[nodiscard]] bool isActive() const
     {
@@ -114,6 +112,7 @@ public:
 protected:
     std::string m_id        = "unnamed"; ///< unique name of object, e.g. player
     bool        m_wantToDie = false;
+    bool        m_Died      = false;
     bool        m_isActive  = true;
 
     std::list<IComponent::Ptr> m_componentList;

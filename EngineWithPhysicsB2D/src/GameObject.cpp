@@ -4,6 +4,14 @@
 
 namespace mmt_gd
 {
+GameObject::~GameObject()
+{
+    for (const auto& comp : m_componentList)
+    {
+        comp->setGameObjectDeleted();
+    }
+    m_componentList.clear();
+}
 void GameObject::removeComponent(const IComponent::Ptr& component)
 {
     m_componentList.remove(component);
@@ -19,11 +27,12 @@ void GameObject::update(const float deltaTime) const
 
 bool GameObject::isMarkedForDelete() const
 {
-    for (const auto& comp : m_componentList)
-    {
-        comp->setGameObjectDeleted();
-    }
     return m_wantToDie;
+}
+
+void GameObject::markForDelete()
+{
+    m_wantToDie = true;
 }
 
 bool GameObject::init() const

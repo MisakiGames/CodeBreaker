@@ -70,11 +70,9 @@ std::vector<GameObject::Ptr> ItemFactory::createItem(
         std::string filePath   = ItemFactory::getAssetPath(type);
         auto        spriteComp = item->addComponent<
                    SpriteRenderComponent>(*item, window, filePath, "GameObjects", ItemFactory::getIntRect(type));
-        const auto                      rb             = item->addComponent<RigidBodyComponent>(*item, b2_staticBody);
-        auto                            respawn        = item->addComponent<RespawnComponent>(*item);
+        const auto                      rb      = item->addComponent<RigidBodyComponent>(*item, b2_dynamicBody, false);
+        auto                            respawn = item->addComponent<RespawnComponent>(*item);
         std::weak_ptr<RespawnComponent> respawnWeakPtr = respawn;
-
-
 
         b2PolygonShape polygonShape{};
         tson::Vector2f tsonSize(ItemFactory::getIntRect(type).getSize().x, ItemFactory::getIntRect(type).getSize().y);
@@ -153,9 +151,9 @@ std::shared_ptr<ItemComponent> ItemFactory::addSpecifiedItemComponent(
         {
             auto crownItem = item->addComponent<CrownItemComponent>(*item, type, 0, *goManager.getGameObject("CrownSpace"));
             std::weak_ptr<CrownItemComponent> crownItemWeakPtr = crownItem;
-            auto collider = item->getComponent<ColliderComponent>();
+            auto                              collider         = item->getComponent<ColliderComponent>();
             collider->registerOnCollisionEnterFunction(
-                [crownItemWeakPtr = crownItemWeakPtr](ColliderComponent self, ColliderComponent other) 
+                [crownItemWeakPtr = crownItemWeakPtr](ColliderComponent self, ColliderComponent other)
                 {
                     if (other.getTag() != "Wall")
                         return;
@@ -188,7 +186,7 @@ std::shared_ptr<ItemComponent> ItemFactory::addSpecifiedItemComponent(
             itemComp->setPickup(true);
         }
 
-            break;
+        break;
         case mmt_gd::ItemType::Bomb:
         {
             auto bombItem = item->addComponent<BombItemComponent>(*item, type, 10, ItemFactory::createBombObject(window));
@@ -226,7 +224,7 @@ GameObject::Ptr ItemFactory::createBombObject(sf::RenderWindow& window)
     auto        spriteComp = bomb->addComponent<
                BombAnimationComponent>(*bomb, window, filePath, "GameObjects", 6, sf::IntRect(0, 0, 354, 342), sf::Vector2f(7, 1));
     bomb->setScale(explosionScale);
-    const auto                      rb             = bomb->addComponent<RigidBodyComponent>(*bomb, b2_staticBody);
+    const auto                      rb             = bomb->addComponent<RigidBodyComponent>(*bomb, b2_kinematicBody);
     auto                            respawn        = bomb->addComponent<RespawnComponent>(*bomb);
     std::weak_ptr<RespawnComponent> respawnWeakPtr = respawn;
     spriteComp->subscribeToOnFinish(

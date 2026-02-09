@@ -8,7 +8,6 @@
 
 namespace mmt_gd
 {
-
 class ColliderComponent;
 class RigidBodyComponent;
 
@@ -38,7 +37,6 @@ public:
     static b2Body*                  createB2Body(b2BodyDef& def);
     static void                     destroyB2Body(b2Body& def);
 
-
     static b2Vec2         s2b(const sf::Vector2f& vec, bool scale = true);
     static sf::Vector2f   b2s(const b2Vec2& vec, bool scale = true);
     static b2Vec2         t2b(const tson::Vector2i& vec, bool scale = true);
@@ -46,7 +44,6 @@ public:
     static tson::Vector2f b2t(const b2Vec2& vec, bool scale = true);
     static sf::Color      b2s(const b2Color& color, int alpha = 255);
     static b2Color        s2b(const sf::Color& color, int alpha = 255);
-
 
     // 1 meter (box2d) is more or less 64 pixels (sfml) == pixels per meter
     static const float PhysicsManager::RATIO;
@@ -65,8 +62,5 @@ private:
     static std::shared_ptr<b2World> m_world;
 
     std::vector<RigidBodyComponent*> m_rbodies;
-    
-
-
 };
 } // namespace mmt_gd
