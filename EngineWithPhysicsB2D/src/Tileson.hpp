@@ -1,5 +1,5 @@
-//This code was made for the Multimedia Project 2a, 
-//in the Multimedia Technology class at the FH Salzburg, 
+//This code was made for the Multimedia Project 2a,
+//in the Multimedia Technology class at the FH Salzburg,
 //by Christopher Kastner and Tim Paul
 ///
 /// T I L E S O N   V E R S I O N   1 . 4 . 0
