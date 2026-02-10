@@ -1,3 +1,6 @@
+//This code was made for the Multimedia Project 2a, 
+//in the Multimedia Technology class at the FH Salzburg, 
+//by Christopher Kastner and Tim Paul
 #include "stdafx.h"
 
 #include "MusicComponent.h"
@@ -15,7 +18,7 @@ void MusicComponent::addMusic(const std::string& musicName, const std::string& f
 
     if (music->openFromFile(filePath))
     {
-        music->setVolume(volume); // Lautstärke für diesen Musik-Track setzen
+        music->setVolume(volume); // Lautstï¿½rke fï¿½r diesen Musik-Track setzen
         m_musics.emplace(musicName, std::move(music));
     }
     else
