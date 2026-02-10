@@ -33,6 +33,8 @@ SpriteAnimationRenderComponent::~SpriteAnimationRenderComponent()
 
 bool SpriteAnimationRenderComponent::init()
 {
+    m_state = AnimationState::Idle;
+    m_direction = Down;
     m_sprite.setTexture(m_textures[m_state]);
 
     // Apply texture rect AFTER setTexture (which resets to full texture)
