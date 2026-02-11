@@ -155,8 +155,8 @@ std::shared_ptr<ItemComponent> ItemFactory::addSpecifiedItemComponent(
             auto crownItem = item->addComponent<CrownItemComponent>(*item, type, 0, *goManager.getGameObject("CrownSpace"));
             std::weak_ptr<CrownItemComponent> crownItemWeakPtr = crownItem;
             auto                              collider         = item->getComponent<ColliderComponent>();
-            collider->registerOnCollisionEnterFunction(
-                [crownItemWeakPtr = crownItemWeakPtr](ColliderComponent self, ColliderComponent other)
+            collider->registerOnCollisionStayFunction(
+                [crownItemWeakPtr = crownItemWeakPtr](ColliderComponent& self, ColliderComponent& other)
                 {
                     if (other.getTag() != "Wall")
                         return;

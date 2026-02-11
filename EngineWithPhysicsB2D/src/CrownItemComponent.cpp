@@ -49,6 +49,10 @@ void CrownItemComponent::stopUse(GameObject& player)
     scoreComp->setHasCrown(false);
     auto rect = m_crownSpace.getComponent<RectComponent>()->m_rect;
     setPosition(getNearestSpaceSpot(getRandomPointInCircle(player), rect));
+    auto collider = m_gameObject.getComponent<ColliderComponent>();
+    collider->getFixture()->Refilter();
+    auto rigid = m_gameObject.getComponent<RigidBodyComponent>();
+    rigid->getB2Body()->SetAwake(true);
 }
 sf::Vector2f CrownItemComponent::getRandomPointInCircle(GameObject& player)
 {

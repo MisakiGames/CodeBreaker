@@ -60,6 +60,11 @@ void RigidBodyComponent::physicsUpdate(float deltaTime)
         return;
     }
 
+    if (auto collider = m_gameObject.getComponent<ColliderComponent>())
+    {
+        collider->physicsUpdate(deltaTime);
+    }
+
     if (m_gameObject.isMarkedForDelete())
     {
         EventBus::getInstance().fireEvent(std::make_shared<RigidBodyDestroyEvent>(*this));
