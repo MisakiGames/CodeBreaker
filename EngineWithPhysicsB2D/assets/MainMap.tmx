@@ -325,7 +325,7 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="77" name="Box_10" type="Sprite" x="571" y="480" width="32" height="32">
+  <object id="77" name="Box_10" type="Sprite" x="567.727" y="491.818" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -335,7 +335,7 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="78" name="Box_9" type="Sprite" x="568" y="520" width="32" height="32">
+  <object id="78" name="Box_9" type="Sprite" x="567.273" y="525.455" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
@@ -345,7 +345,7 @@
     <property name="Texture" value="Map/boxes/box_01.png"/>
    </properties>
   </object>
-  <object id="79" name="Box_8" type="Sprite" x="607" y="503" width="32" height="32">
+  <object id="79" name="Box_8" type="Sprite" x="601.182" y="506.818" width="32" height="32">
    <properties>
     <property name="Border" type="bool" value="true"/>
     <property name="BorderSize" type="int" value="32"/>
