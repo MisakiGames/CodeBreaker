@@ -7,7 +7,7 @@
 #include "GameState.hpp"
 #include "PhysicsManager.hpp"
 #include "SpriteManager.hpp"
-#include "PlayerFactory.h"
+#include "PlayerFactory.hpp"
 
 namespace mmt_gd
 {

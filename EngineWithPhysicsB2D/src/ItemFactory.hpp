@@ -4,7 +4,7 @@
 #pragma once
 #include "GameObject.hpp"
 #include "GameObjectManager.hpp"
-#include "ItemComponent.h"
+#include "ItemComponent.hpp"
 
 #include <SFML/Graphics.hpp>
 #include <vector>

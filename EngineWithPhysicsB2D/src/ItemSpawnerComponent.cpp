@@ -1,12 +1,12 @@
 //This code was made for the Multimedia Project 2a,
 //in the Multimedia Technology class at the FH Salzburg,
 //by Christopher Kastner and Tim Paul
-#include "stdafx.h"
+#include "stdafx.hpp"
 
-#include "ItemSpawnerComponent.h"
+#include "ItemSpawnerComponent.hpp"
 
 #include "GameObject.hpp"
-#include "ItemFactory.h"
+#include "ItemFactory.hpp"
 
 namespace mmt_gd
 {

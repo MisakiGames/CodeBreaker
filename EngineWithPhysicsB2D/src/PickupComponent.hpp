@@ -4,8 +4,8 @@
 #pragma once
 
 #include "IComponent.hpp"
-#include "ItemComponent.h"
-#include "PlayerScoreComponent.h"
+#include "ItemComponent.hpp"
+#include "PlayerScoreComponent.hpp"
 
 #include <functional>
 #include <vector>

@@ -1,7 +1,7 @@
 //This code was made for the Multimedia Project 2a,
 //in the Multimedia Technology class at the FH Salzburg,
 //by Christopher Kastner and Tim Paul
-#include "stdafx.h"
+#include "stdafx.hpp"
 
 #include "RigidBodyComponent.hpp"
 
@@ -58,6 +58,11 @@ void RigidBodyComponent::physicsUpdate(float deltaTime)
     if (!m_body->IsEnabled())
     {
         return;
+    }
+
+    if (auto collider = m_gameObject.getComponent<ColliderComponent>())
+    {
+        collider->physicsUpdate(deltaTime);
     }
 
     if (m_gameObject.isMarkedForDelete())

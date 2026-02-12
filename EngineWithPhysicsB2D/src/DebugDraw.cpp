@@ -1,13 +1,13 @@
 //This code was made for the Multimedia Project 2a,
 //in the Multimedia Technology class at the FH Salzburg,
 //by Christopher Kastner and Tim Paul
-#include "stdafx.h"
+#include "stdafx.hpp"
 
 #include "DebugDraw.hpp"
 
 #include "InputManager.hpp"
 #include "PhysicsManager.hpp"
-#include "VectorAlgebra2D.h"
+#include "VectorAlgebra2D.hpp"
 
 namespace mmt_gd
 {

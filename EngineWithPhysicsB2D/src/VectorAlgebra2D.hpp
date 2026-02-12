@@ -48,7 +48,7 @@
 #pragma once
 
 // ReSharper disable once CppUnusedIncludeDirective
-#include "Trigonometry.h"
+#include "Trigonometry.hpp"
 // ReSharper disable once CppUnusedIncludeDirective
 #include <cassert>
 #include <SFML/System/Vector2.hpp>

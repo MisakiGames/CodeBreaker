@@ -1,7 +1,7 @@
 //This code was made for the Multimedia Project 2a,
 //in the Multimedia Technology class at the FH Salzburg,
 //by Christopher Kastner and Tim Paul
-#include "stdafx.h"
+#include "stdafx.hpp"
 
 #include "PhysicsManager.hpp"
 
@@ -39,6 +39,8 @@ void PhysicsManager::BeginContact(b2Contact* contact)
         }
         colliderA->onCollisionEnter(*colliderB);
         colliderB->onCollisionEnter(*colliderA);
+        colliderA->addTouchingCollider(colliderB);
+        colliderB->addTouchingCollider(colliderA);
     }
 }
 
@@ -54,6 +56,8 @@ void PhysicsManager::EndContact(b2Contact* contact)
             return;
         colliderA->onCollisionExit(*colliderB);
         colliderB->onCollisionExit(*colliderA);
+        colliderA->removeTouchingCollider(colliderB);
+        colliderB->removeTouchingCollider(colliderA);
     }
 }
 

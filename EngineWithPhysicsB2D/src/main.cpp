@@ -1,10 +1,10 @@
 //This code was made for the Multimedia Project 2a,
 //in the Multimedia Technology class at the FH Salzburg,
 //by Christopher Kastner and Tim Paul
-#include "stdafx.h"
+#include "stdafx.hpp"
 
 #include "Game.hpp"
-#include "box2d/box2d.h"
+#include <box2d/box2d.h>
 
 
 int main()

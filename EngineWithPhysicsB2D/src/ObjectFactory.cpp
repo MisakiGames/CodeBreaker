@@ -1,7 +1,7 @@
 //This code was made for the Multimedia Project 2a,
 //in the Multimedia Technology class at the FH Salzburg,
 //by Christopher Kastner and Tim Paul
-#include "stdafx.h"
+#include "stdafx.hpp"
 
 #include "ObjectFactory.hpp"
 
@@ -9,25 +9,24 @@
 #include "DamageComponent.hpp"
 #include "DestructionComponent.hpp"
 #include "GameObjectEvents.hpp"
-#include "ItemSpawnerComponent.h"
+#include "GameObjectManager.hpp"
+#include "ItemSpawnerComponent.hpp"
 #include "PhysicsManager.hpp"
 #include "PlayerMoveComponent.hpp"
 #include "PlayerShootComponent.hpp"
+#include "RectComponent.hpp"
 #include "SpriteRenderComponent.hpp"
 #include "Tileson.hpp"
-#include "RectComponent.h"
 
 #include <iostream>
 #include <vector>
-#include "GameObjectManager.hpp"
 
 namespace mmt_gd
 {
 static GameObject::Ptr loadSprite(tson::Object&        object,
                                   const std::string&   layer,
                                   const fs::path&      resourcePath,
-                                  const SpriteManager& spriteManager
-)
+                                  const SpriteManager& spriteManager)
 {
     auto gameObject = GameObject::create(object.getName());
 
@@ -35,6 +34,7 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
 
     // Parse data from file
     sf::IntRect m_textureRect{};
+    sf::IntRect m_collisionRect{};
     m_textureRect.width  = object.getSize().x;
     m_textureRect.height = object.getSize().y;
     fs::path              spriteTexture;
@@ -53,6 +53,22 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
         else if (name == "TextureRectLeft")
         {
             m_textureRect.left = std::any_cast<int>(property->getValue());
+        }
+        else if (name == "CollisionTop")
+        {
+            m_collisionRect.top = std::any_cast<int>(property->getValue());
+        }
+        else if (name == "CollisionLeft")
+        {
+            m_collisionRect.left = std::any_cast<int>(property->getValue());
+        }
+        else if (name == "CollisionWidth")
+        {
+            m_collisionRect.width = std::any_cast<int>(property->getValue());
+        }
+        else if (name == "CollisionHeight")
+        {
+            m_collisionRect.height = std::any_cast<int>(property->getValue());
         }
         else if (name == "TextureRectTop")
         {
@@ -98,9 +114,9 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
     {
         auto soundComp = gameObject->addComponent<SoundComponent>(*gameObject);
         soundComp->addSound("damage", "../assets/sounds/impact.wav", 50.0f); // Kiste macht "Pock" bei Treffer
-        soundComp->addSound("dying", "../assets/sounds/bomb.wav", 80.0f);  // Kiste explodiert
+        soundComp->addSound("dying", "../assets/sounds/bomb.wav", 80.0f);    // Kiste explodiert
         std::weak_ptr<SoundComponent> soundWeakPtr = soundComp;
-        auto healthComp = gameObject->addComponent<HealthComponent>(*gameObject,health, 1, false);
+        auto healthComp = gameObject->addComponent<HealthComponent>(*gameObject, health, 1, false);
         std::weak_ptr<HealthComponent> healthWeakPtr = healthComp;
         healthComp->subsribeToOnTakeDamage(
             [soundWeakPtr = soundWeakPtr, healthWeakPtr = healthWeakPtr]()
@@ -110,19 +126,39 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
                     if (auto health = healthWeakPtr.lock())
                     {
                         if (; health->isAlive())
-                        soundComp->playSound("damage");
-                    else
-                    {
-                        soundComp->playSound("dying");
-                    }
+                            soundComp->playSound("damage");
+                        else
+                        {
+                            soundComp->playSound("dying");
+                        }
                     }
                 }
             });
         gameObject->addComponent<DestructionComponent>(*gameObject, *healthComp);
 
         b2PolygonShape polygonShape;
+        if (m_collisionRect.width > 0 && m_collisionRect.height >0 )
+        {
+            const auto size = PhysicsManager::t2b(tson::Vector2i{m_collisionRect.getSize().x, m_collisionRect.getSize().y}, true);
+            const auto centerPos = PhysicsManager::t2b(tson::Vector2i{m_collisionRect.getSize().x + m_collisionRect.left,
+                                                                      m_collisionRect.getSize().y + m_collisionRect.top},
+                                                       true);
+            const auto centerPosOffset = PhysicsManager::t2b(tson::Vector2i{m_collisionRect.left,
+                                                                      m_collisionRect.top},
+                                                       true);
+            polygonShape.SetAsBox(size.x / 2,
+                                  size.y / 2,
+                                  b2Vec2{centerPos.x / 2 + centerPosOffset.x / 2, centerPos.y / 2 + centerPosOffset.y / 2},
+                                  0);
+        }
+        else
+        {
         const auto     size = PhysicsManager::t2b(object.getSize(), true);
-        polygonShape.SetAsBox(size.x / 2, size.y / 2, b2Vec2{size.x / 2, size.y / 2}, 0);
+        polygonShape.SetAsBox(size.x / 2 ,
+                              size.y / 2 ,
+                              b2Vec2{size.x / 2 , size.y / 2},
+                              0);
+        }
         b2FixtureDef fixtureDef{};
         fixtureDef.shape   = &polygonShape;
         fixtureDef.density = 1; //TOdo load from tiled
@@ -136,7 +172,6 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
 
                 if (damageComp && healthComp)
                 {
-                    std::cout << !damageComp->isActive() << std::endl;
                     if (!damageComp->isActive())
                         return;
                     if (damageComp->getOwnerId() != self.getGameObject().getId())
@@ -149,7 +184,6 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
         if (tag.length() > 0)
             collider->setTag(tag);
     }
-
 
     if (!gameObject->init())
     {
@@ -238,13 +272,14 @@ static GameObject::Ptr loadTrigger(tson::Object& object, const std::string& laye
         collider->setTag(tag);
 
     // Add callback to output when something enters the trigger
+#ifdef DEBUG
     collider->registerOnCollisionEnterFunction(
         [](ColliderComponent& self, ColliderComponent& other)
         {
             std::cout << "Entered trigger zone: " << self.getGameObject().getId() << " (collided with "
                       << other.getGameObject().getId() << ")\n";
         });
-
+#endif
     if (!gameObject->init())
     {
         sf::err() << "Could not initialize go " << gameObject->getId() << " in TileMap\n";
@@ -291,7 +326,7 @@ static GameObject::Ptr loadCrownSpace(const tson::Object& object, const std::str
 static GameObject::Ptr loadItemSpawner(tson::Object&        object,
                                        const std::string&   layer,
                                        const SpriteManager& spriteManager,
-                                       GameObjectManager&    goManager)
+                                       GameObjectManager&   goManager)
 {
     auto gameObject = GameObject::create(object.getName());
 
@@ -330,11 +365,12 @@ static GameObject::Ptr loadItemSpawner(tson::Object&        object,
     return gameObject;
 }
 
-GameObject::Ptr ObjectFactory::processTsonObject(tson::Object&        object,
-                                                 const tson::Layer&   layer,
-                                                 const fs::path&      path,
+GameObject::Ptr ObjectFactory::processTsonObject(
+    tson::Object&        object,
+    const tson::Layer&   layer,
+    const fs::path&      path,
     const SpriteManager& spriteManager,
-    GameObjectManager&    goManager)
+    GameObjectManager&   goManager)
 {
     // Skip Sprite objects - player/enemy are created via ShipFactory
     if (object.getType() == "Sprite")

@@ -1,7 +1,7 @@
 //This code was made for the Multimedia Project 2a,
 //in the Multimedia Technology class at the FH Salzburg,
 //by Christopher Kastner and Tim Paul
-#include "stdafx.h"
+#include "stdafx.hpp"
 
 #include "ColliderComponent.hpp"
 
@@ -28,6 +28,10 @@ void ColliderComponent::update(float deltaTime)
     //auto ex  = box.GetExtents();
     //DebugDraw::getInstance().drawRectangle(m_gameObject.getPosition(), {ex.x * 2, ex.y * 2}, sf::Color::Green);
 }
+void ColliderComponent::physicsUpdate(float fDeltaTime)
+{
+    onCollisionStay();
+}
 
 void ColliderComponent::registerOnCollisionEnterFunction(const OnCollisionFunction& func)
 {
@@ -37,6 +41,11 @@ void ColliderComponent::registerOnCollisionEnterFunction(const OnCollisionFuncti
 void ColliderComponent::registerOnCollisionExitFunction(const OnCollisionFunction& func)
 {
     m_onCollisionExitFunctions.push_back(func);
+}
+
+void ColliderComponent::registerOnCollisionStayFunction(const OnCollisionFunction& func)
+{
+    m_onCollisionStayFunctions.push_back(func);
 }
 
 void ColliderComponent::onCollisionEnter(ColliderComponent& collider)
@@ -52,6 +61,16 @@ void ColliderComponent::onCollisionExit(ColliderComponent& collider)
     for (const auto& f : m_onCollisionExitFunctions)
     {
         f(*this, collider);
+    }
+}
+void ColliderComponent::onCollisionStay()
+{
+    for (const auto touchingCollider : m_touchingCollider)
+    {
+        for (const auto& f : m_onCollisionStayFunctions)
+        {
+            f(*this, *touchingCollider);
+        }
     }
 }
 } // namespace mmt_gd

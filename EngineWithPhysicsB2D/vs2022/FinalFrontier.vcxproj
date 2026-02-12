@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="DebugDLL|Win32">
@@ -83,6 +83,7 @@
       <AdditionalIncludeDirectories>$(SFMLROOT)\include;$(TGUIROOT)\include;$(SolutionDir)..\external\box2d-2.4.1\include</AdditionalIncludeDirectories>
       <BrowseInformation>true</BrowseInformation>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeaderFile>stdafx.hpp</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -103,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SFMLROOT)\include;$(TGUIROOT)\include;$(SolutionDir)..\external\box2d-2.4.1\include</AdditionalIncludeDirectories>
       <BrowseInformation>true</BrowseInformation>
+      <PrecompiledHeaderFile>stdafx.hpp</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -125,6 +127,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SFMLROOT)\include;$(TGUIROOT)\include;$(SolutionDir)..\external\box2d-2.4.1\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeaderFile>stdafx.hpp</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -136,29 +139,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="../src/stdafx.h" />
-    <ClInclude Include="..\src\BombAnimationComponent.h" />
-    <ClInclude Include="..\src\BombItemComponent.h" />
+    <ClInclude Include="../src/stdafx.hpp" />
+    <ClInclude Include="..\src\BombAnimationComponent.hpp" />
+    <ClInclude Include="..\src\BombItemComponent.hpp" />
     <ClInclude Include="..\src\BulletPool.hpp" />
     <ClInclude Include="..\src\ColliderComponent.hpp" />
-    <ClInclude Include="..\src\CrownItemComponent.h" />
+    <ClInclude Include="..\src\CrownItemComponent.hpp" />
     <ClInclude Include="..\src\DamageComponent.hpp" />
-    <ClInclude Include="..\src\DeadComponent.h" />
+    <ClInclude Include="..\src\DashReferenceComponent.hpp" />
+    <ClInclude Include="..\src\DeadComponent.hpp" />
     <ClInclude Include="..\src\DestructionComponent.hpp" />
     <ClInclude Include="..\src\EnemyAIComponent.hpp" />
+    <ClInclude Include="..\src\FollowPlayer.hpp" />
     <ClInclude Include="..\src\GameState.hpp" />
     <ClInclude Include="..\src\HealthComponent.hpp" />
-    <ClInclude Include="..\src\ItemComponent.h" />
-    <ClInclude Include="..\src\ItemFactory.h" />
-    <ClInclude Include="..\src\ItemSpawnerComponent.h" />
-    <ClInclude Include="..\src\MusicComponent.h" />
+    <ClInclude Include="..\src\ItemComponent.hpp" />
+    <ClInclude Include="..\src\ItemFactory.hpp" />
+    <ClInclude Include="..\src\ItemSpawnerComponent.hpp" />
+    <ClInclude Include="..\src\MusicComponent.hpp" />
     <ClInclude Include="..\src\ObservableProperty.hpp" />
-    <ClInclude Include="..\src\PickupComponent.h" />
-    <ClInclude Include="..\src\PlayerFactory.h" />
-    <ClInclude Include="..\src\PlayerScoreComponent.h" />
-    <ClInclude Include="..\src\RectComponent.h" />
-    <ClInclude Include="..\src\ResizeItemComponent.h" />
-    <ClInclude Include="..\src\RespawnComponent.h" />
+    <ClInclude Include="..\src\PickupComponent.hpp" />
+    <ClInclude Include="..\src\PlayerFactory.hpp" />
+    <ClInclude Include="..\src\PlayerScoreComponent.hpp" />
+    <ClInclude Include="..\src\RectComponent.hpp" />
+    <ClInclude Include="..\src\ResizeItemComponent.hpp" />
+    <ClInclude Include="..\src\RespawnComponent.hpp" />
     <ClInclude Include="..\src\ShipFactory.hpp" />
     <ClInclude Include="..\src\ITransformAnimation.hpp" />
     <ClInclude Include="..\src\MainState.hpp" />
@@ -180,8 +185,7 @@
     <ClInclude Include="..\src\RenderComponentEvents.hpp" />
     <ClInclude Include="..\src\RigidBodyComponent.hpp" />
     <ClInclude Include="..\src\SoundComponent.hpp" />
-    <ClInclude Include="..\src\SpriteAnimationRenderComponent.h" />
-    <ClInclude Include="..\src\StartState.hpp" />
+    <ClInclude Include="..\src\SpriteAnimationRenderComponent.hpp" />
     <ClInclude Include="..\src\TransformAnimationSmoothFollow.hpp" />
     <ClInclude Include="..\src\SpriteManager.hpp" />
     <ClInclude Include="..\src\TileMapLoader.hpp" />
@@ -197,9 +201,9 @@
     <ClInclude Include="..\src\TransformAnimationComponent.hpp" />
     <ClInclude Include="..\src\TileLayerRenderComponent.hpp" />
     <ClInclude Include="..\src\TransformAnimationConstantMotion.hpp" />
-    <ClInclude Include="..\src\Trigonometry.h" />
-    <ClInclude Include="..\src\VectorAlgebra2D.h" />
-    <ClInclude Include="..\src\VectorAlgebra3D.h" />
+    <ClInclude Include="..\src\Trigonometry.hpp" />
+    <ClInclude Include="..\src\VectorAlgebra2D.hpp" />
+    <ClInclude Include="..\src\VectorAlgebra3D.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="../src/main.cpp" />
@@ -215,10 +219,12 @@
     <ClCompile Include="..\src\ColliderComponent.cpp" />
     <ClCompile Include="..\src\CrownItemComponent.cpp" />
     <ClCompile Include="..\src\DamageComponent.cpp" />
+    <ClCompile Include="..\src\DashReferenceComponent.cpp" />
     <ClCompile Include="..\src\DeadComponent.cpp" />
     <ClCompile Include="..\src\DebugDraw.cpp" />
     <ClCompile Include="..\src\DestructionComponent.cpp" />
     <ClCompile Include="..\src\EnemyAIComponent.cpp" />
+    <ClCompile Include="..\src\FollowPlayer.cpp" />
     <ClCompile Include="..\src\HealthComponent.cpp" />
     <ClCompile Include="..\src\ItemComponent.cpp" />
     <ClCompile Include="..\src\ItemFactory.cpp" />

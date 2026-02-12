@@ -1,19 +1,22 @@
 //This code was made for the Multimedia Project 2a,
 //in the Multimedia Technology class at the FH Salzburg,
 //by Christopher Kastner and Tim Paul
-#include "stdafx.h"
+#include "stdafx.hpp"
 
 #include "MainState.hpp"
 
 #include "CameraRenderComponent.hpp"
 #include "ColliderComponent.hpp"
 #include "Game.hpp"
+#include "GameObjectEvents.hpp"
 #include "HealthComponent.hpp"
 #include "InputManager.hpp"
-#include "ItemFactory.h"
-#include "PlayerFactory.h"
-#include "PlayerScoreComponent.h"
+#include "ItemFactory.hpp"
+#include "MusicComponent.hpp"
+#include "PlayerFactory.hpp"
+#include "PlayerScoreComponent.hpp"
 #include "ShipFactory.hpp"
+#include "SoundComponent.hpp"
 #include "TileMapLoader.hpp"
 #include "Tileson.hpp"
 #include "TransformAnimationComponent.hpp"
@@ -21,9 +24,6 @@
 
 #include <memory>
 #include <thread>
-#include "SoundComponent.hpp"
-#include "GameObjectEvents.hpp"
-#include "MusicComponent.h"
 
 namespace mmt_gd
 {
@@ -57,17 +57,11 @@ void MainState::init()
     // Load sounds
     std::string soundPath = "../assets/sounds/";
 
-
     // Create players
     for (const auto& config : m_playerConfigs)
     {
         m_players.push_back(
-            PlayerFactory::createPlayer(
-                m_game->getWindow(),
-                config.spawn,
-                m_gameObjectManager,
-                config.id, 
-                config.color));
+            PlayerFactory::createPlayer(m_game->getWindow(), config.spawn, m_gameObjectManager, config.id, config.color));
     }
     auto crown = ItemFactory::createItem(m_game->getWindow(), ItemType::Crown, m_gameObjectManager, 1);
     m_camera   = GameObject::create("Camera");
@@ -140,28 +134,28 @@ void MainState::init()
     }
     m_game->getGui().remove(panel);
 
-      auto winSound = GameObject::create("WinSound");
+    auto winSound       = GameObject::create("WinSound");
     auto soundComponent = winSound->addComponent<SoundComponent>(*winSound);
-      soundComponent->addSound("victory", "../assets/sounds/victory.wav", 100.0f);
+    soundComponent->addSound("victory", "../assets/sounds/victory.wav", 100.0f);
 
-          if (!winSound->init())
-      {
-          sf::err() << "Could not initialize sound\n";
-      }
+    if (!winSound->init())
+    {
+        sf::err() << "Could not initialize sound\n";
+    }
 
-      EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(winSound));
-      auto backgroundMusic= GameObject::create("BackgroundMusic");
-      auto musicComponent  = backgroundMusic->addComponent<MusicComponent>(*backgroundMusic);
-      musicComponent->addMusic("background", "../assets/musics/bossFight.ogg", 100.0f);
+    EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(winSound));
+    auto backgroundMusic = GameObject::create("BackgroundMusic");
+    auto musicComponent  = backgroundMusic->addComponent<MusicComponent>(*backgroundMusic);
+    musicComponent->addMusic("background", "../assets/musics/bossFight.ogg", 100.0f);
 
-      if (!backgroundMusic->init())
-      {
-          sf::err() << "Could not initialize music\n";
-      }
+    if (!backgroundMusic->init())
+    {
+        sf::err() << "Could not initialize music\n";
+    }
 
-      EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(backgroundMusic));
+    EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(backgroundMusic));
 
-      musicComponent->playMusic("background",true);
+    musicComponent->playMusic("background", true);
 
     // Define layer order manually here. Could come from custom file settings.
     m_spriteManager.setLayerOrder({"Ground", "GameObjects"});
@@ -220,7 +214,7 @@ void MainState::update(const float deltaTime)
 
 void MainState::endGame(std::shared_ptr<GameObject> winner)
 {
-    auto winSound= m_gameObjectManager.getGameObject("WinSound");
+    auto winSound = m_gameObjectManager.getGameObject("WinSound");
     if (winSound)
         winSound->getComponent<SoundComponent>()->playSound("victory");
     m_gameEnded = true;

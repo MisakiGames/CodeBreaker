@@ -429,7 +429,7 @@
                         {
                          "name":"DamageAmount",
                          "type":"float",
-                         "value":3
+                         "value":5
                         }, 
                         {
                          "name":"Dead",
@@ -444,7 +444,7 @@
                  "y":419.091
                 }, 
                 {
-                 "height":32,
+                 "height":26,
                  "id":13,
                  "name":"Box_13",
                  "properties":[
@@ -459,6 +459,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":26
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":19
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -466,7 +486,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -481,7 +501,7 @@
                  "rotation":0,
                  "type":"Sprite",
                  "visible":true,
-                 "width":32,
+                 "width":21,
                  "x":827.318,
                  "y":279.864
                 }, 
@@ -630,7 +650,7 @@
                         {
                          "name":"DamageAmount",
                          "type":"float",
-                         "value":3
+                         "value":5
                         }, 
                         {
                          "name":"Dead",
@@ -657,7 +677,7 @@
                         {
                          "name":"DamageAmount",
                          "type":"float",
-                         "value":3
+                         "value":5
                         }, 
                         {
                          "name":"Dead",
@@ -684,7 +704,7 @@
                         {
                          "name":"DamageAmount",
                          "type":"float",
-                         "value":3
+                         "value":5
                         }, 
                         {
                          "name":"Dead",
@@ -711,7 +731,7 @@
                         {
                          "name":"DamageAmount",
                          "type":"float",
-                         "value":3
+                         "value":5
                         }, 
                         {
                          "name":"Dead",
@@ -738,7 +758,7 @@
                         {
                          "name":"DamageAmount",
                          "type":"float",
-                         "value":3
+                         "value":5
                         }, 
                         {
                          "name":"Dead",
@@ -765,7 +785,7 @@
                         {
                          "name":"DamageAmount",
                          "type":"float",
-                         "value":3
+                         "value":5
                         }, 
                         {
                          "name":"Dead",
@@ -792,7 +812,7 @@
                         {
                          "name":"DamageAmount",
                          "type":"float",
-                         "value":3
+                         "value":5
                         }, 
                         {
                          "name":"Dead",
@@ -1346,7 +1366,7 @@
                  "y":913.5
                 }, 
                 {
-                 "height":32,
+                 "height":26,
                  "id":75,
                  "name":"Box_12",
                  "properties":[
@@ -1361,6 +1381,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":26
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":19
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -1383,12 +1423,12 @@
                  "rotation":0,
                  "type":"Sprite",
                  "visible":true,
-                 "width":32,
+                 "width":21,
                  "x":634,
                  "y":384
                 }, 
                 {
-                 "height":32,
+                 "height":26,
                  "id":76,
                  "name":"Box_11",
                  "properties":[
@@ -1403,6 +1443,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":26
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":19
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -1425,12 +1485,12 @@
                  "rotation":0,
                  "type":"Sprite",
                  "visible":true,
-                 "width":32,
+                 "width":21,
                  "x":705.667,
                  "y":348.333
                 }, 
                 {
-                 "height":32,
+                 "height":26,
                  "id":77,
                  "name":"Box_10",
                  "properties":[
@@ -1445,6 +1505,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":26
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":19
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -1452,7 +1532,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1467,12 +1547,12 @@
                  "rotation":0,
                  "type":"Sprite",
                  "visible":true,
-                 "width":32,
+                 "width":21,
                  "x":571,
                  "y":480
                 }, 
                 {
-                 "height":32,
+                 "height":26,
                  "id":78,
                  "name":"Box_9",
                  "properties":[
@@ -1487,6 +1567,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":26
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":19
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -1494,7 +1594,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1509,12 +1609,12 @@
                  "rotation":0,
                  "type":"Sprite",
                  "visible":true,
-                 "width":32,
+                 "width":21,
                  "x":568,
                  "y":520
                 }, 
                 {
-                 "height":32,
+                 "height":26,
                  "id":79,
                  "name":"Box_8",
                  "properties":[
@@ -1529,6 +1629,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":26
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":19
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -1536,7 +1656,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1551,12 +1671,12 @@
                  "rotation":0,
                  "type":"Sprite",
                  "visible":true,
-                 "width":32,
+                 "width":21,
                  "x":607,
                  "y":503
                 }, 
                 {
-                 "height":32,
+                 "height":26,
                  "id":80,
                  "name":"Box_7",
                  "properties":[
@@ -1571,6 +1691,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":26
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":19
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -1578,7 +1718,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1593,12 +1733,12 @@
                  "rotation":0,
                  "type":"Sprite",
                  "visible":true,
-                 "width":32,
+                 "width":21,
                  "x":633,
                  "y":737.333
                 }, 
                 {
-                 "height":32,
+                 "height":26,
                  "id":81,
                  "name":"Box_6",
                  "properties":[
@@ -1613,6 +1753,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":26
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":19
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -1620,7 +1780,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1635,12 +1795,12 @@
                  "rotation":0,
                  "type":"Sprite",
                  "visible":true,
-                 "width":32,
+                 "width":21,
                  "x":779,
                  "y":651
                 }, 
                 {
-                 "height":32,
+                 "height":26,
                  "id":82,
                  "name":"Box_5",
                  "properties":[
@@ -1655,6 +1815,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":26
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":19
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -1662,7 +1842,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1677,12 +1857,12 @@
                  "rotation":0,
                  "type":"Sprite",
                  "visible":true,
-                 "width":32,
+                 "width":21,
                  "x":830,
                  "y":538
                 }, 
                 {
-                 "height":32,
+                 "height":26,
                  "id":83,
                  "name":"Box_4",
                  "properties":[
@@ -1697,6 +1877,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":26
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":19
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -1704,7 +1904,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1719,12 +1919,12 @@
                  "rotation":0,
                  "type":"Sprite",
                  "visible":true,
-                 "width":32,
+                 "width":21,
                  "x":978,
                  "y":506
                 }, 
                 {
-                 "height":32,
+                 "height":26,
                  "id":84,
                  "name":"Box_3",
                  "properties":[
@@ -1739,6 +1939,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":26
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":19
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -1746,7 +1966,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1761,12 +1981,12 @@
                  "rotation":0,
                  "type":"Sprite",
                  "visible":true,
-                 "width":32,
+                 "width":21,
                  "x":992,
                  "y":469
                 }, 
                 {
-                 "height":32,
+                 "height":26,
                  "id":85,
                  "name":"Box_2",
                  "properties":[
@@ -1781,6 +2001,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":26
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":19
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -1788,7 +2028,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1803,12 +2043,12 @@
                  "rotation":0,
                  "type":"Sprite",
                  "visible":true,
-                 "width":32,
+                 "width":21,
                  "x":1069,
                  "y":489
                 }, 
                 {
-                 "height":32,
+                 "height":26,
                  "id":86,
                  "name":"Box_1",
                  "properties":[
@@ -1823,6 +2063,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":26
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":19
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -1830,7 +2090,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1845,12 +2105,12 @@
                  "rotation":0,
                  "type":"Sprite",
                  "visible":true,
-                 "width":32,
+                 "width":21,
                  "x":1075,
                  "y":643
                 }, 
                 {
-                 "height":32,
+                 "height":26,
                  "id":87,
                  "name":"Box_0",
                  "properties":[
@@ -1865,6 +2125,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":26
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":19
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -1872,7 +2152,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1887,12 +2167,12 @@
                  "rotation":0,
                  "type":"Sprite",
                  "visible":true,
-                 "width":32,
+                 "width":21,
                  "x":968,
                  "y":671
                 }, 
                 {
-                 "height":32,
+                 "height":26,
                  "id":88,
                  "name":"Box_26",
                  "properties":[
@@ -1907,6 +2187,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":26
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":19
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -1914,7 +2214,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1929,12 +2229,12 @@
                  "rotation":0,
                  "type":"Sprite",
                  "visible":true,
-                 "width":32,
+                 "width":21,
                  "x":1069,
                  "y":789
                 }, 
                 {
-                 "height":32,
+                 "height":26,
                  "id":89,
                  "name":"Box_25",
                  "properties":[
@@ -1949,6 +2249,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":26
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":19
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -1956,7 +2276,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -1971,12 +2291,12 @@
                  "rotation":0,
                  "type":"Sprite",
                  "visible":true,
-                 "width":32,
+                 "width":21,
                  "x":1031.5,
                  "y":764.5
                 }, 
                 {
-                 "height":32,
+                 "height":26,
                  "id":90,
                  "name":"Box_24",
                  "properties":[
@@ -1991,6 +2311,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":26
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":19
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -1998,7 +2338,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -2013,12 +2353,12 @@
                  "rotation":0,
                  "type":"Sprite",
                  "visible":true,
-                 "width":32,
+                 "width":21,
                  "x":934.667,
                  "y":870.667
                 }, 
                 {
-                 "height":32,
+                 "height":26,
                  "id":91,
                  "name":"Box_23",
                  "properties":[
@@ -2033,6 +2373,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":26
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":19
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -2040,7 +2400,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -2055,12 +2415,12 @@
                  "rotation":0,
                  "type":"Sprite",
                  "visible":true,
-                 "width":32,
+                 "width":21,
                  "x":792,
                  "y":822
                 }, 
                 {
-                 "height":32,
+                 "height":26,
                  "id":92,
                  "name":"Box_22",
                  "properties":[
@@ -2075,6 +2435,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":26
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":19
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -2097,12 +2477,12 @@
                  "rotation":0,
                  "type":"Sprite",
                  "visible":true,
-                 "width":32,
+                 "width":21,
                  "x":1196,
                  "y":872.667
                 }, 
                 {
-                 "height":32,
+                 "height":26,
                  "id":93,
                  "name":"Box_21",
                  "properties":[
@@ -2117,6 +2497,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":26
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":19
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -2124,7 +2524,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -2139,12 +2539,12 @@
                  "rotation":0,
                  "type":"Sprite",
                  "visible":true,
-                 "width":32,
+                 "width":21,
                  "x":1484.67,
                  "y":657.333
                 }, 
                 {
-                 "height":32,
+                 "height":26,
                  "id":94,
                  "name":"Box_20",
                  "properties":[
@@ -2159,6 +2559,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":26
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":19
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -2166,7 +2586,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -2181,12 +2601,12 @@
                  "rotation":0,
                  "type":"Sprite",
                  "visible":true,
-                 "width":32,
+                 "width":21,
                  "x":1446.67,
                  "y":638
                 }, 
                 {
-                 "height":32,
+                 "height":26,
                  "id":95,
                  "name":"Box_19",
                  "properties":[
@@ -2201,6 +2621,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":26
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":19
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -2208,7 +2648,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -2223,12 +2663,12 @@
                  "rotation":0,
                  "type":"Sprite",
                  "visible":true,
-                 "width":32,
+                 "width":21,
                  "x":1271.33,
                  "y":506.667
                 }, 
                 {
-                 "height":32,
+                 "height":26,
                  "id":96,
                  "name":"Box_18",
                  "properties":[
@@ -2243,6 +2683,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":26
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":19
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -2250,7 +2710,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -2265,12 +2725,12 @@
                  "rotation":0,
                  "type":"Sprite",
                  "visible":true,
-                 "width":32,
+                 "width":21,
                  "x":1214,
                  "y":330.667
                 }, 
                 {
-                 "height":32,
+                 "height":26,
                  "id":97,
                  "name":"Box_17",
                  "properties":[
@@ -2285,6 +2745,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":26
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":19
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -2292,7 +2772,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -2307,12 +2787,12 @@
                  "rotation":0,
                  "type":"Sprite",
                  "visible":true,
-                 "width":32,
-                 "x":1380.67,
+                 "width":21,
+                 "x":1380.33666666667,
                  "y":344.667
                 }, 
                 {
-                 "height":32,
+                 "height":26,
                  "id":98,
                  "name":"Box_16",
                  "properties":[
@@ -2327,6 +2807,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":26
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":19
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -2334,7 +2834,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -2349,7 +2849,7 @@
                  "rotation":0,
                  "type":"Sprite",
                  "visible":true,
-                 "width":32,
+                 "width":21,
                  "x":973.333,
                  "y":360.667
                 }, 
@@ -2369,6 +2869,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":26
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":19
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -2376,7 +2896,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -2409,6 +2929,26 @@
                          "name":"BorderSize",
                          "type":"int",
                          "value":32
+                        }, 
+                        {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":29
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":25
                         }, 
                         {
                          "name":"Destroyable",
@@ -2453,6 +2993,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":29
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":25
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -2493,6 +3053,26 @@
                          "name":"BorderSize",
                          "type":"int",
                          "value":32
+                        }, 
+                        {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":29
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":25
                         }, 
                         {
                          "name":"Destroyable",
@@ -2537,6 +3117,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":29
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":25
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -2577,6 +3177,26 @@
                          "name":"BorderSize",
                          "type":"int",
                          "value":32
+                        }, 
+                        {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":29
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":25
                         }, 
                         {
                          "name":"Destroyable",
@@ -2621,6 +3241,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":29
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":25
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -2661,6 +3301,26 @@
                          "name":"BorderSize",
                          "type":"int",
                          "value":32
+                        }, 
+                        {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":29
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":25
                         }, 
                         {
                          "name":"Destroyable",
@@ -2705,6 +3365,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":29
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":25
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -2745,6 +3425,26 @@
                          "name":"BorderSize",
                          "type":"int",
                          "value":32
+                        }, 
+                        {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":29
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":25
                         }, 
                         {
                          "name":"Destroyable",
@@ -2789,6 +3489,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":29
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":25
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -2829,6 +3549,26 @@
                          "name":"BorderSize",
                          "type":"int",
                          "value":32
+                        }, 
+                        {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":29
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":25
                         }, 
                         {
                          "name":"Destroyable",
@@ -2873,6 +3613,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":29
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":25
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -2915,6 +3675,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":29
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":25
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -2942,7 +3722,7 @@
                  "y":343.333
                 }, 
                 {
-                 "height":32,
+                 "height":26,
                  "id":117,
                  "name":"Box_15",
                  "properties":[
@@ -2957,6 +3737,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":26
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":19
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -2964,7 +3764,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -2979,7 +3779,7 @@
                  "rotation":0,
                  "type":"Sprite",
                  "visible":true,
-                 "width":32,
+                 "width":21,
                  "x":574,
                  "y":639.333
                 }, 
@@ -2997,6 +3797,26 @@
                          "name":"BorderSize",
                          "type":"int",
                          "value":32
+                        }, 
+                        {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":29
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":25
                         }, 
                         {
                          "name":"Destroyable",
@@ -3041,6 +3861,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":29
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":25
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -3081,6 +3921,26 @@
                          "name":"BorderSize",
                          "type":"int",
                          "value":32
+                        }, 
+                        {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":29
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":25
                         }, 
                         {
                          "name":"Destroyable",
@@ -3125,6 +3985,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":29
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":25
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -3167,6 +4047,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":29
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":25
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -3194,7 +4094,7 @@
                  "y":808
                 }, 
                 {
-                 "height":32,
+                 "height":26,
                  "id":123,
                  "name":"Box_14",
                  "properties":[
@@ -3209,6 +4109,26 @@
                          "value":32
                         }, 
                         {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":26
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":19
+                        }, 
+                        {
                          "name":"Destroyable",
                          "type":"bool",
                          "value":true
@@ -3216,7 +4136,7 @@
                         {
                          "name":"Health",
                          "type":"float",
-                         "value":1
+                         "value":12
                         }, 
                         {
                          "name":"Mass",
@@ -3231,7 +4151,7 @@
                  "rotation":0,
                  "type":"Sprite",
                  "visible":true,
-                 "width":32,
+                 "width":21,
                  "x":1418,
                  "y":754.667
                 }, 
@@ -3249,6 +4169,26 @@
                          "name":"BorderSize",
                          "type":"int",
                          "value":32
+                        }, 
+                        {
+                         "name":"CollisionHeight",
+                         "type":"int",
+                         "value":29
+                        }, 
+                        {
+                         "name":"CollisionLeft",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"CollisionTop",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"CollisionWidth",
+                         "type":"int",
+                         "value":25
                         }, 
                         {
                          "name":"Destroyable",
@@ -3283,7 +4223,7 @@
                  "name":"CrownSpace",
                  "rotation":0,
                  "type":"CrownSpace",
-                 "visible":true,
+                 "visible":false,
                  "width":947,
                  "x":566,
                  "y":282

@@ -1,9 +1,9 @@
 //This code was made for the Multimedia Project 2a,
 //in the Multimedia Technology class at the FH Salzburg,
 //by Christopher Kastner and Tim Paul
-#include "stdafx.h"
+#include "stdafx.hpp"
 
-#include "PickupComponent.h"
+#include "PickupComponent.hpp"
 
 #include "GameObject.hpp"
 
@@ -46,7 +46,6 @@ void PickupComponent::pickup(ItemComponent& pickedUpItem)
     for (auto sub : m_onPickup)
         sub();
     holdingItem = &pickedUpItem;
-    std::cout << "pickup" << std::endl;
     pickedUpItem.disappear();
     pickedUpItem.setPickup(false);
     holdingItem->use(m_gameObject);
