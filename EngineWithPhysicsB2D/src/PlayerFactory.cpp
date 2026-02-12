@@ -242,6 +242,32 @@ GameObject::Ptr PlayerFactory::createPlayer(
                 }
             }
         });
+    collider->registerOnCollisionStayFunction(
+        [](ColliderComponent& self, ColliderComponent& other)
+        {
+            auto damageComp = other.getGameObject().getComponent<DamageComponent>();
+            auto healthComp = self.getGameObject().getComponent<HealthComponent>();
+
+            if (damageComp && healthComp)
+            {
+                if (!damageComp->isActive())
+                    return;
+                if (damageComp->getOwnerId() != self.getGameObject().getId())
+                {
+                    if (!healthComp->isAlive())
+                        return;
+                    std::cout << other.getTag() << std::endl;
+                    if (other.getTag() == "InstaKill")
+                    {
+                        healthComp->kill();
+                    }
+                    else if (other.getTag() != self.getGameObject().getId())
+                    {
+                        healthComp->takeDamage(damageComp->getDamage());
+                    }
+                }
+            }
+        });
     collider->registerOnCollisionEnterFunction(
         [soundWeakPtr = soundWeakPtr](ColliderComponent& self, ColliderComponent& other)
         {
