@@ -66,6 +66,7 @@ private:
     DeadComponent&      m_deadComponent;
     RigidBodyComponent& m_rigidBody;
     sf::Vector2f        m_lastMoveDirection;
+    sf::Vector2f        m_lastDashDirection;
 
     bool m_isDashing  = false;
     bool m_canDash    = true;

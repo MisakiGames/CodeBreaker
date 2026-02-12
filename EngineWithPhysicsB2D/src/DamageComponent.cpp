@@ -25,7 +25,7 @@ void DamageComponent::update(float deltaTime)
 
 int DamageComponent::getDamage() const
 {
-    return m_damage * m_damageFactor;
+    return m_damage;
 }
 
 std::string DamageComponent::getOwnerId() const
@@ -33,9 +33,9 @@ std::string DamageComponent::getOwnerId() const
     return m_ownerId;
 }
 
-void DamageComponent::setDamageFactor(float set)
+void DamageComponent::setDamage(float damage)
 {
-    m_damageFactor = set;
+    m_damage = damage;
 }
 
 void DamageComponent::setOwnerId(const std::string& ownerId)

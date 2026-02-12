@@ -37,9 +37,9 @@ void MenuState::init()
     m_view = m_game->getWindow().getDefaultView();
     m_game->getWindow().setView(m_view);
 
-    InputManager::getInstance().bind("Select", 0u, 0);
+    //InputManager::getInstance().bind("Select", 0u, 0);
+    InputManager::getInstance().bind("Select", sf::Keyboard::Space, 0);
     InputManager::getInstance().bind("debugdraw", sf::Keyboard::F1, 0);
-
 
     try
     {

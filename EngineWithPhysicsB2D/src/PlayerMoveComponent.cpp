@@ -44,8 +44,7 @@ void PlayerMoveComponent::update(const float deltaTime)
         {
             m_isDashing = false;
             m_canDash   = false;
-
-            m_damage.setDamageFactor(1);
+            m_damage.setDamage(1);
             for (auto sub : m_onDashEnd)
                 sub();
         }
@@ -54,7 +53,9 @@ void PlayerMoveComponent::update(const float deltaTime)
 
     auto speed            = 250.f;
     auto dashSpeedFactor  = 5.f;
-    auto dashCooldownTime = 0.f;
+    auto dashCooldownTime = 0.1f;
+    auto dashDamageFactor = 50000.f;
+
     if (m_dashActive)
     {
         if (InputManager::getInstance().isKeyDown("dash", m_playerIndex) && m_canDash)
@@ -66,14 +67,25 @@ void PlayerMoveComponent::update(const float deltaTime)
             }
             for (auto sub : m_onWhileDash)
                 sub();
-            m_rigidBody.setVelocity(m_lastMoveDirection * dashSpeedFactor);
+
             m_isDashing = true;
+            m_rigidBody.setVelocity(m_lastDashDirection * (speed * dashSpeedFactor));
             m_dashDuration += deltaTime;
-            m_damage.setDamageFactor(m_dashDuration + 1);
+
+            m_damage.setDamage(m_dashDuration * dashDamageFactor + 1);
+        }
+
+        if (m_isDashing && (InputManager::getInstance().isKeyReleased("dash", m_playerIndex)))
+        {
+            m_isDashing = false;
+            m_canDash   = false;
+
+            for (auto sub : m_onDashEnd)
+                sub();
             return;
         }
 
-        if (!m_canDash)
+        if (!m_canDash && !m_isDashing)
         {
             m_dashCooldown += deltaTime;
             if (m_dashCooldown >= dashCooldownTime && InputManager::getInstance().isKeyUp("dash", m_playerIndex))
@@ -81,58 +93,61 @@ void PlayerMoveComponent::update(const float deltaTime)
                 m_canDash      = true;
                 m_dashCooldown = 0.f;
                 m_dashDuration = 0.f;
+                m_damage.setDamage(1);
             }
-        }
-
-        if ((InputManager::getInstance().isKeyReleased("dash", m_playerIndex) && m_isDashing) || (m_isDashing && !m_canDash))
-        {
-            m_isDashing = false;
-            m_canDash   = false;
-
-            m_damage.setDamageFactor(1);
-            for (auto sub : m_onDashEnd)
-                sub();
-            return;
         }
     }
 
     // Normal movement
+    if (m_isDashing)
+        return;
+
+    sf::Vector2f movement(0.f, 0.f);
 
     if (InputManager::getInstance().isKeyDown("right", m_playerIndex))
+        movement.x += 1.f;
+    if (InputManager::getInstance().isKeyDown("left", m_playerIndex))
+        movement.x -= 1.f;
+    if (InputManager::getInstance().isKeyDown("up", m_playerIndex))
+        movement.y -= 1.f;
+    if (InputManager::getInstance().isKeyDown("down", m_playerIndex))
+        movement.y += 1.f;
+
+    if (movement != sf::Vector2f(0.f, 0.f))
     {
-        m_lastMoveDirection = sf::Vector2f(speed, 0.f);
-        m_rigidBody.setVelocity(m_lastMoveDirection);
-        DoOnMoved();
-    }
-    else if (InputManager::getInstance().isKeyDown("left", m_playerIndex))
-    {
-        m_lastMoveDirection = sf::Vector2f(-speed, 0.f);
-        m_rigidBody.setVelocity(m_lastMoveDirection);
-        DoOnMoved();
-    }
-    else if (InputManager::getInstance().isKeyDown("up", m_playerIndex))
-    {
-        m_lastMoveDirection = sf::Vector2f(0.f, -speed);
-        m_rigidBody.setVelocity(m_lastMoveDirection);
-        DoOnMoved();
-    }
-    else if (InputManager::getInstance().isKeyDown("down", m_playerIndex))
-    {
-        m_lastMoveDirection = sf::Vector2f(0.f, speed);
-        m_rigidBody.setVelocity(m_lastMoveDirection);
+        float length = std::sqrt(movement.x * movement.x + movement.y * movement.y);
+        movement /= length;
+
+        m_rigidBody.setVelocity(movement * speed);
+        m_lastMoveDirection = movement;
+
+        if (std::abs(movement.x) > std::abs(movement.y))
+            m_lastDashDirection = sf::Vector2f(movement.x > 0 ? 1.f : -1.f, 0.f);
+        else
+            m_lastDashDirection = sf::Vector2f(0.f, movement.y > 0 ? 1.f : -1.f);
+
         DoOnMoved();
     }
     else
     {
         m_rigidBody.setVelocity(sf::Vector2f(0.f, 0.f));
-        m_lastMoveDirection = sf::Vector2f(0.f, 0.f);
     }
 }
+
 void PlayerMoveComponent::OnCollision()
 {
     if (m_isDashing)
-        m_canDash = false;
+    {
+        m_canDash   = false;
+        m_isDashing = false;
+
+        std::cout << "Damage: " << m_damage.getDamage() << std::endl;
+
+        for (auto sub : m_onDashEnd)
+            sub();
+    }
 }
+
 void PlayerMoveComponent::DoOnMoved()
 {
     for (auto sub : m_onMoved)

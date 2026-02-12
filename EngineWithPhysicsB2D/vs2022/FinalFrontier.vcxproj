@@ -249,6 +249,7 @@
     <ClCompile Include="..\src\RigidBodyComponent.cpp" />
     <ClCompile Include="..\src\SoundComponent.cpp" />
     <ClCompile Include="..\src\SpriteAnimationRenderComponent.cpp" />
+    <ClCompile Include="..\src\StartState.cpp" />
     <ClCompile Include="..\src\TransformAnimationSmoothFollow.cpp" />
     <ClCompile Include="..\src\SpriteManager.cpp" />
     <ClCompile Include="..\src\SpriteRenderComponent.cpp" />

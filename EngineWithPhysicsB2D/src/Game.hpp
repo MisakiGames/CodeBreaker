@@ -45,6 +45,7 @@ private:
     void draw();
     void shutdown() const;
 
+    bool   gameEnded = false;
     Config m_config;
 
     sf::RenderWindow m_window;
