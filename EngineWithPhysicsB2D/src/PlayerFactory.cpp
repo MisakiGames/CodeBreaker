@@ -297,6 +297,24 @@ GameObject::Ptr PlayerFactory::createPlayer(
     collider->registerOnCollisionEnterFunction(
         [](ColliderComponent& self, ColliderComponent& other)
         {
+            if (self.getGameObject().getId() == other.getTag())
+                return;
+            if (other.isSensor())
+                return;
+            auto moveComp = self.getGameObject().getComponent<PlayerMoveComponent>();
+
+            if (moveComp)
+            {
+                moveComp->OnCollision();
+            }
+        });
+    collider->registerOnCollisionStayFunction(
+        [](ColliderComponent& self, ColliderComponent& other)
+        {
+            if (self.getGameObject().getId() == other.getTag())
+                return;
+            if (other.isSensor())
+                return;
             auto moveComp = self.getGameObject().getComponent<PlayerMoveComponent>();
 
             if (moveComp)
@@ -332,7 +350,7 @@ GameObject::Ptr PlayerFactory::createPlayer(
     dashFixtureDef.isSensor = true;
 
     auto dashCollider = dashGO->addComponent<ColliderComponent>(*dashGO, *dashRigidBody, dashFixtureDef);
-
+    dashCollider->setTag(player->getId());
     auto dashDamageComp = dashGO->addComponent<DamageComponent>(*dashGO, 15, player->getId());
     dashDamageComp->setActive(false);
     std::weak_ptr<DamageComponent> dashDamageWeakPtr = dashDamageComp;

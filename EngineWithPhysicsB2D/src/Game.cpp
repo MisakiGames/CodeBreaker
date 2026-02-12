@@ -70,9 +70,7 @@ bool Game::init()
     m_gameStateManager.registerState("MainState", make_shared<MainState>(&m_gameStateManager, this));
 
     //
-    m_window.create(sf::VideoMode(m_config.m_resolution.x, m_config.m_resolution.y),
-                    m_config.m_windowName,
-                    sf::Style::Fullscreen);
+    m_window.create(sf::VideoMode(m_config.m_resolution.x, m_config.m_resolution.y), m_config.m_windowName, sf::Style::Default);
     m_gui.setTarget(m_window);
     m_gui.setFont("../assets/font.ttf");
 
