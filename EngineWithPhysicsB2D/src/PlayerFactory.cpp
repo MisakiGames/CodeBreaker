@@ -262,6 +262,10 @@ GameObject::Ptr PlayerFactory::createPlayer(
                     {
                         healthComp->kill();
                     }
+                    else if (other.getTag() == "DamageOverTime")
+                    {
+                        return;
+                    }
                     else if (other.getTag() != self.getGameObject().getId())
                     {
                         healthComp->takeDamage(damageComp->getDamage());
