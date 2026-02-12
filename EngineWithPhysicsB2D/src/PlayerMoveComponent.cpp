@@ -37,7 +37,20 @@ bool PlayerMoveComponent::init()
 void PlayerMoveComponent::update(const float deltaTime)
 {
     if (m_deadComponent.isDead())
+    {
+        const float deadSpeed = 0.3f;
+        m_rigidBody.setVelocity(m_lastMoveDirection * deadSpeed);
+        if (m_isDashing)
+        {
+            m_isDashing = false;
+            m_canDash   = false;
+
+            m_damage.setDamageFactor(1);
+            for (auto sub : m_onDashEnd)
+                sub();
+        }
         return;
+    }
 
     auto speed            = 250.f;
     auto dashSpeedFactor  = 5.f;
