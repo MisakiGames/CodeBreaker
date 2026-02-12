@@ -26,14 +26,13 @@ public:
                         DamageComponent&    damage,
                         int                 playerIndex = 0);
 
-    float getDashDuration() const
-    {
-        return m_dashDuration;
-    }
 
     bool init() override;
     void update(float deltaTime) override;
-
+    float getDashTime()
+    {
+        return m_dashDuration;
+    }
     void OnCollision();
     void deactivateDash()
     {
@@ -79,7 +78,7 @@ private:
     std::vector<std::function<void()>> m_onWhileDash;
     std::vector<std::function<void()>> m_onDashEnd;
     std::vector<std::function<void()>> m_onMoved;
-    DamageComponent&                   m_damage;
+    DamageComponent&                   m_baseDamage;
     bool                               m_resized = false;
 };
 } // namespace mmt_gd

@@ -23,7 +23,7 @@ IComponent(gameObject),
 m_rigidBody(rigidBody),
 m_deadComponent(deadComponent),
 m_playerIndex(playerIndex),
-m_damage(damage)
+m_baseDamage(damage)
 {
 }
 
@@ -44,7 +44,7 @@ void PlayerMoveComponent::update(const float deltaTime)
         {
             m_isDashing = false;
             m_canDash   = false;
-            m_damage.setDamage(1);
+            m_baseDamage.setBaseDamage(1);
             for (auto sub : m_onDashEnd)
                 sub();
         }
@@ -72,7 +72,7 @@ void PlayerMoveComponent::update(const float deltaTime)
             m_rigidBody.setVelocity(m_lastDashDirection * (speed * dashSpeedFactor));
             m_dashDuration += deltaTime;
 
-            m_damage.setDamage(m_dashDuration * dashDamageFactor + 1);
+            m_baseDamage.setBaseDamage(m_dashDuration * dashDamageFactor + 1);
         }
 
         if (m_isDashing && (InputManager::getInstance().isKeyReleased("dash", m_playerIndex)))
@@ -93,7 +93,7 @@ void PlayerMoveComponent::update(const float deltaTime)
                 m_canDash      = true;
                 m_dashCooldown = 0.f;
                 m_dashDuration = 0.f;
-                m_damage.setDamage(1);
+                m_baseDamage.setBaseDamage(1);
             }
         }
     }
@@ -141,7 +141,7 @@ void PlayerMoveComponent::OnCollision()
         m_canDash   = false;
         m_isDashing = false;
 
-        std::cout << "Damage: " << m_damage.getDamage() << std::endl;
+        std::cout << "Damage: " << m_baseDamage.getDamage() << std::endl;
 
         for (auto sub : m_onDashEnd)
             sub();

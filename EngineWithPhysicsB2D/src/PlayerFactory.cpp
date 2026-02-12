@@ -145,12 +145,21 @@ GameObject::Ptr PlayerFactory::createPlayer(
     fixtureDef.shape   = &shape;
     fixtureDef.density = 1.0f;
     auto move = player->addComponent<PlayerMoveComponent>(*player, *rigidBody, *deadComp, *damageComp, plrIndex);
-
+    std::weak_ptr<PlayerMoveComponent> moveWeakPtr = move;
     move->subscribeToOnWhileDash(
         [spriteWeakPtr = spriteWeakPtr]()
         {
             if (auto spriteComp = spriteWeakPtr.lock())
                 spriteComp->setState(AnimationState::Dash);
+        });
+    move->subscribeToOnWhileDash(
+        [damageWeakPtr = damageWeakPtr, moveWeakPtr = moveWeakPtr]()
+        {
+            if (auto damageComp = damageWeakPtr.lock())
+                {
+                if (auto moveComp = moveWeakPtr.lock())
+                damageComp->addMultiplier( moveComp->getDashTime() + 1);
+            }
         });
     move->subscribeToOnDash(
         [damageWeakPtr = damageWeakPtr]()
@@ -368,6 +377,15 @@ GameObject::Ptr PlayerFactory::createPlayer(
         {
             if (auto damageComp = damageWeakPtr.lock())
                 damageComp->setActive(false);
+        });
+    move->subscribeToOnWhileDash(
+        [damageWeakPtr = dashDamageWeakPtr, moveWeakPtr = moveWeakPtr]()
+        {
+            if (auto damageComp = damageWeakPtr.lock())
+            {
+                if (auto moveComp = moveWeakPtr.lock())
+                    damageComp->addMultiplier(moveComp->getDashTime() + 1);
+            }
         });
 
     player->addComponent<DashReferenceComponent>(*player, *dashGO);

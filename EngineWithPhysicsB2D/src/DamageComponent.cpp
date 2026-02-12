@@ -7,9 +7,9 @@
 
 namespace mmt_gd
 {
-DamageComponent::DamageComponent(GameObject& gameObject, const int damage, const std::string& ownerId) :
+DamageComponent::DamageComponent(GameObject& gameObject, const float damage, const std::string& ownerId) :
 IComponent(gameObject),
-m_damage(damage),
+m_baseDamage(damage),
 m_ownerId(ownerId)
 {
 }
@@ -23,8 +23,13 @@ void DamageComponent::update(float deltaTime)
 {
 }
 
-int DamageComponent::getDamage() const
+int DamageComponent::getDamage()
 {
+    float m_damage = m_baseDamage;
+    for (auto multiply : m_multipliers)
+        m_damage *= multiply;
+    m_multipliers.clear();
+    m_multipliers.shrink_to_fit();
     return m_damage;
 }
 
@@ -33,9 +38,9 @@ std::string DamageComponent::getOwnerId() const
     return m_ownerId;
 }
 
-void DamageComponent::setDamage(float damage)
+void DamageComponent::setBaseDamage(float damage)
 {
-    m_damage = damage;
+    m_baseDamage = damage;
 }
 
 void DamageComponent::setOwnerId(const std::string& ownerId)
