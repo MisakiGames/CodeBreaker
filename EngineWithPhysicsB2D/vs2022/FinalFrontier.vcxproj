@@ -181,6 +181,7 @@
     <ClInclude Include="..\src\RigidBodyComponent.hpp" />
     <ClInclude Include="..\src\SoundComponent.hpp" />
     <ClInclude Include="..\src\SpriteAnimationRenderComponent.h" />
+    <ClInclude Include="..\src\StartState.hpp" />
     <ClInclude Include="..\src\TransformAnimationSmoothFollow.hpp" />
     <ClInclude Include="..\src\SpriteManager.hpp" />
     <ClInclude Include="..\src\TileMapLoader.hpp" />
@@ -242,6 +243,7 @@
     <ClCompile Include="..\src\RigidBodyComponent.cpp" />
     <ClCompile Include="..\src\SoundComponent.cpp" />
     <ClCompile Include="..\src\SpriteAnimationRenderComponent.cpp" />
+    <ClCompile Include="..\src\StartState.cpp" />
     <ClCompile Include="..\src\TransformAnimationSmoothFollow.cpp" />
     <ClCompile Include="..\src\SpriteManager.cpp" />
     <ClCompile Include="..\src\SpriteRenderComponent.cpp" />

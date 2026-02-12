@@ -10,6 +10,7 @@
 #include "InputManager.hpp"
 #include "MainState.hpp"
 #include "MenuState.hpp"
+#include "StartState.hpp"
 
 #include <sstream>
 
@@ -28,7 +29,7 @@ void Game::run()
     Instrumentor::instance().endSession();
     Instrumentor::instance().beginSession("runtime", "runtime.json");
 
-    while (m_window.isOpen() && !InputManager::getInstance().isKeyDown("Exit"))
+    while (m_window.isOpen() && !gameEnded)
     {
         PROFILE_SCOPE("Frame");
 
@@ -66,6 +67,7 @@ bool Game::init()
     m_debugDraw = &DebugDraw::getInstance();
     m_window.setFramerateLimit(120);
     //
+    m_gameStateManager.registerState("StartState", make_shared<StartState>(&m_gameStateManager, this));
     m_gameStateManager.registerState("MenuState", make_shared<MenuState>(&m_gameStateManager, this));
     m_gameStateManager.registerState("MainState", make_shared<MainState>(&m_gameStateManager, this));
 
@@ -76,13 +78,16 @@ bool Game::init()
 
     m_inputManager->setRenderWindow(&m_window);
 
-    m_gameStateManager.setState("MenuState");
+    m_gameStateManager.setState("StartState");
 
     return true;
 }
 
 void Game::update()
 {
+    if (InputManager::getInstance().isKeyDown("Exit"))
+        gameEnded = true;
+
     PROFILE_FUNCTION();
 
     // starts the clock

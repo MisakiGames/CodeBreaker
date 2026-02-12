@@ -97,11 +97,11 @@ void MainState::init()
         input.bind("dash", 0u, i);
     }
 
-    //input.bind("up", sf::Keyboard::W, 0);
-    //input.bind("left", sf::Keyboard::A, 0);
-    //input.bind("down", sf::Keyboard::S, 0);
-    //input.bind("right", sf::Keyboard::D, 0);
-    //input.bind("dash", sf::Keyboard::Enter, 0);
+    input.bind("up", sf::Keyboard::W, 0);
+    input.bind("left", sf::Keyboard::A, 0);
+    input.bind("down", sf::Keyboard::S, 0);
+    input.bind("right", sf::Keyboard::D, 0);
+    input.bind("dash", sf::Keyboard::Enter, 0);
 
     // Load and initialize TGui elements
     m_game->getGui().loadWidgetsFromFile("../assets/mainTgui.txt");
