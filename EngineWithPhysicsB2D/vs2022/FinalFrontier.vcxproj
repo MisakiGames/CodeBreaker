@@ -143,9 +143,11 @@
     <ClInclude Include="..\src\ColliderComponent.hpp" />
     <ClInclude Include="..\src\CrownItemComponent.h" />
     <ClInclude Include="..\src\DamageComponent.hpp" />
+    <ClInclude Include="..\src\DashReferenceComponent.h" />
     <ClInclude Include="..\src\DeadComponent.h" />
     <ClInclude Include="..\src\DestructionComponent.hpp" />
     <ClInclude Include="..\src\EnemyAIComponent.hpp" />
+    <ClInclude Include="..\src\FollowPlayer.h" />
     <ClInclude Include="..\src\GameState.hpp" />
     <ClInclude Include="..\src\HealthComponent.hpp" />
     <ClInclude Include="..\src\ItemComponent.h" />
@@ -214,10 +216,12 @@
     <ClCompile Include="..\src\ColliderComponent.cpp" />
     <ClCompile Include="..\src\CrownItemComponent.cpp" />
     <ClCompile Include="..\src\DamageComponent.cpp" />
+    <ClCompile Include="..\src\DashReferenceComponent.cpp" />
     <ClCompile Include="..\src\DeadComponent.cpp" />
     <ClCompile Include="..\src\DebugDraw.cpp" />
     <ClCompile Include="..\src\DestructionComponent.cpp" />
     <ClCompile Include="..\src\EnemyAIComponent.cpp" />
+    <ClCompile Include="..\src\FollowPlayer.cpp" />
     <ClCompile Include="..\src\HealthComponent.cpp" />
     <ClCompile Include="..\src\ItemComponent.cpp" />
     <ClCompile Include="..\src\ItemFactory.cpp" />

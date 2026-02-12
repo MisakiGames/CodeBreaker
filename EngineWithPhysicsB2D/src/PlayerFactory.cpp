@@ -8,10 +8,12 @@
 #include "CameraRenderComponent.hpp"
 #include "ColliderComponent.hpp"
 #include "DamageComponent.hpp"
+#include "DashReferenceComponent.h"
 #include "DeadComponent.h"
 #include "DestructionComponent.hpp"
 #include "EnemyAIComponent.hpp"
 #include "EventBus.hpp"
+#include "FollowPlayer.h"
 #include "GameObjectEvents.hpp"
 #include "GameObjectManager.hpp"
 #include "HealthComponent.hpp"
@@ -156,6 +158,12 @@ GameObject::Ptr PlayerFactory::createPlayer(
             if (auto damageComp = damageWeakPtr.lock())
                 damageComp->setActive(true);
         });
+    move->subscribeToOnDashEnd(
+        [damageWeakPtr = damageWeakPtr]()
+        {
+            if (auto damageComp = damageWeakPtr.lock())
+                damageComp->setActive(false);
+        });
     move->subscribeToOnDash(
         [soundWeakPtr = soundWeakPtr]()
         {
@@ -167,12 +175,6 @@ GameObject::Ptr PlayerFactory::createPlayer(
         {
             if (auto soundComp = soundWeakPtr.lock())
                 soundComp->playSound("step", true);
-        });
-    move->subscribeToOnDashEnd(
-        [damageWeakPtr = damageWeakPtr]()
-        {
-            if (auto damageComp = damageWeakPtr.lock())
-                damageComp->setActive(false);
         });
 
     auto                                score        = player->addComponent<PlayerScoreComponent>(*player);
@@ -226,7 +228,6 @@ GameObject::Ptr PlayerFactory::createPlayer(
                     return;
                 if (damageComp->getOwnerId() != self.getGameObject().getId())
                 {
-                    std::cout << other.getTag() << std::endl;
                     if (other.getTag() == "InstaKill")
                     {
                         healthComp->kill();
@@ -284,7 +285,6 @@ GameObject::Ptr PlayerFactory::createPlayer(
 
             if (damageComp && healthComp)
             {
-                std::cout << other.getTag() << std::endl;
                 if (!damageComp->isActive())
                     return;
                 if (damageComp->getOwnerId() != self.getGameObject().getId())
@@ -318,12 +318,51 @@ GameObject::Ptr PlayerFactory::createPlayer(
             }
         });
 
+    auto dashGO = GameObject::create("Dash_" + color);
+    dashGO->setPosition(player->getPosition());
+    auto dashRigidBody = dashGO->addComponent<RigidBodyComponent>(*dashGO, b2_staticBody);
+    dashGO->addComponent<FollowPlayer>(*dashGO, *player);
+    b2PolygonShape dashShape;
+    const auto dashSize = PhysicsManager::s2b(sf::Vector2f(playerRect.width * scaleFaktor, playerRect.height * scaleFaktor));
+    dashShape.SetAsBox(dashSize.x / 2, dashSize.y / 2, b2Vec2{dashSize.x / 2, dashSize.y / 2}, 0);
+
+    b2FixtureDef dashFixtureDef;
+    dashFixtureDef.shape    = &dashShape;
+    dashFixtureDef.density  = 1.0f;
+    dashFixtureDef.isSensor = true;
+
+    auto dashCollider = dashGO->addComponent<ColliderComponent>(*dashGO, *dashRigidBody, dashFixtureDef);
+
+    auto dashDamageComp = dashGO->addComponent<DamageComponent>(*dashGO, 15, player->getId());
+    dashDamageComp->setActive(false);
+    std::weak_ptr<DamageComponent> dashDamageWeakPtr = dashDamageComp;
+
+    move->subscribeToOnDash(
+        [damageWeakPtr = dashDamageWeakPtr]()
+        {
+            if (auto damageComp = damageWeakPtr.lock())
+                damageComp->setActive(true);
+        });
+    move->subscribeToOnDashEnd(
+        [damageWeakPtr = dashDamageWeakPtr]()
+        {
+            if (auto damageComp = damageWeakPtr.lock())
+                damageComp->setActive(false);
+        });
+
+    player->addComponent<DashReferenceComponent>(*player, *dashGO);
+
     if (!player->init())
     {
         sf::err() << "Could not initialize player\n";
     }
-
     EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(player));
+
+    if (!dashGO->init())
+    {
+        sf::err() << "Could not initialize player\n";
+    }
+    EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(dashGO));
 
     return player;
 }

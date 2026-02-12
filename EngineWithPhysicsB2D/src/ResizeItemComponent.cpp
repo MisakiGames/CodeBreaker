@@ -6,6 +6,7 @@
 #include "ResizeItemComponent.h"
 
 #include "ColliderComponent.hpp"
+#include "DashReferenceComponent.h"
 #include "GameObject.hpp"
 #include "PhysicsManager.hpp"
 #include "SpriteAnimationRenderComponent.h"
@@ -16,16 +17,15 @@ void ResizeItemComponent::use(GameObject& player)
 {
     m_player   = &player;
     m_oldScale = m_player->getScale().x;
-    std::cout << m_oldScale << std::endl;
     auto sprite = player.getComponent<SpriteAnimationRenderComponent>();
-    m_big    = true;
-    m_resize = true;
+    m_big       = true;
+    m_resize    = true;
 }
 void ResizeItemComponent::stopUse(GameObject& player)
 {
     auto sprite = player.getComponent<SpriteAnimationRenderComponent>();
-    m_big    = false;
-    m_resize = true;
+    m_big       = false;
+    m_resize    = true;
 }
 void ResizeItemComponent::update(float deltaTime)
 {
@@ -37,8 +37,8 @@ void ResizeItemComponent::update(float deltaTime)
         {
             scale = m_newScale;
         }
-        auto     sprite      = m_player->getComponent<SpriteAnimationRenderComponent>();
-    sprite->setScale(scale);
+        auto sprite = m_player->getComponent<SpriteAnimationRenderComponent>();
+        sprite->setScale(scale);
         auto     collider    = m_player->getComponent<ColliderComponent>();
         auto     fixture     = collider->getFixture();
         auto     userData    = fixture->GetUserData();
@@ -67,6 +67,35 @@ void ResizeItemComponent::update(float deltaTime)
 
         // 5. Recalculate mass for the new size
         collider->getBody().getB2Body()->ResetMassData();
+
+        auto dashCollider = m_player->getComponent<DashReferenceComponent>()->m_dash.getComponent<ColliderComponent>();
+        auto dashFixture  = dashCollider->getFixture();
+        auto dashUserData = dashFixture->GetUserData();
+        b2Filter dashFilter      = dashFixture->GetFilterData();
+        float    dashFriction    = dashFixture->GetFriction();
+        float    dashRestitution = dashFixture->GetRestitution();
+        bool     dashIsSensor    = dashFixture->IsSensor();
+
+        b2PolygonShape dashShape;
+        auto           dashNewSize = sf::Vector2f(player_size.x * scale, player_size.y * scale);
+        const auto     dashSize    = PhysicsManager::s2b(dashNewSize);
+        dashShape.SetAsBox(dashSize.x / 2, dashSize.y / 2, b2Vec2{dashSize.x / 2, dashSize.y / 2}, 0);
+
+        b2FixtureDef dashFixtureDef;
+        dashFixtureDef.shape       = &dashShape;
+        dashFixtureDef.density     = 1.0f;
+        dashFixtureDef.isSensor    = dashIsSensor;
+        dashFixtureDef.filter      = dashFilter;
+        dashFixtureDef.friction    = dashFriction;
+        dashFixtureDef.restitution = dashRestitution;
+        dashFixtureDef.userData    = dashUserData;
+
+        // 4. Swap fixtures
+        dashCollider->getBody().getB2Body()->DestroyFixture(dashFixture);
+        dashFixture = dashCollider->getBody().getB2Body()->CreateFixture(&dashFixtureDef);
+
+        // 5. Recalculate mass for the new size
+        dashCollider->getBody().getB2Body()->ResetMassData();
         m_resize = false;
         if (!m_big)
             m_player = nullptr;

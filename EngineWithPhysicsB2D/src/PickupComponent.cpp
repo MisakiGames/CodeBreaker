@@ -46,7 +46,6 @@ void PickupComponent::pickup(ItemComponent& pickedUpItem)
     for (auto sub : m_onPickup)
         sub();
     holdingItem = &pickedUpItem;
-    std::cout << "pickup" << std::endl;
     pickedUpItem.disappear();
     pickedUpItem.setPickup(false);
     holdingItem->use(m_gameObject);
