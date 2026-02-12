@@ -1,7 +1,7 @@
 //This code was made for the Multimedia Project 2a,
 //in the Multimedia Technology class at the FH Salzburg,
 //by Christopher Kastner and Tim Paul
-#include "stdafx.h"
+#include "stdafx.hpp"
 
 #include "MainState.hpp"
 
@@ -11,10 +11,10 @@
 #include "GameObjectEvents.hpp"
 #include "HealthComponent.hpp"
 #include "InputManager.hpp"
-#include "ItemFactory.h"
-#include "MusicComponent.h"
-#include "PlayerFactory.h"
-#include "PlayerScoreComponent.h"
+#include "ItemFactory.hpp"
+#include "MusicComponent.hpp"
+#include "PlayerFactory.hpp"
+#include "PlayerScoreComponent.hpp"
 #include "ShipFactory.hpp"
 #include "SoundComponent.hpp"
 #include "TileMapLoader.hpp"

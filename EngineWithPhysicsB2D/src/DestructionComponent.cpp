@@ -1,11 +1,11 @@
 //This code was made for the Multimedia Project 2a,
 //in the Multimedia Technology class at the FH Salzburg,
 //by Christopher Kastner and Tim Paul
-#include "stdafx.h"
+#include "stdafx.hpp"
 
 #include "DestructionComponent.hpp"
 
-#include "DeadComponent.h"
+#include "DeadComponent.hpp"
 #include "GameObject.hpp"
 #include "PhysicsManager.hpp"
 #include "RigidBodyComponent.hpp"

@@ -1,16 +1,16 @@
 //This code was made for the Multimedia Project 2a,
 //in the Multimedia Technology class at the FH Salzburg,
 //by Christopher Kastner and Tim Paul
-#include "stdafx.h"
+#include "stdafx.hpp"
 
-#include "BombItemComponent.h"
+#include "BombItemComponent.hpp"
 
-#include "BombAnimationComponent.h"
+#include "BombAnimationComponent.hpp"
 #include "ColliderComponent.hpp"
 #include "GameObject.hpp"
 #include "PhysicsManager.hpp"
 #include "RigidBodyComponent.hpp"
-#include "SpriteAnimationRenderComponent.h"
+#include "SpriteAnimationRenderComponent.hpp"
 #include "SpriteRenderComponent.hpp"
 
 namespace mmt_gd

@@ -1,15 +1,15 @@
 //This code was made for the Multimedia Project 2a,
 //in the Multimedia Technology class at the FH Salzburg,
 //by Christopher Kastner and Tim Paul
-#include "stdafx.h"
+#include "stdafx.hpp"
 
-#include "ResizeItemComponent.h"
+#include "ResizeItemComponent.hpp"
 
 #include "ColliderComponent.hpp"
-#include "DashReferenceComponent.h"
+#include "DashReferenceComponent.hpp"
 #include "GameObject.hpp"
 #include "PhysicsManager.hpp"
-#include "SpriteAnimationRenderComponent.h"
+#include "SpriteAnimationRenderComponent.hpp"
 
 namespace mmt_gd
 {

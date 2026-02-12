@@ -1,17 +1,17 @@
 //This code was made for the Multimedia Project 2a,
 //in the Multimedia Technology class at the FH Salzburg,
 //by Christopher Kastner and Tim Paul
-#include "stdafx.h"
+#include "stdafx.hpp"
 
-#include "ItemFactory.h"
+#include "ItemFactory.hpp"
 
-#include "BombAnimationComponent.h"
-#include "BombItemComponent.h"
+#include "BombAnimationComponent.hpp"
+#include "BombItemComponent.hpp"
 #include "CameraRenderComponent.hpp"
 #include "ColliderComponent.hpp"
-#include "CrownItemComponent.h"
+#include "CrownItemComponent.hpp"
 #include "DamageComponent.hpp"
-#include "DeadComponent.h"
+#include "DeadComponent.hpp"
 #include "DestructionComponent.hpp"
 #include "EnemyAIComponent.hpp"
 #include "EventBus.hpp"
@@ -21,10 +21,10 @@
 #include "PhysicsManager.hpp"
 #include "PlayerMoveComponent.hpp"
 #include "PlayerShootComponent.hpp"
-#include "ResizeItemComponent.h"
-#include "RespawnComponent.h"
+#include "ResizeItemComponent.hpp"
+#include "RespawnComponent.hpp"
 #include "RigidBodyComponent.hpp"
-#include "SpriteAnimationRenderComponent.h"
+#include "SpriteAnimationRenderComponent.hpp"
 #include "SpriteRenderComponent.hpp"
 #include "TransformAnimationComponent.hpp"
 #include "TransformAnimationSmoothFollow.hpp"

@@ -5,7 +5,7 @@
 
 #include "ColliderComponent.hpp"
 #include "DamageComponent.hpp"
-#include "DeadComponent.h"
+#include "DeadComponent.hpp"
 #include "IComponent.hpp"
 #include "RigidBodyComponent.hpp"
 #include "SoundComponent.hpp"

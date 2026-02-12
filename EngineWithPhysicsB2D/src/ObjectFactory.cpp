@@ -1,7 +1,7 @@
 //This code was made for the Multimedia Project 2a,
 //in the Multimedia Technology class at the FH Salzburg,
 //by Christopher Kastner and Tim Paul
-#include "stdafx.h"
+#include "stdafx.hpp"
 
 #include "ObjectFactory.hpp"
 
@@ -10,11 +10,11 @@
 #include "DestructionComponent.hpp"
 #include "GameObjectEvents.hpp"
 #include "GameObjectManager.hpp"
-#include "ItemSpawnerComponent.h"
+#include "ItemSpawnerComponent.hpp"
 #include "PhysicsManager.hpp"
 #include "PlayerMoveComponent.hpp"
 #include "PlayerShootComponent.hpp"
-#include "RectComponent.h"
+#include "RectComponent.hpp"
 #include "SpriteRenderComponent.hpp"
 #include "Tileson.hpp"
 

@@ -5,7 +5,7 @@
 
 #include "GameObjectManager.hpp"
 #include "IComponent.hpp"
-#include "ItemComponent.h"
+#include "ItemComponent.hpp"
 
 #include <random>
 #include <unordered_map>

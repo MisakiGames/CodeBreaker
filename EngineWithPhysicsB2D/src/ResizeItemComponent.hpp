@@ -3,7 +3,7 @@
 //by Christopher Kastner and Tim Paul
 #pragma once
 
-#include "ItemComponent.h"
+#include "ItemComponent.hpp"
 namespace mmt_gd
 {
 class ResizeItemComponent : public ItemComponent

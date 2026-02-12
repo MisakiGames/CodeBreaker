@@ -3342,7 +3342,7 @@ const tson::Vector2i& tson::Chunk::getPosition() const
 #ifndef TILESON_PROPERTY_HPP
 #define TILESON_PROPERTY_HPP
 
-//#include "../../TilesonConfig.h"
+//#include "../../TilesonConfig.hpp"
 
 //#if USE_CPP17_FILESYSTEM
 

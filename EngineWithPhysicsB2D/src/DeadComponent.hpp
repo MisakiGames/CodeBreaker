@@ -5,7 +5,7 @@
 
 #include "HealthComponent.hpp"
 #include "IComponent.hpp"
-#include "RespawnComponent.h"
+#include "RespawnComponent.hpp"
 
 #include <functional>
 #include <vector>

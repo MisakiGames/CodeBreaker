@@ -1,7 +1,7 @@
 //This code was made for the Multimedia Project 2a,
 //in the Multimedia Technology class at the FH Salzburg,
 //by Christopher Kastner and Tim Paul
-#include "stdafx.h"
+#include "stdafx.hpp"
 
 #include "MainState.hpp"
 
@@ -9,8 +9,8 @@
 #include "ColliderComponent.hpp"
 #include "Game.hpp"
 #include "InputManager.hpp"
-#include "ItemFactory.h"
-#include "PlayerFactory.h"
+#include "ItemFactory.hpp"
+#include "PlayerFactory.hpp"
 #include "ShipFactory.hpp"
 #include "TileMapLoader.hpp"
 #include "Tileson.hpp"

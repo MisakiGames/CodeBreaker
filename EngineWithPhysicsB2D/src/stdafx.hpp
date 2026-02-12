@@ -13,7 +13,7 @@
 #endif
 
 #include "Debug.hpp"
-#include "targetver.h"
+#include "targetver.hpp"
 
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>

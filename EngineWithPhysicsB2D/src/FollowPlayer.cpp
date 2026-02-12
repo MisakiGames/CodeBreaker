@@ -1,6 +1,6 @@
-#include "stdafx.h"
+#include "stdafx.hpp"
 
-#include "FollowPlayer.h"
+#include "FollowPlayer.hpp"
 
 #include "GameObject.hpp"
 #include "PhysicsManager.hpp"
