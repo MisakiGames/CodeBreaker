@@ -34,6 +34,7 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
 
     // Parse data from file
     sf::IntRect m_textureRect{};
+    sf::IntRect m_collisionRect{};
     m_textureRect.width  = object.getSize().x;
     m_textureRect.height = object.getSize().y;
     fs::path              spriteTexture;
@@ -52,6 +53,22 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
         else if (name == "TextureRectLeft")
         {
             m_textureRect.left = std::any_cast<int>(property->getValue());
+        }
+        else if (name == "CollisionTop")
+        {
+            m_collisionRect.top = std::any_cast<int>(property->getValue());
+        }
+        else if (name == "CollisionLeft")
+        {
+            m_collisionRect.left = std::any_cast<int>(property->getValue());
+        }
+        else if (name == "CollisionWidth")
+        {
+            m_collisionRect.width = std::any_cast<int>(property->getValue());
+        }
+        else if (name == "CollisionHeight")
+        {
+            m_collisionRect.height = std::any_cast<int>(property->getValue());
         }
         else if (name == "TextureRectTop")
         {
@@ -120,8 +137,28 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
         gameObject->addComponent<DestructionComponent>(*gameObject, *healthComp);
 
         b2PolygonShape polygonShape;
+        if (m_collisionRect.width > 0 && m_collisionRect.height >0 )
+        {
+            const auto size = PhysicsManager::t2b(tson::Vector2i{m_collisionRect.getSize().x, m_collisionRect.getSize().y}, true);
+            const auto centerPos = PhysicsManager::t2b(tson::Vector2i{m_collisionRect.getSize().x + m_collisionRect.left,
+                                                                      m_collisionRect.getSize().y + m_collisionRect.top},
+                                                       true);
+            const auto centerPosOffset = PhysicsManager::t2b(tson::Vector2i{m_collisionRect.left,
+                                                                      m_collisionRect.top},
+                                                       true);
+            polygonShape.SetAsBox(size.x / 2,
+                                  size.y / 2,
+                                  b2Vec2{centerPos.x / 2 + centerPosOffset.x / 2, centerPos.y / 2 + centerPosOffset.y / 2},
+                                  0);
+        }
+        else
+        {
         const auto     size = PhysicsManager::t2b(object.getSize(), true);
-        polygonShape.SetAsBox(size.x / 2, size.y / 2, b2Vec2{size.x / 2, size.y / 2}, 0);
+        polygonShape.SetAsBox(size.x / 2 ,
+                              size.y / 2 ,
+                              b2Vec2{size.x / 2 , size.y / 2},
+                              0);
+        }
         b2FixtureDef fixtureDef{};
         fixtureDef.shape   = &polygonShape;
         fixtureDef.density = 1; //TOdo load from tiled
