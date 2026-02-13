@@ -1,0 +1,54 @@
+Panel.ScorePanel {
+    Size = (18%, 8%);
+
+	Renderer { 
+ 	    BorderColor = rgba(55, 52, 50);
+            Borders = (20, 5, 20, 5);
+	}
+
+
+    Label.Score {
+        Text = "0";
+        Position = (8%, 12%);
+        TextSize = 20;
+
+	Renderer {
+            TextColor = rgb(255, 255, 255)
+    	}
+    }
+
+    Picture.ItemIcon {
+        Position = (55%, 0%);  
+        Size = (30%, 90%);
+        Visible = true;  
+
+	Renderer {
+	   
+	}      
+    }
+}
+
+Panel.HealthPanel {
+    Size = (45, 7);
+    Origin = (0.5, 0.5);
+
+	Renderer {
+	   BackgroundColor = rgba(0, 0, 0, 0);
+	}
+
+    ProgressBar.Health {
+        Position = (50%, 50%);
+        Origin = (0.5, 0.5);
+        Size = (70%, 70%);
+        Minimum = 0;
+        Maximum = 100;
+        Value = 100;
+
+        Renderer { 
+	    FillColor = rgb(170, 70, 70);
+       	    BackgroundColor = rgb(15, 10, 10);
+ 	    BorderColor = rgba(70, 30, 20);
+            Borders = (0, 0, 0, 2);
+	}
+    }
+}

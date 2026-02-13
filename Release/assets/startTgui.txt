@@ -1,0 +1,17 @@
+Picture.Logo {
+    Position = (50%, 40%);
+    Size = (25%, 40%);
+    Origin = (0.5, 0.5);
+
+	Renderer {
+       	    Texture = "../assets/logo.jpg" Smooth;
+    	}
+}
+
+Label.Credits {
+    Text = "Created by Christopher Kastner and Tim Paul";
+    TextSize = 24;
+    TextColor = White;
+    Position = ("50%", "75%");
+    Origin = (0.5, 0.5);
+}
