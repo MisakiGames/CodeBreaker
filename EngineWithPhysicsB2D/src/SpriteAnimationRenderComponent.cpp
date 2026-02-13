@@ -33,7 +33,7 @@ SpriteAnimationRenderComponent::~SpriteAnimationRenderComponent()
 
 bool SpriteAnimationRenderComponent::init()
 {
-    m_state = AnimationState::Idle;
+    m_state     = AnimationState::Idle;
     m_direction = Down;
     m_sprite.setTexture(m_textures[m_state]);
 
@@ -54,25 +54,25 @@ void SpriteAnimationRenderComponent::update(float deltaTime)
     if (m_lastFramePos != m_gameObject.getPosition())
     {
         auto dif = m_gameObject.getPosition() - m_lastFramePos;
-        if (dif.y > 0.01)
+        if (dif.y > m_moveThreshhold)
         {
             m_direction = Down;
             if (!m_stateSetThisFrame)
                 setStateSecret(AnimationState::Walk);
         }
-        if (dif.y < -0.01)
+        if (dif.y < -m_moveThreshhold)
         {
             m_direction = Up;
             if (!m_stateSetThisFrame)
                 setStateSecret(AnimationState::Walk);
         }
-        if (dif.x > 0.01)
+        if (dif.x > m_moveThreshhold)
         {
             m_direction = Right;
             if (!m_stateSetThisFrame)
                 setStateSecret(AnimationState::Walk);
         }
-        if (dif.x < -0.01)
+        if (dif.x < -m_moveThreshhold)
         {
             m_direction = Left;
             if (!m_stateSetThisFrame)

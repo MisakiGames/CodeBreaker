@@ -27,7 +27,7 @@ public:
                                    sf::RenderWindow& renderWindow,
                                    std::string       layerName,
                                    sf::IntRect       m_textureRect = sf::IntRect(),
-                                   sf::Vector2f      frameCount  = sf::Vector2f(1, 1));
+                                   sf::Vector2f      frameCount    = sf::Vector2f(1, 1));
 
     ~SpriteAnimationRenderComponent() override;
 
@@ -87,5 +87,6 @@ private:
     AnimationDirection                              m_direction;
     AnimationState                                  m_state             = AnimationState::Idle;
     bool                                            m_stateSetThisFrame = false;
+    float                                           m_moveThreshhold    = 0.01;
 };
 } // namespace mmt_gd

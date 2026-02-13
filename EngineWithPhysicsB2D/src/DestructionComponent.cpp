@@ -29,6 +29,7 @@ void DestructionComponent::update(float deltaTime)
     //we act like its destroyed when its yeetet to notherness :3
     if (!m_destroyed && !m_healthComponent.isAlive())
     {
+        //this number represents a player unreachable spot, therefore we can put "destroyed" stuff there
         setPosition(sf::Vector2f(-1500, -1500));
     }
     if (warp)

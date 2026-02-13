@@ -18,7 +18,7 @@ void MusicComponent::addMusic(const std::string& musicName, const std::string& f
 
     if (music->openFromFile(filePath))
     {
-        music->setVolume(volume); // Lautst�rke f�r diesen Musik-Track setzen
+        music->setVolume(volume);
         m_musics.emplace(musicName, std::move(music));
     }
     else
@@ -42,5 +42,4 @@ void MusicComponent::stopMusic(const std::string& musicName)
         m_musics[musicName]->stop();
     }
 }
-
 } // namespace mmt_gd

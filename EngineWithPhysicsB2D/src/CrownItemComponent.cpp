@@ -59,7 +59,7 @@ sf::Vector2f CrownItemComponent::getRandomPointInCircle(GameObject& player)
     const float         radius = 50;
     auto                center = player.getPosition();
     static std::mt19937 gen(std::random_device{}());
-    // Distribution for a square from -radius to +radius
+
     std::uniform_real_distribution<float> dist(-radius, radius);
 
     float x, y;
@@ -70,8 +70,6 @@ sf::Vector2f CrownItemComponent::getRandomPointInCircle(GameObject& player)
         x = dist(gen);
         y = dist(gen);
 
-        // Check if the point is within the circle's radius
-        // We use x*x + y*y instead of sqrt to keep it fast
         if (x * x + y * y <= radiusSquared)
         {
             return sf::Vector2f(center.x + x, center.y + y);
@@ -103,28 +101,21 @@ sf::Vector2f CrownItemComponent::getNearestSpaceSpot(sf::Vector2f point, sf::Int
 }
 sf::Vector2f CrownItemComponent::getClosestPointOutside(const sf::IntRect& rect, sf::Vector2f point)
 {
-    // Calculate the boundaries
     float left   = static_cast<float>(rect.left);
     float right  = static_cast<float>(rect.left + rect.width);
     float top    = static_cast<float>(rect.top);
     float bottom = static_cast<float>(rect.top + rect.height);
 
-    // 1. Check if the point is outside the rectangle
     if (point.x < left || point.x > right || point.y < top || point.y > bottom)
     {
-        // Point is already outside, return it as is
-        // (Or clamp it to the edge if you need the closest point ON the edge)
         return point;
     }
 
-    // 2. If we are here, the point is INSIDE.
-    // Find the distance to each of the four edges.
     float distToLeft   = point.x - left;
     float distToRight  = right - point.x;
     float distToTop    = point.y - top;
     float distToBottom = bottom - point.y;
 
-    // 3. Find the smallest distance and snap to that edge
     float minDist = std::min({distToLeft, distToRight, distToTop, distToBottom});
 
     if (minDist == distToLeft)

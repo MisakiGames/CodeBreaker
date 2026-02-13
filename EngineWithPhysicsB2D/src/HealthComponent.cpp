@@ -48,10 +48,7 @@ void HealthComponent::takeDamage(const float damage)
     {
         return;
     }
-    std::cout << "CurrentHealth: " << m_currentHealth << std::endl;
-    std::cout << "Damage: " << damage << std::endl;
     m_currentHealth -= damage;
-    std::cout << "CurrentHealthAfterDamage: " << m_currentHealth << std::endl;
     if (m_currentHealth <= 0)
     {
         m_currentHealth = 0;

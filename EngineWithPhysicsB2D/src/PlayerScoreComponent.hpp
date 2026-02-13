@@ -19,7 +19,6 @@ public:
     }
     void update(float deltaTime) override
     {
-        //std::cout << m_score << std::endl;
         if (m_hasCrown)
             m_score += deltaTime * m_pointsPerSecond;
     }
@@ -49,6 +48,6 @@ public:
 private:
     bool        m_hasCrown        = false;
     float       m_score           = 0;
-    const float m_pointsPerSecond = 0.f;
+    const float m_pointsPerSecond = 3.f;
 };
 } // namespace mmt_gd

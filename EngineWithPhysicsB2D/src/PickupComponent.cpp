@@ -32,7 +32,6 @@ void PickupComponent::pickup(ItemComponent& pickedUpItem)
 {
     if (pickedUpItem.getType() == ItemType::Crown)
     {
-        std::cout << m_crownCooldown << "," << m_crownMaxCooldown << std::endl;
         if (m_crownCooldown < m_crownMaxCooldown)
             return;
         pickedUpItem.setPickup(false);
