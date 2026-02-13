@@ -53,7 +53,9 @@ void MainState::init()
     }
     else
     {
+#ifdef DEBUG
         sf::err() << "Could not load tile map\n";
+#endif
     }
 
     // Load sounds
@@ -154,7 +156,9 @@ void MainState::init()
 
     if (!winSound->init())
     {
+#ifdef DEBUG
         sf::err() << "Could not initialize sound\n";
+#endif
     }
 
     EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(winSound));
@@ -164,7 +168,9 @@ void MainState::init()
 
     if (!backgroundMusic->init())
     {
+#ifdef DEBUG
         sf::err() << "Could not initialize music\n";
+#endif
     }
 
     EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(backgroundMusic));

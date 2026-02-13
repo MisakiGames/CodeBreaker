@@ -3,27 +3,28 @@
 //by Christopher Kastner and Tim Paul
 #include "stdafx.hpp"
 
-#include "GameObject.hpp"
 #include "SoundComponent.hpp"
+
+#include "GameObject.hpp"
 #include "SFML/Audio.hpp"
+
 #include <random>
 
 namespace mmt_gd
 {
-
 void SoundComponent::addSound(const std::string& soundName, std::string filePath, float volume = 100.0f)
 {
     if (!m_soundsBuffers[soundName].loadFromFile(filePath))
     {
+#ifdef DEBUG
         sf::err() << "Could not load sound: " << filePath << std::endl;
+#endif
         return; // Stop if loading fails
     }
     m_sounds[soundName].setBuffer(m_soundsBuffers[soundName]);
     m_sounds[soundName].setVolume(volume);
     m_sounds[soundName].setRelativeToListener(false);
 }
-
-
 
 void SoundComponent::playSound(const std::string& soundName, bool checkIfPlay)
 {

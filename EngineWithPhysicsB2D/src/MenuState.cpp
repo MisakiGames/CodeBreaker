@@ -14,7 +14,6 @@
 #include "MusicComponent.hpp"
 #include "TGUI/TGUI.hpp"
 
-
 namespace mmt_gd
 {
 using namespace std;
@@ -39,14 +38,18 @@ void MenuState::init()
 
     //InputManager::getInstance().bind("Select", sf::Keyboard::Space, 0);
     InputManager::getInstance().bind("Select", 0u, 0);
+#ifdef DEBUG
     InputManager::getInstance().bind("debugdraw", sf::Keyboard::F1, 0);
+#endif
 
     try
     {
         m_game->getGui().loadWidgetsFromFile("../assets/menuTgui.txt");
     } catch (const tgui::Exception& e)
     {
+#ifdef DEBUG
         sf::err() << "TGUI Load Error: " << e.what() << std::endl;
+#endif
         return;
     }
 
@@ -61,7 +64,9 @@ void MenuState::init()
 
     if (!backgroundMusic->init())
     {
+#ifdef DEBUG
         sf::err() << "Could not initialize music\n";
+#endif
     }
 
     EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(backgroundMusic));
@@ -106,7 +111,6 @@ void MenuState::exit()
     auto backgroundMusic = m_gameObjectManager.getGameObject("BackgroundMusic");
     if (backgroundMusic)
         backgroundMusic->getComponent<MusicComponent>()->stopMusic("background");
-
 
     PROFILE_FUNCTION();
 

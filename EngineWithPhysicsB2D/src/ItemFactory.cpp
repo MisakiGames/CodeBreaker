@@ -96,7 +96,9 @@ std::vector<GameObject::Ptr> ItemFactory::createItem(
             });
         if (!item->init())
         {
+#ifdef DEBUG
             sf::err() << "Could not initialize item\n";
+#endif
         }
 
         EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(item));
@@ -250,7 +252,9 @@ GameObject::Ptr ItemFactory::createBombObject(sf::RenderWindow& window)
 
     if (!bomb->init())
     {
+#ifdef DEBUG
         sf::err() << "Could not initialize bomb\n";
+#endif
     }
 
     EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(bomb));

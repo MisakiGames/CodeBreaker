@@ -48,6 +48,6 @@ public:
 private:
     bool        m_hasCrown        = false;
     float       m_score           = 0;
-    const float m_pointsPerSecond = 3.f;
+    const float m_pointsPerSecond = 2.f;
 };
 } // namespace mmt_gd

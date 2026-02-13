@@ -71,7 +71,7 @@ private:
     sf::Vector2f        m_lastDashDirection;
 
     bool m_isDashing  = false;
-    bool m_canDash    = true;
+    bool m_canDash    = false;
     bool m_dashActive = true;
 
     float m_dashCooldown = 0.f;

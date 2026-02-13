@@ -44,7 +44,9 @@ bool GameObject::init() const
     {
         if (!comp->init())
         {
+#ifdef DEBUG
             sf::err() << "Could not initialize component of object " << m_id << '\n';
+#endif
             return false;
         }
     }

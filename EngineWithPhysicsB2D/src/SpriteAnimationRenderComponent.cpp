@@ -100,7 +100,9 @@ bool SpriteAnimationRenderComponent::loadAndMapTexture(std::string texturePath, 
     sf::Texture m_texture;
     if (!m_texture.loadFromFile(texturePath))
     {
+#ifdef DEBUG
         sf::err() << "Could not load texture from " << texturePath << '\n';
+#endif
         return false;
     }
     m_textures[state]      = m_texture;

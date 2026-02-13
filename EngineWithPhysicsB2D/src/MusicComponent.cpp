@@ -23,7 +23,9 @@ void MusicComponent::addMusic(const std::string& musicName, const std::string& f
     }
     else
     {
+#ifdef DEBUG
         sf::err() << "Could not load music: " << filePath << std::endl;
+#endif
     }
 }
 

@@ -13,11 +13,12 @@
 
 namespace mmt_gd
 {
-SpriteRenderComponent::SpriteRenderComponent(GameObject&       gameObject,
-                                             sf::RenderWindow& renderWindow,
-                                             std::string       textureFile,
-                                             std::string       layerName,
-                                             sf::IntRect       m_textureRect) :
+SpriteRenderComponent::SpriteRenderComponent(
+    GameObject&       gameObject,
+    sf::RenderWindow& renderWindow,
+    std::string       textureFile,
+    std::string       layerName,
+    sf::IntRect       m_textureRect) :
 IRenderComponent(gameObject, renderWindow),
 m_textureFile(std::move(textureFile)),
 m_layerName(std::move(layerName)),
@@ -37,7 +38,9 @@ bool SpriteRenderComponent::init()
     sf::Image image;
     if (!image.loadFromFile(m_textureFile))
     {
+#ifdef DEBUG
         sf::err() << "Could not load texture from " << m_textureFile << '\n';
+#endif
         return false;
     }
     image.createMaskFromColor(sf::Color::Black);

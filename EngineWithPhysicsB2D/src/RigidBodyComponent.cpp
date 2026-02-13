@@ -29,7 +29,9 @@ m_body(nullptr)
 
     if (m_body == nullptr)
     {
+#ifdef DEBUG
         sf::err() << "Error creating rigidbody\n";
+#endif
     }
 
     EventBus::getInstance().fireEvent(std::make_shared<RigidBodyCreateEvent>(*this));

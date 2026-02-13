@@ -4,6 +4,7 @@
 #include "stdafx.hpp"
 
 #include "BombAnimationComponent.hpp"
+
 #include "EventBus.hpp"
 #include "GameObject.hpp"
 #include "RenderComponentEvents.hpp"
@@ -17,12 +18,14 @@ BombAnimationComponent::BombAnimationComponent(
     std::string       layerName,
     float             speed,
     sf::IntRect       m_textureRect,
-    sf::Vector2f      frameCount):
+    sf::Vector2f      frameCount) :
 IRenderComponent(gameObject, renderWindow),
 m_textureFile(std::move(texturePath)),
 m_layerName(std::move(layerName)),
 m_textureRect(m_textureRect),
-m_hasTextureRect(m_textureRect.width > 0 && m_textureRect.height > 0),m_speed(speed),m_frameCount(frameCount)
+m_hasTextureRect(m_textureRect.width > 0 && m_textureRect.height > 0),
+m_speed(speed),
+m_frameCount(frameCount)
 {
     EventBus::getInstance().fireEvent(std::make_shared<RenderableCreateEvent>(m_layerName, *this));
 }
@@ -34,7 +37,9 @@ bool BombAnimationComponent::init()
 {
     if (!m_texture.loadFromFile(m_textureFile))
     {
+#ifdef DEBUG
         sf::err() << "Could not load texture from " << m_textureFile << '\n';
+#endif
         return false;
     }
     m_sprite.setTexture(m_texture);
@@ -51,7 +56,7 @@ void BombAnimationComponent::update(float deltaTime)
         return;
 
     m_time += deltaTime * m_speed;
-    int  animationFrame = static_cast<int>(m_time) % static_cast<int>(m_frameCount.x);
+    int animationFrame = static_cast<int>(m_time) % static_cast<int>(m_frameCount.x);
     if (animationFrame == m_frameCount.x - 1)
     {
         m_stop = true;
@@ -65,7 +70,6 @@ void BombAnimationComponent::update(float deltaTime)
                         m_textureRect.width,
                         m_textureRect.height);
     m_sprite.setTextureRect(newRect);
-
 }
 void BombAnimationComponent::draw()
 {

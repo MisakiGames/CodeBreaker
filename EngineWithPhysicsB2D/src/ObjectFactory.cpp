@@ -199,7 +199,9 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
 
     if (!gameObject->init())
     {
+#ifdef DEBUG
         sf::err() << "Could not initialize go " << gameObject->getId() << " in TileMap\n";
+#endif
     }
 
     EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(gameObject));
@@ -241,7 +243,9 @@ static GameObject::Ptr loadCollider(tson::Object& object, const std::string& lay
 
     if (!gameObject->init())
     {
+#ifdef DEBUG
         sf::err() << "Could not initialize go " << gameObject->getId() << " in TileMap\n";
+#endif
     }
 
     EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(gameObject));
@@ -292,10 +296,12 @@ static GameObject::Ptr loadTrigger(tson::Object& object, const std::string& laye
                       << other.getGameObject().getId() << ")\n";
         });
 #endif
+#ifdef DEBUG
     if (!gameObject->init())
     {
         sf::err() << "Could not initialize go " << gameObject->getId() << " in TileMap\n";
     }
+#endif
 
     EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(gameObject));
 
@@ -306,11 +312,12 @@ static GameObject::Ptr loadSpawn(const tson::Object& object, const std::string& 
 {
     auto gameObject = GameObject::create(object.getName());
     gameObject->setPosition(static_cast<float>(object.getPosition().x), static_cast<float>(object.getPosition().y));
-
+#ifdef DEBUG
     if (!gameObject->init())
     {
         sf::err() << "Could not initialize go " << gameObject->getId() << " in TileMap\n";
     }
+#endif
 
     EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(gameObject));
 
@@ -328,7 +335,9 @@ static GameObject::Ptr loadCrownSpace(const tson::Object& object, const std::str
 
     if (!gameObject->init())
     {
+#ifdef DEBUG
         sf::err() << "Could not initialize go " << gameObject->getId() << " in TileMap\n";
+#endif
     }
 
     EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(gameObject));
@@ -369,7 +378,9 @@ static GameObject::Ptr loadItemSpawner(tson::Object&        object,
 
     if (!gameObject->init())
     {
+#ifdef DEBUG
         sf::err() << "Could not initialize go " << gameObject->getId() << " in TileMap\n";
+#endif
     }
 
     EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(gameObject));

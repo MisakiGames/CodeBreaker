@@ -74,7 +74,9 @@ m_collisionCallback(std::move(collisionCallback))*/
 
         if (!gameObject->init())
         {
+#ifdef DEBUG
             sf::err() << "Could not initialize go " << gameObject->getId() << '\n';
+#endif
         }
 
         rigidBodyComponent->getB2Body()->SetEnabled(false);

@@ -392,13 +392,17 @@ GameObject::Ptr PlayerFactory::createPlayer(
 
     if (!player->init())
     {
+#ifdef DEBUG
         sf::err() << "Could not initialize player\n";
+#endif
     }
     EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(player));
 
     if (!dashGO->init())
     {
-        sf::err() << "Could not initialize player\n";
+#ifdef DEBUG
+        sf::err() << "Could not initialize dash\n";
+#endif
     }
     EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(dashGO));
 

@@ -31,7 +31,9 @@ void TileMapLoader::loadTileSetTextures(const std::unique_ptr<tson::Map>& map,
 
         if (!texture->loadFromFile((resourcePath / tileSet.getImagePath()).string()))
         {
+#ifdef DEBUG
             sf::err() << "Could not load texture " << resourcePath / tileSet.getImagePath() << '\n';
+#endif
             continue;
         }
         tileSets[tileSet.getName()] = texture;
@@ -136,7 +138,9 @@ void TileMapLoader::loadTileLayers(const std::unique_ptr<tson::Map>& map, const 
 
     if (!go->init())
     {
+#ifdef DEBUG
         sf::err() << "Could not initialize go " << go->getId() << " in TileMap\n";
+#endif
     }
 }
 

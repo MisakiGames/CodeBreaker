@@ -75,7 +75,9 @@ GameObject::Ptr ShipFactory::createPlayerShip(sf::RenderWindow& window)
 
     if (!player->init())
     {
+#ifdef DEBUG
         sf::err() << "Could not initialize player ship\n";
+#endif
     }
 
     EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(player));
@@ -138,7 +140,9 @@ GameObject::Ptr ShipFactory::createEnemyShip(sf::RenderWindow& window, GameObjec
 
     if (!enemy->init())
     {
+#ifdef DEBUG
         sf::err() << "Could not initialize enemy ship\n";
+#endif
     }
 
     EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(enemy));

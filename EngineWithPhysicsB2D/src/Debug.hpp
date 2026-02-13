@@ -3,6 +3,7 @@
 //by Christopher Kastner and Tim Paul
 #pragma once
 
+#include <SFML/System.hpp>
 #include <algorithm>
 #include <cassert>
 #include <chrono>
@@ -10,35 +11,32 @@
 #include <mutex>
 #include <string>
 #include <thread>
-#include <SFML/System.hpp>
 
 namespace mmt_gd
 {
 /**
  * \brief print error message with file and line number
  */
-#define FF_ERROR_MSG(Text)                                                          \
-    {                                                                                 \
+#define FF_ERROR_MSG(Text)                                                       \
+    {                                                                            \
         sf::err() << __FILE__ << " Line: " << __LINE__ << " " << (Text) << '\n'; \
     }
-
 
 #ifdef _DEBUG
 /**
  * \brief print error message and assert
  */
-#define ffAssertMsg(Expression, Text)                                                 \
-    {                                                                                     \
-        if (!(Expression))                                                                \
-        {                                                                                 \
+#define ffAssertMsg(Expression, Text)                                                \
+    {                                                                                \
+        if (!(Expression))                                                           \
+        {                                                                            \
             sf::err() << __FILE__ << " Line: " << __LINE__ << " " << (Text) << '\n'; \
-            assert(Expression);                                                           \
-        }                                                                                 \
+            assert(Expression);                                                      \
+        }                                                                            \
     }
 #else
 #define ffAssertMsg(Expression, Text)
 #endif
-
 
 #define PROFILING _DEBUG && true ///< set false to deactivate Profiling
 #ifdef PROFILING
@@ -147,7 +145,6 @@ class InstrumentationTimer
 
 public:
     explicit InstrumentationTimer(const std::string& name) : m_result({name, 0, 0, 0})
-
 
     {
         m_startTimepoint = std::chrono::high_resolution_clock::now();
