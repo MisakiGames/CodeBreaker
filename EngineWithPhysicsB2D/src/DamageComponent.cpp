@@ -21,6 +21,11 @@ bool DamageComponent::init()
 
 void DamageComponent::update(float deltaTime)
 {
+    for (auto removeMultiply : m_multipliersToRemove)
+    {
+        m_multipliers.remove(removeMultiply);
+    }
+    m_multipliersToRemove = m_multipliers;
 }
 
 int DamageComponent::getDamage()
@@ -28,8 +33,6 @@ int DamageComponent::getDamage()
     float m_damage = m_baseDamage;
     for (auto multiply : m_multipliers)
         m_damage *= multiply;
-    m_multipliers.clear();
-    m_multipliers.shrink_to_fit();
     return m_damage;
 }
 

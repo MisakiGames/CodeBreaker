@@ -44,7 +44,6 @@ void PlayerMoveComponent::update(const float deltaTime)
         {
             m_isDashing = false;
             m_canDash   = false;
-            m_baseDamage.setBaseDamage(1);
             for (auto sub : m_onDashEnd)
                 sub();
         }
@@ -71,8 +70,6 @@ void PlayerMoveComponent::update(const float deltaTime)
             m_isDashing = true;
             m_rigidBody.setVelocity(m_lastDashDirection * (speed * dashSpeedFactor));
             m_dashDuration += deltaTime;
-
-            m_baseDamage.setBaseDamage(m_dashDuration * dashDamageFactor + 1);
         }
 
         if (m_isDashing && (InputManager::getInstance().isKeyReleased("dash", m_playerIndex)))
@@ -93,7 +90,6 @@ void PlayerMoveComponent::update(const float deltaTime)
                 m_canDash      = true;
                 m_dashCooldown = 0.f;
                 m_dashDuration = 0.f;
-                m_baseDamage.setBaseDamage(1);
             }
         }
     }

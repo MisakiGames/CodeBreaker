@@ -156,9 +156,9 @@ GameObject::Ptr PlayerFactory::createPlayer(
         [damageWeakPtr = damageWeakPtr, moveWeakPtr = moveWeakPtr]()
         {
             if (auto damageComp = damageWeakPtr.lock())
-                {
+            {
                 if (auto moveComp = moveWeakPtr.lock())
-                damageComp->addMultiplier( moveComp->getDashTime() + 1);
+                    damageComp->addMultiplier(moveComp->getDashTime() + 1);
             }
         });
     move->subscribeToOnDash(
@@ -233,7 +233,6 @@ GameObject::Ptr PlayerFactory::createPlayer(
 
             if (damageComp && healthComp)
             {
-
                 if (!damageComp->isActive())
                     return;
                 if (damageComp->getOwnerId() != self.getGameObject().getId())
@@ -248,7 +247,6 @@ GameObject::Ptr PlayerFactory::createPlayer(
                     }
                     else if (other.getTag() != self.getGameObject().getId())
                     {
-                        std::cout << "Damage: " << damageComp->getDamage() << std::endl;
                         healthComp->takeDamage(damageComp->getDamage());
                     }
                 }

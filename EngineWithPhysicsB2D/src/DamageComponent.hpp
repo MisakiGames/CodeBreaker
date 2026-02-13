@@ -39,9 +39,10 @@ public:
     }
 
 private:
-    float         m_baseDamage;
-    std::string m_ownerId;
-    bool        m_isActive     = true;
-    std::vector<float> m_multipliers;
+    float            m_baseDamage;
+    std::string      m_ownerId;
+    bool             m_isActive = true;
+    std::list<float> m_multipliers;
+    std::list<float> m_multipliersToRemove;
 };
 } // namespace mmt_gd
