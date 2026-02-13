@@ -1,5 +1,5 @@
-Panel.Player {
-    Size = (18%, 12%);
+Panel.ScorePanel {
+    Size = (18%, 8%);
 
 	Renderer { 
  	    BorderColor = rgba(55, 52, 50);
@@ -17,9 +17,28 @@ Panel.Player {
     	}
     }
 
+    Picture.ItemIcon {
+        Position = (55%, 0%);  
+        Size = (30%, 90%);
+        Visible = true;  
+
+	Renderer {
+	   
+	}      
+    }
+}
+
+Panel.HealthPanel {
+    Size = (45, 7);
+
+	Renderer {
+	   BackgroundColor = rgba(0, 0, 0, 0);
+	}
+
     ProgressBar.Health {
-        Position = (8%, 68%);
-        Size = (250, 22%);
+        Position = (50%, 50%);
+        Origin = (0.5, 0.5);
+        Size = (90%, 90%);
         Minimum = 0;
         Maximum = 100;
         Value = 100;
@@ -28,17 +47,7 @@ Panel.Player {
 	    FillColor = rgb(170, 70, 70);
        	    BackgroundColor = rgb(15, 10, 10);
  	    BorderColor = rgba(70, 30, 20);
-            Borders = (0, 0, 0, 5);
-
+            Borders = (0, 0, 0, 1);
 	}
-    }
-
-    Picture.Crown {
-        Position = (55%, 0%);
-        Size = (30%, 80%);
-
-	Renderer {
-       	    Texture = "../assets/crown.png" Smooth;
-    	}
     }
 }

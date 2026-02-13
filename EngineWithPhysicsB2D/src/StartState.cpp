@@ -22,7 +22,7 @@ void StartState::init()
         return;
     }
 
-    InputManager::getInstance().bind("Skip", sf::Keyboard::Space, 0);
+    InputManager::getInstance().bind("Skip", 0u, 0);
 
     m_accumulatedTime = 0.0f;
 }
