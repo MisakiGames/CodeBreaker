@@ -61,11 +61,14 @@
     <Filter Include="Source Files\Animations">
       <UniqueIdentifier>{06ab3e91-e435-4694-853d-d496d0686ad2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Factorys">
+      <UniqueIdentifier>{fc34271d-da29-461b-9acf-3d97b77e7fec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Factorys">
+      <UniqueIdentifier>{6f388482-b6a0-4993-877f-2702b20ac88f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="../src/stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\Game.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -135,15 +138,6 @@
     <ClInclude Include="..\src\FinalFrontier\dll_export.hpp">
       <Filter>Header Files\FinalFrontier</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\VectorAlgebra3D.h">
-      <Filter>Header Files\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Trigonometry.h">
-      <Filter>Header Files\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\VectorAlgebra2D.h">
-      <Filter>Header Files\Math</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\TileMapLoader.hpp">
       <Filter>Header Files\Map</Filter>
     </ClInclude>
@@ -180,80 +174,95 @@
     <ClInclude Include="..\src\PlayerShootComponent.hpp">
       <Filter>Header Files\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\ObjectFactory.hpp">
-      <Filter>Header Files\Map</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\ColliderComponent.hpp">
       <Filter>Header Files\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\DamageComponent.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\DestructionComponent.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\EnemyAIComponent.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\HealthComponent.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\ShipFactory.hpp">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\ObservableProperty.hpp">
       <Filter>Header Files\Events</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\PlayerFactory.h">
+    <ClInclude Include="../src/stdafx.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\SpriteAnimationRenderComponent.h">
+    <ClInclude Include="..\src\BombAnimationComponent.hpp">
       <Filter>Header Files\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\DeadComponent.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\src\BombItemComponent.hpp">
+      <Filter>Header Files\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\ItemComponent.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\src\CrownItemComponent.hpp">
+      <Filter>Header Files\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\ItemFactory.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\src\DamageComponent.hpp">
+      <Filter>Header Files\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\PickupComponent.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\src\DashReferenceComponent.hpp">
+      <Filter>Header Files\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\PlayerScoreComponent.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\src\DeadComponent.hpp">
+      <Filter>Header Files\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\RespawnComponent.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\src\DestructionComponent.hpp">
+      <Filter>Header Files\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\ItemSpawnerComponent.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\src\EnemyAIComponent.hpp">
+      <Filter>Header Files\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\BombAnimationComponent.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\src\FollowPlayer.hpp">
+      <Filter>Header Files\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\BombItemComponent.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\src\HealthComponent.hpp">
+      <Filter>Header Files\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\CrownItemComponent.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\src\ItemComponent.hpp">
+      <Filter>Header Files\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\MusicComponent.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\src\ItemSpawnerComponent.hpp">
+      <Filter>Header Files\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\RectComponent.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\src\MusicComponent.hpp">
+      <Filter>Header Files\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\ResizeItemComponent.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\src\PickupComponent.hpp">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ItemFactory.hpp">
+      <Filter>Header Files\Factorys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\PlayerFactory.hpp">
+      <Filter>Header Files\Factorys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ObjectFactory.hpp">
+      <Filter>Header Files\Factorys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\PlayerScoreComponent.hpp">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\RectComponent.hpp">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ResizeItemComponent.hpp">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\RespawnComponent.hpp">
+      <Filter>Header Files\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="..\src\SoundComponent.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\StartState.hpp">
-      <Filter>Header Files\GameState</Filter>
+    <ClInclude Include="..\src\SpriteAnimationRenderComponent.hpp">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ShipFactory.hpp">
+      <Filter>Header Files\Factorys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Trigonometry.hpp">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\VectorAlgebra2D.hpp">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\VectorAlgebra3D.hpp">
+      <Filter>Header Files\Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -344,68 +353,74 @@
     <ClCompile Include="..\src\ColliderComponent.cpp">
       <Filter>Source Files\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\DamageComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\DestructionComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\EnemyAIComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\HealthComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\ShipFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\PlayerFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\SpriteAnimationRenderComponent.cpp">
       <Filter>Source Files\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\DeadComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\ItemComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\ItemFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\PickupComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\PlayerScoreComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\RespawnComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\ItemSpawnerComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\BombAnimationComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\BombItemComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\CrownItemComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\MusicComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\ResizeItemComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\SoundComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\StartState.cpp">
       <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\BombAnimationComponent.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\BombItemComponent.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CrownItemComponent.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\DamageComponent.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\DashReferenceComponent.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\DeadComponent.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\DestructionComponent.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\EnemyAIComponent.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\FollowPlayer.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\HealthComponent.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ItemFactory.cpp">
+      <Filter>Source Files\Factorys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ItemComponent.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ItemSpawnerComponent.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MusicComponent.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\PickupComponent.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\PlayerScoreComponent.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ResizeItemComponent.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\RespawnComponent.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\PlayerFactory.cpp">
+      <Filter>Source Files\Factorys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ShipFactory.cpp">
+      <Filter>Source Files\Factorys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\SoundComponent.cpp">
+      <Filter>Source Files\GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
