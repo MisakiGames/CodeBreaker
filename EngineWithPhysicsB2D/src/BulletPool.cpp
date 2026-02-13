@@ -82,8 +82,9 @@ m_collisionCallback(std::move(collisionCallback))*/
         gameObject->setActive(false);
         EventBus::getInstance().fireEvent(std::make_shared<GameObjectCreateEvent>(gameObject));
     }
-
+#ifdef DEBUG
     std::cout << "## pool-size: " << m_pool.size() << '\n';
+#endif
 }
 
 mmt_gd::GameObject::Ptr mmt_gd::BulletPool::get()

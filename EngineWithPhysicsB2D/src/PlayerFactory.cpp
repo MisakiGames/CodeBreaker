@@ -266,7 +266,6 @@ GameObject::Ptr PlayerFactory::createPlayer(
                 {
                     if (!healthComp->isAlive())
                         return;
-                    std::cout << other.getTag() << std::endl;
                     if (other.getTag() == "InstaKill")
                     {
                         healthComp->kill();
@@ -340,7 +339,6 @@ GameObject::Ptr PlayerFactory::createPlayer(
         {
             auto itemComp   = other.getGameObject().getComponent<ItemComponent>();
             auto pickupComp = self.getGameObject().getComponent<PickupComponent>();
-            std::cout << "pickup" << std::endl;
 
             if (itemComp && pickupComp)
             {

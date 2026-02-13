@@ -2,15 +2,16 @@
 //in the Multimedia Technology class at the FH Salzburg,
 //by Christopher Kastner and Tim Paul
 #include "stdafx.hpp"
-#include "GameObjectEvents.hpp"
-#include "ObjectFactory.hpp"
-#include "TileLayerRenderComponent.hpp"
-#include "Tileson.hpp"
-#include "GameObjectManager.hpp"
-#include <iostream>
 
 #include "TileMapLoader.hpp"
 
+#include "GameObjectEvents.hpp"
+#include "GameObjectManager.hpp"
+#include "ObjectFactory.hpp"
+#include "TileLayerRenderComponent.hpp"
+#include "Tileson.hpp"
+
+#include <iostream>
 
 namespace mmt_gd
 {
@@ -134,11 +135,10 @@ void TileMapLoader::loadTileLayers(const std::unique_ptr<tson::Map>& map, const 
     }
 }
 
-
 void TileMapLoader::loadObjectLayers(const std::unique_ptr<tson::Map>& map,
                                      const fs::path&                   resourcePath,
                                      const SpriteManager&              spriteManager,
-    GameObjectManager& goManager)
+                                     GameObjectManager&                goManager)
 {
     // go through all object layers
     for (auto& layer : map->getLayers())

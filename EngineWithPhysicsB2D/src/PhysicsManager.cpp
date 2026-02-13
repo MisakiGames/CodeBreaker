@@ -34,7 +34,6 @@ void PhysicsManager::BeginContact(b2Contact* contact)
     {
         if (colliderA->getGameObjectDeleted() && colliderB->getGameObjectDeleted())
         {
-            std::cout << "gameobject destroyed" << std::endl;
             return;
         }
         colliderA->onCollisionEnter(*colliderB);

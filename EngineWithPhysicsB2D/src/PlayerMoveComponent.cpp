@@ -53,9 +53,8 @@ void PlayerMoveComponent::update(const float deltaTime)
     auto speed            = 250.f;
     auto dashSpeedFactor  = 5.f;
     auto dashCooldownTime = 0.1f;
-    auto dashDamageFactor = 50000.f;
 
-    if (m_dashActive)
+    if (m_dashActive && (m_lastDashDirection.x != 0 || m_lastDashDirection.y != 0))
     {
         if (InputManager::getInstance().isKeyDown("dash", m_playerIndex) && m_canDash)
         {
@@ -98,11 +97,10 @@ void PlayerMoveComponent::update(const float deltaTime)
                 m_dashDuration = 0.f;
             }
         }
+        // Normal movement
+        if (m_isDashing)
+            return;
     }
-
-    // Normal movement
-    if (m_isDashing)
-        return;
 
     sf::Vector2f movement(0.f, 0.f);
 
