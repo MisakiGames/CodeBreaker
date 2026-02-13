@@ -22,8 +22,10 @@ void TileMapLoader::loadTileSetTextures(const std::unique_ptr<tson::Map>& map,
 {
     for (const auto& tileSet : map->getTilesets())
     {
+#ifdef DEBUG
         std::cout << "Load tileset: " << tileSet.getName() << " width filename: " << tileSet.getImagePath()
                   << " and tile size: " << tileSet.getTileSize().x << ", " << tileSet.getTileSize().y << '\n';
+#endif
 
         const auto texture = std::make_shared<sf::Texture>();
 
@@ -80,8 +82,10 @@ void TileMapLoader::createTileSprite(
 
 void TileMapLoader::loadTileLayers(const std::unique_ptr<tson::Map>& map, const fs::path& resourcePath, SpriteManager& spriteManager)
 {
+#ifdef DEBUG
     std::cout << "Load tileMap with size: " << map->getSize().x << "x" << map->getSize().y
               << " and tile size: " << map->getTileSize().x << "x" << map->getTileSize().y << '\n';
+#endif
 
     spriteManager.setTileSize({map->getTileSize().x, map->getTileSize().y});
 
@@ -95,9 +99,10 @@ void TileMapLoader::loadTileLayers(const std::unique_ptr<tson::Map>& map, const 
     for (auto layerIdx = 0; layerIdx < static_cast<int>(map->getLayers().size()); layerIdx++)
     {
         tson::Layer layer = map->getLayers()[layerIdx];
-
+#ifdef DEBUG
         std::cout << "Load layer: " << layer.getName() << " with width: " << layer.getSize().x
                   << " and height: " << layer.getSize().y << '\n';
+#endif
 
         const auto size = layer.getSize().x * layer.getSize().y;
 

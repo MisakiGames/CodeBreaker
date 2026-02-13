@@ -26,9 +26,8 @@ public:
                         DamageComponent&    damage,
                         int                 playerIndex = 0);
 
-
-    bool init() override;
-    void update(float deltaTime) override;
+    bool  init() override;
+    void  update(float deltaTime) override;
     float getDashTime()
     {
         return m_dashDuration;
@@ -36,6 +35,10 @@ public:
     void OnCollision();
     void deactivateDash()
     {
+        for (auto sub : m_onDashEnd)
+            sub();
+        m_isDashing  = false;
+        m_canDash    = false;
         m_dashActive = false;
     }
     void activateDash()

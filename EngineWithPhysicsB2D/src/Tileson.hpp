@@ -3026,7 +3026,9 @@ public:
             *m_data = json11::Json::parse(str, strError);
             if (!strError.empty())
             {
+#ifdef DEBUG
                 std::cout << strError << "\n";
+#endif
                 return false;
             }
             m_json = m_data.get();

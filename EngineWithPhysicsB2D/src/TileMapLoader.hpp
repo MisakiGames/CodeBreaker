@@ -6,6 +6,7 @@
 #include "SpriteManager.hpp"
 #include "TileLayerRenderComponent.hpp"
 #include "Tileson.hpp"
+#include "GameObjectManager.hpp"
 
 namespace mmt_gd
 {
