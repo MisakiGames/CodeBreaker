@@ -74,7 +74,7 @@ private:
     bool m_canDash    = false;
     bool m_dashActive = true;
 
-    float m_dashCooldown = 0.f;
+    float m_dashCooldown = 0.1f;
     float m_dashDuration = 0.f;
 
     std::vector<std::function<void()>> m_onDash;

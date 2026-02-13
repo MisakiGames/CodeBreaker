@@ -31,7 +31,7 @@ private:
     GameObject::Ptr m_camera;
 
     const float m_maxScore = 100;
-    const float m_winDelay = 8.f;
+    const float m_winDelay = 5.f;
     float       m_winTimer = 0.f;
     bool        m_gameEnded = false;
 

@@ -119,7 +119,7 @@ void MainState::init()
         {
             auto panel = tgui::Panel::copy(scorePanel);
             panel->setVisible(true);
-            panel->setPosition({tgui::Layout(std::to_string(2 + i * 26) + "%"), "86%"});
+            panel->setPosition({tgui::Layout(std::to_string(2 + i * 26) + "%"), "92%"});
 
             if (auto renderer = panel->getRenderer())
             {
@@ -189,10 +189,21 @@ void MainState::update(const float deltaTime)
     m_gameObjectManager.update(deltaTime);
     m_physicsManager.update(deltaTime);
 
+
+    if (m_gameEnded)
+    {
+        m_winTimer += deltaTime;
+        if (m_winTimer >= m_winDelay)
+            m_gameStateManager->setState("MenuState");
+
+        return;
+    }
+
     for (size_t i = 0; i < m_players.size(); ++i)
     {
         auto  scorePanel  = m_game->getGui().get<tgui::Panel>("ScoreUI_" + std::to_string(i));
         auto  healthPanel = m_game->getGui().get<tgui::Panel>("HealthUI_" + std::to_string(i));
+        auto  camComp     = m_camera->getComponent<CameraRenderComponent>();
         auto& player      = m_players[i];
 
         auto healthComp = player->getComponent<HealthComponent>();
@@ -201,19 +212,23 @@ void MainState::update(const float deltaTime)
 
         auto healthBarOffset = 20.f;
 
-        if (healthPanel)
+        if (healthPanel && camComp)
         {
-            sf::Vector2f worldPos = player->getPosition();
-            worldPos.y -= healthBarOffset;
+            float currentZoom = camComp->getZoom();
+            float guiScale    = 1.0f / currentZoom;
 
-            sf::Vector2i screenPos = m_game->getWindow().mapCoordsToPixel(worldPos, m_game->getWindow().getView());
+            healthPanel->setScale({guiScale, guiScale});
 
             auto playerWidth = player->getComponent<SpriteAnimationRenderComponent>()->getSprite().getTextureRect().width *
                                player->getScale().x;
 
-            healthPanel->setPosition(
-                {static_cast<float>(screenPos.x) + (playerWidth / 2.f) - (healthPanel->getSize().x / 2),
-                 static_cast<float>(screenPos.y)});
+            sf::Vector2f worldPos = player->getPosition();
+            worldPos.y -= healthBarOffset;
+            worldPos.x += (playerWidth / 2.f); 
+
+            sf::Vector2i screenPos = m_game->getWindow().mapCoordsToPixel(worldPos, m_game->getWindow().getView());
+
+            healthPanel->setPosition({static_cast<float>(screenPos.x), static_cast<float>(screenPos.y)});
 
             if (healthComp)
             {
@@ -257,13 +272,6 @@ void MainState::update(const float deltaTime)
                 }
             }
         }
-
-        if (m_gameEnded)
-        {
-            m_winTimer += deltaTime;
-            if (m_winTimer >= m_winDelay)
-                m_gameStateManager->setState("MenuState");
-        }
     }
 }
 
@@ -282,13 +290,22 @@ void MainState::endGame(std::shared_ptr<GameObject> winner)
 
     // deactivate input
     auto& input = InputManager::getInstance();
-    for (int i = 1; i < m_players.size(); ++i)
+    for (int i = 0; i < m_players.size(); ++i)
     {
         input.unbind("left", i);
         input.unbind("right", i);
         input.unbind("up", i);
         input.unbind("down", i);
         input.unbind("dash", i);
+    }
+
+    // Healthbars ausblenden bei Spielende
+    for (size_t i = 0; i < m_players.size(); ++i)
+    {
+        if (auto healthPanel = m_game->getGui().get<tgui::Panel>("HealthUI_" + std::to_string(i)))
+        {
+            healthPanel->setVisible(false);
+        }
     }
 
     // focus camera on winning player

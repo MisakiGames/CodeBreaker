@@ -29,6 +29,11 @@ public:
 
     void setTargets(const std::vector<std::shared_ptr<GameObject>>& targets);
 
+    float getZoom() const
+    {
+        return m_currentZoom;
+    }
+
 private:
     sf::Vector2f m_baseSize;
     sf::View m_view;

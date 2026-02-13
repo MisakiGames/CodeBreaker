@@ -79,7 +79,6 @@ GameObject::Ptr PlayerFactory::createPlayer(
 
     player->setScale(scaleFaktor, scaleFaktor);
     auto playerRect = sf::IntRect(15, 18, 18, 26);
-    //auto playerRect = sf::IntRect(18, 20, 12, 24);
     auto spriteComp = player->addComponent<
         SpriteAnimationRenderComponent>(*player, window, "GameObjects", playerRect, sf::Vector2f(8, 6));
     std::weak_ptr<SpriteAnimationRenderComponent> spriteWeakPtr = spriteComp;
@@ -158,7 +157,7 @@ GameObject::Ptr PlayerFactory::createPlayer(
             if (auto damageComp = damageWeakPtr.lock())
             {
                 if (auto moveComp = moveWeakPtr.lock())
-                    damageComp->addMultiplier(moveComp->getDashTime() + 1);
+                    damageComp->addMultiplier(moveComp->getDashTime() * 5 + 1);
             }
         });
     move->subscribeToOnDash(
@@ -384,7 +383,7 @@ GameObject::Ptr PlayerFactory::createPlayer(
             if (auto damageComp = damageWeakPtr.lock())
             {
                 if (auto moveComp = moveWeakPtr.lock())
-                    damageComp->addMultiplier(moveComp->getDashTime() + 1);
+                    damageComp->addMultiplier(moveComp->getDashTime() * 5 + 1);
             }
         });
 

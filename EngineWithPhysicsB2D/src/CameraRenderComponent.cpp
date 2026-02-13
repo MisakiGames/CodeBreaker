@@ -69,12 +69,14 @@ void CameraRenderComponent::update(float deltaTime)
 
             playerCenter += pos;
         }
+
+        float width      = maxX - minX;
+        float height     = maxY - minY;
+
         //This function is more of a action camera:
         //playerCenter = playerCenter / static_cast<float>(m_targets.size());
 
         //This function assures that the camera always keeps all players in view:
-        float width      = maxX - minX;
-        float height     = maxY - minY;
         auto  a          = maxX - (width / 2);
         auto  b          = maxY - (height / 2) + m_padding / 4;
         playerCenter = sf::Vector2f(a, b);

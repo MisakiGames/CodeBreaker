@@ -97,11 +97,11 @@ void PlayerMoveComponent::update(const float deltaTime)
                 m_dashDuration = 0.f;
             }
         }
-        // Normal movement
         if (m_isDashing)
             return;
     }
 
+    // Normal movement
     sf::Vector2f movement(0.f, 0.f);
 
     if (InputManager::getInstance().isKeyDown("right", m_playerIndex))
