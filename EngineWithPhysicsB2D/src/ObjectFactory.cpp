@@ -137,15 +137,14 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
         gameObject->addComponent<DestructionComponent>(*gameObject, *healthComp);
 
         b2PolygonShape polygonShape;
-        if (m_collisionRect.width > 0 && m_collisionRect.height >0 )
+        if (m_collisionRect.width > 0 && m_collisionRect.height > 0)
         {
-            const auto size = PhysicsManager::t2b(tson::Vector2i{m_collisionRect.getSize().x, m_collisionRect.getSize().y}, true);
+            const auto size = PhysicsManager::t2b(tson::Vector2i{m_collisionRect.getSize().x, m_collisionRect.getSize().y},
+                                                  true);
             const auto centerPos = PhysicsManager::t2b(tson::Vector2i{m_collisionRect.getSize().x + m_collisionRect.left,
                                                                       m_collisionRect.getSize().y + m_collisionRect.top},
                                                        true);
-            const auto centerPosOffset = PhysicsManager::t2b(tson::Vector2i{m_collisionRect.left,
-                                                                      m_collisionRect.top},
-                                                       true);
+            const auto centerPosOffset = PhysicsManager::t2b(tson::Vector2i{m_collisionRect.left, m_collisionRect.top}, true);
             polygonShape.SetAsBox(size.x / 2,
                                   size.y / 2,
                                   b2Vec2{centerPos.x / 2 + centerPosOffset.x / 2, centerPos.y / 2 + centerPosOffset.y / 2},
@@ -153,11 +152,8 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
         }
         else
         {
-        const auto     size = PhysicsManager::t2b(object.getSize(), true);
-        polygonShape.SetAsBox(size.x / 2 ,
-                              size.y / 2 ,
-                              b2Vec2{size.x / 2 , size.y / 2},
-                              0);
+            const auto size = PhysicsManager::t2b(object.getSize(), true);
+            polygonShape.SetAsBox(size.x / 2, size.y / 2, b2Vec2{size.x / 2, size.y / 2}, 0);
         }
         b2FixtureDef fixtureDef{};
         fixtureDef.shape   = &polygonShape;
@@ -165,6 +161,22 @@ static GameObject::Ptr loadSprite(tson::Object&        object,
 
         auto collider = gameObject->addComponent<ColliderComponent>(*gameObject, *rigidComp, fixtureDef);
         collider->registerOnCollisionEnterFunction(
+            [](ColliderComponent& self, ColliderComponent& other)
+            {
+                auto damageComp = other.getGameObject().getComponent<DamageComponent>();
+                auto healthComp = self.getGameObject().getComponent<HealthComponent>();
+
+                if (damageComp && healthComp)
+                {
+                    if (!damageComp->isActive())
+                        return;
+                    if (damageComp->getOwnerId() != self.getGameObject().getId())
+                    {
+                        healthComp->takeDamage(damageComp->getDamage());
+                    }
+                }
+            });
+        collider->registerOnCollisionStayFunction(
             [](ColliderComponent& self, ColliderComponent& other)
             {
                 auto damageComp = other.getGameObject().getComponent<DamageComponent>();

@@ -71,7 +71,13 @@ void PlayerMoveComponent::update(const float deltaTime)
             m_rigidBody.setVelocity(m_lastDashDirection * (speed * dashSpeedFactor));
             m_dashDuration += deltaTime;
         }
+        if (m_isDashing && !m_canDash)
+        {
+            m_isDashing = false;
 
+            for (auto sub : m_onDashEnd)
+                sub();
+        }
         if (m_isDashing && (InputManager::getInstance().isKeyReleased("dash", m_playerIndex)))
         {
             m_isDashing = false;
@@ -134,13 +140,7 @@ void PlayerMoveComponent::OnCollision()
 {
     if (m_isDashing)
     {
-        m_canDash   = false;
-        m_isDashing = false;
-
-        std::cout << "Damage: " << m_baseDamage.getDamage() << std::endl;
-
-        for (auto sub : m_onDashEnd)
-            sub();
+        m_canDash = false;
     }
 }
 
