@@ -17,6 +17,7 @@ public:
     PickupComponent(GameObject& gameObject, PlayerScoreComponent& scoreComp) :
     IComponent(gameObject),
     m_scoreComp(scoreComp) {};
+
     bool init() override
     {
         return true;
@@ -26,6 +27,7 @@ public:
     void     loseAllItem();
     void     loseItem();
     void     loseCrown();
+
     ItemType getItemType()
     {
         if (!holdingItem)
@@ -50,10 +52,13 @@ private:
     ItemComponent*                     holdingItem = nullptr;
     ItemComponent*                     m_crown     = nullptr;
     PlayerScoreComponent&              m_scoreComp;
+
     float                              m_itemUseTime  = 0;
     bool                               m_gotThisFrame = false;
+
     std::vector<std::function<void()>> m_onPickup;
     std::vector<std::function<void()>> m_onLoseCrown;
+
     float                              m_crownMaxCooldown = 1;
     float                              m_crownCooldown    = m_crownMaxCooldown;
 };

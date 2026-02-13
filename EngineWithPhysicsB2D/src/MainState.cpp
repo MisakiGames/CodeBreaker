@@ -13,10 +13,12 @@
 #include "InputManager.hpp"
 #include "ItemFactory.hpp"
 #include "MusicComponent.hpp"
+#include "PickupComponent.hpp"
 #include "PlayerFactory.hpp"
 #include "PlayerScoreComponent.hpp"
 #include "ShipFactory.hpp"
 #include "SoundComponent.hpp"
+#include "SpriteAnimationRenderComponent.hpp"
 #include "TileMapLoader.hpp"
 #include "Tileson.hpp"
 #include "TransformAnimationComponent.hpp"
@@ -63,8 +65,12 @@ void MainState::init()
         m_players.push_back(
             PlayerFactory::createPlayer(m_game->getWindow(), config.spawn, m_gameObjectManager, config.id, config.color));
     }
+
+    // Create Crown
     auto crown = ItemFactory::createItem(m_game->getWindow(), ItemType::Crown, m_gameObjectManager, 1);
-    m_camera   = GameObject::create("Camera");
+
+    // Create camera
+    m_camera = GameObject::create("Camera");
     {
         const auto renderComp = m_camera->addComponent<CameraRenderComponent>(*m_camera,
                                                                               m_game->getWindow(),
@@ -91,7 +97,7 @@ void MainState::init()
         input.bind("dash", 0u, i);
     }
 
-   /* input.bind("up", sf::Keyboard::W, 0);
+    /* input.bind("up", sf::Keyboard::W, 0);
     input.bind("left", sf::Keyboard::A, 0);
     input.bind("down", sf::Keyboard::S, 0);
     input.bind("right", sf::Keyboard::D, 0);
@@ -99,40 +105,48 @@ void MainState::init()
 
     // Load and initialize TGui elements
     m_game->getGui().loadWidgetsFromFile("../assets/mainTgui.txt");
-    auto panel = m_game->getGui().get<tgui::Panel>("Player");
-
-    if (!panel)
-        return;
+    auto scorePanel  = m_game->getGui().get<tgui::Panel>("ScorePanel");
+    auto healthPanel = m_game->getGui().get<tgui::Panel>("HealthPanel");
 
     for (size_t i = 0; i < m_players.size(); ++i)
     {
-        auto playerPanel = tgui::Panel::copy(panel);
-        playerPanel->setVisible(true);
+        std::string id      = m_players[i]->getId();
+        const float opacity = 130;
 
-        std::string uniqueName = "PlayerUI_" + std::to_string(i);
-        m_game->getGui().add(playerPanel, uniqueName);
-
-        playerPanel->setPosition({tgui::Layout(std::to_string(2 + i * 26) + "%"), "86%"});
-
-        auto renderer = playerPanel->getRenderer();
-        if (renderer)
+        if (scorePanel)
         {
-            const float opacity = 130;
-            std::string id      = m_players[i]->getId();
+            auto panel = tgui::Panel::copy(scorePanel);
+            panel->setVisible(true);
+            panel->setPosition({tgui::Layout(std::to_string(2 + i * 26) + "%"), "86%"});
 
-            if (id == "Player_red")
-                renderer->setBackgroundColor(tgui::Color(255, 0, 0, opacity));
-            else if (id == "Player_blue")
-                renderer->setBackgroundColor(tgui::Color(0, 0, 255, opacity));
-            else if (id == "Player_green")
-                renderer->setBackgroundColor(tgui::Color(0, 255, 0, opacity));
-            else if (id == "Player_yellow")
-                renderer->setBackgroundColor(tgui::Color(255, 255, 0, opacity));
-            else
-                renderer->setBackgroundColor(tgui::Color(100, 100, 100, opacity));
+            if (auto renderer = panel->getRenderer())
+            {
+                if (id == "Player_red")
+                    renderer->setBackgroundColor(tgui::Color(255, 0, 0, opacity));
+                else if (id == "Player_blue")
+                    renderer->setBackgroundColor(tgui::Color(0, 0, 255, opacity));
+                else if (id == "Player_green")
+                    renderer->setBackgroundColor(tgui::Color(0, 255, 0, opacity));
+                else if (id == "Player_yellow")
+                    renderer->setBackgroundColor(tgui::Color(255, 255, 0, opacity));
+                else
+                    renderer->setBackgroundColor(tgui::Color(100, 100, 100, opacity));
+            }
+
+            std::string uniqueName = "ScoreUI_" + std::to_string(i);
+            m_game->getGui().add(panel, uniqueName);
+        }
+
+        if (healthPanel)
+        {
+            auto panel = tgui::Panel::copy(healthPanel);
+            panel->setVisible(true);
+            m_game->getGui().add(panel, "HealthUI_" + std::to_string(i));
         }
     }
-    m_game->getGui().remove(panel);
+
+    m_game->getGui().remove(scorePanel);
+    m_game->getGui().remove(healthPanel);
 
     auto winSound       = GameObject::create("WinSound");
     auto soundComponent = winSound->addComponent<SoundComponent>(*winSound);
@@ -165,61 +179,102 @@ void MainState::update(const float deltaTime)
 {
     PROFILE_FUNCTION();
 
-    for (size_t i = 0; i < m_players.size(); ++i)
-    {
-        auto panel = m_game->getGui().get<tgui::Panel>("PlayerUI_" + std::to_string(i));
-        if (!panel)
-            continue;
-
-        auto& player = m_players[i];
-
-        if (auto scoreComp = player->getComponent<PlayerScoreComponent>())
-        {
-            if (auto label = panel->get<tgui::Label>("Score"))
-            {
-                int roundedScore = static_cast<int>(std::round(scoreComp->getScore()));
-                label->setText("Score: \n" + std::to_string(roundedScore) + "%");
-
-                if (roundedScore >= m_maxScore)
-                {
-                    if (!m_gameEnded)
-                        endGame(m_players[i]);
-
-                    m_camera->update(deltaTime);
-                    m_winTimer += deltaTime;
-
-                    if (m_winTimer < m_winDelay)
-                        return;
-
-                    m_gameStateManager->setState("MenuState");
-                    return;
-                }
-            }
-
-            if (auto crownImg = panel->get<tgui::Picture>("Crown"))
-                crownImg->setVisible(scoreComp->hasCrown());
-        }
-
-        if (auto healthComp = player->getComponent<HealthComponent>())
-        {
-            if (auto bar = panel->get<tgui::ProgressBar>("Health"))
-                bar->setValue(healthComp->getHealth());
-        }
-    }
-
     EventBus::getInstance().processEvents(deltaTime);
     m_gameObjectManager.update(deltaTime);
     m_physicsManager.update(deltaTime);
+
+    for (size_t i = 0; i < m_players.size(); ++i)
+    {
+        auto  scorePanel  = m_game->getGui().get<tgui::Panel>("ScoreUI_" + std::to_string(i));
+        auto  healthPanel = m_game->getGui().get<tgui::Panel>("HealthUI_" + std::to_string(i));
+        auto& player      = m_players[i];
+
+        auto healthComp = player->getComponent<HealthComponent>();
+        auto scoreComp  = player->getComponent<PlayerScoreComponent>();
+        auto itemComp   = player->getComponent<PickupComponent>();
+
+        auto healthBarOffset = 20.f;
+
+        if (healthPanel)
+        {
+            sf::Vector2f worldPos = player->getPosition();
+            worldPos.y -= healthBarOffset;
+
+            sf::Vector2i screenPos = m_game->getWindow().mapCoordsToPixel(worldPos, m_game->getWindow().getView());
+
+            auto playerWidth = player->getComponent<SpriteAnimationRenderComponent>()->getSprite().getTextureRect().width *
+                               player->getScale().x;
+
+            healthPanel->setPosition(
+                {static_cast<float>(screenPos.x) + (playerWidth / 2.f) - (healthPanel->getSize().x / 2),
+                 static_cast<float>(screenPos.y)});
+
+            if (healthComp)
+            {
+                if (auto bar = healthPanel->get<tgui::ProgressBar>("Health"))
+                    bar->setValue(healthComp->getHealth());
+            }
+        }
+
+        if (scorePanel && scoreComp)
+        {
+            if (auto label = scorePanel->get<tgui::Label>("Score"))
+            {
+                // Show rounded Score
+                int roundedScore = static_cast<int>(std::round(scoreComp->getScore()));
+                label->setText("Score: \n" + std::to_string(roundedScore) + "%");
+
+                // Check Win Condition
+                if (roundedScore >= m_maxScore && !m_gameEnded)
+                    endGame(player);
+            }
+        }
+
+        if (scorePanel && itemComp)
+        {
+            if (auto itemIcon = scorePanel->get<tgui::Picture>("ItemIcon"))
+            {
+                ItemType currentType = itemComp->getItemType();
+                itemIcon->setVisible(true);
+
+                switch (currentType)
+                {
+                    case ItemType::Size:
+                        itemIcon->getRenderer()->setTexture("../assets/Potion.png");
+                        break;
+                    case ItemType::Bomb:
+                        itemIcon->getRenderer()->setTexture("../assets/Bomb.png");
+                        break;
+                    default:
+                        itemIcon->setVisible(false);
+                        break;
+                }
+            }
+        }
+
+        if (m_gameEnded)
+        {
+            m_winTimer += deltaTime;
+            if (m_winTimer >= m_winDelay)
+                m_gameStateManager->setState("MenuState");
+        }
+    }
 }
 
 void MainState::endGame(std::shared_ptr<GameObject> winner)
 {
+    if (m_gameEnded)
+        return;
+
+    m_gameEnded = true;
+
+    // play win sound
     auto winSound = m_gameObjectManager.getGameObject("WinSound");
     if (winSound)
         winSound->getComponent<SoundComponent>()->playSound("victory");
     m_gameEnded = true;
 
-    //deactivate input
+    // deactivate input
     auto& input = InputManager::getInstance();
     for (int i = 1; i < m_players.size(); ++i)
     {
@@ -230,9 +285,16 @@ void MainState::endGame(std::shared_ptr<GameObject> winner)
         input.unbind("dash", i);
     }
 
+    // focus camera on winning player
     std::vector<std::shared_ptr<GameObject>> winners;
     winners.push_back(winner);
-    m_camera->getComponent<CameraRenderComponent>()->setTargets(winners);
+    if (m_camera)
+    {
+        if (auto camComp = m_camera->getComponent<CameraRenderComponent>())
+        {
+            camComp->setTargets(winners);
+        }
+    }
 }
 
 void MainState::draw()
